@@ -10,17 +10,17 @@ const Cards = (props: any) => {
 
   const router = useRouter();
   const searchParams = useSearchParams();
-  const categoryFromUrl = searchParams.get('category');
+  const categoryFromUrl = searchParams.get('category'||"Farewell");
   const [selectedCategory, setSelectedCategory] = useState<any>(categoryFromUrl);
   const [scrollPosition, setScrollPosition] = useState(0);
 console.log(selectedCategory,"selectedCategory");
 
   useEffect(() => {
-    setScrollPosition(window.scrollY);
+    // setScrollPosition(window.scrollY);
     
-    router.push(`/?category=${selectedCategory?.toLowerCase()}`);
-    window.scrollTo(0, scrollPosition);
-  }, [selectedCategory, router,scrollPosition]);
+    router.push(`/?category=${selectedCategory?.toLowerCase()||"farewell"}`);
+    // window.scrollTo(0, scrollPosition);
+  }, [selectedCategory, router]);
 
   // useEffect(() => {
   //   // Sync state with URL on component mount or URL change
@@ -29,7 +29,7 @@ console.log(selectedCategory,"selectedCategory");
   //   }
   // }, [categoryFromUrl, selectedCategory]);
 
-  const filteredCards = selectedCategory === 'All'
+  const filteredCards = selectedCategory === 'Farewell'
     ? props?.data
     : props?.data.filter((card: any) => card.cardType === selectedCategory);
 
@@ -54,8 +54,8 @@ console.log(selectedCategory,"selectedCategory");
       {/* Categories */}
       <Row justify="center" gutter={[10, 10]} style={{ marginBottom: '40px' }}>
         <Col>
-          <Radio.Group value={selectedCategory} onChange={handleCategoryChange}>
-            <Radio.Button value="All">All</Radio.Button>
+          <Radio.Group value={selectedCategory} defaultValue={"Farewell"} onChange={handleCategoryChange}>
+            {/* <Radio.Button value="Farewell">All</Radio.Button> */}
             {categories.map((category, index) => (
               <Radio.Button key={index} value={category}>
                 {category}
