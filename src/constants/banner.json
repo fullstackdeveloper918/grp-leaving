@@ -1,4 +1,11 @@
 {
+   "baaner_data":{ 
+    "id":1,
     "banner_img":"",
-    "text":""
+    "title":"",
+    "sub_title":"",
+    "card_type":"",
+    "banner_page_type":"home",
+    "banner_position":"header"
+}
 }

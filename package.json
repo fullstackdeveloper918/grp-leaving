@@ -9,8 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@ant-design/nextjs-registry": "^1.0.1",
     "@reduxjs/toolkit": "^2.2.7",
     "antd": "^5.20.3",
+    "axios": "^1.7.7",
     "browser-image-resizer": "^2.4.1",
     "next": "14.2.7",
     "nextjs-toploader": "^3.6.15",

@@ -11,7 +11,7 @@ const CustomerReview = (props:any) => {
     <Title level={3}>See Why Our Customers Love Our Cards</Title>
 
     <Row gutter={[16, 16]} justify="center" style={{ maxWidth: '1200px', margin: '0 auto' }}>
-      {props?.reviews?.map((review:any, index:any) => (
+      {props?.data?.map((review:any, index:any) => (
         <Col xs={24} sm={12} md={6} key={index}>
           <Card
             bordered={false}

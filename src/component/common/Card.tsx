@@ -7,6 +7,7 @@ const { Meta } = Card;
 
 const Cards = (props: any) => {
   const categories = ['Farewell', 'Birthday', 'Baby', 'Wedding', 'Get Well', 'Sympathy', 'Thank you', 'Retirement', 'Congratulations', 'Anniversary', 'Welcome', 'New Home', 'See More...'];
+console.log(props,"qwqeqw");
 
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -56,9 +57,9 @@ console.log(selectedCategory,"selectedCategory");
         <Col>
           <Radio.Group value={selectedCategory} defaultValue={"Farewell"} onChange={handleCategoryChange}>
             {/* <Radio.Button value="Farewell">All</Radio.Button> */}
-            {categories.map((category, index) => (
+            {props?.data.map((category:any, index:number) => (
               <Radio.Button key={index} value={category}>
-                {category}
+                {category?.title}
               </Radio.Button>
             ))}
           </Radio.Group>

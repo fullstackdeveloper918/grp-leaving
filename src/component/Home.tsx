@@ -6,10 +6,38 @@ import CustomerReview from './common/CustomerReview'
 import Image_text_Card from './common/Image_text_Card'
 import Join_company from './common/Join_company'
 import Cards_works from './common/Cards_works'
-import { Rate } from 'antd'
+import {Button, Card, Carousel, Col, Rate, Row,Tag,Typography  } from 'antd'
+const { Title, Text } = Typography;
+import Image from 'next/image';
+import Meta from 'antd/es/card/Meta'
+import { PlusOutlined } from '@ant-design/icons';
+const logos = [
+  { src: '/airbnb.png', alt: 'Airbnb' },
+  { src: '/harris.png', alt: 'Harris' },
+  { src: '/scotiabank.png', alt: 'Scotiabank' },
+  { src: '/toronto_pearson.png', alt: 'Toronto Pearson' },
+  { src: '/accenture.png', alt: 'Accenture' },
+  { src: '/novartis.png', alt: 'Novartis' },
+  { src: '/cloudlex.png', alt: 'Cloudlex' }
+];
+
+const categories = [
+  { name: 'Deals', icon: '/deals.png' },
+  { name: 'Business Cards', icon: '/business_cards.png' },
+  { name: 'Print Advertising', icon: '/print_advertising.png' },
+  { name: 'Banners & Displays', icon: '/banners_displays.png' },
+  { name: 'Labels & Packaging', icon: '/labels_packaging.png' },
+  { name: 'Clothing & Bags', icon: '/clothing_bags.png' },
+  { name: 'Promotional Products', icon: '/promotional_products.png' },
+  { name: 'Invitations & Stationery', icon: '/invitations_stationery.png' },
+  { name: 'Wedding Shop', icon: '/wedding_shop.png' },
+  { name: 'Websites by Vista', icon: '/websites_by_vista.png' }
+];
+
 const categoriesName = ['Farewell', 'Birthday', 'Baby', 'Wedding', 'Get Well', 'Sympathy', 'Thank you', 'Retirement', 'Congratulations', 'Anniversary', 'Welcome', 'New Home'];
 const Home = (props:any) => {
 console.log(props,"props");
+
 const [displayedText, setDisplayedText] = useState('');
 const [currentCategoryIndex, setCurrentCategoryIndex] = useState(0);
 const [isTyping, setIsTyping] = useState(true);
@@ -36,6 +64,16 @@ useEffect(() => {
   }
 }, [currentCategoryIndex, isTyping]); 
 const rating=4.5
+const chunkArray = (arr:any, size:any) => {
+  const result = [];
+  for (let i = 0; i < arr.length; i += size) {
+    result.push(arr.slice(i, i + size));
+  }
+  return result;
+};
+
+const categoriesChunks = chunkArray(categories, 5);
+
   return (
     <div className="container mt-3">
         <div className="row">
@@ -51,40 +89,54 @@ const rating=4.5
       }}>
         {/* Text Section */}
         <div style={{ flex: 1 }}>
-          <div style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
+          {/* <div style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
             <span>Read our <strong>1479</strong> reviews</span>
             <Rate allowHalf defaultValue={rating} disabled style={{color:'#07bc0c'}}/>
-          </div>
+          </div> */}
           <h1 style={{ fontSize: '2.5rem', margin: 0 }}>
-            Send a Group 
+            Group Greeting Cards  
           </h1>
           <h1 style={{ fontSize: '2.5rem', margin: 0 }}>
-          <span style={{ color: '#e60050' }}>{displayedText||"''"}</span>
+          <span style={{ color: '#e60050' }}>for {displayedText||"''"}</span>
           </h1>
-          <h1 style={{ fontSize: '2.5rem', margin: 0 }}>
+          {/* <h1 style={{ fontSize: '2.5rem', margin: 0 }}>
           Card Online
-          </h1>
+          </h1> */}
             
           <p style={{ fontSize: '1.2rem', color: '#666', marginTop: '20px' }}>
             The easiest way to pass a virtual greeting card around your office.
           </p>
+          <Row justify="center" gutter={16} style={{ marginBottom: '40px' }}>
+      <Col span={8}>
+        <Text>✅ Easy to share</Text>
+      </Col>
+      <Col span={8}>
+        <Text>✅ Quick to create</Text>
+      </Col>
+      <Col span={8}>
+        <Text>✅ Unlimited signatures</Text>
+      </Col>
+    </Row>
           <div style={{ marginTop: '20px' }}>
             <button style={{
               backgroundColor: '#0033cc',  /* Dark Blue */
               color: '#fff',
               padding: '15px 25px',
               border: 'none',
-              borderRadius: '5px',
+              borderRadius: '10px',
               fontSize: '1.2rem',
               cursor: 'pointer',
               marginRight: '20px'
             }}>
-              Create a card
+              Start A group Card
             </button>
             <a href="#" style={{
-              color: '#0033cc',
+              color: '#000000',
               textDecoration: 'none',
-              fontSize: '1.2rem'
+              fontSize: '1.2rem',
+              border: '2px solid black',  /* Added black border */
+              padding: '0.5rem',          /* Optional: Add padding for better appearance */
+              borderRadius: '4px'  
             }}>
               Try Our Demo Card
             </a>
@@ -104,10 +156,85 @@ const rating=4.5
           />
         </div>
       </div>
+      <div style={{ padding: '20px' }}>
+      {/* Header */}
+      <h1 style={{ textAlign: 'center', fontSize: '24px', marginBottom: '10px' }}>
+        Trusted by Over Seven Million Users
+      </h1>
+      <p style={{ textAlign: 'center', marginBottom: '40px' }}>
+        We take immense pride in serving individuals, charities, and corporate businesses with our virtual group cards.
+      </p>
+
+      {/* Logo Carousel */}
+      <Carousel autoplay>
+        {logos.map((logo, index) => (
+          <div key={index} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100px' }}>
+            <Image src={logo.src} alt={logo.alt} width={120} height={80} />
+          </div>
+        ))}
+      </Carousel>
+
+      {/* Categories Section */}
+      <h2 style={{ textAlign: 'center', margin: '40px 0 20px' }}>Explore All Categories</h2>
+      {/* <Row gutter={[16, 16]}> */}
+      <Carousel autoplay>
+      {categoriesChunks.map((chunk, index) => (
+        <div key={index}>
+          <Row gutter={[16, 16]}>
+            {chunk.map((category:any, i:any) => (
+              <Col xs={12} sm={8} md={6} lg={4} key={i}>
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100px' }}>
+                  <Image src={category.icon} alt={category.name} width={100} height={100} />
+                </div>
+                <div style={{ textAlign: 'center' }}>
+                  {category.name}
+                </div>
+              </Col>
+            ))}
+          </Row>
+        </div>
+      ))}
+    </Carousel>
+      {/* </Row> */}
+    </div>
+      {/* section 2 */}
+      <div style={{ padding: '50px', textAlign: 'center', fontFamily: 'Arial, sans-serif' }}>
+      {/* Title */}
+      <h1 style={{ fontSize: '36px', fontWeight: 'bold', marginBottom: '20px' }}>
+        Get Started by Selecting a Card Design or Uploading Your Own!
+      </h1>
+      
+      {/* Subtext */}
+      <p style={{ fontSize: '18px', color: '#555' }}>
+        All cards include <strong style={{ textDecoration: 'underline', color: '#000' }}>unlimited messages and pages</strong>. You can change your design at any time before sending.
+      </p>
+
+     
+      {/* Card Images */}
+      {/* <Row gutter={[20, 20]} justify="center" style={{ marginBottom: '40px' }}> */}
+      <Carousel autoplay>
+        {props?.data?.map((card: any, index: number) => (
+          <Col key={index} xs={24} sm={12} md={8} lg={6}>
+            <Card
+              hoverable
+              cover={<img alt={card.title} src={card.img} />}
+              actions={card.isNew && [<Tag color="orange">New</Tag>]}
+            >
+              <Meta title={card.title} />
+            </Card>
+          </Col>
+        ))}
+        </Carousel>
+      {/* </Row> */}
+
+      {/* Button */}
+      <Button type="primary" shape="round" icon={<PlusOutlined />} size="large">
+        See more designs
+      </Button>
+    </div>
 
       {/* section 2 */}
-      <Cards {...props}/>
-
+      <Cards  {...props}/>
       {/* section 3 */}
       <CustomerReview  {...props}/>
 
