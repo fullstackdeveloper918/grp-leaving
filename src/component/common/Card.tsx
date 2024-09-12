@@ -16,12 +16,13 @@ console.log(props,"qwqeqw");
   const [scrollPosition, setScrollPosition] = useState(0);
 console.log(selectedCategory,"selectedCategory");
 
-  useEffect(() => {
-    // setScrollPosition(window.scrollY);
-    
-    router.push(`/?category=${selectedCategory?.toLowerCase()||"farewell"}`);
-    // window.scrollTo(0, scrollPosition);
-  }, [selectedCategory, router]);
+useEffect(() => {
+  // Check if selectedCategory is a string
+  const category = typeof selectedCategory?.title === 'string' ? selectedCategory?.title?.toLowerCase() : 'farewell';
+
+  // Navigate to the URL with the category parameter
+  router.push(`/?category=${category}`);
+}, [selectedCategory, router]);
 
   // useEffect(() => {
   //   // Sync state with URL on component mount or URL change
@@ -30,7 +31,7 @@ console.log(selectedCategory,"selectedCategory");
   //   }
   // }, [categoryFromUrl, selectedCategory]);
 
-  const filteredCards = selectedCategory === 'Farewell'
+  const filteredCards = selectedCategory.title === 'Farewell'
     ? props?.data
     : props?.data.filter((card: any) => card.cardType === selectedCategory);
 

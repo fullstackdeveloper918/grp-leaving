@@ -1,0 +1,38 @@
+{
+    "popular_card": [
+      {
+        "id": 0,
+        "title": "Farewell"
+      },
+      {
+        "id": 1,
+        "title": "Birtday"
+      },
+      {
+        "id": 2,
+        "title": "New Baby"
+      },
+      {
+        "id": 3,
+        "title": "Retirement"
+      }
+    ],
+    "alloccasions": [
+      {
+        "id": 0,
+        "title": "Farewell"
+      },
+      {
+        "id": 1,
+        "title": "Wedding"
+      },
+      {
+        "id": 2,
+        "title": "Get Well"
+      },
+      {
+        "id": 3,
+        "title": "Retirement"
+      }
+    ]
+  }
