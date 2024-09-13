@@ -294,7 +294,7 @@ const Home = (props: any) => {
           <Carousel autoplay>
             {chunks.map((chunk, index) => (
               <div key={index}>
-                <div style={{ display: "flex" }}>
+                <div style={{ display: "flex" }} key={index}>
                   {chunk.map((card:any, idx:any) => (
                     <Col key={idx} xs={24} sm={12} md={8} lg={6}>
                       <Card
