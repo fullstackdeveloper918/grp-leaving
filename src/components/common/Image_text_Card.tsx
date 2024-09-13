@@ -2,7 +2,7 @@
 import React from 'react'
 import { Row, Col, Typography, Space, Button } from 'antd';
 import { SyncOutlined, HighlightOutlined, SmileOutlined } from '@ant-design/icons';
-import MacImg from "../../assesst/images/mac_demo.webp"
+import MacImg from "../../assets/images/mac_demo.webp"
 const { Title, Text, Paragraph } = Typography;
 const Image_text_Card = () => {
   return (

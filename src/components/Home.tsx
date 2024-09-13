@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import bannerImage from "../assesst/images/back_header.webp";
+import bannerImage from "../assets/images/back_header.webp";
 import Cards from "./common/Card";
 import CustomerReview from "./common/CustomerReview";
 import Image_text_Card from "./common/Image_text_Card";
