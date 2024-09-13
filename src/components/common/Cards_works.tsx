@@ -47,7 +47,7 @@ const Cards_works = () => {
               alt="We’ll send the card"
               style={{ width: '100px', marginBottom: '20px' }}
             />
-            <Title level={4}>We’ll send the card</Title>
+            <Title level={4}>Well send the card</Title>
             <Text>
               Deliver the group greeting card via email on your scheduled date or save it as a PDF to print it.
             </Text>

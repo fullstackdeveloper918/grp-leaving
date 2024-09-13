@@ -69,6 +69,7 @@ console.log(selectedCategory,"selectedCategory");
       {/* Card Images */}
       <Row gutter={[20, 20]} justify="center" style={{ marginBottom: '40px' }}>
         {props?.data?.map((card: any, index: number) => (
+          <>
           <Col key={index} xs={24} sm={12} md={8} lg={6}>
             <Card
               hoverable
@@ -78,6 +79,7 @@ console.log(selectedCategory,"selectedCategory");
               <Meta title={card.title} />
             </Card>
           </Col>
+          </>
         ))}
       </Row>
 
