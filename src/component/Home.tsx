@@ -48,7 +48,7 @@ const categoriesName = [
   "Welcome",
   "New Home",
 ];
-
+// 
 
 const ITEMS_PER_SLIDE = 5;
 
@@ -125,9 +125,7 @@ const Home = (props: any) => {
                 for {displayedText || " "}
               </span>
             </h1>
-            {/* <h1 style={{ fontSize: '2.5rem', margin: 0 }}>
-          Card Online
-          </h1> */}
+            
 
             <p style={{ fontSize: "1.2rem", color: "#666", marginTop: "20px" }}>
               The easiest way to pass a virtual greeting card around your
