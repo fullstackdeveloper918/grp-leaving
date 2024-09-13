@@ -1,3 +1,4 @@
+"use client"
 import React from "react";
 import { Row, Col, Typography } from "antd";
 import { FacebookOutlined, InstagramOutlined, LinkedinOutlined, MailOutlined } from "@ant-design/icons";

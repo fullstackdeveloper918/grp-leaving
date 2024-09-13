@@ -31,7 +31,7 @@ useEffect(() => {
   //   }
   // }, [categoryFromUrl, selectedCategory]);
 
-  const filteredCards = selectedCategory.title === 'Farewell'
+  const filteredCards = selectedCategory?.title === 'Farewell'
     ? props?.data
     : props?.data.filter((card: any) => card.cardType === selectedCategory);
 

@@ -1,3 +1,4 @@
+"use client"
 import React from 'react';
 import { Menu, Button, Typography } from 'antd';
 import { MailOutlined, DownOutlined } from '@ant-design/icons';
@@ -9,7 +10,7 @@ const Navbar: React.FC = () => {
   const router = useRouter();
 
   const handleMenuClick = (url: string) => {
-    router.push(url); // Redirects to the specified URL
+    router.push(url);
   };
 
   return (
