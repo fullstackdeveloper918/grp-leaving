@@ -4,7 +4,7 @@ import {
   fetchCardsType,
   fetchReview,
 } from "@/utils/fakeApi";
-import Main from "../component/Home";
+import Main from "../components/Home";
 import { user } from "@/utils/cybersifyApi";
 import { fetchData } from "@/utils/fetchUtils";
 interface Data {
@@ -27,7 +27,7 @@ const Home = async () => {
 
   return (
     <main className="">
-      <Main {...res} {...reviewRes} {...cardType}  />
+      <Main {...res} {...reviewRes} {...cardType} />
     </main>
   );
 };
