@@ -1,5 +1,5 @@
-export interface api {
+export interface Api {
   url: string;
-  body: any;
+  body?: any;
   method: string;
 }

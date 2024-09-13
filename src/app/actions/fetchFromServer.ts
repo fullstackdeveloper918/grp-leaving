@@ -1,8 +1,11 @@
-// app/actions/fetchFromServer.js
+
 "use server";
-import { api } from "../../interfaces/interfaces";
-export async function fetchFromServer(url: any, method = "GET", body = null) {
-  const options: any = {
+import { Api } from "../../interfaces/interfaces";
+
+export async function fetchFromServer(api: Api): Promise<any> {
+  const { url, method, body = null } = api;
+
+  const options: RequestInit = {
     method,
     headers: {
       "Content-Type": "application/json",

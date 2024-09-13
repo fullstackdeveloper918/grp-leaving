@@ -48,6 +48,17 @@ const categoriesName = [
   "Welcome",
   "New Home",
 ];
+
+
+const ITEMS_PER_SLIDE = 5;
+
+const splitIntoChunks = (array: any, size: number): any[] => {
+  const result: any[] = [];
+  for (let i = 0; i < array.length; i += size) {
+    result.push(array.slice(i, i + size));
+  }
+  return result;
+};
 const Home = (props: any) => {
   console.log(props, "props");
 
@@ -86,7 +97,7 @@ const Home = (props: any) => {
   };
 
   const categoriesChunks = chunkArray(categories, 5);
-
+  const chunks = splitIntoChunks(props?.data, ITEMS_PER_SLIDE);
   return (
     <div className="container mt-3">
       <div className="row">
@@ -283,16 +294,24 @@ const Home = (props: any) => {
           {/* Card Images */}
           {/* <Row gutter={[20, 20]} justify="center" style={{ marginBottom: '40px' }}> */}
           <Carousel autoplay>
-            {props?.data?.map((card: any, index: number) => (
-              <Col key={index} xs={24} sm={12} md={8} lg={6}>
-                <Card
-                  hoverable
-                  cover={<img alt={card.title} src={card.img} />}
-                  actions={card.isNew && [<Tag color="orange">New</Tag>]}
-                >
-                  <Meta title={card.title} />
-                </Card>
-              </Col>
+            {chunks.map((chunk, index) => (
+              <div key={index}>
+                <div style={{ display: "flex" }}>
+                  {chunk.map((card:any, idx:any) => (
+                    <Col key={idx} xs={24} sm={12} md={8} lg={6}>
+                      <Card
+                        hoverable
+                        cover={<img alt={card.title} src={card.img} />}
+                        actions={
+                          card.isNew ? [<Tag color="orange">New</Tag>] : []
+                        }
+                      >
+                        <Meta title={card.title} />
+                      </Card>
+                    </Col>
+                  ))}
+                </div>
+              </div>
             ))}
           </Carousel>
           {/* </Row> */}
