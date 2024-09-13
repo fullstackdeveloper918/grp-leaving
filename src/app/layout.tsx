@@ -1,12 +1,12 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 
-import NextTopLoader from "nextjs-toploader";
+// import NextTopLoader from "nextjs-toploader";
 const inter = Inter({ subsets: ["latin"] });
-import "nprogress/nprogress.css";
+// import "nprogress/nprogress.css";
 import Navbar from "@/components/common/Navbar";
 import Footer from "@/components/common/Footer";
-import { AntdRegistry } from "@ant-design/nextjs-registry";
+// import { AntdRegistry } from "@ant-design/nextjs-registry";
 
 export default function RootLayout({
   children,
@@ -31,9 +31,9 @@ export default function RootLayout({
         />
       </head>
       <body className={inter.className}>
-        <AntdRegistry>
-          <Navbar />
-          <NextTopLoader
+        {/* <AntdRegistry> */}
+        <Navbar />
+        {/* <NextTopLoader
             color="#2299DD"
             initialPosition={0.08}
             crawlSpeed={200}
@@ -43,10 +43,10 @@ export default function RootLayout({
             easing="ease"
             speed={200}
             shadow="0 0 10px #2299DD,0 0 5px #2299DD"
-          />
-          {children}
-          <Footer />
-        </AntdRegistry>
+          /> */}
+        {children}
+        <Footer />
+        {/* </AntdRegistry> */}
       </body>
     </html>
   );
