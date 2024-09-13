@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import { Button, Card, Col, Row, Tag, Radio } from 'antd';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { PlusOutlined } from '@ant-design/icons';
@@ -69,17 +69,17 @@ console.log(selectedCategory,"selectedCategory");
       {/* Card Images */}
       <Row gutter={[20, 20]} justify="center" style={{ marginBottom: '40px' }}>
         {props?.data?.map((card: any, index: number) => (
-          <>
-          <Col key={index} xs={24} sm={12} md={8} lg={6}>
+          <Fragment key={index}>
+          <Col  xs={24} sm={12} md={8} lg={6}>
             <Card
               hoverable
               cover={<img alt={card.title} src={card.img} />}
-              actions={card.isNew && [<Tag color="orange">New</Tag>]}
+              // actions={card.isNew && [<Tag color="orange">New</Tag>]}
             >
               <Meta title={card.title} />
             </Card>
           </Col>
-          </>
+          </Fragment>
         ))}
       </Row>
 

@@ -23,7 +23,7 @@ const Cards_works = () => {
             />
             <Title level={4}>Choose a design</Title>
             <Text>
-              Pick one of our designs, add your friend's name, email, and select a delivery date.
+              Pick one of our designs, add your friends name, email, and select a delivery date.
             </Text>
           </Card>
         </Col>
