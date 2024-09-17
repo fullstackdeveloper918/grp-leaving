@@ -1,69 +1,66 @@
-"use client";
+
 import React from 'react'
-import { Row, Col, Typography, Space, Button } from 'antd';
-import { SyncOutlined, HighlightOutlined, SmileOutlined } from '@ant-design/icons';
-import MacImg from "../../assets/images/mac_demo.webp"
-const { Title, Text, Paragraph } = Typography;
+import Image from "next/image";
 const Image_text_Card = () => {
   return (
-    <div style={{ backgroundColor: '#f5f5f5', padding: '50px 0' }}>
-    <Row justify="center" align="middle" style={{ maxWidth: '1200px', margin: '0 auto' }}>
-      {/* Left Section: Image */}
-      <Col xs={24} md={12} style={{ textAlign: 'center' }}>
-        <img
-          src={MacImg.src}
-          alt="Laptop with card preview"
-          style={{ width: '100%', maxWidth: '500px' }}
-        />
-      </Col>
+    <div className="min-h-screen flex items-center justify-center bg-gray-100">
+      <div className="bg-white shadow-md rounded-lg p-6 max-w-4xl grid grid-cols-1 lg:grid-cols-2 gap-4">
+        {/* Left Image Grid Section */}
+        <div className="grid grid-cols-2 gap-2">
+          <div className="w-full h-40 relative">
+            <Image src="/coffee1.jpg" alt="Coffee 1" layout="fill" objectFit="cover" className="rounded-lg" />
+          </div>
+          <div className="w-full h-40 relative">
+            <Image src="/coffee2.jpg" alt="Coffee 2" layout="fill" objectFit="cover" className="rounded-lg" />
+          </div>
+          <div className="w-full h-40 relative">
+            <Image src="/coffee3.jpg" alt="Coffee 3" layout="fill" objectFit="cover" className="rounded-lg" />
+          </div>
+          <div className="w-full h-40 relative col-span-2 flex items-center justify-center bg-gray-200 rounded-lg">
+            <p className="text-lg font-semibold text-center">THE STOCKTON CAFE <br /> Enjoy the finest coffee blend.<br /> WE'RE OPEN DAILY!</p>
+          </div>
+        </div>
 
-      {/* Right Section: Text and Button */}
-      <Col xs={24} md={12}>
-        <Space direction="vertical" size="large" style={{ paddingLeft: '20px' }}>
-          <Title level={3}>Make it your own</Title>
-
-          <Space direction="vertical" size="middle">
-            {/* First Feature */}
-            <Space>
-              <SyncOutlined style={{ fontSize: '24px', color: '#000' }} />
-              <div>
-                <Text strong>Unlimited Signatures</Text>
-                <Paragraph type="secondary">
-                  Get unlimited pages and signatures for friends and colleagues to sign.
-                </Paragraph>
-              </div>
-            </Space>
-
-            {/* Second Feature */}
-            <Space>
-              <HighlightOutlined style={{ fontSize: '24px', color: '#000' }} />
-              <div>
-                <Text strong>Style Your Card</Text>
-                <Paragraph type="secondary">
-                  Choose your signature’s font, colour, size, rotation and place it anywhere on the card.
-                </Paragraph>
-              </div>
-            </Space>
-
-            {/* Third Feature */}
-            <Space>
-              <SmileOutlined style={{ fontSize: '24px', color: '#000' }} />
-              <div>
-                <Text strong>Make it fun</Text>
-                <Paragraph type="secondary">
-                  Add emojis, GIFs, stickers, images and custom messages to make your card extra special.
-                </Paragraph>
-              </div>
-            </Space>
-          </Space>
-
-          <Button type="primary" size="large" style={{ width: '200px', backgroundColor: '#002766' }}>
-            Get started
-          </Button>
-        </Space>
-      </Col>
-    </Row>
-  </div>
+        {/* Right Text Section */}
+        <div className="flex flex-col justify-center">
+          <h1 className="text-3xl font-bold mb-4">The #1 rated group greeting card</h1>
+          <ul className="space-y-3 text-gray-700">
+            <li className="flex items-center">
+              <span className="w-4 h-4 bg-orange-400 rounded-full mr-3"></span>
+              Unlimited messages on the card.
+            </li>
+            <li className="flex items-center">
+              <span className="w-4 h-4 bg-orange-400 rounded-full mr-3"></span>
+              100s of card covers to customize.
+            </li>
+            <li className="flex items-center">
+              <span className="w-4 h-4 bg-orange-400 rounded-full mr-3"></span>
+              Add photos and GIFs to the card.
+            </li>
+            <li className="flex items-center">
+              <span className="w-4 h-4 bg-orange-400 rounded-full mr-3"></span>
+              Download as a PDF to print.
+            </li>
+            <li className="flex items-center">
+              <span className="w-4 h-4 bg-orange-400 rounded-full mr-3"></span>
+              Unlimited message length.
+            </li>
+            <li className="flex items-center">
+              <span className="w-4 h-4 bg-orange-400 rounded-full mr-3"></span>
+              Invite friends and send reminders.
+            </li>
+            <li className="flex items-center">
+              <span className="w-4 h-4 bg-orange-400 rounded-full mr-3"></span>
+              No apps or downloads.
+            </li>
+            <li className="flex items-center">
+              <span className="w-4 h-4 bg-orange-400 rounded-full mr-3"></span>
+              Can be signed by anyone worldwide.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
   )
 }
 

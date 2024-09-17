@@ -18,123 +18,57 @@ const links = [
 const Navbar = () => {
   return (
     <>
-      <nav className="bg-white dark:bg-gray-900 fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600">
-        <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-          <a
-            href="/"
-            className="flex items-center space-x-3 rtl:space-x-reverse"
-          >
-            <Image
-              src={Images.GroupLeaving}
-              width={100}
-              height={100}
-              sizes="Please give sizes property"
-              className="h-8"
-              alt="Website Logo"
-            />
-          </a>
+      <header className="w-full">
+      {/* Banner */}
+      <div className="bg-orange-200 text-center text-xs py-2">
+        <span>
+          Our back-to-school sale is here! Save 15% on Coins for all your fall invitations with code BACKTOFALL. Ends 9/3.{' '}
+          <a href="#" className="underline text-orange-600">Shop Now</a>
+        </span>
+      </div>
 
-          <SearchBar />
-
-          <div
-            className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
-            id="navbar-sticky"
-          >
-            <ul className="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 dark:border-gray-700">
-              <li>
-                <Link
-                  href="#"
-                  className="block py-2 px-3 text-black bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500 no-underline"
-                  aria-current="page"
-                >
-                  Login
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="#"
-                  className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 no-underline"
-                >
-                  Sign In
-                </Link>
-              </li>
-            </ul>
-          </div>
+      {/* Main Header */}
+      <div className="flex justify-between items-center py-4 px-6">
+        {/* Logo */}
+        <div className="flex items-center space-x-1 text-xl font-semibold">
+          <span className="text-black">Group</span>
+          <span className="text-orange-500">leaving</span>
+          <span className="text-black">cards</span>
         </div>
-        {/* 
-        <div
-          className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
-          id="navbar-sticky"
-        >
-          <ul className="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-            <li>
-              <Link
-                href="#"
-                className="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500 no-underline"
-                aria-current="page"
-              >
-                Birthday Cards
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="#"
-                className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 no-underline"
-              >
-                Cards
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="#"
-                className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 no-underline"
-              >
-                Flower & Pants
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="#"
-                className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 no-underline"
-              >
-                Computers
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="#"
-                className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 no-underline"
-              >
-                Fashion
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="#"
-                className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 no-underline"
-              >
-                Health
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="#"
-                className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 no-underline"
-              >
-                Pharmacy
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="#"
-                className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 no-underline"
-              >
-                Toys & Games
-              </Link>
-            </li>
-          </ul>
-        </div> */}
+
+        {/* Search Bar */}
+        <div className="relative w-1/3">
+          <input
+            type="text"
+            placeholder="Search"
+            className="w-full py-2 px-4 border rounded-full focus:outline-none focus:ring-2 focus:ring-orange-400"
+          />
+          <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400">
+            🔍
+          </span>
+        </div>
+
+        {/* Auth and Button */}
+        <div className="flex items-center space-x-4">
+          <a href="#" className="text-sm text-gray-600">Login</a>
+          <button className="bg-orange-500 text-white px-4 py-2 rounded-md hover:bg-orange-400">
+            Sign In
+          </button>
+        </div>
+      </div>
+
+      {/* Navigation Links */}
+      <nav className="flex justify-center space-x-6 text-sm text-gray-700 py-2 border-t">
+        <a href="#" className="hover:text-orange-500">Birthday Cards</a>
+        <a href="#" className="hover:text-orange-500">Cards</a>
+        <a href="#" className="hover:text-orange-500">Flowers & Plants</a>
+        <a href="#" className="hover:text-orange-500">Computers</a>
+        <a href="#" className="hover:text-orange-500">Fashion</a>
+        <a href="#" className="hover:text-orange-500">Health</a>
+        <a href="#" className="hover:text-orange-500">Pharmacy</a>
+        <a href="#" className="hover:text-orange-500">Toys & Games</a>
       </nav>
+    </header>
     </>
   );
 };
