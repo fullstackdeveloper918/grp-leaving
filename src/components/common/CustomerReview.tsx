@@ -39,9 +39,8 @@ const CustomerReview = (props:any) => {
   ];
   
   return (
-    <div className="bg-gray-50 py-12">
-      <div className="max-w-7xl mx-auto px-4 text-center">
-        <h2 className="text-3xl font-bold mb-8">See Why Our Customers Love Our Cards</h2>
+    <>
+  
         
         {/* Reviews Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
@@ -79,8 +78,7 @@ const CustomerReview = (props:any) => {
           <span className="w-3 h-3 bg-gray-300 rounded-full"></span>
           <span className="w-3 h-3 bg-gray-300 rounded-full"></span>
         </div>
-      </div>
-    </div>
+    </>
   )
 }
 

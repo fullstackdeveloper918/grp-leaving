@@ -4,14 +4,7 @@ import { Row, Col, Typography, Button, Card } from 'antd';
 const { Title, Text } = Typography;
 const Cards_works = () => {
   return (
-    <div className="min-h-screen bg-white flex flex-col items-center justify-center py-12">
-    <div className="text-center">
-      <h1 className="text-3xl font-bold mb-4">How group cards work?</h1>
-      <p className="text-lg text-gray-600 mb-8">
-        How to create a group ecard signed by multiple people.
-      </p>
-    </div>
-
+   
     <div className="flex flex-col lg:flex-row justify-center gap-12 lg:gap-24 items-center">
       {/* Step 1: Choose a Design */}
       <div className="text-center">
@@ -47,12 +40,6 @@ const Cards_works = () => {
       </div>
     </div>
 
-    <div className="mt-8">
-      <button className="bg-orange-400 text-white px-6 py-3 rounded-lg text-lg hover:bg-orange-500">
-        Get Started
-      </button>
-    </div>
-  </div>
   )
 }
 
