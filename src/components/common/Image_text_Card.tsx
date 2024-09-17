@@ -8,13 +8,13 @@ const Image_text_Card = () => {
         {/* Left Image Grid Section */}
         <div className="grid grid-cols-2 gap-2">
           <div className="w-full h-40 relative">
-            <Image src="/coffee1.jpg" alt="Coffee 1" layout="fill" objectFit="cover" className="rounded-lg" />
+            <Image src="https://img.freepik.com/premium-psd/greeting-card-with-flowers-it-pink-background_74869-4261.jpg?w=826" alt="Coffee 1" layout="fill" objectFit="cover" className="rounded-lg" />
           </div>
           <div className="w-full h-40 relative">
-            <Image src="/coffee2.jpg" alt="Coffee 2" layout="fill" objectFit="cover" className="rounded-lg" />
+            <Image src="https://img.freepik.com/premium-vector/simple-floral-thank-you-card-with-watercolor-background_694794-178.jpg?w=1380" alt="Coffee 2" layout="fill" objectFit="cover" className="rounded-lg" />
           </div>
           <div className="w-full h-40 relative">
-            <Image src="/coffee3.jpg" alt="Coffee 3" layout="fill" objectFit="cover" className="rounded-lg" />
+            <Image src="https://img.freepik.com/premium-photo/wedding-invitation-with-flowers-flower-middle_1191871-49377.jpg?w=740" alt="Coffee 3" layout="fill" objectFit="cover" className="rounded-lg" />
           </div>
           <div className="w-full h-40 relative col-span-2 flex items-center justify-center bg-gray-200 rounded-lg">
             <p className="text-lg font-semibold text-center">THE STOCKTON CAFE <br /> Enjoy the finest coffee blend.<br /> WE'RE OPEN DAILY!</p>

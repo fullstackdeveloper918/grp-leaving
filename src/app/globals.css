@@ -31,3 +31,23 @@ body {
     text-wrap: balance;
   }
 } */
+
+/* Add to your global CSS or Tailwind config if not using Tailwind's default classes */
+.navLinks {
+  /* Initial state for mobile menu hidden */
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-in-out;
+}
+
+.navLinks.open {
+  /* State for mobile menu visible */
+  transform: translateX(0);
+}
+
+/* Adjust responsive design */
+@media (min-width: 768px) {
+  .navLinks {
+    /* Show the menu by default on larger screens */
+    transform: translateX(0);
+  }
+}

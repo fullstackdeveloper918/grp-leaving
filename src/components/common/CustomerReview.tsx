@@ -52,7 +52,7 @@ const CustomerReview = (props:any) => {
               
               {/* User Info */}
               <div className="flex items-center">
-                <img src={review.image} alt={review.name} className="w-10 h-10 rounded-full mr-3" />
+                <img src={`https://img.freepik.com/premium-psd/greeting-card-with-flowers-it-pink-background_74869-4261.jpg?w=826`} alt={review.name} className="w-10 h-10 rounded-full mr-3" />
                 <div>
                   <p className="text-sm font-semibold">{review.name}</p>
                   <p className="text-sm text-gray-500">{review.handle}</p>

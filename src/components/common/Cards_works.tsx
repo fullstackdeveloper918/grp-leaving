@@ -9,7 +9,7 @@ const Cards_works = () => {
       {/* Step 1: Choose a Design */}
       <div className="text-center">
         <div className="w-20 h-20 mx-auto mb-4">
-          <img src="/choose-design-icon.png" alt="Choose a design" className="w-full h-full" />
+          <img src="https://img.freepik.com/premium-psd/greeting-card-with-flowers-it-pink-background_74869-4261.jpg?w=826" alt="Choose a design" className="w-full h-full" />
         </div>
         <h3 className="text-xl font-semibold mb-2">Choose a design</h3>
         <p className="text-gray-600 max-w-xs">
@@ -20,7 +20,7 @@ const Cards_works = () => {
       {/* Step 2: Invite Others */}
       <div className="text-center">
         <div className="w-20 h-20 mx-auto mb-4">
-          <img src="/invite-others-icon.png" alt="Invite others" className="w-full h-full" />
+          <img src="https://img.freepik.com/premium-vector/simple-floral-thank-you-card-with-watercolor-background_694794-178.jpg?w=1380" alt="Invite others" className="w-full h-full" />
         </div>
         <h3 className="text-xl font-semibold mb-2">Invite others to sign</h3>
         <p className="text-gray-600 max-w-xs">
@@ -31,7 +31,7 @@ const Cards_works = () => {
       {/* Step 3: Send the Card */}
       <div className="text-center">
         <div className="w-20 h-20 mx-auto mb-4">
-          <img src="/send-card-icon.png" alt="Send the card" className="w-full h-full" />
+          <img src="https://img.freepik.com/premium-photo/wedding-invitation-with-flowers-flower-middle_1191871-49377.jpg?w=740" alt="Send the card" className="w-full h-full" />
         </div>
         <h3 className="text-xl font-semibold mb-2">We'll send the card</h3>
         <p className="text-gray-600 max-w-xs">
