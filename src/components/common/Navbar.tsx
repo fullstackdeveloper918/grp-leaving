@@ -30,12 +30,14 @@ const Navbar = () => {
       {/* Main Header */}
       <div className="flex justify-between items-center py-4 px-6">
         {/* Logo */}
+        <Link href={`/`} className='no-underline'>
+       
         <div className="flex items-center space-x-1 text-xl font-semibold">
           <span className="text-black">Group</span>
           <span className="text-orange-500">leaving</span>
           <span className="text-black">cards</span>
         </div>
-
+        </Link>
         {/* Search Bar */}
         <div className="relative w-1/3">
           <input
@@ -59,14 +61,14 @@ const Navbar = () => {
 
       {/* Navigation Links */}
       <nav className="flex justify-center space-x-6 text-sm text-gray-700 py-2 border-t">
-        <a href="#" className="hover:text-orange-500">Birthday Cards</a>
-        <a href="#" className="hover:text-orange-500">Cards</a>
-        <a href="#" className="hover:text-orange-500">Flowers & Plants</a>
-        <a href="#" className="hover:text-orange-500">Computers</a>
-        <a href="#" className="hover:text-orange-500">Fashion</a>
-        <a href="#" className="hover:text-orange-500">Health</a>
-        <a href="#" className="hover:text-orange-500">Pharmacy</a>
-        <a href="#" className="hover:text-orange-500">Toys & Games</a>
+        <a href="/card/farewell" className="hover:text-orange-500">Farewell</a>
+        <a href="/card/birthday" className="hover:text-orange-500">Birthday Cards</a>
+        <a href="/card/baby" className="hover:text-orange-500">New Baby</a>
+        <a href="/card/retirement" className="hover:text-orange-500">Retirement</a>
+        <a href="/card/sympathy" className="hover:text-orange-500">Sympathy</a>
+        <a href="/card/wedding"className="hover:text-orange-500">Wedding</a>
+        <a href="/card/welcome" className="hover:text-orange-500">Welcome</a>
+        <a href="/card/thank-you" className="hover:text-orange-500">Thank You</a>
       </nav>
     </header>
     </>

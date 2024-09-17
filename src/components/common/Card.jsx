@@ -20,7 +20,7 @@ const Card = ({item,index}) => {
       <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
         <a href="#">
           <Image
-            className="rounded-t-lg"
+            className="rounded-t-lg w-full h-48 object-cover"
             src={array[index]}
             width={250}
             height={250}

@@ -55,30 +55,31 @@ const Home = async () => {
 
         {/* Section 5 */}
         <div className="min-h-screen bg-white flex flex-col items-center justify-center py-12">
-    <div className="text-center">
-      <h1 className="text-3xl font-bold mb-4">How group cards work?</h1>
-      <p className="text-lg text-gray-600 mb-8">
-        How to create a group ecard signed by multiple people.
-      </p>
-    </div>
-    <Cards_works />
-    <div className="mt-8">
-      <button className="bg-orange-400 text-white px-6 py-3 rounded-lg text-lg hover:bg-orange-500">
-        Get Started
-      </button>
-    </div>
-  </div>
-   {/* Section 6 */}
-  <div className="bg-gray-50 py-12">
-      <div className="max-w-7xl mx-auto px-4 text-center">
-        <h2 className="text-3xl font-bold mb-8">See Why Our Customers Love Our Cards</h2>
-        
-        {/* Reviews Grid */}
-       
-        <CustomerReview />
-      </div>
-    </div>
-       
+          <div className="text-center">
+            <h1 className="text-3xl font-bold mb-4">How group cards work?</h1>
+            <p className="text-lg text-gray-600 mb-8">
+              How to create a group ecard signed by multiple people.
+            </p>
+          </div>
+          <Cards_works />
+          <div className="mt-8">
+            <button className="bg-orange-400 text-white px-6 py-3 rounded-lg text-lg hover:bg-orange-500">
+              Get Started
+            </button>
+          </div>
+        </div>
+        {/* Section 6 */}
+        <div className="bg-gray-50 py-12">
+          <div className="max-w-7xl mx-auto px-4 text-center">
+            <h2 className="text-3xl font-bold mb-8">
+              See Why Our Customers Love Our Cards
+            </h2>
+
+            {/* Reviews Grid */}
+
+            <CustomerReview />
+          </div>
+        </div>
 
         {/* Section 7 */}
         <NewsletterForm />
