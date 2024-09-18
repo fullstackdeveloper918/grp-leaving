@@ -1,11 +1,22 @@
-"use client"
-import { useRouter } from 'next/navigation';
-import React from 'react';
+"use client";
+import { useRouter } from "next/navigation";
+import React from "react";
 
 const categories = [
-  'Farewell', 'Birthday', 'Baby', 'Wedding', 'Get Well', 'Sympathy', 'Teacher', 
-  'Thank You', 'Retirement', 'Congratulations', 'Anniversary', 'Welcome', 
-  'New Home', 'Boss'
+  "Farewell",
+  "Birthday",
+  "Baby",
+  "Wedding",
+  "Get Well",
+  "Sympathy",
+  "Teacher",
+  "Thank You",
+  "Retirement",
+  "Congratulations",
+  "Anniversary",
+  "Welcome",
+  "New Home",
+  "Boss",
 ];
 
 const Sidebar = ({ urlValue }: { urlValue: string }) => {
@@ -13,8 +24,7 @@ const Sidebar = ({ urlValue }: { urlValue: string }) => {
   const router = useRouter();
 
   const handleClick = (category: string) => {
-console.log(category,"category");
-
+    console.log(category, "category");
     router.push(`/card/${category.toLowerCase()}`);
   };
   return (
@@ -24,7 +34,11 @@ console.log(category,"category");
           <li
             key={category}
             onClick={() => handleClick(category)}
-            className={`cursor-pointer ${urlValue === category.toLowerCase() ? 'text-blue-500 font-bold' : 'text-gray-700'} hover:text-blue-500`}
+            className={`cursor-pointer ${
+              urlValue === category.toLowerCase()
+                ? "text-blue-500 font-bold"
+                : "text-gray-700"
+            } hover:text-blue-500`}
           >
             {category}
           </li>

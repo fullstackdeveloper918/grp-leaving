@@ -8,6 +8,8 @@ import Image_text_Card from "@/components/common/Image_text_Card";
 import CustomerReview from "@/components/common/CustomerReview";
 import Cards_works from "@/components/common/Cards_works";
 import NewsletterForm from "@/components/Newsletter";
+import Link from "next/link";
+import cardData from "../constants/CardJson/card.json"
 const Home = async () => {
   const api: Api = {
     url: "https://fakestoreapi.com/products",
@@ -27,21 +29,20 @@ const Home = async () => {
         <div className="mt-55">
           <h3 className="">Explore all categories</h3>
           <div className="flex justify-center items-center gap-5">
-            {data.slice(0, 7).map((item: any, index: number) => (
+            {cardData?.data?.slice(0, 7).map((item: any, index: number) => (
               <>
                 <Category item={item} index={index} />
               </>
             ))}
           </div>
         </div>
-
         <div>
           <h3>
             We have Group Greeting Cards for all occasions  Premium cards start
             at $1
           </h3>
           <div className="flex justify-center items-center gap-5">
-            {data.slice(0, 5).map((item: any, index: number) => (
+            {cardData?.data?.slice(0, 5).map((item: any, index: number) => (
               <>
                 <Card item={item} index={index} />
               </>
@@ -63,9 +64,11 @@ const Home = async () => {
           </div>
           <Cards_works />
           <div className="mt-8">
+            <Link href={`/create`}>
             <button className="bg-orange-400 text-white px-6 py-3 rounded-lg text-lg hover:bg-orange-500">
               Get Started
             </button>
+            </Link>
           </div>
         </div>
         {/* Section 6 */}
