@@ -23,7 +23,7 @@ const CardCollection = ({ params }: any) => {
             {cardData.data
               .filter((card) => card.type === params?.slug[0])
               .map((card:any, index:number) => (
-                <Card item={card} index={index} />
+                <Card item={card} index={index} key={index}/>
               ))}
           </div>
         </main>
