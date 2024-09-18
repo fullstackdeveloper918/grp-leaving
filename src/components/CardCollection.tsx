@@ -12,7 +12,7 @@ const CardCollection = ({ params }: any) => {
         <main className="flex-1 p-8">
           <div className="flex justify-between items-center mb-6">
             <h1 className="text-3xl font-bold justify-center items-center">
-              Pick a birthday card design
+              Pick a {params?.slug[0]} card design
             </h1>
             <CollectionFilter />
           </div>
