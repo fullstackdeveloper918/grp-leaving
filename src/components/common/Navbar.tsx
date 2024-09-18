@@ -59,15 +59,16 @@ const Navbar = () => {
         </div>
 
         {/* Navigation Links */}
-        <nav className={`md:flex md:justify-center md:space-x-6 text-sm text-gray-700 py-2 border-t absolute inset-x-0 top-16 md:static md:top-auto transition-transform duration-300 ${isMenuOpen ? "translate-x-0" : "-translate-x-full"}`}>
-          <a href="/card/farewell" className="block px-4 py-2 hover:text-orange-500">Farewell</a>
-          <a href="/card/birthday" className="block px-4 py-2 hover:text-orange-500">Birthday Cards</a>
-          <a href="/card/baby" className="block px-4 py-2 hover:text-orange-500">New Baby</a>
-          <a href="/card/retirement" className="block px-4 py-2 hover:text-orange-500">Retirement</a>
-          <a href="/card/sympathy" className="block px-4 py-2 hover:text-orange-500">Sympathy</a>
-          <a href="/card/wedding" className="block px-4 py-2 hover:text-orange-500">Wedding</a>
-          <a href="/card/welcome" className="block px-4 py-2 hover:text-orange-500">Welcome</a>
-          <a href="/card/thank-you" className="block px-4 py-2 hover:text-orange-500">Thank You</a>
+        {/* <nav className={`md:flex md:justify-center md:space-x-6 text-sm text-gray-700 py-2 border-t absolute inset-x-0 top-16 md:static md:top-auto transition-transform duration-300 ${isMenuOpen ? "translate-x-0" : "-translate-x-full"}`}> */}
+        <nav className={`md:flex md:justify-center md:space-x-6 text-sm text-gray-700 py-2 border-t absolute inset-x-0 top-16 md:static md:top-auto transition-transform duration-300 `}>
+          <a href="/card/farewell" className="block px-4 py-2 hover:text-orange-500 no-underline text-black">Farewell</a>
+          <a href="/card/birthday" className="block px-4 py-2 hover:text-orange-500 no-underline text-black">Birthday Cards</a>
+          <a href="/card/baby" className="block px-4 py-2 hover:text-orange-500 no-underline text-black">New Baby</a>
+          <a href="/card/retirement" className="block px-4 py-2 hover:text-orange-500 no-underline text-black">Retirement</a>
+          <a href="/card/sympathy" className="block px-4 py-2 hover:text-orange-500 no-underline text-black">Sympathy</a>
+          <a href="/card/wedding" className="block px-4 py-2 hover:text-orange-500 no-underline text-black">Wedding</a>
+          <a href="/card/welcome" className="block px-4 py-2 hover:text-orange-500 no-underline text-black">Welcome</a>
+          <a href="/card/thank-you" className="block px-4 py-2 hover:text-orange-500 no-underline text-black">Thank You</a>
         </nav>
       </header>
     </>
