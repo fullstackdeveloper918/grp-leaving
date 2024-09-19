@@ -17,7 +17,7 @@ const Image_text_Card = () => {
             <Image src="https://img.freepik.com/premium-photo/wedding-invitation-with-flowers-flower-middle_1191871-49377.jpg?w=740" alt="Coffee 3" layout="fill" objectFit="cover" className="rounded-lg" />
           </div>
           <div className="w-full h-40 relative col-span-2 flex items-center justify-center bg-gray-200 rounded-lg">
-            <p className="text-lg font-semibold text-center">THE STOCKTON CAFE <br /> Enjoy the finest coffee blend.<br /> WE'RE OPEN DAILY!</p>
+            <p className="text-lg font-semibold text-center">THE STOCKTON CAFE <br /> Enjoy the finest coffee blend.<br /> WE ARE OPEN DAILY!</p>
           </div>
         </div>
 

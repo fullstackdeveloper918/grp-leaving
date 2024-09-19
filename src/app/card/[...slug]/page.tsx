@@ -14,10 +14,10 @@
 import CardCollection from '@/components/CardCollection'
 import React from 'react'
   
-  const page = () => {
+  const page = ({params}:any) => {
     
     return (
-      <div><CardCollection/></div>
+      <div><CardCollection params={params}/></div>
     )
   }
   

@@ -13,7 +13,7 @@ const Cards_works = () => {
         </div>
         <h3 className="text-xl font-semibold mb-2">Choose a design</h3>
         <p className="text-gray-600 max-w-xs">
-          Pick one of our designs, add your friend's name, email and select a delivery date.
+          Pick one of our designs, add your friends name, email and select a delivery date.
         </p>
       </div>
 
@@ -33,7 +33,7 @@ const Cards_works = () => {
         <div className="w-20 h-20 mx-auto mb-4">
           <img src="https://img.freepik.com/premium-photo/wedding-invitation-with-flowers-flower-middle_1191871-49377.jpg?w=740" alt="Send the card" className="w-full h-full" />
         </div>
-        <h3 className="text-xl font-semibold mb-2">We'll send the card</h3>
+        <h3 className="text-xl font-semibold mb-2">We will send the card</h3>
         <p className="text-gray-600 max-w-xs">
           Deliver the group greeting card via email on your scheduled date or save it as a PDF to print it.
         </p>
