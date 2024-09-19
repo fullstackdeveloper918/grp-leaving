@@ -4,6 +4,10 @@ import { Card, Checkbox, Divider, Flex, Form, Input } from "antd";
 import dynamic from "next/dynamic";
 import SocalLogin from "../components/common/SocialLogin";
 import MicroSoftLogin from "../components/common/MicroSoftLogin";
+import { useRouter } from "next/navigation";
+import { capFirst } from "@/utils/validation";
+import api from "@/utils/api";
+import { setCookie } from "nookies";
 const { Row, Col, Button } = {
     Row: dynamic(() => import("antd").then((module) => module.Row), {
       ssr: false,
@@ -16,6 +20,29 @@ const { Row, Col, Button } = {
     }),
   };
 const Login = () => {
+    const router= useRouter()
+    const onFinish = async (values: any) => {
+      let items = {
+        full_name: capFirst(values?.full_name),
+        email: String(values.email).toLowerCase(),
+        password: values.password,
+      };
+      let res = await api.Auth.login(items);
+      console.log(res,"yuyyyu");
+      
+      if (res.token) {
+        setCookie(null, 'token', res.token, {
+            maxAge: 30 * 24 * 60 * 60,
+            path: '/',
+        });
+    }
+
+      console.log(res, "rereere");
+      router.replace("/")
+  
+      try {
+      } catch (error: any) {}
+    };
   return (
     <section className="auth-pages d-flex align-items-center h-100">
     <div className="container">
@@ -35,7 +62,7 @@ const Login = () => {
               name="normal_login"
               className="login-form"
               initialValues={{ remember: false }}
-            //   onFinish={onFinish}
+              onFinish={onFinish}
               scrollToFirstError
             >
               <Form.Item
@@ -66,10 +93,10 @@ const Login = () => {
                   placeholder="Password"
                   prefix={<i className="fa-solid fa-lock"></i>}
                 />
+              </Form.Item>
                 <small className="text-muted">
                   Must be at least 8 characters
                 </small>
-              </Form.Item>
               <Button
                 size="large"
                 type="primary"

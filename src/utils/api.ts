@@ -5,7 +5,7 @@ import { parseCookies } from 'nookies';
 import { info } from "console";
 
 // const API_ROOT = 'https://app-uilsndszlq-uc.a.run.app/';
-const API_ROOT = 'https://frontend.goaideme.com/';
+const API_ROOT = process.env.NEXT_PUBLIC_LIVE_API_URL;
 
 const BUCKET_ROOT = `https://shared2.fra1.digitaloceanspaces.com/shared2/`;
 
@@ -27,7 +27,7 @@ const responseBody = (res: any) => res.body;
 let token: any = accessToken;
 const tokenPlugin = (req: any) => {
   if (token) {
-    req.set('Token', `${token}`);
+    req.set('Bearer', `${token}`);
     // req.set('token', token || "mim");
   }
 }
@@ -48,13 +48,13 @@ const requests = {
 };
 
 const Auth = {
-  login: () =>
-    requests.get('single-user'),
-  signUp: (items: any) => requests.post(`register`, items),
+  login: (info:any) =>
+    requests.post('auth/login', info),
+  signUp: (items: any) => requests.post(`user/register`, items),
   loginAsUser: (info: any) =>
     requests.post('admin/users/login_as_user', info),
   logout: () =>
-    requests.put('admin/logout', {}),
+    requests.post('auth/logout', {}),
   forgotPassword: (info: any) =>
     requests.post('forgot-password', info),
   updatePassword: (info: any) =>

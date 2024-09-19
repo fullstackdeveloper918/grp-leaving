@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import { capFirst } from "@/utils/validation";
 // import Images from "@/constants/images";
 // import {Col, Row  } from 'antd'
 const array = [
@@ -15,15 +16,17 @@ const array = [
 const Category = ({ item, index }) => {
   return (
     <>
-      <div class="flex flex-col items-center pb-10">
-        <a href={`/card/${item?.type}`}>
+      <div class="flex flex-col items-center">
+        <a href={`/card/${item?.type}`} className="hoverZoom  max-h-[200px] max-w-[200px] overflow-hidden no-underline">
           <Image
-            class="w-24 h-24 mb-3 rounded-full shadow-lg"
+            class=" w-32 h-32 rounded-full   duration-300  ease-in-out"
             src={item?.imageSrc || array[index]}
-            width={50}
-            height={50}
+            width={150}
+            height={150}
+             className="object-cover"
             alt="category-image"
           />
+          {/* <span className="no-underline mt-3 md:text-md sm:text-sm text-blackText d-block font-medium">{capFirst(item?.type)} Cards</span> */}
         </a>
         {/* <Row gutter={[16, 16]}>
             {array.map((category, i) => (

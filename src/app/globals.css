@@ -58,6 +58,17 @@ background-position: left;
 background-size: cover;
 }
 
+.heroSectionHeight{
+  min-height: calc(100vh - 230px);
+}
+
+.container-fluid{
+  max-width: 96%;
+}
+/* .hoverZoom */
+.hoverZoom:hover img{
+transform: scale(1.1);
+}
 
 @media (min-width: 768px) {
   .navLinks {

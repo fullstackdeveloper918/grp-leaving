@@ -8,51 +8,39 @@ import React, { useEffect } from "react";
 import { setCookie } from "nookies";
 import { useRouter } from "next/navigation";
 import { Button } from "antd";
+import api from "@/utils/api";
 // import { COOKIES_USER_ACCESS_TOKEN } from "@/context/actionTypes";
 
 const GoogleLogin = () => {
   const divRef = React.useRef(null) as any;
   const router = useRouter();
   const loginWithGoogle = async (response: any) => {
-    console.log("Google Response", response);
+    console.log('Google Response', response);
     // setLoading(true)
     // let fcm_token = await getFirebaseMessageToken()
     let items = {
-      social_token: response?.credential,
-      social_type: "GOOGLE",
-      // fcm_token: fcm_token?.tokenId,
-      device_type: "WEB",
-    };
-    try {
-      let apiRes = await items;
-      // if (userInfo?.access_token) {
-      //     henceforthApi.setToken('')
-      // }
-      // setUserInfo(apiRes)
-      // if (apiRes.type == "ARTIST") {
-      //     // router.replace('/artist/dashboard')
-      //     // redirect
-      //     // if (router.query?.redirect) {
-      //     let url = router.query?.redirect ? String(router.query?.redirect).replaceAll("_", '/') : null
-      //     let oldQuery = router?.query
-      //     delete oldQuery['redirect']
-      //     delete oldQuery['type']
-
-      //     router.replace({ pathname: url ? `/${url}` as string : '/', query: { ...oldQuery } })
-      //     // }
-      // } else {
-      //     router.replace('/')
-      // }
-      // setCookie(this, COOKIES_USER_ACCESS_TOKEN, apiRes?.access_token, { path: '/' })
-      // henceforthApi.setToken(apiRes?.access_token)
-      // Toast.success("Login Successfully")
-    } catch (error) {
-      // Toast.error(error)
-    } finally {
-      // setLoading(false)
+        social_token: response?.credential,
+        social_type: "GOOGLE",
+        // fcm_token: fcm_token?.tokenId,
+        // device_type: "WEB"
     }
-  };
+    try {
+        let apiRes = await api.Auth.signUp(items)
+        // if (userInfo?.access_token) {
+        //     henceforthApi.setToken('')
+        // }
+        // setUserInfo(apiRes)
+       
+        // setCookie(this, COOKIES_USER_ACCESS_TOKEN, apiRes?.access_token, { path: '/' })
+        api.setToken(apiRes?.access_token)
+        // Toast.success("Login Successfully")
+    } catch (error) {
+        // Toast.error(error)
+    } finally {
+        // setLoading(false)
+    }
 
+}
   const googleButton = () => {
     if (divRef.current) {
       const google = (window as any).google;
@@ -88,50 +76,7 @@ const GoogleLogin = () => {
     // Handle the login response here
     console.log('Microsoft login successful:', loginResponse);
   };
-  const microsoftButton = () => {
-    if (divRef.current) {
-      const msal = (window as any).msal;
-      const msalConfig = {
-        auth: {
-          clientId: "YOUR_MICROSOFT_CLIENT_ID", // Replace with your Microsoft app client ID
-          redirectUri: "YOUR_REDIRECT_URI", // Replace with your redirect URI
-        },
-      };
-
-      const msalInstance = new msal.PublicClientApplication(msalConfig);
-
-      // Create a login button
-      const loginButton = document.createElement('button');
-      loginButton.innerText = 'Login with Microsoft';
-      loginButton.style.border = 'none';
-      loginButton.style.boxShadow = 'none';
-      loginButton.style.cursor = 'pointer';
-
-      loginButton.onclick = async () => {
-        try {
-          const loginResponse = await msalInstance.loginPopup();
-          loginWithMicrosoft(loginResponse); // Call your login handler
-        } catch (error) {
-          console.error(error);
-        }
-      };
-
-      divRef.current.appendChild(loginButton);
-    }
-  };
-
-  useEffect(() => {
-    const script = document.createElement("script");
-    script.src = "https://alcdn.msauth.net/browser/2.17.1/js/msal-browser.min.js"; // Load MSAL
-    script.async = true;
-    script.defer = true;
-    script.addEventListener("load", microsoftButton);
-    document.body.appendChild(script);
-
-    return () => {
-      document.body.removeChild(script);
-    };
-  }, []);
+ 
   return (
     <div>
       {/* <div className="col-md-6"> */}
