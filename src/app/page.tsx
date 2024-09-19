@@ -37,7 +37,7 @@ const Home = async () => {
           </div>
         </div>
         <div className="container-fluid text-center py-12">
-        <h3 className="xl:text-4xl md:text-xl sm:text-md font-semibold max-w-[50%] mx-auto">
+        <h3 className="xl:text-4xl md:text-xl sm:text-md font-semibold lg:max-w-[50%] md:max-w-[60%] max-w-[100%] mx-auto">
             We have Group Greeting Cards for all occasions <span className="text-blueText"> Premium </span> cards start
             at <span className="text-blueText">$1 </span>
           </h3>

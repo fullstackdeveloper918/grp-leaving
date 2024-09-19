@@ -1,24 +1,16 @@
 
 import React from 'react'
+import Images from "@/constants/images";
 import Image from "next/image";
 const Image_text_Card = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="bg-white shadow-md rounded-lg p-6 max-w-4xl grid grid-cols-1 lg:grid-cols-2 gap-4">
+    <div className=" bg-gray-100 container-fluid">
+      <div className="bg-white shadow-md rounded-lg  gap-4 grid grid-cols-2">
         {/* Left Image Grid Section */}
-        <div className="grid grid-cols-2 gap-2">
-          <div className="w-full h-40 relative">
-            <Image src="https://img.freepik.com/premium-psd/greeting-card-with-flowers-it-pink-background_74869-4261.jpg?w=826" alt="Coffee 1" layout="fill" objectFit="cover" className="rounded-lg" />
-          </div>
-          <div className="w-full h-40 relative">
-            <Image src="https://img.freepik.com/premium-vector/simple-floral-thank-you-card-with-watercolor-background_694794-178.jpg?w=1380" alt="Coffee 2" layout="fill" objectFit="cover" className="rounded-lg" />
-          </div>
-          <div className="w-full h-40 relative">
-            <Image src="https://img.freepik.com/premium-photo/wedding-invitation-with-flowers-flower-middle_1191871-49377.jpg?w=740" alt="Coffee 3" layout="fill" objectFit="cover" className="rounded-lg" />
-          </div>
-          <div className="w-full h-40 relative col-span-2 flex items-center justify-center bg-gray-200 rounded-lg">
-            <p className="text-lg font-semibold text-center">THE STOCKTON CAFE <br /> Enjoy the finest coffee blend.<br /> WE ARE OPEN DAILY!</p>
-          </div>
+        <div className="">
+          <div className="w-full  relative ">
+            <Image src={Images.greeting_card} alt='card'  className='object-cover rounded-[30px]' style={{ width: '100%', maxHeight:'600px'}}  />
+             </div>
         </div>
 
         {/* Right Text Section */}

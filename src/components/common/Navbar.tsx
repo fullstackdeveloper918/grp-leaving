@@ -19,18 +19,18 @@ const Navbar = () => {
     <>
       <header className="w-full">
         {/* Banner */}
-        <div className="bg-blueBg text-center text-sm py-3 text-white">
-          <span className="w-4/5 px-2">
-            Our back-to-school sale is here! Save 15% on Coins for all your fall invitations with code BACKTOFALL. Ends 9/3. {' '}
+        <div className="bg-blueBg text-center text-sm md:py-3 py-2 text-white">
+          <span className="w-4/5 px-2 d-block mx-auto md:text-sm text-sm">
+            Our back-to-school sale is here! Save 15% on Coins for all your fall invitations with code BACKTOFALL. Ends 9/3.  {' '}
             <a href="#" className="underline text-white">Shop Now</a>
           </span>
         </div>
 
         {/* Main Header */}
-        <div className="flex justify-between items-center py-4 px-6">
+        <div className="flex justify-between items-center md:py-4 md:px-6 px-2 py-3">
           {/* Logo */}
           <Link href={`/`} className='no-underline w-3/12' >
-            <div className="flex items-center  text-xl font-semibold">
+            <div className="flex items-center  text-2xl font-semibold">
               <span className="text-black">Group</span>
               <span className="text-blueText">leaving</span>
               <span className="text-black">cards</span>
@@ -54,7 +54,7 @@ const Navbar = () => {
 
           {/* Auth and Button */}
           <div className="flex items-center space-x-4">
-            <a href="#" className="text-sm text-blackText hidden md:block text-blackText no-underline">Login</a>
+            <a href="#" className="text-sm text-blackText hidden md:block text-blackText no-underline mx-1 sm:mx-3">Login</a>
             <button className=" text-white px-3 py-2 rounded-md bg-blueBg">
               Sign In
             </button>
@@ -71,15 +71,15 @@ const Navbar = () => {
 
         {/* Navigation Links */}
         {/* <nav className={`md:flex md:justify-center md:space-x-6 text-sm text-gray-700 py-2 border-t absolute inset-x-0 top-16 md:static md:top-auto transition-transform duration-300 ${isMenuOpen ? "translate-x-0" : "-translate-x-full"}`}> */}
-        <nav className={`md:flex md:justify-center md:space-x-6 text-sm text-gray-700 py-2  absolute inset-x-0 top-16 md:static md:top-auto transition-transform duration-300 `}>
-          <a href="/card/farewell" className="block px-4 py-2 hover:text-orange-500 no-underline text-black">Farewell</a>
-          <a href="/card/birthday" className="block px-4 py-2 hover:text-orange-500 no-underline text-black">Birthday Cards</a>
-          <a href="/card/baby" className="block px-4 py-2 hover:text-orange-500 no-underline text-black">New Baby</a>
-          <a href="/card/retirement" className="block px-4 py-2 hover:text-orange-500 no-underline text-black">Retirement</a>
-          <a href="/card/sympathy" className="block px-4 py-2 hover:text-orange-500 no-underline text-black">Sympathy</a>
-          <a href="/card/wedding" className="block px-4 py-2 hover:text-orange-500 no-underline text-black">Wedding</a>
-          <a href="/card/welcome" className="block px-4 py-2 hover:text-orange-500 no-underline text-black">Welcome</a>
-          <a href="/card/thank-you" className="block px-4 py-2 hover:text-orange-500 no-underline text-black">Thank You</a>
+        <nav className={`md:flex md:justify-center md:space-x-6 text-sm text-gray-700 py-2  absolute inset-x-0 top-16 md:static md:top-auto transition-transform duration-300  `}>
+          <a href="/card/farewell" className="block md:px-3 px-2 py-2 hover:text-blueText no-underline text-black m-0">Farewell</a>
+          <a href="/card/birthday" className="block md:px-3 px-2 py-2 hover:text-blueText no-underline text-black m-0">Birthday Cards</a>
+          <a href="/card/baby" className="block md:px-3 px-2 py-2 hover:text-blueText no-underline text-black m-0">New Baby</a>
+          <a href="/card/retirement" className="block md:px-3 px-2 py-2 hover:text-blueText no-underline text-black m-0">Retirement</a>
+          <a href="/card/sympathy" className="block md:px-3 px-2 py-2 hover:text-blueText no-underline text-black m-0">Sympathy</a>
+          <a href="/card/wedding" className="block md:px-3 px-2 py-2 hover:text-blueText no-underline text-black m-0">Wedding</a>
+          <a href="/card/welcome" className="block md:px-3 px-2 py-2 hover:text-blueText no-underline text-black m-0">Welcome</a>
+          <a href="/card/thank-you" className="block md:px-3 px-2 py-2 hover:text-blueText no-underline text-black m-0">Thank You</a>
         </nav>
       </header>
     </>
