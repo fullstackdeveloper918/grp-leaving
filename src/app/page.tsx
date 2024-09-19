@@ -13,6 +13,7 @@ import cardData from "../constants/CardJson/card.json";
 import { Carousel, Col, Row } from "antd";
 import Image from "next/image";
 import { capFirst } from "@/utils/validation";
+import ExpolreallcategoryCraousal from "@/components/ExpolreallcategoryCraousal";
 // import 'antd/dist/antd.css';
 const Home = async () => {
   const api: Api = {
@@ -32,26 +33,7 @@ const Home = async () => {
   // };
 
   // const categoriesChunks = chunkArray(cardData.data, 5);
-  const chunkArray = (arr: any, size: any) => {
-    const result = [];
-    for (let i = 0; i < arr.length; i += size) {
-      result.push(arr.slice(i, i + size));
-    }
-    return result;
-  };
-  const categories = [
-    { name: "Deals", icon: "/deals.png" },
-    { name: "Business Cards", icon: "/business_cards.png" },
-    { name: "Print Advertising", icon: "/print_advertising.png" },
-    { name: "Banners & Displays", icon: "/banners_displays.png" },
-    { name: "Labels & Packaging", icon: "/labels_packaging.png" },
-    { name: "Clothing & Bags", icon: "/clothing_bags.png" },
-    { name: "Promotional Products", icon: "/promotional_products.png" },
-    { name: "Invitations & Stationery", icon: "/invitations_stationery.png" },
-    { name: "Wedding Shop", icon: "/wedding_shop.png" },
-    { name: "Websites by Vista", icon: "/websites_by_vista.png" },
-  ];
-  const categoriesChunks = chunkArray(cardData.data, 5);
+
   return (
     <>
       <section className="">
@@ -72,40 +54,7 @@ const Home = async () => {
               ))}
           </div>
         </div> */}
-        <div className="container-fluid text-center py-12">
-          <h3 className="xl:text-4xl md:text-xl sm:text-md font-semibold ">
-            Explore all categories
-          </h3>
-          <div style={{ padding: "20px" }}>
-            {/* <Row gutter={[16, 16]}> */}
-            <Carousel autoplay>
-              {categoriesChunks.map((chunk, index) => (
-                <div key={index}>
-                  <div className="flex justify-center items-center gap-5 mt-5">
-                    {chunk.map((category: any, i: any) => (
-                      <div key={i}>
-                        <div
-                          style={{
-                            display: "d-flex",
-                            justifyContent: "center",
-                            alignItems: "center",
-                            height: "100px",
-                          }}
-                        >
-                          <Category item={category} index={i} />
-                        </div>
-                        <div style={{ textAlign: "center" }}>
-                          {capFirst(category.type)}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </Carousel>
-            {/* </Row> */}
-          </div>
-        </div>
+       <ExpolreallcategoryCraousal/>
         <div className="container-fluid text-center py-12">
           <h3 className="xl:text-4xl md:text-xl sm:text-md font-semibold max-w-[50%] mx-auto">
             We have Group Greeting Cards for all occasions{" "}
