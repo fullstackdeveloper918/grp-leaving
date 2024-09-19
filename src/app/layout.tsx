@@ -1,6 +1,6 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
-
+import { AntdRegistry } from '@ant-design/nextjs-registry';
 // import NextTopLoader from "nextjs-toploader";
 const inter = Inter({ subsets: ["latin"] });
 // import "nprogress/nprogress.css";
@@ -32,6 +32,7 @@ export default function RootLayout({
       </head>
       <body className={inter.className}>
         {/* <AntdRegistry> */}
+        <AntdRegistry>
         <Navbar />
         {/* <NextTopLoader
             color="#2299DD"
@@ -46,7 +47,7 @@ export default function RootLayout({
           /> */}
         {children}
         <Footer />
-        {/* </AntdRegistry> */}
+        </AntdRegistry>
       </body>
     </html>
   );
