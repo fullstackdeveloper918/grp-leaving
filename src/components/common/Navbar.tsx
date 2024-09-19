@@ -44,11 +44,11 @@ const Navbar = () => {
             <input
               type="text"
               placeholder="Search"
-              className="w-full py-2 px-4 border rounded-[6px] focus:outline-none focus:ring-2 focus:ring-orange-400"
+              className="w-full py-2 px-2 border rounded-[6px] focus:outline-none focus:ring-2 focus:ring-orange-400"
             />
             <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400">
-             <img src={Images.Search} alt="search" width={30}
-              height={30} />
+             <Image src={Images.Search} alt="search" width={20}
+              height={20} />
             </span>
           </div>
 
