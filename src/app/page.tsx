@@ -26,9 +26,9 @@ const Home = async () => {
           <Hero />
         </div>
 
-        <div className="mt-55">
-          <h3 className="">Explore all categories</h3>
-          <div className="flex justify-center items-center gap-5">
+        <div className="container-fluid text-center py-12">
+          <h3 className="xl:text-4xl md:text-xl sm:text-md font-semibold ">Explore all categories</h3>
+          <div className="flex justify-center items-center gap-5 mt-5">
             {cardData?.data?.slice(0, 7).map((item: any, index: number) => (
               <>
                 <Category item={item} index={index} />
@@ -36,12 +36,12 @@ const Home = async () => {
             ))}
           </div>
         </div>
-        <div>
-          <h3>
-            We have Group Greeting Cards for all occasions  Premium cards start
-            at $1
+        <div className="container-fluid text-center py-12">
+        <h3 className="xl:text-4xl md:text-xl sm:text-md font-semibold max-w-[50%] mx-auto">
+            We have Group Greeting Cards for all occasions <span className="text-blueText"> Premium </span> cards start
+            at <span className="text-blueText">$1 </span>
           </h3>
-          <div className="flex justify-center items-center gap-5">
+          <div className="flex justify-center items-center gap-5 mt-5">
             {cardData?.data?.slice(0, 5).map((item: any, index: number) => (
               <>
                 <Card item={item} index={index} />

@@ -22,6 +22,9 @@ const config: Config = {
       "blueText":"#558EC9",
       "menuColor":"#252C32"
     },
+    lineHeight: {
+      'extra-loose': '80px !important',
+    },
     boxShadow: {
       'blueShadow': '0 4px 10px rgba(85, 142, 201, 0.4)',
     }

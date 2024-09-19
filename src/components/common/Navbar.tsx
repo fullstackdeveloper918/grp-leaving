@@ -71,7 +71,7 @@ const Navbar = () => {
 
         {/* Navigation Links */}
         {/* <nav className={`md:flex md:justify-center md:space-x-6 text-sm text-gray-700 py-2 border-t absolute inset-x-0 top-16 md:static md:top-auto transition-transform duration-300 ${isMenuOpen ? "translate-x-0" : "-translate-x-full"}`}> */}
-        <nav className={`md:flex md:justify-center md:space-x-6 text-sm text-gray-700 py-2 border-t absolute inset-x-0 top-16 md:static md:top-auto transition-transform duration-300 `}>
+        <nav className={`md:flex md:justify-center md:space-x-6 text-sm text-gray-700 py-2  absolute inset-x-0 top-16 md:static md:top-auto transition-transform duration-300 `}>
           <a href="/card/farewell" className="block px-4 py-2 hover:text-orange-500 no-underline text-black">Farewell</a>
           <a href="/card/birthday" className="block px-4 py-2 hover:text-orange-500 no-underline text-black">Birthday Cards</a>
           <a href="/card/baby" className="block px-4 py-2 hover:text-orange-500 no-underline text-black">New Baby</a>
