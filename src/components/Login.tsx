@@ -5,30 +5,17 @@ import dynamic from "next/dynamic";
 import SocalLogin from "../components/common/SocialLogin";
 import MicroSoftLogin from "../components/common/MicroSoftLogin";
 const { Row, Col, Button } = {
-  Row: dynamic(() => import("antd").then((module) => module.Row), {
-    ssr: false,
-  }),
-  Col: dynamic(() => import("antd").then((module) => module.Col), {
-    ssr: false,
-  }),
-  Button: dynamic(() => import("antd").then((module) => module.Button), {
-    ssr: false,
-  }),
-};
-const Register = () => {
-  const onFinish = async (values: any) => {
-    if (values.email == "") {
-    }
-
-    let items = {
-      email: String(values.email).toLowerCase(),
-      password: values.password,
-      device_type: "WEB",
-    };
-
-    try {
-    } catch (error: any) {}
+    Row: dynamic(() => import("antd").then((module) => module.Row), {
+      ssr: false,
+    }),
+    Col: dynamic(() => import("antd").then((module) => module.Col), {
+      ssr: false,
+    }),
+    Button: dynamic(() => import("antd").then((module) => module.Button), {
+      ssr: false,
+    }),
   };
+const Login = () => {
   return (
     <section className="auth-pages d-flex align-items-center h-100">
     <div className="container">
@@ -43,32 +30,14 @@ const Register = () => {
               boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)',
             }}
           >
-            <h3 className="text-center mb-3">Register</h3>
+            <h3 className="text-center mb-3">Log In</h3>
             <Form
               name="normal_login"
               className="login-form"
               initialValues={{ remember: false }}
-              onFinish={onFinish}
+            //   onFinish={onFinish}
               scrollToFirstError
             >
-              <Form.Item
-                name="name"
-                rules={[
-                  {
-                    required: true,
-                    whitespace: true,
-                    message: "Please enter valid name",
-                  },
-                ]}
-              >
-                {/* <label className="labelSignup">Full Name</label> */}
-                <Input
-                  size="large"
-                  placeholder="Full Name"
-                  prefix={<i className="fa-regular fa-user"></i>}
-                />
-              </Form.Item>
-
               <Form.Item
                 name="email"
                 rules={[
@@ -101,21 +70,13 @@ const Register = () => {
                   Must be at least 8 characters
                 </small>
               </Form.Item>
-
-              <Form.Item name="newsletter" valuePropName="checked">
-                <Checkbox>
-                  Receive occasional emails with exclusive special offers
-                  and product updates.
-                </Checkbox>
-              </Form.Item>
-
               <Button
                 size="large"
                 type="primary"
                 htmlType="submit"
                 className="register-button w-100"
               >
-                Register
+                Log In
               </Button>
             </Form>
             <Divider style={{ borderColor: "#333333" }}>
@@ -127,24 +88,27 @@ const Register = () => {
             <Flex gap={24} justify="center" align="center" className="my-3">
                   <SocalLogin />
                   <MicroSoftLogin />
+                  {/* <Button size='middle' type='default' shape='circle' htmlType='button' style={{ width: 40, height: 40 }} icon={<Icons.FaceBookIcon />} className='btn-blue fw-medium text-white'></Button> */}
                 </Flex>
-
-            <div className="auth-footer text-center mt-2">
+            {/* <div className="auth-footer text-center mt-2">
               <p>
                 Already have an account? <a href="/login">Login</a>
               </p>
-              <p className="text-muted">
-                By registering you accept our{" "}
-                <a href="/terms">Terms of Use</a> and{" "}
-                <a href="/privacy">Privacy Policy</a>.
+            </div> */}
+            <div className="auth-footer text-center mt-2">
+              <h6>
+                 <a href="/login">Forgot Password</a>
+              </h6>
+              <p>
+                Need an account? <a href="/register">Register</a>
               </p>
             </div>
           </Card>
         </Col>
       </Row>
     </div>
-  </section>    
-  );
-};
+  </section>   
+  )
+}
 
-export default Register;
+export default Login

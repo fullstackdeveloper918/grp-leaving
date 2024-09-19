@@ -9,7 +9,8 @@ import CustomerReview from "@/components/common/CustomerReview";
 import Cards_works from "@/components/common/Cards_works";
 import NewsletterForm from "@/components/Newsletter";
 import Link from "next/link";
-import cardData from "../constants/CardJson/card.json"
+import cardData from "../constants/CardJson/card.json";
+import { Carousel } from "antd";
 const Home = async () => {
   const api: Api = {
     url: "https://fakestoreapi.com/products",
@@ -19,6 +20,14 @@ const Home = async () => {
 
   const data = await fetchFromServer(api);
   console.log(data, "apiRes");
+  const chunkArray = (arr: any, size: any) => {
+    const result = [];
+    for (let i = 0; i < arr.length; i += size) {
+      result.push(arr.slice(i, i + size));
+    }
+    return result;
+  };
+  const categoriesChunks = chunkArray(cardData?.data, 5);
   return (
     <>
       <section className="">
@@ -29,11 +38,19 @@ const Home = async () => {
         <div className="mt-55">
           <h3 className="">Explore all categories</h3>
           <div className="flex justify-center items-center gap-5">
-            {cardData?.data?.slice(0, 7).map((item: any, index: number) => (
-              <>
+              {/* <Carousel autoplay> */}
+              {cardData?.data?.slice(0, 7).map((item: any, index: number) => (
+                <>
                 <Category item={item} index={index} />
-              </>
-            ))}
+                </>
+                ))}
+                {/* <Carousel autoplay>
+              {categoriesChunks.map((chunk, index) => (
+                <div key={index}>
+                  <Category item={chunk} index={index} />
+                </div>
+              ))}
+            </Carousel> */}
           </div>
         </div>
         <div>
@@ -65,9 +82,9 @@ const Home = async () => {
           <Cards_works />
           <div className="mt-8">
             <Link href={`/create`}>
-            <button className="bg-orange-400 text-white px-6 py-3 rounded-lg text-lg hover:bg-orange-500">
-              Get Started
-            </button>
+              <button className="bg-orange-400 text-white px-6 py-3 rounded-lg text-lg hover:bg-orange-500">
+                Get Started
+              </button>
             </Link>
           </div>
         </div>

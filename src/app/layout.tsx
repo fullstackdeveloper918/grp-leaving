@@ -1,8 +1,8 @@
-import { Inter } from "next/font/google";
+import { Quicksand   } from "next/font/google";
 import "./globals.css";
 import { AntdRegistry } from '@ant-design/nextjs-registry';
 // import NextTopLoader from "nextjs-toploader";
-const inter = Inter({ subsets: ["latin"] });
+const quicksand = Quicksand({ subsets: ["latin"] });
 // import "nprogress/nprogress.css";
 import Navbar from "@/components/common/Navbar";
 import Footer from "@/components/common/Footer";
@@ -30,7 +30,7 @@ export default function RootLayout({
           referrerPolicy="no-referrer"
         />
       </head>
-      <body className={inter.className}>
+      <body className={quicksand.className}>
         {/* <AntdRegistry> */}
         <AntdRegistry>
         <Navbar />
