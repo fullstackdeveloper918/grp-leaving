@@ -18,7 +18,8 @@ const Recipient = ({ searchParams }: any) => {
           <div className="bg-white rounded-lg shadow-lg p-4">
             {cardData.data
               .filter((card) => card.type === searchParams?.category)
-              .map((card: any) => (
+              .map((card: any, index:number) => (
+                <span key={index}>
                 <Image
                   src={card?.imageSrc}
                   alt="We will miss you - Enjoy your retirement"
@@ -26,6 +27,7 @@ const Recipient = ({ searchParams }: any) => {
                   height={300}
                   width={400}
                 />
+                </span>
               ))}
           </div>
 
