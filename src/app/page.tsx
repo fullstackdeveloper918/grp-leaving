@@ -20,6 +20,7 @@ const Home = async () => {
     url: "https://fakestoreapi.com/products",
     method: "GET",
     // body: { key: 'value' }
+    // comment only
   };
 
   const data = await fetchFromServer(api);
