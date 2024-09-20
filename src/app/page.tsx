@@ -80,7 +80,7 @@ const Home = async () => {
         <div className=" bg-workBg  py-16">
           <div className="text-center container-fluid ">
             <h1 className="xl:text-4xl md:text-xl sm:text-md font-semibold">How group cards work?</h1>
-            <p className="text-lg text-gray-600 mb-8">
+            <p className="text-xl text-gray-600 font-semibold mb-8">
               How to create a group ecard signed by multiple people.
             </p>
           </div>
@@ -96,7 +96,7 @@ const Home = async () => {
         {/* Section 6 */}
         <div className="bg-testimonialBg bg-no-repeat py-12">
           <div className=" mx-auto px-5 text-center container-fluid">
-            <h2 className="text-3xl font-bold mb-8">
+            <h2 className="xl:text-4xl md:text-xl sm:text-md font-semibold mb-10">
               See Why Our Customers Love Our Cards
             </h2>
 

@@ -15,6 +15,7 @@ import step_2 from "../assets/images/step_2.png";
 import step_3 from "../assets/images/step_3.png";
 import testimonialBg from "../assets/images/testimonialBg.png";
 import star from "../assets/images/star.png";
+import top_2 from "../assets/images/top_2.png";
 
 
 
@@ -37,6 +38,7 @@ const Images = {
   step_3,
   testimonialBg,
   star,
+  top_2,
 };
 
 export default Images;
