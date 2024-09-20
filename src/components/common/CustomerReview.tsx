@@ -60,7 +60,7 @@ const CustomerReview = (props:any) => {
                   {/* Rating */}
               <div className="flex">
                 {Array.from({ length: review.rating }, (_, i) => (
-                 <Image src={Images.star} alt="card 2" className="w-5 h-5 " width={10} height={10} />
+                 <Image src={Images.star} key={i} alt="card 2" className="w-5 h-5 " width={10} height={10} />
                 ))}
               </div>
                 </div>
