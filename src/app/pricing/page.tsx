@@ -190,7 +190,17 @@ const page = () => {
         </p>
 
 
-        <h2 className="">Gift Card Pricing</h2>
+        <h4 className="mt-5 font-bold">Gift Card Pricing</h4>
+
+        <p className="mt-3 text-center text-gray-500">
+        Gift cards are included with all greeting cards at no additional cost. We do however charge a small
+        fee on each contribution to cover the cost of managing the service, payment costs and fraud
+        prevention. The fee depends on the currency, but is around 5%. We show this fee to all contributors
+        so it is always clear how much they are contributing to the card and what the fee is. We don't charge
+        any other fees when redeeming the gift card so the recipient will get the full value of the card. Gift
+        cards are included with all greeting cards at no additional cost. We have also We don't charge any 
+        additional fees when redeeming the gift card so the recipient will get the full value of the card.
+        </p>
       </div>
     </>
   );

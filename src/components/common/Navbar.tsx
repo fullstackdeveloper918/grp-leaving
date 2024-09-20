@@ -1,33 +1,43 @@
 "use client";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Images from "@/constants/images";
 import Image from "next/image";
 import api from "@/utils/api";
 import LogoutModal from "./LogoutModal";
 import { useRouter } from "next/navigation";
-const screenSize = {
-  mobileWidth: 767,
-};
 
 const Navbar = () => {
-  const router=useRouter()
+  const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 767);
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   const handleMenuToggle = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  const handleLogout=async()=>{
-    let res=await api.Auth.logout()
-    console.log(res,"qweqwe");
-    router.push(`/login`)
-    
-  }
+  const handleLogout = async () => {
+    let res = await api.Auth.logout();
+    console.log(res, "qweqwe");
+    router.push(`/login`);
+  };
+
   const confirmLogout = () => {
     handleLogout();
-    setIsModalOpen(false); 
-};
+    setIsModalOpen(false);
+  };
+
   return (
     <>
       <header className="w-full">
@@ -46,14 +56,14 @@ const Navbar = () => {
         <div className="flex justify-between items-center py-4 px-6">
           {/* Logo */}
           <Link href={`/`} className="no-underline w-3/12">
-            <div className="flex items-center  text-xl font-semibold">
+            <div className="flex items-center text-xl font-semibold">
               <span className="text-black">Group</span>
               <span className="text-blueText">leaving</span>
               <span className="text-black">cards</span>
             </div>
           </Link>
 
-          <div className="flex items-center space-x-4  w-9/12 justify-end">
+          <div className="flex items-center space-x-4 w-9/12 justify-end">
             {/* Search Bar */}
             <div className="relative hidden md:block w-1/3">
               <input
@@ -80,84 +90,87 @@ const Navbar = () => {
                 Login
               </a>
               <Link href={`/register`}>
-                <button className=" text-white px-3 py-2 rounded-md bg-blueBg">
+                <button className="text-white px-3 py-2 rounded-md bg-blueBg">
                   Register
                 </button>
               </Link>
               <button className="text-black px-3 py-2 rounded-md bg-red-500" onClick={() => setIsModalOpen(true)}>
-                                Logout
-                            </button>
-              {/* Mobile Menu Button */}
-              <button
-                className="md:hidden text-gray-600"
-                onClick={handleMenuToggle}
-              >
-                {isMenuOpen ? "✖" : "☰"}
+                Logout
               </button>
+              {/* Mobile Menu Button */}
+              {isMobile ? (
+                <button className="text-gray-600" onClick={handleMenuToggle}>
+                  {isMenuOpen ? "✖" : "☰"}
+                </button>
+              ) : null}
             </div>
           </div>
         </div>
 
         {/* Navigation Links */}
-        {/* <nav className={`md:flex md:justify-center md:space-x-6 text-sm text-gray-700 py-2 border-t absolute inset-x-0 top-16 md:static md:top-auto transition-transform duration-300 ${isMenuOpen ? "translate-x-0" : "-translate-x-full"}`}> */}
-        <nav
-          className={`md:flex md:justify-center md:space-x-6 text-sm text-gray-700 py-2  absolute inset-x-0 top-16 md:static md:top-auto transition-transform duration-300 `}
-        >
-          <a
-            href="/card/farewell"
-            className="block px-4 py-2 hover:text-orange-500 no-underline text-black"
+        {isMobile ? (
+          <nav
+            className={`md:hidden text-sm text-gray-700 py-2 absolute inset-x-0 top-16 transition-transform duration-300 ${isMenuOpen ? "translate-x-0" : "-translate-x-full"}`}
           >
-            Farewell
-          </a>
-          <a
-            href="/card/birthday"
-            className="block px-4 py-2 hover:text-orange-500 no-underline text-black"
-          >
-            Birthday Cards
-          </a>
-          <a
-            href="/card/baby"
-            className="block px-4 py-2 hover:text-orange-500 no-underline text-black"
-          >
-            New Baby
-          </a>
-          <a
-            href="/card/retirement"
-            className="block px-4 py-2 hover:text-orange-500 no-underline text-black"
-          >
-            Retirement
-          </a>
-          <a
-            href="/card/sympathy"
-            className="block px-4 py-2 hover:text-orange-500 no-underline text-black"
-          >
-            Sympathy
-          </a>
-          <a
-            href="/card/wedding"
-            className="block px-4 py-2 hover:text-orange-500 no-underline text-black"
-          >
-            Wedding
-          </a>
-          <a
-            href="/card/welcome"
-            className="block px-4 py-2 hover:text-orange-500 no-underline text-black"
-          >
-            Welcome
-          </a>
-          <a
-            href="/card/thank-you"
-            className="block px-4 py-2 hover:text-orange-500 no-underline text-black"
-          >
-            Thank You
-          </a>
-        </nav>
+            <a href="/card/farewell" className="block px-4 py-2 hover:text-orange-500 no-underline text-black">
+              Farewell
+            </a>
+            <a href="/card/birthday" className="block px-4 py-2 hover:text-orange-500 no-underline text-black">
+              Birthday Cards
+            </a>
+            <a href="/card/baby" className="block px-4 py-2 hover:text-orange-500 no-underline text-black">
+              New Baby
+            </a>
+            <a href="/card/retirement" className="block px-4 py-2 hover:text-orange-500 no-underline text-black">
+              Retirement
+            </a>
+            <a href="/card/sympathy" className="block px-4 py-2 hover:text-orange-500 no-underline text-black">
+              Sympathy
+            </a>
+            <a href="/card/wedding" className="block px-4 py-2 hover:text-orange-500 no-underline text-black">
+              Wedding
+            </a>
+            <a href="/card/welcome" className="block px-4 py-2 hover:text-orange-500 no-underline text-black">
+              Welcome
+            </a>
+            <a href="/card/thank-you" className="block px-4 py-2 hover:text-orange-500 no-underline text-black">
+              Thank You
+            </a>
+          </nav>
+        ) : (
+          <nav className="hidden md:flex md:justify-center md:space-x-6 text-sm text-gray-700 py-2">
+            <a href="/card/farewell" className="block px-4 py-2 hover:text-orange-500 no-underline text-black">
+              Farewell
+            </a>
+            <a href="/card/birthday" className="block px-4 py-2 hover:text-orange-500 no-underline text-black">
+              Birthday Cards
+            </a>
+            <a href="/card/baby" className="block px-4 py-2 hover:text-orange-500 no-underline text-black">
+              New Baby
+            </a>
+            <a href="/card/retirement" className="block px-4 py-2 hover:text-orange-500 no-underline text-black">
+              Retirement
+            </a>
+            <a href="/card/sympathy" className="block px-4 py-2 hover:text-orange-500 no-underline text-black">
+              Sympathy
+            </a>
+            <a href="/card/wedding" className="block px-4 py-2 hover:text-orange-500 no-underline text-black">
+              Wedding
+            </a>
+            <a href="/card/welcome" className="block px-4 py-2 hover:text-orange-500 no-underline text-black">
+              Welcome
+            </a>
+            <a href="/card/thank-you" className="block px-4 py-2 hover:text-orange-500 no-underline text-black">
+              Thank You
+            </a>
+          </nav>
+        )}
       </header>
       <LogoutModal 
-                isOpen={isModalOpen} 
-                onClose={() => setIsModalOpen(false)} 
-                onConfirm={confirmLogout} 
-            />
+        isOpen={isModalOpen} 
+        onClose={() => setIsModalOpen(false)} 
+        onConfirm={confirmLogout} 
+      />
     </>
   );
 };
