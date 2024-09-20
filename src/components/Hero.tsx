@@ -38,36 +38,36 @@ console.log(displayedText,"displayedText");
   return (
     <>
       <section className="bg-heroImage  dark:bg-gray-900 heroSectionHeight  align-middle d-flex">
-        <div className="container-fluid  py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 d-flex justify-between flex-wrap space-y-10">
-          <div className="place-self-center lg:col-span-7">
+        <div className="container-fluid  py-8 mx-auto  xl:gap-0 lg:py-16 d-flex justify-between  lg:flex-nowrap flex-wrap space-y-10 items-center">
+          <div className="lg:w-1/2 w-full">
             <h1 className="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight  md:text-5xl xl:text-6xl dark:text-white text-black lg:leading-extra-loose">
               Group Greeting Cards{" "}
               <span className="text-blueText">for {displayedText||"''"}</span>
             </h1>
-            <p className="text-black max-w-2xl mb-6 font-normal lg:mb-6 md:text-lg lg:text-xl dark:text-gray-400">
+            <p className="text-black max-w-2xl mb-6 font-normal lg:mb-6 md:text-lg lg:text-xl  font-medium">
               The easiest way to pass a virtual greeting card around your
               office.
             </p>
 
-            <ul className="list-none d-flex px-3 gap-10">
-              <List className="relative listBefore ml-4 md:text-lg lg:text-lg">Easy to share</List>
-              <List className="relative listBefore ml-5 md:text-lg lg:text-lg">Quick to create </List>
-              <List className="relative listBefore ml-5 md:text-lg lg:text-lg">Unlimited signatures</List>
+            <ul className="list-none d-flex xl:pl-8 lg:px-5 gap-10">
+              <List className="relative listBefore ml-4 md:text-lg lg:text-xl font-medium">Easy to share</List>
+              <List className="relative listBefore ml-5 md:text-lg lg:text-xl font-medium">Quick to create </List>
+              <List className="relative listBefore ml-5 md:text-lg lg:text-xl font-medium">Unlimited signatures</List>
             </ul>
 
            <div className="mt-5">
            <a
               href="/create"
-              className=" inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800 no-underline bg-blueBg text-white"
-            > Start a group Card            </a>
+              className=" btnPrimary"
+            > Start a group Card</a>
             <a
               href="#"
-              className="text-black inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center border border-[#282828] rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800 ml-2 no-underline hover:bg-blueBg hover:text-white"
+              className="btnSecondary ml-3"
             >              Try Our Demo Card
             </a>
            </div>
           </div>
-          <div className=" lg:mt-0 lg:col-span-5 lg:flex">
+          <div className="lg:w-1/2 w-full">
             <Image
               src={Images.Hero}
               width={900}

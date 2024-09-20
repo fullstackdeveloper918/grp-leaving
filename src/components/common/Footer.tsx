@@ -1,18 +1,25 @@
-"use client"
+"use client";
 import React from "react";
 import { Row, Col, Typography } from "antd";
-import { FacebookOutlined, InstagramOutlined, LinkedinOutlined, MailOutlined } from "@ant-design/icons";
+import {
+  FacebookOutlined,
+  InstagramOutlined,
+  LinkedinOutlined,
+  MailOutlined,
+} from "@ant-design/icons";
 
 const { Text, Title } = Typography;
 
 const Footer: React.FC = () => {
   return (
-    <div  style={{ backgroundColor: "#0C223F", padding: "40px", color: "#fff" }}>
+    <div style={{ backgroundColor: "#0C223F", padding: "40px", color: "#fff" }}>
       <Row justify="space-around">
         <Col xs={24} sm={12} md={6}>
           <div style={{ textAlign: "center" }}>
-            <MailOutlined style={{ fontSize: '48px', color: "#FF00A1" }} />
-            <Text style={{ display: 'block', marginTop: '10px', fontSize: '16px' }}>
+            <MailOutlined style={{ fontSize: "48px", color: "#FF00A1" }} />
+            <Text
+              style={{ display: "block", marginTop: "10px", fontSize: "16px" }}
+            >
               Copyright © 2024 Group Cards Limited.
             </Text>
             <Text>All rights reserved.</Text>
@@ -25,7 +32,9 @@ const Footer: React.FC = () => {
         </Col>
 
         <Col xs={24} sm={12} md={6}>
-          <Title level={5} style={columnTitleStyle}>Greeting card categories</Title>
+          <Title level={5} style={columnTitleStyle}>
+            Greeting card categories
+          </Title>
           <ul style={listStyle}>
             <li>Leaving cards</li>
             <li>Birthday cards</li>
@@ -38,19 +47,57 @@ const Footer: React.FC = () => {
         </Col>
 
         <Col xs={24} sm={12} md={6}>
-          <Title level={5} style={columnTitleStyle}>Pricing & Plans</Title>
+          {/* <Title level={5} style={columnTitleStyle}>Pricing & Plans</Title> */}
           <ul style={listStyle}>
-            <li>FAQ</li>
-            <li>Contact</li>
-            <li>Printed Cards</li>
-            <li>Gift Cards</li>
-            <li>Reminders</li>
-            <li>Send Feedback</li>
+            <a
+              href="/pricing"
+              className="block px-4 py-2 hover:text-orange-500 no-underline text-white"
+            >
+              <li>Pricing & Plans</li>
+            </a>
+            <a
+              href="/#"
+              className="block px-4 py-2 hover:text-orange-500 no-underline text-white"
+            >
+              <li>FAQ</li>
+            </a>
+            <a
+              href="/contact-us"
+              className="block px-4 py-2 hover:text-orange-500 no-underline text-white"
+            >
+              <li>Contact</li>
+            </a>
+            <a
+              href="/#"
+              className="block px-4 py-2 hover:text-orange-500 no-underline text-white"
+            >
+              <li>Printed Cards</li>
+            </a>
+            <a
+              href="/#"
+              className="block px-4 py-2 hover:text-orange-500 no-underline text-white"
+            >
+              <li>Gift Cards</li>
+            </a>
+            <a
+              href="/#"
+              className="block px-4 py-2 hover:text-orange-500 no-underline text-white"
+            >
+              <li>Reminders</li>
+            </a>
+            <a
+              href="/#"
+              className="block px-4 py-2 hover:text-orange-500 no-underline text-white"
+            >
+              <li>Send Feedback</li>
+            </a>
           </ul>
         </Col>
 
         <Col xs={24} sm={12} md={6}>
-          <Title level={5} style={columnTitleStyle}>Terms & Conditions</Title>
+          <Title level={5} style={columnTitleStyle}>
+            Terms & Conditions
+          </Title>
           <ul style={listStyle}>
             <li>Privacy Notice</li>
             <li>Accessibility Statement</li>
@@ -59,7 +106,10 @@ const Footer: React.FC = () => {
         </Col>
       </Row>
       <Row justify="center" style={{ marginTop: "40px" }}>
-        <Text>Send your card from one of our other brands: Same login | Same cards | Different URL</Text>
+        <Text>
+          Send your card from one of our other brands: Same login | Same cards |
+          Different URL
+        </Text>
       </Row>
     </div>
   );
@@ -69,12 +119,12 @@ const iconStyle = {
   fontSize: "24px",
   color: "#fff",
   marginRight: "15px",
-  cursor: "pointer"
+  cursor: "pointer",
 };
 
 const columnTitleStyle = {
   color: "#fff",
-  marginBottom: "20px"
+  marginBottom: "20px",
 };
 
 const listStyle = {

@@ -17,12 +17,13 @@ const Category = ({ item, index }) => {
   return (
     <>
       <div class="flex flex-col items-center">
-        <a href={`/card/${item?.type}`} className="hoverZoom  max-h-[200px] max-w-[200px] overflow-hidden no-underline">
+        <a href={`/card/${item?.type}`} className="hoverZoom   rounded-full min-h-[150px] min-w-[150px] h-[150px] w-[150px] overflow-hidden no-underline imgSlider">
           <Image
-            class=" w-32 h-32 rounded-full   duration-300  ease-in-out"
+            class="  rounded-full   duration-300 min-h-[80px] min-w-[80px] h-[80px] w-[80px]  rounded-full  w-[120px] ease-in-out "
             src={item?.imageSrc || array[index]}
-            width={150}
-            height={150}
+            width={100}
+            height={100}
+            
              className="object-cover"
             alt="category-image"
           />

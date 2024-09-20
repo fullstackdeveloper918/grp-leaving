@@ -1,10 +1,10 @@
-"use client"
-import React, { useState } from 'react';
+import React from 'react';
 import { Carousel } from 'antd'; // Assuming you are using Ant Design Carousel
-import cardData from "../constants/CardJson/card.json"
+import cardData from "../constants/CardJson/card.json";
 import Category from './Category';
 import { capFirst } from '@/utils/validation';
-const chunkArray = (arr:any, size:any) => {
+
+const chunkArray = (arr: any, size: any) => {
   const result = [];
   for (let i = 0; i < arr.length; i += size) {
     result.push(arr.slice(i, i + size));
@@ -13,39 +13,24 @@ const chunkArray = (arr:any, size:any) => {
 };
 
 const categoriesChunks = chunkArray(cardData.data, 5);
-const contentStyle: React.CSSProperties = {
-    margin: 0,
-    height: '160px',
-    color: '#fff',
-    lineHeight: '160px',
-    textAlign: 'center',
-    background: '#364d79',
-  };
+
 const ExpolreallcategoryCraousal = () => {
-    const [currentIndex, setCurrentIndex] = useState(0);
-
-  const handleNext = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % categoriesChunks.length);
-  };
-
-  const handlePrevious = () => {
-    setCurrentIndex((prevIndex) =>
-      (prevIndex - 1 + categoriesChunks.length) % categoriesChunks.length
-    );
-  };
-
   return (
     <div className="container-fluid text-center py-12">
       <h3 className="xl:text-4xl md:text-xl sm:text-md font-semibold">
         Explore all categories
       </h3>
       <div style={{ padding: "20px" }}>
-       
-        <Carousel autoplay={true}  arrows={true} infinite={false} initialSlide={currentIndex}>
+        <Carousel 
+          autoplay={true}  
+          arrows={true} 
+          dots={false} // Disable dots if you want a cleaner look
+          infinite={true} // Enable infinite scrolling
+        >
           {categoriesChunks.map((chunk, index) => (
-            <div key={index} style={{ display: currentIndex === index ? 'block' : 'none', }}>
+            <div key={index}>
               <div className="flex justify-center items-center gap-5 mt-5">
-                {chunk.map((category:any, i:number) => (
+                {chunk.map((category: any, i: number) => (
                   <div key={i}>
                     <div
                       style={{
@@ -68,7 +53,7 @@ const ExpolreallcategoryCraousal = () => {
         </Carousel>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ExpolreallcategoryCraousal
+export default ExpolreallcategoryCraousal;
