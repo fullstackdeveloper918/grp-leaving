@@ -1,4 +1,3 @@
-// msalConfig.ts
 import { Configuration } from '@azure/msal-browser';
 
 let MSAL_CONFIG: Configuration;
