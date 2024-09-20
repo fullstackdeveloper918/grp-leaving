@@ -59,11 +59,36 @@ background-position: left;
 top: -6px;
 background-size: cover;
 }
-
-/* .beforeListIcon::before{
-  left:-10px;
+/* .imgBottomBefore::after{
+  content: "";
+  background-image: url("../assets/images/beforeLine.png");
+  position: absolute;
+  right: -10px;
+  margin: auto;
+  width:200px;
+  height: 100px;
+  background-position: left;
+  bottom: -100px;
+  background-size: contain;
+  background-repeat: no-repeat;
 } */
+.imgAfter::after{
+  content: "";
+  background-image: url("../assets/images/linePurple.png");
+  position: absolute;
+  right: -80px;
+  width: 100px;
+  height: 100px;
+  background-position: left;
+  top: 20px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
 
+.imgAfter + .imgAfter::after{
+  background-image: url("../assets/images/linePurple_2.png");
+ 
+}
 .heroSectionHeight{
   min-height: calc(100vh - 230px);
 }

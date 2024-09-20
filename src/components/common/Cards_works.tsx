@@ -9,7 +9,7 @@ const Cards_works = () => {
    
     <div className="flex flex-col lg:flex-row justify-center gap-12 lg:gap-24 items-center">
       {/* Step 1: Choose a Design */}
-      <div className="text-center">
+      <div className="text-center relative imgAfter">
         <div className="w-16 h-16 mx-auto mb-4">
           <Image src={Images.step_1} alt="card 1" className="w-full h-full object-cover " style={{ width: '100%', height:'100%'}} />
         </div>
@@ -20,7 +20,7 @@ const Cards_works = () => {
       </div>
 
       {/* Step 2: Invite Others */}
-      <div className="text-center">
+      <div className="text-center imgAfter relative">
         <div className="w-16 h-16 mx-auto mb-4">
         <Image src={Images.step_2} alt="card 2" className="w-full h-full object-cover " style={{ width: '100%', height:'100%'}} />
            </div>
