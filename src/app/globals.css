@@ -47,7 +47,8 @@ body {
 /* Adjust responsive design */
 
 
-.listBefore::before{
+.listBefore::before,
+.beforeListIcon::before{
   content: "";
   background-image: url("../assets/images/liBefore.svg");
   position: absolute;
@@ -56,6 +57,10 @@ body {
   height: 40px;
 background-position: left;
 background-size: cover;
+}
+
+.beforeListIcon::before{
+  left:-10px;
 }
 
 .heroSectionHeight{

@@ -1,12 +1,11 @@
 import { Quicksand   } from "next/font/google";
 import "./globals.css";
-
 // import NextTopLoader from "nextjs-toploader";
 const quicksand = Quicksand({ subsets: ["latin"] });
 // import "nprogress/nprogress.css";
 import Navbar from "@/components/common/Navbar";
 import Footer from "@/components/common/Footer";
-// import { AntdRegistry } from "@ant-design/nextjs-registry";
+import { AntdRegistry } from '@ant-design/nextjs-registry';
 
 export default function RootLayout({
   children,
@@ -32,6 +31,7 @@ export default function RootLayout({
       </head>
       <body className={quicksand.className}>
         {/* <AntdRegistry> */}
+        <AntdRegistry>
         <Navbar />
         {/* <NextTopLoader
             color="#2299DD"
@@ -46,7 +46,7 @@ export default function RootLayout({
           /> */}
         {children}
         <Footer />
-        {/* </AntdRegistry> */}
+        </AntdRegistry>
       </body>
     </html>
   );

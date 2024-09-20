@@ -1,7 +1,8 @@
 import React from "react";
 import Image from "next/image";
-import Images from "@/constants/images";
-
+import { capFirst } from "@/utils/validation";
+// import Images from "@/constants/images";
+// import {Col, Row  } from 'antd'
 const array = [
   'https://img.freepik.com/premium-psd/greeting-card-with-flowers-it-pink-background_74869-4261.jpg?w=826',
   "https://img.freepik.com/premium-vector/simple-floral-thank-you-card-with-watercolor-background_694794-178.jpg?w=1380",
@@ -25,8 +26,20 @@ const Category = ({ item, index }) => {
              className="object-cover"
             alt="category-image"
           />
-          <span className="no-underline mt-3 md:text-md sm:text-sm text-blackText d-block font-medium">Birthday Cards</span>
+          {/* <span className="no-underline mt-3 md:text-md sm:text-sm text-blackText d-block font-medium">{capFirst(item?.type)} Cards</span> */}
         </a>
+        {/* <Row gutter={[16, 16]}>
+            {array.map((category, i) => (
+              <Col xs={12} sm={8} md={6} lg={4} key={i}>
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100px' }}>
+                  <Image src={category.icon} alt={category.name} width={100} height={100} />
+                </div>
+                <div style={{ textAlign: 'center' }}>
+                  {category.name}
+                </div>
+              </Col>
+            ))}
+          </Row> */}
       </div>
     </>
   );

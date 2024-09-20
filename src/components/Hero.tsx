@@ -1,8 +1,40 @@
+"use client"
 import Images from "@/constants/images";
 import { List } from "antd";
 import Image from "next/image";
-import React from "react";
-const Hero = () => {
+import React, { useEffect, useState } from "react";
+import cardData from "../constants/CardJson/card.json";
+const categoriesName = ['Farewell', 'Birthday', 'Baby', 'Wedding', 'Get Well', 'Sympathy', 'Thank you', 'Retirement', 'Congratulations', 'Anniversary', 'Welcome', 'New Home'];
+const Hero = (props:any) => {
+ console.log(props,"props");
+
+const [displayedText, setDisplayedText] = useState('');
+const [currentCategoryIndex, setCurrentCategoryIndex] = useState(0);
+const [isTyping, setIsTyping] = useState(true);
+const [categoryName, setCategoryName] = useState(props?.data[0]);
+
+useEffect(() => {
+  const typeWriter = (text: string, index: number) => {
+    if (index < text.length) {
+      setDisplayedText((prev) => prev + text[index]);
+      setTimeout(() => typeWriter(text, index + 1), 100); 
+    } else {
+      setIsTyping(false);
+      setTimeout(() => {
+        setDisplayedText('');
+        setIsTyping(true);
+        setCurrentCategoryIndex((prev) => (prev + 1) % categoriesName.length);
+      }, 1500); 
+    }
+  };
+
+  if (isTyping) {
+    setCategoryName(categoriesName[currentCategoryIndex]);
+    typeWriter(categoriesName[currentCategoryIndex], 0);
+  }
+}, [currentCategoryIndex, isTyping]); 
+console.log(displayedText,"displayedText");
+
   return (
     <>
       <section className="bg-heroBg dark:bg-gray-900 heroSectionHeight  align-middle d-flex">
@@ -10,7 +42,7 @@ const Hero = () => {
           <div className="place-self-center lg:col-span-7">
             <h1 className="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight  md:text-5xl xl:text-6xl dark:text-white text-black lg:leading-extra-loose">
               Group Greeting Cards{" "}
-              <span className="text-blueText">for Thank you</span>
+              <span className="text-blueText">for {displayedText||"''"}</span>
             </h1>
             <p className="text-black max-w-2xl mb-6 font-normal lg:mb-6 md:text-lg lg:text-xl dark:text-gray-400">
               The easiest way to pass a virtual greeting card around your

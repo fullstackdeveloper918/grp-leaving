@@ -1,6 +1,11 @@
 export const apiLink = process.env.NEXT_PUBLIC_LIVE_API_URL;
 export const fakeURL = process.env.NEXT_FAKE_API_URL;
 
+export const Auth={
+  register:`${apiLink}user/register`,
+  login:`${apiLink}auth/login`,
+  logout:`${apiLink}auth/logout`,
+}
 export const header = {
   list: `${apiLink}header`,
 };
