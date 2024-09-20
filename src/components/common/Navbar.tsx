@@ -32,15 +32,15 @@ const Navbar = () => {
     <>
       <header className="w-full">
         {/* Banner */}
-        <div className="bg-blueBg text-center text-sm md:py-3 py-2 text-white">
-          <span className="w-4/5 px-2 d-block mx-auto md:text-sm text-sm">
+        <div className="bg-blueBg text-center text-sm md:py-3 py-2 text-white ">
+          <span className="w-4/5 px-2 d-block mx-auto md:text-sm text-sm container-fluid">
             Our back-to-school sale is here! Save 15% on Coins for all your fall invitations with code BACKTOFALL. Ends 9/3.  {' '}
             <a href="#" className="underline text-white">Shop Now</a>
           </span>
         </div>
 
         {/* Main Header */}
-        <div className="flex justify-between items-center md:py-4 md:px-6 px-2 py-3">
+        <div className="flex justify-between items-center md:py-4 md:px-6 px-2 py-3 container-fluid">
           {/* Logo */}
           <Link href={`/`} className='no-underline w-3/12' >
             <div className="flex items-center  text-2xl font-semibold">

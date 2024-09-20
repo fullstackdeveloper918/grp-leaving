@@ -12,14 +12,15 @@ const config: Config = {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+          "heroImage":"url('../assets/images/heroImage.png')"
       },
     },
     colors:{
-      "blueBg" :"#558EC9",
+      "blueBg" :"#7550AB",
       "heroBg": "#E8F3FF",
       "blackText":"#111111",
       "shadowBlue":"0 ",
-      "blueText":"#558EC9",
+      "blueText":"#7550AB",
       "menuColor":"#252C32"
     },
     lineHeight: {

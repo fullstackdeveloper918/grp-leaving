@@ -68,7 +68,8 @@ background-size: cover;
 }
 
 .container-fluid{
-  max-width: 96%;
+  max-width: 1440px;
+  margin: auto;
 }
 /* .hoverZoom */
 .hoverZoom:hover img{
