@@ -13,6 +13,8 @@ import cardData from "../constants/CardJson/card.json";
 import { Carousel, Col, Row } from "antd";
 import Image from "next/image";
 import { capFirst } from "@/utils/validation";
+import Images from "@/constants/images";
+
 import ExpolreallcategoryCraousal from "@/components/ExpolreallcategoryCraousal";
 // import 'antd/dist/antd.css';
 const Home = async () => {
@@ -75,25 +77,25 @@ const Home = async () => {
         <Image_text_Card />
 
         {/* Section 5 */}
-        <div className="min-h-screen bg-white flex flex-col items-center justify-center py-12">
-          <div className="text-center">
-            <h1 className="text-3xl font-bold mb-4">How group cards work?</h1>
+        <div className=" bg-workBg  py-16">
+          <div className="text-center container-fluid ">
+            <h1 className="xl:text-4xl md:text-xl sm:text-md font-semibold">How group cards work?</h1>
             <p className="text-lg text-gray-600 mb-8">
               How to create a group ecard signed by multiple people.
             </p>
           </div>
           <Cards_works />
-          <div className="mt-8">
+          <div className="text-center mt-8">
             <Link href={`/create`}>
-              <button className="bg-orange-400 text-white px-6 py-3 rounded-lg text-lg hover:bg-orange-500">
+              <button className="btnPrimary px-4  py-2">
                 Get Started
               </button>
             </Link>
           </div>
         </div>
         {/* Section 6 */}
-        <div className="bg-gray-50 py-12">
-          <div className="max-w-7xl mx-auto px-4 text-center">
+        <div className="bg-testimonialBg bg-no-repeat py-12">
+          <div className=" mx-auto px-5 text-center container-fluid">
             <h2 className="text-3xl font-bold mb-8">
               See Why Our Customers Love Our Cards
             </h2>

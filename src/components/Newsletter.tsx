@@ -20,11 +20,11 @@ const NewsletterForm: React.FC = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-orange-100">
-      <div className="bg-orange-300 p-8 rounded-lg shadow-md max-w-lg w-full">
-        <h2 className="text-center text-white text-xl font-semibold mb-4">Subscribe to our newsletter</h2>
-        <form className="space-y-4" onSubmit={handleSubmit}>
-          <div className="flex space-x-2">
+    <div className="container-fluid py-12">
+      <div className="bg-newsletterbg p-5 bg-cover rounded-[20px]">
+        <h2 className="xl:text-4xl md:text-xl sm:text-md font-semibold text-center text-white">Subscribe to our newsletter</h2>
+        <form className="flex space-x-2 max-w-[90%] mx-auto newsForm mt-5" onSubmit={handleSubmit}>
+          
             <input
               type="text"
               name="firstName"
@@ -41,7 +41,7 @@ const NewsletterForm: React.FC = () => {
               onChange={handleChange}
               className="flex-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
             />
-          </div>
+          
           <input
             type="tel"
             name="phoneNumber"
@@ -52,13 +52,13 @@ const NewsletterForm: React.FC = () => {
           />
           <button
             type="submit"
-            className="w-full bg-white text-orange-500 px-4 py-2 font-semibold rounded-md hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-orange-500"
+            className="bg-white submitbtnPrimary text-blueText"
           >
             Subscribe Now
           </button>
         </form>
       </div>
-    </div>
+      </div>
   );
 };
 

@@ -54,8 +54,8 @@ const Navbar = () => {
           {/* Logo */}
           <Link href={`/`} className="no-underline w-3/12">
             <div className="flex items-center text-2xl font-semibold">
-              <span className="text-black">Group</span>
-              <span className="text-blueText">leaving</span>
+              <span className="text-black">Good</span>
+              <span className="text-blueText">luck</span>
               <span className="text-black">cards</span>
             </div>
           </Link>

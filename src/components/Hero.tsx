@@ -39,8 +39,8 @@ console.log(displayedText,"displayedText");
     <>
       <section className="bg-heroImage  dark:bg-gray-900 heroSectionHeight  align-middle d-flex">
         <div className="container-fluid  py-8 mx-auto  xl:gap-0 lg:py-16 d-flex justify-between  lg:flex-nowrap flex-wrap space-y-10 items-center">
-          <div className="lg:w-1/2 w-full">
-            <h1 className="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight  md:text-5xl xl:text-6xl dark:text-white text-black lg:leading-extra-loose">
+          <div className="lg:w-1/2 w-full md:text-center xs:text-center lg:text-left ">
+            <h1 className="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight  md:text-5xl xl:text-6xl dark:text-white text-black xl:leading-extra-loose lineHeight">
               Group Greeting Cards{" "}
               <span className="text-blueText">for {displayedText||"''"}</span>
             </h1>
