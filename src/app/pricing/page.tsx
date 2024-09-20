@@ -230,10 +230,10 @@ const Page = () => {
           cost of managing the service, payment costs and fraud prevention. The
           fee depends on the currency, but is around 5%. We show this fee to all
           contributors so it is always clear how much they are contributing to
-          the card and what the fee is. We don't charge any other fees when
+          the card and what the fee is. We dont charge any other fees when
           redeeming the gift card so the recipient will get the full value of
           the card. Gift cards are included with all greeting cards at no
-          additional cost. We have also We don't charge any additional fees when
+          additional cost. We have also We dont charge any additional fees when
           redeeming the gift card so the recipient will get the full value of
           the card.
         </p>
