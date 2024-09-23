@@ -1,16 +1,19 @@
 "use client";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React, { useRef } from "react";
 
 const Page = () => {
   const bundlesRef = useRef<any>(null);
-
+const router= useRouter()
   const scrollToBundles = () => {
     if (bundlesRef.current) {
       bundlesRef.current.scrollIntoView({ behavior: "smooth" });
     }
   };
-
+const handlePush=()=>{
+  router.push(`/plan/1`)
+}
   return (
     <>
       <div className="flex flex-col items-center py-12 bg-gray-50">
@@ -117,7 +120,7 @@ const Page = () => {
               <p className="text-center text-green-600">Save 10%</p>
               <p className="text-center text-gray-600 mt-2">$4.49 per card</p>
             </div>
-            <button className="mt-6 bg-blue-600 text-black w-full py-2 rounded-md border-2 border-blue-700 hover:bg-blue-700">
+            <button onClick={handlePush} className="mt-6 bg-blue-600 text-black w-full py-2 rounded-md border-2 border-blue-700 hover:bg-blue-700">
               Select this plan
             </button>
           </div>
@@ -135,7 +138,7 @@ const Page = () => {
               <p className="text-center text-green-600">Save 15%</p>
               <p className="text-center text-gray-600 mt-2">$4.20 per card</p>
             </div>
-            <button className="mt-6 bg-blue-600 text-black w-full py-2 rounded-md border-2 border-blue-700 hover:bg-blue-700">
+            <button onClick={handlePush} className="mt-6 bg-blue-600 text-black w-full py-2 rounded-md border-2 border-blue-700 hover:bg-blue-700">
               Select this plan
             </button>
           </div>
@@ -158,7 +161,7 @@ const Page = () => {
               <p className="text-center text-green-600">Save 25%</p>
               <p className="text-center text-gray-600 mt-2">$3.74 per card</p>
             </div>
-            <button className="mt-6 bg-blue-600 text-black w-full py-2 rounded-md border-2 border-blue-700 hover:bg-blue-700">
+            <button onClick={handlePush} className="mt-6 bg-blue-600 text-black w-full py-2 rounded-md border-2 border-blue-700 hover:bg-blue-700">
               Select this plan
             </button>
           </div>
@@ -176,7 +179,7 @@ const Page = () => {
               <p className="text-center text-green-600">Save 30%</p>
               <p className="text-center text-gray-600 mt-2">$3.48 per card</p>
             </div>
-            <button className="mt-6 bg-blue-600 text-black w-full py-2 rounded-md border-2 border-blue-700 hover:bg-blue-700">
+            <button onClick={handlePush} className="mt-6 bg-blue-600 text-black w-full py-2 rounded-md border-2 border-blue-700 hover:bg-blue-700">
               Select this plan
             </button>
           </div>
@@ -194,7 +197,7 @@ const Page = () => {
               <p className="text-center text-green-600">Save 40%</p>
               <p className="text-center text-gray-600 mt-2">$2.99 per card</p>
             </div>
-            <button className="mt-6 bg-blue-600 text-black w-full py-2 rounded-md border-2 border-blue-700 hover:bg-blue-700">
+            <button onClick={handlePush} className="mt-6 bg-blue-600 text-black w-full py-2 rounded-md border-2 border-blue-700 hover:bg-blue-700">
               Select this plan
             </button>
           </div>
@@ -210,7 +213,7 @@ const Page = () => {
                 custom plan.
               </p>
             </div>
-            <button className="mt-6 bg-blue-600 text-black w-full py-2 rounded-md border-2 border-blue-700 hover:bg-blue-700">
+            <button onClick={handlePush} className="mt-6 bg-blue-600 text-black w-full py-2 rounded-md border-2 border-blue-700 hover:bg-blue-700">
               Select this plan
             </button>
           </div>

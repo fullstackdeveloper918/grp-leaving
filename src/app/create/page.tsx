@@ -14,7 +14,7 @@ const page = () => {
           What would you like to create?
         </h2>
         <div className="grid md:grid-cols-3 sm:grid-cols-1   lg:grid-cols-3 md:gap-8 gap-4 lg:mt-5 justify-center">
-          <Link href="/card/new" className="no-underline">
+          <Link href="/card/farewell" className="no-underline">
             <OptionCard
               title="Card"
               imageSrc={Images?.cards}

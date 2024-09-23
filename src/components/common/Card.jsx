@@ -53,7 +53,9 @@ const array = [
 // ]
 
 const Card = ({ item, index }) => {
+  const matchingCard = array.find(card => card.type === item.type);
 
+  const imageToDisplay = matchingCard ? matchingCard.image : array[index]?.image;
 
   return (
     <>
@@ -61,7 +63,7 @@ const Card = ({ item, index }) => {
         <a href={`/card/new/1?category=${item?.type}`}>
           <Image
             className="rounded-t-lg w-100 h-100 object-cover"
-            src={array[index]?.image}
+            src={imageToDisplay}
             // width={250}
             // height={250}
             alt="card-img"
