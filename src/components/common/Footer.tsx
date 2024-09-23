@@ -63,7 +63,7 @@ const Footer: React.FC = () => {
                 href="/pricing"
                 className="block  py-2 hover:text-orange-500 no-underline text-black  transition-all ease-in  hover:text-blueBg hover:px-2 inline-block "
               >
-                Customer Support{" "}
+               Pricing{" "}
               </a>
             </li>
             <li className="block">
@@ -127,16 +127,5 @@ const iconStyle = {
   cursor: "pointer",
 };
 
-const columnTitleStyle = {
-  color: "#fff",
-  marginBottom: "20px",
-};
-
-const listStyle = {
-  listStyleType: "none",
-  padding: 0,
-  margin: 0,
-  color: "#fff",
-};
 
 export default Footer;

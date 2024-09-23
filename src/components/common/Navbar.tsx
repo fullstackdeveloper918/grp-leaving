@@ -28,8 +28,8 @@ const Navbar = () => {
   };
 
   const handleLogout = async () => {
-    let res = await api.Auth.logout();
-    console.log(res, "qweqwe");
+    // let res = await api.Auth.logout();
+    // console.log(res, "qweqwe");
     router.push(`/login`);
   };
 
@@ -175,6 +175,7 @@ const Navbar = () => {
           </nav>
         )}
       </header>
+      
       <LogoutModal 
         isOpen={isModalOpen} 
         onClose={() => setIsModalOpen(false)} 

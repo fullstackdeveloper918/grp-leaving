@@ -32,9 +32,11 @@ const Recipient = ({ searchParams }: any) => {
           </div>
 
           {/* Choose another design */}
-          <p className="mt-6 text-red-500 text-sm cursor-pointer hover:underline">
+          <a href={`/card/${searchParams?.category}`} className="text-red-500 no-underline">
+          <p className="mt-6 text-red-500 text-sm  hover:underline">
             Choose another design
           </p>
+          </a>
         </div>
       </div>
 
