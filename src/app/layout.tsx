@@ -1,3 +1,4 @@
+"use client"
 import { Quicksand   } from "next/font/google";
 import "./globals.css";
 // import NextTopLoader from "nextjs-toploader";
@@ -6,7 +7,12 @@ const quicksand = Quicksand({ subsets: ["latin"] });
 import Navbar from "@/components/common/Navbar";
 import Footer from "@/components/common/Footer";
 import { AntdRegistry } from '@ant-design/nextjs-registry';
+import Script from 'next/script';
+import { MsalProvider, useMsal } from '@azure/msal-react';
+import { PublicClientApplication } from '@azure/msal-browser';
+import msalConfig from '../utils/msalConfig';
 
+const msalInstance = new PublicClientApplication(msalConfig);
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -28,11 +34,15 @@ export default function RootLayout({
           crossOrigin="anonymous"
           referrerPolicy="no-referrer"
         />
-            <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
+           <Script
+          src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"
+          strategy="beforeInteractive" // This ensures it loads before the page is interactive
+        />
       </head>
       <body className={quicksand.className}>
         {/* <AntdRegistry> */}
         <AntdRegistry>
+        <MsalProvider instance={msalInstance}>
         <Navbar />
         {/* <NextTopLoader
             color="#2299DD"
@@ -47,6 +57,7 @@ export default function RootLayout({
           /> */}
         {children}
         <Footer />
+        </MsalProvider>
         </AntdRegistry>
       </body>
     </html>

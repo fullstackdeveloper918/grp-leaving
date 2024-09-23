@@ -43,6 +43,8 @@ const Login = () => {
     try {
     } catch (error: any) {}
   };
+
+  
   return (
     <section className="auth-pages d-flex align-items-center h-100 bg-lightBg py-12 loginPage">
       <div className="container">

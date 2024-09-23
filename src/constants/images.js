@@ -20,7 +20,7 @@ import cards from "../assets/images/cards.png";
 import board from "../assets/images/board.png";
 import money from "../assets/images/money.png";
 import loginPage from "../assets/images/loginPage.png";
-
+import microsoftLogo from "../assets/icons/microsoftLogo.png"
 
 
 
@@ -46,7 +46,8 @@ const Images = {
   cards,
   board,
   money,
-  loginPage
+  loginPage,
+  microsoftLogo
 };
 
 export default Images;
