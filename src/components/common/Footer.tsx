@@ -127,16 +127,5 @@ const iconStyle = {
   cursor: "pointer",
 };
 
-const columnTitleStyle = {
-  color: "#fff",
-  marginBottom: "20px",
-};
-
-const listStyle = {
-  listStyleType: "none",
-  padding: 0,
-  margin: 0,
-  color: "#fff",
-};
 
 export default Footer;

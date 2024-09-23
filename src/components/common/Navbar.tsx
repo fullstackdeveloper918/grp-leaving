@@ -27,16 +27,16 @@ const Navbar = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  const handleLogout = async () => {
-    let res = await api.Auth.logout();
-    console.log(res, "qweqwe");
-    router.push(`/login`);
-  };
+  // const handleLogout = async () => {
+  //   let res = await api.Auth.logout();
+  //   console.log(res, "qweqwe");
+  //   router.push(`/login`);
+  // };
 
-  const confirmLogout = () => {
-    handleLogout();
-    setIsModalOpen(false);
-  };
+  // const confirmLogout = () => {
+  //   handleLogout();
+  //   setIsModalOpen(false);
+  // };
 
   return (
     <>
@@ -178,7 +178,7 @@ const Navbar = () => {
       <LogoutModal 
         isOpen={isModalOpen} 
         onClose={() => setIsModalOpen(false)} 
-        onConfirm={confirmLogout} 
+        // onConfirm={confirmLogout} 
       />
     </>
   );
