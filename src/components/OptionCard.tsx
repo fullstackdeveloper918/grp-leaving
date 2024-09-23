@@ -1,9 +1,10 @@
 
 import React from 'react';
-
+import Images from "../constants/images"
+import Image from 'next/image';
 interface OptionCardProps {
   title: string;
-  imageSrc: string;
+  imageSrc: any;
   description: string;
   buttonText: string;
   isFree?: boolean;
@@ -12,16 +13,16 @@ interface OptionCardProps {
 const OptionCard: React.FC<OptionCardProps> = ({ title, imageSrc, description, buttonText, isFree }) => {
 
   return (
-    <div className="relative bg-white rounded-lg shadow-md p-6 w-full text-center hover:shadow-lg transition-shadow duration-300">
+    <div className="relative bg-white rounded-lg shadow-md p-6 w-full text-center hover:shadow-lg transition-shadow duration-300 cardBox">
       {isFree && (
         <span className="absolute top-2 right-2 bg-blue-500 text-white text-xs px-2 py-1 rounded-md">
           FREE
         </span>
       )}
-      <img src={imageSrc} alt={title} className="mx-auto h-24 mb-4" />
+      <Image src={imageSrc} alt={title} className="mx-auto h-24  object-contain" width={60}  />
       <h3 className="text-xl font-bold mb-2">{title}</h3>
       <p className="text-gray-600 mb-4">{description}</p>
-      <button className="text-blue-500 font-semibold hover:underline">{buttonText}</button>
+      <button className="btnPrimary text-xs  ">{buttonText}</button>
     </div>
   );
 };

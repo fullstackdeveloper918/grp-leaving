@@ -20,10 +20,10 @@ const CollectionFilter = () => {
         router.push(`/card/${urlValue}/${value}`);
       };
   return (
-    <div>
+    <div className='text-end'>
          <div className="text-right">
             <select
-              className="border border-gray-300 p-2 rounded"
+              className="border border-gray-300 p-2 rounded bg-blueBg text-white"
               value={selectedOption}
               onChange={handleChange}
             >

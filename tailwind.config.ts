@@ -24,7 +24,10 @@ const config: Config = {
       "blackText":"#111111",
       "shadowBlue":"0 ",
       "blueText":"#7550AB",
-      "menuColor":"#252C32"
+      "menuColor":"#252C32",
+      "lightBg":"#f0f3fc",
+      "greyBorder":" #f0f3fc",
+      "bgWhite":"#fff"
     },
     lineHeight: {
       'extra-loose': '80px !important',

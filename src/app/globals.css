@@ -113,7 +113,7 @@ transform: scale(1.1);
 }
 
 
-.btnPrimary,.submitbtnPrimary,
+.btnPrimary,.submitbtnPrimary,.loginBtn,
 .btnSecondary, .btnSecondary:hover{
   background-color: #7550AB;
   color: #fff;
@@ -135,10 +135,14 @@ transform: scale(1.1);
 }
 .btnPrimary:hover{
   background-color: #fff;
-  border-color: #7550AB;
-  color: #7550AB;
+  border-color: #7550AB !important;
+  color: #7550AB !important;
 }
-
+.loginBtn{
+  padding: 8px 10px;
+  background-color: #7550AB !important;
+  color: #fff !important;
+}
 .submitbtnPrimary{
   background-color: #fff;
   color: #7550AB;
@@ -165,6 +169,49 @@ input:focus{
 }
 
 
+/* sidebar activeList */
+.activeList::after {
+  content: "";
+  position: absolute;
+  right: 20px;
+  width: 3px;
+  height: 34px;
+  top: 0;
+  background-color: #7550ab;
+}
+
+/* Create card page css atart */
+
+.cardBox{
+  border: 1px solid #ffffffcf;
+  border-radius: 10px;
+  padding: 30px;
+  box-shadow: 0 0 10px #d9d9d980;
+}
+.cardBox h3{
+  font-size: 24px;
+  color: #000;
+}
+.cardBox p{
+  font-size: 16px;
+  color: grey;
+}
+
+.cardBox button{
+color: #fff;
+background-color: #7550ab;
+font-size: 16px !important;
+}
+
+/* login page css started */
+.loginPage .ant-card-body{
+  padding: 0 !important;
+}
+/* login page css ended */
+
+
+
+
 @media (max-width: 1290px) {
   .btnPrimary, .btnSecondary, .btnSecondary:hover {
     border-radius: 8px;
@@ -177,9 +224,37 @@ input:focus{
 }
 
 
+@media screen and (max-width: 767px) {
+
+  .responiveSlider::before,
+  .responiveSlider::after{
+    content: "";
+    background-image: url("../assets/images/preArrow.png");
+    position: absolute;
+    left: 15px;
+    width: 16px;
+    height: 16px;
+    background-position: left;
+    top: 26px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    background-color: #fff;
+  }
+  .responiveSlider::after{
+    background-image: url("../assets/images/nextArrow.png");
+    left: auto;
+    right: 10px;
+  }
+  .responiveSlider ul::-webkit-scrollbar{
+    display: none;
+  }
+}
 @media (min-width: 768px) {
   .navLinks {
     /* Show the menu by default on larger screens */
     transform: translateX(0);
   }
 }
+
+

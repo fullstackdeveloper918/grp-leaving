@@ -16,6 +16,10 @@ import step_3 from "../assets/images/step_3.png";
 import testimonialBg from "../assets/images/testimonialBg.png";
 import star from "../assets/images/star.png";
 import top_2 from "../assets/images/top_2.png";
+import cards from "../assets/images/cards.png";
+import board from "../assets/images/board.png";
+import money from "../assets/images/money.png";
+import loginPage from "../assets/images/loginPage.png";
 
 
 
@@ -39,6 +43,10 @@ const Images = {
   testimonialBg,
   star,
   top_2,
+  cards,
+  board,
+  money,
+  loginPage
 };
 
 export default Images;
