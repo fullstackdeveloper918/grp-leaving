@@ -14,9 +14,24 @@ import { Carousel, Col, Row } from "antd";
 import Image from "next/image";
 import { capFirst } from "@/utils/validation";
 import Images from "@/constants/images";
-
+import { Swiper, SwiperSlide } from "swiper/react";
 import ExpolreallcategoryCraousal from "@/components/ExpolreallcategoryCraousal";
+import ImageSlider from "@/components/common/ImageSlider";
 // import 'antd/dist/antd.css';
+const images = [
+  { src: "https://img.freepik.com/premium-psd/greeting-card-with-flowers-it-pink-background_74869-4261.jpg?w=826", alt: "Image 1" },
+  { src: "https://img.freepik.com/premium-vector/simple-floral-thank-you-card-with-watercolor-background_694794-178.jpg?w=1380", alt: "Image 2" },
+  { src: "https://img.freepik.com/premium-photo/wedding-invitation-with-flowers-flower-middle_1191871-49377.jpg?w=740", alt: "Image 3" },
+];
+const array = [
+  'https://img.freepik.com/premium-psd/greeting-card-with-flowers-it-pink-background_74869-4261.jpg?w=826',
+  "https://img.freepik.com/premium-vector/simple-floral-thank-you-card-with-watercolor-background_694794-178.jpg?w=1380",
+  "https://img.freepik.com/premium-photo/wedding-invitation-with-flowers-flower-middle_1191871-49377.jpg?w=740",
+  "https://img.freepik.com/free-vector/elegant-daisy-flower-wedding-invitation-card-template_44538-9850.jpg?t=st=1726234933~exp=1726238533~hmac=76bd2c3ed266dec873f39372aaa1973615b57c50375696a913e26d05d5c0598f&w=1380",
+  "https://img.freepik.com/free-psd/beautiful-christmas-floral-wreath-frame-design_21799-10722.jpg?t=st=1726234955~exp=1726238555~hmac=c4406c10583bd202e08964dd43e645727f6f30c21b0db39506af66d271629888&w=1380",
+  "https://img.freepik.com/free-vector/summer-wedding-invitation_53876-92838.jpg?t=st=1726235013~exp=1726238613~hmac=83595c3903b855f20775c71b2bc347e136a2d79fd424053a26770c2514f71cdd&w=826",
+  "https://img.freepik.com/free-psd/beautiful-watercolor-wedding-invitation-card-with-elegant-flower-tiny-foliage_44538-10601.jpg?t=st=1726235036~exp=1726238636~hmac=d1dc9a692078bdca87612cb7db66afe125d8c3af762cab4f66d5add701eac784&w=1060"
+]
 const Home = async () => {
   const api: Api = {
     url: "https://fakestoreapi.com/products",
@@ -41,34 +56,28 @@ const Home = async () => {
     <>
       <section className="">
         <div className="mt-50">
-          <Hero {...cardData}/>
+          <Hero {...cardData} />
         </div>
-
-        {/* <div className="container-fluid text-center py-12">
-          <h3 className="xl:text-4xl md:text-xl sm:text-md font-semibold ">
-            Explore all categories
-          </h3>
-          <div className="flex justify-center items-center gap-5 mt-5">
-          
-              {cardData.data.map((chunk, index) => (
-                <div key={index}>
-                  <Category item={chunk} index={index} />
-                </div>
-              ))}
-          </div>
-        </div> */}
-       <ExpolreallcategoryCraousal/>
+       
+        <ExpolreallcategoryCraousal />
+        {/* <ImageSlider  /> */}
         <div className="container-fluid text-center py-12">
-        <h3 className="xl:text-4xl md:text-xl sm:text-md font-semibold lg:max-w-[50%] md:max-w-[60%] max-w-[100%] mx-auto">
-            We have Group Greeting Cards for all occasions <span className="text-blueText"> Premium </span> cards start
-            at <span className="text-blueText">$1 </span>
+          <h3 className="xl:text-4xl md:text-xl sm:text-md font-semibold lg:max-w-[50%] md:max-w-[60%] max-w-[100%] mx-auto">
+            We have Group Greeting Cards for all occasions{" "}
+            <span className="text-blueText"> Premium </span> cards start at{" "}
+            <span className="text-blueText">$1 </span>
           </h3>
-          <div className="flex justify-center items-center gap-5 mt-5">
-            {cardData?.data?.slice(0, 5).map((item: any, index: number) => (
-              <>
-                <Card item={item} index={index} />
-              </>
-            ))}
+          <div className="justify-center items-center gap-5 mt-5">
+          {/* <Carousel 
+          autoplay={true}  
+          arrows={true} 
+          dots={false} // Disable dots if you want a cleaner look
+          infinite={true} // Enable infinite scrolling
+          // slidesToShow={3}
+        > */}
+        
+        <ImageSlider  />
+            {/* </Carousel> */}
           </div>
         </div>
 
@@ -79,7 +88,9 @@ const Home = async () => {
         {/* Section 5 */}
         <div className=" bg-workBg  py-16">
           <div className="text-center container-fluid ">
-            <h1 className="xl:text-4xl md:text-xl sm:text-md font-semibold">How group cards work?</h1>
+            <h1 className="xl:text-4xl md:text-xl sm:text-md font-semibold">
+              How group cards work?
+            </h1>
             <p className="text-xl text-gray-600 font-semibold mb-8">
               How to create a group ecard signed by multiple people.
             </p>
@@ -87,9 +98,7 @@ const Home = async () => {
           <Cards_works />
           <div className="text-center mt-8">
             <Link href={`/create`}>
-              <button className="btnPrimary px-4  py-2">
-                Get Started
-              </button>
+              <button className="btnPrimary px-4  py-2">Get Started</button>
             </Link>
           </div>
         </div>

@@ -5,11 +5,41 @@ import Images from "@/constants/images";
 
 
 const array = [
-  {img: Images.card_1},
-  {img: Images.card_2},
-  {img: Images.card_3},
-  {img: Images.card_4},
-  {img: Images.card_5},
+  {
+    id: 1,
+    image: Images.card_1,
+    type: "farewell"
+  },
+  {
+    id: 2,
+    image: Images.card_2,
+    type: "birthday"
+  },
+  {
+    id: 3,
+    image: Images.card_3,
+    type: "wedding"
+  },
+  {
+    id: 4,
+    image: Images.card_4,
+    type: "baby"
+  },
+  {
+    id: 5,
+    image: Images.card_5,
+    type: "sympathy"
+  },
+  {
+    id: 6,
+    image: Images.card_2,
+    type: "sympathy"
+  },
+  {
+    id: 7,
+    image: Images.card_3,
+    type: "sympathy"
+  },
 ]
 
 // const array = [
@@ -22,16 +52,16 @@ const array = [
 //   "https://img.freepik.com/free-psd/beautiful-watercolor-wedding-invitation-card-with-elegant-flower-tiny-foliage_44538-10601.jpg?t=st=1726235036~exp=1726238636~hmac=d1dc9a692078bdca87612cb7db66afe125d8c3af762cab4f66d5add701eac784&w=1060"
 // ]
 
-const Card = ({ item, index}) => {
+const Card = ({ item, index }) => {
 
-  
+
   return (
     <>
       <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
         <a href={`/card/new/1?category=${item?.type}`}>
           <Image
             className="rounded-t-lg w-100 h-100 object-cover"
-            src={array[index]?.img}
+            src={array[index]?.image}
             // width={250}
             // height={250}
             alt="card-img"

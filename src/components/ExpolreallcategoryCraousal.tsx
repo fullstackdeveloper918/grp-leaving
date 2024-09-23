@@ -1,9 +1,12 @@
+"use client"
 import React from 'react';
 import { Carousel } from 'antd'; // Assuming you are using Ant Design Carousel
 import cardData from "../constants/CardJson/card.json";
 import Category from './Category';
 import { capFirst } from '@/utils/validation';
-
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/swiper-bundle.css"; // Import Swiper styles
+import { Navigation, Pagination, Scrollbar } from 'swiper/modules';
 const chunkArray = (arr: any, size: any) => {
   const result = [];
   for (let i = 0; i < arr.length; i += size) {
@@ -21,16 +24,17 @@ const ExpolreallcategoryCraousal = () => {
         Explore all categories
       </h3>
       <div style={{ padding: "20px" }}>
-        <Carousel 
+         {/* <Carousel 
           autoplay={true}  
           arrows={true} 
           dots={false} // Disable dots if you want a cleaner look
           infinite={true} // Enable infinite scrolling
+       
         >
           {categoriesChunks.map((chunk, index) => (
             <div key={index}>
               <div className="flex justify-center items-center gap-5 mt-5">
-                {chunk.map((category: any, i: number) => (
+                {cardData.data.map((category: any, i: number) => (
                   <div key={i}>
                     <div
                       style={{
@@ -50,7 +54,20 @@ const ExpolreallcategoryCraousal = () => {
               </div>
             </div>
           ))}
-        </Carousel>
+        </Carousel> */}
+        <Swiper
+          spaceBetween={30}
+          slidesPerView={5}
+          navigation
+          // pagination={{ clickable: true }}
+          modules={[Navigation, Pagination, Scrollbar]} // Use modules array here
+        >
+          {cardData?.data?.map((item, index) => (
+            <SwiperSlide key={index}>
+              <Category item={item} index={index} />
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </div>
     </div>
   );

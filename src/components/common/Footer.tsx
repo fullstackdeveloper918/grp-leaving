@@ -63,7 +63,7 @@ const Footer: React.FC = () => {
                 href="/pricing"
                 className="block  py-2 hover:text-orange-500 no-underline text-black  transition-all ease-in  hover:text-blueBg hover:px-2 inline-block "
               >
-                Customer Support{" "}
+               Pricing{" "}
               </a>
             </li>
             <li className="block">

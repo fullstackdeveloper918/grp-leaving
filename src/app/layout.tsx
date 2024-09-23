@@ -28,6 +28,7 @@ export default function RootLayout({
           crossOrigin="anonymous"
           referrerPolicy="no-referrer"
         />
+            <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
       </head>
       <body className={quicksand.className}>
         {/* <AntdRegistry> */}
