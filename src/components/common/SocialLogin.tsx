@@ -46,7 +46,7 @@ const GoogleLogin = () => {
       const google = (window as any).google;
       google?.accounts?.id?.initialize({
         client_id:
-          "532793655516-94neooqgg2paeula8ricuvon7pjkq07i.apps.googleusercontent.com",
+          "648936783615-s3ef45tdblc2kq6073e4his54doo9o4p.apps.googleusercontent.com",
         callback: loginWithGoogle,
         cancel_on_tap_outside: false,
       });
