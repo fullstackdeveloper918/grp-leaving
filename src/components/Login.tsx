@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import { capFirst } from "@/utils/validation";
 import api from "@/utils/api";
 import { setCookie } from "nookies";
+import { GooglePayWithCDN } from "./common/GooglePayWithCdn";
 const { Row, Col, Button } = {
   Row: dynamic(() => import("antd").then((module) => module.Row), {
     ssr: false,
@@ -120,6 +121,7 @@ const Login = () => {
               <Flex gap={18} justify="center" align="center" className="my-3">
                 <SocalLogin />
                 <MicroSoftLogin />
+                <GooglePayWithCDN  currencyCode='AUD' countryCode='AU' />
                 {/* <Button size='middle' type='default' shape='circle' htmlType='button' style={{ width: 40, height: 40 }} icon={<Icons.FaceBookIcon />} className='btn-blue fw-medium text-white'></Button> */}
               </Flex>
               {/* <div className="auth-footer text-center mt-2">

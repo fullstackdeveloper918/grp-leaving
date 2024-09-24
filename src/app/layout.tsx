@@ -38,6 +38,8 @@ export default function RootLayout({
           src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"
           strategy="beforeInteractive" // This ensures it loads before the page is interactive
         />
+        <Script async
+  src="https://pay.google.com/gp/p/js/pay.js"></Script>
       </head>
       <body className={quicksand.className}>
         {/* <AntdRegistry> */}
