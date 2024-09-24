@@ -22,7 +22,10 @@ const Footer: React.FC = () => {
               <span className="text-black">cards</span>
             </div>
 
-            <p className="text-blackText text-left mt-2" style={{maxWidth:"90%"}}>
+            <p
+              className="text-blackText text-left mt-2"
+              style={{ maxWidth: "90%" }}
+            >
               Clarity gives you the blocks and components you need to create a
               truly professional website.
             </p>
@@ -36,7 +39,7 @@ const Footer: React.FC = () => {
 
         <Col xs={24} sm={12} md={6}>
           <Title level={5} className="text-blackText font-semibold  uppercase">
-          Company
+            Company
           </Title>
           <ul className="p-0">
             <li className="block  py-2 hover:text-orange-500 no-underline text-black  transition-all ease-in  hover:text-blueBg hover:px-2 ">
@@ -55,28 +58,38 @@ const Footer: React.FC = () => {
         </Col>
 
         <Col xs={24} sm={12} md={6}>
-          <Title level={5}  className="text-blackText font-semibold uppercase" >Help</Title>
+          <Title level={5} className="text-blackText font-semibold uppercase">
+            Help
+          </Title>
           <ul className="p-0">
-          <li className="block">
+            <li className="block">
               {" "}
               <a
                 href="/pricing"
                 className="block  py-2 hover:text-orange-500 no-underline text-black  transition-all ease-in  hover:text-blueBg hover:px-2 inline-block "
               >
-               Pricing{" "}
+                Pricing{" "}
+              </a>
+            </li>
+            <li className="block">
+              <a
+                href="/gift-cards"
+                className="block  py-2 hover:text-orange-500 no-underline text-black  transition-all ease-in  hover:text-blueBg hover:px-2 inline-block "
+              >
+                Gift Cards
+              </a>
+            </li>
+            <li className="block">
+              <a
+                href="/faq"
+                className="block  py-2 hover:text-orange-500 no-underline text-black  transition-all ease-in  hover:text-blueBg hover:px-2 inline-block "
+              >
+                FAQ
               </a>
             </li>
             <li className="block">
               <a
                 href="/#"
-                className="block  py-2 hover:text-orange-500 no-underline text-black  transition-all ease-in  hover:text-blueBg hover:px-2 inline-block "
-              >
-                Delivery Details
-              </a>
-            </li>
-            <li className="block">
-              <a
-                href="/contact-us"
                 className="block  py-2 hover:text-orange-500 no-underline text-black  transition-all ease-in  hover:text-blueBg hover:px-2 inline-block "
               >
                 Terms & Conditions{" "}
@@ -94,26 +107,33 @@ const Footer: React.FC = () => {
         </Col>
 
         <Col xs={24} sm={12} md={6}>
-        <Title level={5}  className="text-blackText font-semibold uppercase" >
-          Resources
+          <Title level={5} className="text-blackText font-semibold uppercase">
+            Resources
           </Title>
           <ul className="p-0">
             <li className="block  py-2 hover:text-orange-500 no-underline text-black  transition-all ease-in  hover:text-blueBg hover:px-2   hover:text-blueBg hover:px-2">
-            Free eBooks
+              Free eBooks
             </li>
             <li className="block  py-2 hover:text-orange-500 no-underline text-black  transition-all ease-in  hover:text-blueBg hover:px-2  ">
-            Development Tutorial
+              Development Tutorial
             </li>
             <li className="block  py-2 hover:text-orange-500 no-underline text-black  transition-all ease-in  hover:text-blueBg hover:px-2  ">
-            How to - Blog
+              How to - Blog
             </li>
             <li className="block  py-2 hover:text-orange-500 no-underline text-black  transition-all ease-in  hover:text-blueBg hover:px-2  ">
-            Youtube Playlist
+              Youtube Playlist
             </li>
           </ul>
         </Col>
       </Row>
-      <Row justify="center" style={{ marginTop: "40px", borderTop:"1px solid #E2E8F0", padding:"20px 0" }}>
+      <Row
+        justify="center"
+        style={{
+          marginTop: "40px",
+          borderTop: "1px solid #E2E8F0",
+          padding: "20px 0",
+        }}
+      >
         <Text>© Copyright 2022, All Rights Reserved by Groupluckcards</Text>
       </Row>
     </div>
@@ -126,6 +146,5 @@ const iconStyle = {
   marginRight: "15px",
   cursor: "pointer",
 };
-
 
 export default Footer;
