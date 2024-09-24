@@ -21,6 +21,9 @@ const array = [
   {img: Images.card_5},
   {img: Images.card_2},
   {img: Images.card_3},
+  {img: Images.card_1},
+  {img: Images.card_2},
+  {img: Images.card_3},
 ]
 const Category = ({ item, index }) => {
   return (

@@ -56,8 +56,8 @@ const ExpolreallcategoryCraousal = () => {
           ))}
         </Carousel> */}
         <Swiper
-          spaceBetween={30}
-          slidesPerView={5}
+          spaceBetween={3}
+          slidesPerView={8}
           navigation
           // pagination={{ clickable: true }}
           modules={[Navigation, Pagination, Scrollbar]} // Use modules array here

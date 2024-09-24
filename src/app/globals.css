@@ -207,6 +207,66 @@ font-size: 16px !important;
 .loginPage .ant-card-body{
   padding: 0 !important;
 }
+:where(.css-dev-only-do-not-override-11lehqq).ant-input-outlined:focus, :where(.css-dev-only-do-not-override-11lehqq).ant-input-outlined:focus-within {
+  border-color: #7550ab !important;
+}
+.microsoftBtn{
+  transition: background-color .218s, border-color .218s;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #dadce0;
+  color: #3c4043;
+  font-size: 14px;
+  height: 40px;
+  letter-spacing: 0.25px;
+  padding: 0 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+border-radius: 5px;
+  text-align: center;
+}
+
+.microsoftBtn span{
+  font-size: 14px;
+  font-weight: 500;
+  color: #3c4043;
+  transition: all .3s ease-in;
+}
+
+.microsoftBtn:hover{
+  border: 1px solid  grey; 
+}
+.microsoftBtn:hover span{
+  color: #535353;
+}
+.checkBoxWrapper{
+  display: flex;
+  gap: 10px;
+  align-items: start !important;
+}
+
+.alreadyText{
+  color: #535353;;
+  font-weight: 600;
+  transition: all .3s ease-in;
+}
+.alreadyText:hover{
+  color: #7550ab;
+}
+.loginPage .auth-footer.text-center.mt-2 p {
+  font-size: 15px;
+  margin-top: 0 !important;
+  margin: 2px 0 !important;
+}
+.loginPage .auth-footer{
+  margin-top: 20px !important;
+}
+.loginPage small{
+  font-size: 15px;
+  margin: -14px 0 20px;
+  display: block;
+}
 /* login page css ended */
 
 

@@ -34,7 +34,7 @@ const Register = () => {
     } catch (error: any) {}
   };
   return (
-    <section className="auth-pages d-flex align-items-center h-100">
+    <section className="auth-pages d-flex align-items-center h-100 bg-lightBg py-12 loginPage">
       <div className="container">
         <Row justify="center">
           <Col className="gutter-row" xs={23} sm={21} md={19} lg={12} xl={10}>
@@ -47,7 +47,7 @@ const Register = () => {
                 boxShadow: "0 4px 20px rgba(0, 0, 0, 0.1)",
               }}
             >
-              <h3 className="text-center mb-3">Register</h3>
+              <h3 className="text-center mb-3 lg:text-3xl md:xl">Register</h3>
               <Form
                 name="normal_login"
                 className="login-form"
@@ -108,8 +108,8 @@ const Register = () => {
                   Must be at least 8 characters
                 </small>
 
-                <Form.Item name="newsletter" valuePropName="checked">
-                  <Checkbox>
+                <Form.Item name="newsletter" valuePropName="checked" >
+                  <Checkbox className="checkBoxWrapper">
                     Receive occasional emails with exclusive special offers and
                     product updates.
                   </Checkbox>
@@ -119,7 +119,7 @@ const Register = () => {
                   size="large"
                   type="primary"
                   htmlType="submit"
-                  className="register-button w-100"
+               className="loginBtn w-100"
                 >
                   Register
                 </Button>
@@ -137,12 +137,12 @@ const Register = () => {
 
               <div className="auth-footer text-center mt-2">
                 <p>
-                  Already have an account? <a href="/login">Login</a>
+                  Already have an account? <a href="/login" className="alreadyText">Login</a>
                 </p>
                 <p className="text-muted">
                   By registering you accept our{" "}
-                  <a href="/terms">Terms of Use</a> and{" "}
-                  <a href="/privacy">Privacy Policy</a>.
+                  <a href="/terms" className="alreadyText">Terms of Use</a> and{" "}
+                  <a href="/privacy" className="alreadyText">Privacy Policy</a>.
                 </p>
               </div>
             </Card>

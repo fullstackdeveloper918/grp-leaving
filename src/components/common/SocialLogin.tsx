@@ -46,14 +46,16 @@ const GoogleLogin = () => {
       const google = (window as any).google;
       google?.accounts?.id?.initialize({
         client_id:
-          "648936783615-s3ef45tdblc2kq6073e4his54doo9o4p.apps.googleusercontent.com",
+          // "648936783615-s3ef45tdblc2kq6073e4his54doo9o4p.apps.googleusercontent.com",
+          "532793655516-94neooqgg2paeula8ricuvon7pjkq07i.apps.googleusercontent.com",
         callback: loginWithGoogle,
         cancel_on_tap_outside: false,
       });
       google?.accounts?.id?.renderButton(divRef.current, {
-        shape: "circle",
+        shape: "rectangular", // You can choose "rectangular" or "circle"
         size: "large",
-        type: "icon",
+        type: "standard",
+        theme: "outline",
         
       });
       // console.log(divRef.current);

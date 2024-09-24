@@ -16,9 +16,9 @@ const MicroSoftLogin = () => {
 
   return (
     <div>
-     <button onClick={handleLogin}>
-      <Image src={Images.microsoftLogo}   alt="Microsoft Logo" style={{ width: '18%', height:'18%', borderRadius: '50%',border: '1px solid gray',
-        objectFit: 'cover'}} />
+     <button onClick={handleLogin} className='microsoftBtn'>
+      <Image src={Images.microsoftLogo}   alt="Microsoft Logo" style={{ width: '20px', height:'20px',        objectFit: 'cover'}} />
+      <span>Sign in with Microsoft</span>
       </button>
     </div>
   );

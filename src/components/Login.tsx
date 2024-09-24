@@ -117,7 +117,7 @@ const Login = () => {
                 </div>
               </Divider>
 
-              <Flex gap={24} justify="center" align="center" className="my-3">
+              <Flex gap={18} justify="center" align="center" className="my-3">
                 <SocalLogin />
                 <MicroSoftLogin />
                 {/* <Button size='middle' type='default' shape='circle' htmlType='button' style={{ width: 40, height: 40 }} icon={<Icons.FaceBookIcon />} className='btn-blue fw-medium text-white'></Button> */}
@@ -132,7 +132,7 @@ const Login = () => {
                   <a href="/login">Forgot Password</a>
                 </h6>
                 <p>
-                  Need an account? <a href="/register" className="text-blueBg">Register</a>
+                  Need an account? <a href="/register" className="text-blueBg font-bold alreadyText">Register</a>
                 </p>
               </div>
             </Card>
