@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 import { capFirst } from "@/utils/validation";
 import api from "@/utils/api";
 import { setCookie } from "nookies";
-import { GooglePayWithCDN } from "./common/GooglePayWithCdn";
+import { GooglePayWithCDN } from "./common/GooglePayWithCDN";
 const { Row, Col, Button } = {
   Row: dynamic(() => import("antd").then((module) => module.Row), {
     ssr: false,
