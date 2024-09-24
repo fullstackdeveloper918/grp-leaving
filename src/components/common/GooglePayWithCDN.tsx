@@ -71,19 +71,6 @@ export const GooglePayWithCDN = (props: any) => {
         }
     }
 
-    function onPaymentAuthorized(paymentData: any): Promise<any> {
-        return processPayment(paymentData)
-            .then(() => ({ transactionState: 'SUCCESS' }))
-            .catch(() => ({
-                transactionState: 'ERROR',
-                error: {
-                    intent: 'PAYMENT_AUTHORIZATION',
-                    message: 'Insufficient funds',
-                    reason: 'PAYMENT_DATA_INVALID',
-                },
-            }));
-    }
-
     function onGooglePayLoaded() {
         const paymentsClient = getGooglePaymentsClient();
         paymentsClient?.isReadyToPay(getGoogleIsReadyToPayRequest())
@@ -177,7 +164,7 @@ export const GooglePayWithCDN = (props: any) => {
 
     return (
         <>
-            <h2 className={`mb-3 fw-semibold ${screens.md ? 'fs-20' : 'fs-18'}`}>Google Pay</h2>
+            {/* <h2 className={`mb-3 fw-semibold ${screens.md ? 'fs-20' : 'fs-18'}`}>Google Pay</h2> */}
             <div className='text-center' id="container"></div>
         </>
     );

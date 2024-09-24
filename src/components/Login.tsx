@@ -9,6 +9,7 @@ import { capFirst } from "@/utils/validation";
 import api from "@/utils/api";
 import { setCookie } from "nookies";
 import { GooglePayWithCDN } from "./common/GooglePayWithCDN";
+import GooglePay from "./common/GooglePay"
 const { Row, Col, Button } = {
   Row: dynamic(() => import("antd").then((module) => module.Row), {
     ssr: false,
@@ -45,7 +46,7 @@ const Login = () => {
     } catch (error: any) {}
   };
 
-  
+  const useCDN = true;
   return (
     <section className="auth-pages d-flex align-items-center h-100 bg-lightBg py-12 loginPage">
       <div className="container">
@@ -121,9 +122,22 @@ const Login = () => {
               <Flex gap={18} justify="center" align="center" className="my-3">
                 <SocalLogin />
                 <MicroSoftLogin />
-                <GooglePayWithCDN  currencyCode='AUD' countryCode='AU' />
+             
+                {/* <GooglePayWithCDN 
+                    currencyCode='AUD' 
+                    countryCode='AU' 
+                    totalPrice={'1.00'} 
+                    // handleSocialBuy={props.handleSocialBuy}
+                /> */}
+            
                 {/* <Button size='middle' type='default' shape='circle' htmlType='button' style={{ width: 40, height: 40 }} icon={<Icons.FaceBookIcon />} className='btn-blue fw-medium text-white'></Button> */}
               </Flex>
+                {/* <GooglePay 
+                    totalPrice={'1.00'} 
+                    currencyCode='AUD' 
+                    countryCode='AU' 
+                    // handleSocialBuy={props.handleSocialBuy}
+                /> */}
               {/* <div className="auth-footer text-center mt-2">
               <p>
                 Already have an account? <a href="/login">Login</a>
