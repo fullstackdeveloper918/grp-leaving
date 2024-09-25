@@ -1,7 +1,10 @@
 "use client"
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import React, { useState } from 'react'
 
 const MultiStepForm = () => {
+  const router=useRouter()
     const [step, setStep] = useState(1);
     const [recipientName, setRecipientName] = useState('');
     const [recipientEmail, setRecipientEmail] = useState('');
@@ -19,6 +22,7 @@ const MultiStepForm = () => {
     const handleSubmit = (e: React.FormEvent) => {
       e.preventDefault();
       // Handle final submission logic here
+      router.push(`/card/pay/1`)
       console.log('Final submission', { recipientName, recipientEmail });
     };
   return (
@@ -162,13 +166,14 @@ const MultiStepForm = () => {
                 >
                   Back
                 </button>
-                
+                {/* <Link href={`card/pay/1`}> */}
                 <button
                   type="submit"
                   className="w-full bg-blue-600 text-black py-2 px-4 rounded-md shadow-sm hover:bg-blue-700"
-                >
+                  >
                   Submit
                 </button>
+                  {/* </Link> */}
               </>
             )}
     </form>

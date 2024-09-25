@@ -10,6 +10,7 @@ import api from "@/utils/api";
 import { setCookie } from "nookies";
 import { GooglePayWithCDN } from "./common/GooglePayWithCDN";
 import GooglePay from "./common/GooglePay"
+import GooglePayButton from "./common/GooglePayButton";
 const { Row, Col, Button } = {
   Row: dynamic(() => import("antd").then((module) => module.Row), {
     ssr: false,
@@ -138,6 +139,8 @@ const Login = () => {
                     countryCode='AU' 
                     // handleSocialBuy={props.handleSocialBuy}
                 /> */}
+                   {/* <h1>Pay with Google Pay UPI</h1>
+                   <GooglePayButton /> */}
               {/* <div className="auth-footer text-center mt-2">
               <p>
                 Already have an account? <a href="/login">Login</a>
