@@ -5,6 +5,7 @@ import { CardElement, useStripe } from "@stripe/react-stripe-js";
 import { Button, Checkbox, Col, Form, Grid, Input, Popover, Radio, Row, Select, Typography } from "antd";
 import FormItem from "antd/es/form/FormItem";
 import AddCardElement from "./common/AddCard";
+import RazorPay from "./RazorPay";
 
 const Checkout = () => {
   const [cardType, setCardType] = useState<any>("group");
@@ -136,6 +137,7 @@ const Checkout = () => {
               Pay with Debit/Credit Card
             </button>
             </a>
+            <RazorPay/>
             {/* <CardElement />
             <GooglePay
               totalPrice={"1.00"}
