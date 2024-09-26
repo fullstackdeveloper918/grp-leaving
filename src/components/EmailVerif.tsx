@@ -62,7 +62,6 @@ const EmailVerif = ({ searchParam }: any) => {
           </p>
           <div className="text-center mt-3">
             {" "}
-            {/* Added mt-3 */}
             <button
               onClick={EmailVerify}
               className="bg-red-500 text-black  border-2 border-blue-700 px-6 py-2 rounded-full font-semibold hover:bg-red-600 mt-3 mb-3"
