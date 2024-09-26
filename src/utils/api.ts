@@ -48,9 +48,12 @@ const requests = {
 };
 
 const Auth = {
+  verify: (q?: string) =>
+    requests.get(`user/verifyEmail${q ? `?${q}` : ""}`),
   login: (info:any) =>
     requests.post('auth/login', info),
   signUp: (items: any) => requests.post(`user/register`, items),
+
   loginAsUser: (info: any) =>
     requests.post('admin/users/login_as_user', info),
   logout: () =>
