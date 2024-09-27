@@ -60,7 +60,7 @@ const ExpolreallcategoryCraousal = () => {
           slidesPerView={8}
           navigation
           // pagination={{ clickable: true }}
-          modules={[Navigation, Pagination, Scrollbar]} // Use modules array here
+          modules={[Navigation, Pagination, Scrollbar]} 
         >
           {cardData?.data?.map((item, index) => (
             <SwiperSlide key={index}>
