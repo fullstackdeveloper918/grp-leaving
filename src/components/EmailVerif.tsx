@@ -50,7 +50,6 @@ const EmailVerif = ({ searchParam }: any) => {
         <div className="p-6">
           <h2 className="text-2xl font-bold text-center text-gray-800 mb-3">
             {" "}
-            {/* Added mb-3 */}
             Email verification
           </h2>
           <p className="text-gray-600 text-center mb-6">
