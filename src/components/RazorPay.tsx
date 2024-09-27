@@ -15,7 +15,7 @@ const RazorPay = () => {
   const handlePayment = async () => {
     setIsProcessing(true);
     try {
-      const response = await fetch("/api/create-order", { method: "POST" });
+      const response = await fetch("/api1/create", { method: "POST" });
       const data = await response.json();
 
       const options = {
