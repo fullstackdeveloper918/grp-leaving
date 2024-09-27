@@ -37,6 +37,12 @@
             "imageSrc": "https://img.freepik.com/free-psd/beautiful-watercolor-wedding-invitation-card-with-elegant-flower-tiny-foliage_44538-10601.jpg?t=st=1726235036~exp=1726238636~hmac=d1dc9a692078bdca87612cb7db66afe125d8c3af762cab4f66d5add701eac784&w=1060",
             "personalized": true,
             "type": "retirement"
+        },
+        {
+            "id": 8,
+            "imageSrc": "https://img.freepik.com/premium-psd/greeting-card-with-flowers-it-pink-background_74869-4261.jpg?w=826",
+            "isNew": true,
+            "type": "farewell"
         }
     ]
 }

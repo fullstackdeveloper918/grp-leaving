@@ -25,7 +25,8 @@ const Sidebar = ({ urlValue }: { urlValue: string }) => {
 
   const handleClick = (category: string) => {
     console.log(category, "category");
-    router.push(`/card/${category.toLowerCase()}`);
+    const formattedCategory = category.toLowerCase().replace(/\s+/g, '-');
+    router.push(`/card/${formattedCategory}`);
   };
   return (
     <aside className="md:w-64 sm:w-100   rounded-[10px] bg-[#ffffffcc] border p-3 responiveSlider relative">
@@ -35,7 +36,7 @@ const Sidebar = ({ urlValue }: { urlValue: string }) => {
             key={category}
             onClick={() => handleClick(category)}
             className={`cursor-pointer ${
-              urlValue === category.toLowerCase()
+              urlValue === category.toLowerCase().replace(/\s+/g, '-')
                 ? "text-white font-bold md:text-wrap text-nowrap relative bg-blueBg hover:bg-blueBg    " 
                 : "text-gray-500 "
             } text-blackText md:text-wrap text-nowrap p-2 rounded-[6px] hover:bg-bgWhite hover:text-blueText px-3 hover:font-bold transition-all ease-in`}

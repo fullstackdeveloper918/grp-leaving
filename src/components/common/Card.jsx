@@ -60,10 +60,10 @@ const Card = ({ item, index }) => {
   return (
     <>
       <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-        <a href={`/card/new/1?category=${item?.type}`}>
+        <a href={`/card/new/${item?.id}?category=${item?.type}`}>
           <Image
             className="rounded-t-lg w-100 h-100 object-cover"
-            src={imageToDisplay}
+            src={item?.image}
             // width={250}
             // height={250}
             alt="card-img"

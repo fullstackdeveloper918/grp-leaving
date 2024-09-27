@@ -19,7 +19,7 @@ const categoriesChunks = chunkArray(cardData.data, 5);
 
 const ExpolreallcategoryCraousal = () => {
   return (
-    <div className="container-fluid text-center py-12">
+    <div className="container-fluid text-center justify-center py-12">
       <h3 className="xl:text-4xl md:text-xl sm:text-md font-semibold">
         Explore All Categories
       </h3>

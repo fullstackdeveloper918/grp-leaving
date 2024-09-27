@@ -1,13 +1,13 @@
 import Recipient from '@/components/Recipient'
 import React from 'react'
 
-const page = ({ searchParams }:any) => {
+const page = ({ searchParams,params }:any) => {
   console.log(searchParams.category);
   
   return (
     <div>
 
-      <Recipient searchParams={searchParams}/>
+      <Recipient searchParams={searchParams} params={params}/>
     </div>
   )
 }
