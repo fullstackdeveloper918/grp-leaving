@@ -85,7 +85,6 @@ const Checkout = () => {
               </label>
             </div>
 
-            {/* Show this section when the Card Bundle is selected */}
             {bundleOption === "bundle" && (
               <div className="mt-4 p-4 bg-gray-50 rounded-md border">
                 <ul className="text-green-600 mb-4 space-y-1">
