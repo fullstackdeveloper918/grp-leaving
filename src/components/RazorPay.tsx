@@ -52,15 +52,6 @@ const RazorPay = () => {
   return (
     <>
       <Script src="https://checkout.razorpay.com/v1/checkout.js" />
-
-      {/* <p className="mt-2">Amount to pay :{AMOUNT} INR</p> */}
-      {/* <button
-        onClick={handlePayment}
-        disabled={isProcessing}
-        className="px-4 py-2 bg-blue-500 text-black rounded hover:bg-blue-600 disable"
-      >
-        {isProcessing ? "Processign..." : "Pay Now"}
-      </button> */}
       <button
         onClick={handlePayment}
         disabled={isProcessing}
