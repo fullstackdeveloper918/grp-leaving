@@ -19,14 +19,14 @@ const categories = [
   "Boss",
 ];
 
-const Sidebar = ({ urlValue }: { urlValue: string }) => {
+const Sidebar = ({ urlValue,cardLabel }: { urlValue: string,cardLabel:any }) => {
   console.log(urlValue, "yyyyy");
   const router = useRouter();
 
   const handleClick = (category: string) => {
     console.log(category, "category");
     const formattedCategory = category.toLowerCase().replace(/\s+/g, '-');
-    router.push(`/card/${formattedCategory}`);
+    router.push(cardLabel?`/card/${formattedCategory}/${cardLabel}`:`/card/${formattedCategory}`);
   };
   return (
     <aside className="md:w-64 sm:w-100   rounded-[10px] bg-[#ffffffcc] border p-3 responiveSlider relative">
