@@ -30,7 +30,7 @@ const EscrowPayment = () => {
 
       // Configure Razorpay Checkout options
       const options = {
-        key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
+        key: "rzp_test_NPDqhJnbXJi072",
         amount: AMOUNT * 100, // Razorpay requires the amount in paise
         currency: "INR",
         name: "Testing Solutions",
