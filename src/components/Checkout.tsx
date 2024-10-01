@@ -6,6 +6,7 @@ import { Button, Checkbox, Col, Form, Grid, Input, Popover, Radio, Row, Select, 
 import FormItem from "antd/es/form/FormItem";
 import AddCardElement from "./common/AddCard";
 import RazorPay from "./RazorPay";
+import EscrowPayment from "./EscrowPayment";
 
 const Checkout = () => {
   const [cardType, setCardType] = useState<any>("group");
@@ -137,6 +138,7 @@ const Checkout = () => {
             </button>
             </a>
             <RazorPay/>
+            {/* <EscrowPayment/> */}
             {/* <CardElement />
             <GooglePay
               totalPrice={"1.00"}

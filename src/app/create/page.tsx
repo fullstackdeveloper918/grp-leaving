@@ -28,14 +28,16 @@ const page = () => {
             description="Boards function like a digital pinboard, allowing you to add unlimited messages and images on a scrollable page for endless creativity!"
             buttonText="Create Board"
           />
+          <Link href={`/pool/new`} className="no-underline">
           <OptionCard
             title="Money Pool"
             imageSrc={Images?.money}
             description="
-Looking to gather cash for a special gift? This is your ideal solution! It's simple, convenient, and ensures your gift is just what they want."
+            Looking to gather cash for a special gift? This is your ideal solution! It's simple, convenient, and ensures your gift is just what they want."
             buttonText="Create Collection Pot"
             isFree={true}
-          />
+            />
+            </Link>
         </div>
       </div>
     </div>

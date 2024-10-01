@@ -1,16 +1,16 @@
-"use client"
-import { Quicksand   } from "next/font/google";
+"use client";
+import { Quicksand } from "next/font/google";
 import "./globals.css";
 // import NextTopLoader from "nextjs-toploader";
 const quicksand = Quicksand({ subsets: ["latin"] });
 // import "nprogress/nprogress.css";
 import Navbar from "@/components/common/Navbar";
 import Footer from "@/components/common/Footer";
-import { AntdRegistry } from '@ant-design/nextjs-registry';
-import Script from 'next/script';
-import { MsalProvider, useMsal } from '@azure/msal-react';
-import { PublicClientApplication } from '@azure/msal-browser';
-import msalConfig from '../utils/msalConfig';
+import { AntdRegistry } from "@ant-design/nextjs-registry";
+import Script from "next/script";
+import { MsalProvider, useMsal } from "@azure/msal-react";
+import { PublicClientApplication } from "@azure/msal-browser";
+import msalConfig from "../utils/msalConfig";
 
 const msalInstance = new PublicClientApplication(msalConfig);
 export default function RootLayout({
@@ -34,19 +34,18 @@ export default function RootLayout({
           crossOrigin="anonymous"
           referrerPolicy="no-referrer"
         />
-           <Script
+        <Script
           src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"
           strategy="beforeInteractive" // This ensures it loads before the page is interactive
         />
-        <Script async
-  src="https://pay.google.com/gp/p/js/pay.js"></Script>
+        <Script async src="https://pay.google.com/gp/p/js/pay.js"></Script>
       </head>
       <body className={quicksand.className}>
         {/* <AntdRegistry> */}
         <AntdRegistry>
-        <MsalProvider instance={msalInstance}>
-        <Navbar />
-        {/* <NextTopLoader
+          <MsalProvider instance={msalInstance}>
+            <Navbar />
+            {/* <NextTopLoader
             color="#2299DD"
             initialPosition={0.08}
             crawlSpeed={200}
@@ -57,9 +56,9 @@ export default function RootLayout({
             speed={200}
             shadow="0 0 10px #2299DD,0 0 5px #2299DD"
           /> */}
-        {children}
-        <Footer />
-        </MsalProvider>
+            {children}
+            <Footer />
+          </MsalProvider>
         </AntdRegistry>
       </body>
     </html>
