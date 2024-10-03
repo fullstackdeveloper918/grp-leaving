@@ -8,7 +8,7 @@ declare global {
   }
 }
 
-const RazorPay = () => {
+const RazorPay = ({amount}:any) => {
   const AMOUNT = 100;
   const [isProcessing, setIsProcessing] = useState(false);
 
@@ -57,7 +57,7 @@ const RazorPay = () => {
         disabled={isProcessing}
         className="w-full bg-blue-500 text-black py-2   border-2 border-blue-700 rounded-md hover:bg-blue-600 transition"
       >
-        {isProcessing ? "Processign..." : `Pay Now :${AMOUNT} INR`}
+        {isProcessing ? "Processign..." : `Pay Now :${amount} INR`}
       </button>
     </>
   );

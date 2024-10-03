@@ -2,7 +2,19 @@
 import React, { useState } from "react";
 import GooglePay from "./common/GooglePay";
 import { CardElement, useStripe } from "@stripe/react-stripe-js";
-import { Button, Checkbox, Col, Form, Grid, Input, Popover, Radio, Row, Select, Typography } from "antd";
+import {
+  Button,
+  Checkbox,
+  Col,
+  Form,
+  Grid,
+  Input,
+  Popover,
+  Radio,
+  Row,
+  Select,
+  Typography,
+} from "antd";
 import FormItem from "antd/es/form/FormItem";
 import AddCardElement from "./common/AddCard";
 import RazorPay from "./RazorPay";
@@ -10,16 +22,29 @@ import EscrowPayment from "./EscrowPayment";
 
 const Checkout = () => {
   const [cardType, setCardType] = useState<any>("group");
+  console.log(cardType, "cardType");
+
   const [bundleOption, setBundleOption] = useState<any>("single");
   const [numCards, setNumCards] = useState<any>(5); // Default card bundle selection
-  const [paywith, setPaywith] = useState<any>('STRIPE')
+  const [paywith, setPaywith] = useState<any>("STRIPE");
   const stripe = useStripe();
   const cardPrices: any = {
     5: { price: 22.45, perCard: 4.49, discount: "10%" },
     10: { price: 40.9, perCard: 4.09, discount: "18%" },
     20: { price: 73.8, perCard: 3.69, discount: "26%" },
   };
+  const groupCardPrice = 4.99;
+  const individualCardprice = 2.55;
+  const bundleSingleCard = 4.99;
   const screens = Grid.useBreakpoint();
+
+  const AmountCondition =
+    cardType === "group"
+      ? groupCardPrice
+      : cardType === "individual"
+      ? individualCardprice
+      : bundleSingleCard;
+  const TotalAmount = 800;
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col justify-center items-center p-5">
       <div className="w-full max-w-4xl bg-white shadow-lg rounded-lg p-6 md:flex">
@@ -39,7 +64,9 @@ const Checkout = () => {
                   className="mr-2"
                 />
                 <span className="text-lg">Group Card</span>
-                <span className="ml-auto text-gray-500">$4.99 USD</span>
+                <span className="ml-auto text-gray-500">
+                  ${groupCardPrice} USD
+                </span>
               </label>
               <label className="flex items-center">
                 <input
@@ -51,11 +78,14 @@ const Checkout = () => {
                   className="mr-2"
                 />
                 <span className="text-lg">Individual Card</span>
-                <span className="ml-auto text-gray-500">$2.50 USD</span>
+                <span className="ml-auto text-gray-500">
+                  ${individualCardprice} USD
+                </span>
               </label>
             </div>
           </div>
-
+          {cardType !== "individual" ? 
+              <>
           {/* Bundle Discount Section */}
           <div className="mb-6">
             <h2 className="text-xl font-bold mb-2">Bundle Discount</h2>
@@ -70,7 +100,9 @@ const Checkout = () => {
                   className="mr-2"
                 />
                 <span className="text-lg">Single Card</span>
-                <span className="ml-auto text-gray-500">$4.99 USD</span>
+                <span className="ml-auto text-gray-500">
+                  ${bundleSingleCard} USD
+                </span>
               </label>
               <label className="flex items-center">
                 <input
@@ -85,59 +117,63 @@ const Checkout = () => {
                 <span className="ml-auto text-green-500">From $22.45 USD</span>
               </label>
             </div>
+           
+                {bundleOption === "bundle" && (
+                  <div className="mt-4 p-4 bg-gray-50 rounded-md border">
+                    <ul className="text-green-600 mb-4 space-y-1">
+                      <li>💰 Save up to 40% by buying a bundle</li>
+                      <li>🤝 Share bundle with colleagues</li>
+                      <li>🕑 No Expiry. No Subscription.</li>
+                      <li>🧾 File a single expense claim</li>
+                    </ul>
 
-            {bundleOption === "bundle" && (
-              <div className="mt-4 p-4 bg-gray-50 rounded-md border">
-                <ul className="text-green-600 mb-4 space-y-1">
-                  <li>💰 Save up to 40% by buying a bundle</li>
-                  <li>🤝 Share bundle with colleagues</li>
-                  <li>🕑 No Expiry. No Subscription.</li>
-                  <li>🧾 File a single expense claim</li>
-                </ul>
-
-                <div className="flex flex-col space-y-2">
-                  <label className="font-bold text-gray-700">
-                    Select number of cards:
-                  </label>
-                  <select
-                    value={numCards}
-                    onChange={(e) => setNumCards(Number(e.target.value))}
-                    className="border border-gray-300 p-2 rounded-lg w-full"
-                  >
-                    {Object.keys(cardPrices).map((count: any) => (
-                      <option key={count} value={count}>
-                        {count} Cards — $
-                        {cardPrices[
-                          count as keyof typeof cardPrices
-                        ].price.toFixed(2)}{" "}
-                        USD ($
-                        {cardPrices[
-                          count as keyof typeof cardPrices
-                        ].perCard.toFixed(2)}{" "}
-                        USD/card) -{" "}
-                        {cardPrices[count as keyof typeof cardPrices].discount}{" "}
-                        off
-                      </option>
-                    ))}
-                  </select>
-                  <p className="text-gray-600 text-sm mt-2">
-                    After buying this bundle and card, you will have{" "}
-                    {numCards - 1} cards left to use any time.
-                  </p>
-                </div>
-              </div>
-            )}
+                    <div className="flex flex-col space-y-2">
+                      <label className="font-bold text-gray-700">
+                        Select number of cards:
+                      </label>
+                      <select
+                        value={numCards}
+                        onChange={(e) => setNumCards(Number(e.target.value))}
+                        className="border border-gray-300 p-2 rounded-lg w-full"
+                      >
+                        {Object.keys(cardPrices).map((count: any) => (
+                          <option key={count} value={count}>
+                            {count} Cards — $
+                            {cardPrices[
+                              count as keyof typeof cardPrices
+                            ].price.toFixed(2)}{" "}
+                            USD ($
+                            {cardPrices[
+                              count as keyof typeof cardPrices
+                            ].perCard.toFixed(2)}{" "}
+                            USD/card) -{" "}
+                            {
+                              cardPrices[count as keyof typeof cardPrices]
+                                .discount
+                            }{" "}
+                            off
+                          </option>
+                        ))}
+                      </select>
+                      <p className="text-gray-600 text-sm mt-2">
+                        After buying this bundle and card, you will have{" "}
+                        {numCards - 1} cards left to use any time.
+                      </p>
+                    </div>
+                  </div>
+                )} 
           </div>
+</>:"This is a 1-1 card. Group signing will be disabled and only you will be able to add messages.Please select Group Card if you want to collect messages from others and receive a share URL."}
+
 
           {/* Payment Options */}
           <div className="space-y-4">
             <a href="/card/checkout/1">
-
-            <button className="w-full bg-blue-500 text-black py-2   border-2 border-blue-700 rounded-md hover:bg-blue-600 transition">
-              Pay with Debit/Credit Card
-            </button>
+              <button className="w-full bg-blue-500 text-black py-2   border-2 border-blue-700 rounded-md hover:bg-blue-600 transition">
+                Pay with Debit/Credit Card
+              </button>
             </a>
-            <RazorPay/>
+            <RazorPay amount={AmountCondition}/>
             {/* <EscrowPayment/> */}
             {/* <CardElement />
             <GooglePay
@@ -172,7 +208,7 @@ const Checkout = () => {
                 <span className="font-bold">
                   {bundleOption === "bundle"
                     ? `$${cardPrices[numCards].price.toFixed(2)} USD`
-                    : "$4.99 USD"}
+                    : `$${AmountCondition} USD`}
                 </span>
               </div>
               <div className="flex justify-between mt-2">
@@ -180,14 +216,13 @@ const Checkout = () => {
                 <span className="font-bold text-xl">
                   {bundleOption === "bundle"
                     ? `$${cardPrices[numCards].price.toFixed(2)} USD`
-                    : "$4.99 USD"}
+                    : `$${AmountCondition} USD`}
                 </span>
               </div>
             </div>
           </div>
         </div>
       </div>
-    
     </div>
   );
 };

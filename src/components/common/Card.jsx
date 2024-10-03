@@ -59,17 +59,16 @@ const Card = ({ item, index }) => {
 
   return (
     <>
-      <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+      <div className="max-w-sm w-64 h-80 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 overflow-hidden">
         <a href={`/card/new/${item?.id}?category=${item?.type}`}>
           <Image
-            className="rounded-t-lg w-100 h-100 object-cover"
+            className="rounded-t-lg w-full h-full object-cover"
             src={item?.image}
-            // width={250}
-            // height={250}
             alt="card-img"
           />
         </a>
       </div>
+
     </>
   );
 };
