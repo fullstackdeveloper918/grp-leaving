@@ -1,4 +1,5 @@
 "use client";
+import validation from "@/utils/validation";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
@@ -11,7 +12,27 @@ const MultiStepForm = () => {
   const [address, setAddress] = useState("");
   const [number, setNumber] = useState("");
   const [cardType, setCardType] = useState<any>("later");
+  const [error, setError] = useState('');
+  const [emailError, setEmailError] = useState('');
+
   const handleNext = () => {
+    if (!recipientName) {
+      setError('Recipient name is required.');
+      return; // Stop submission if validation fails
+  }
+    if (!recipientEmail) {
+      setEmailError('Recipient Email is required.');
+      return; // Stop submission if validation fails
+  }
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  if (!emailRegex.test(recipientEmail)) {
+    setEmailError('Recipient Email is required.');
+    return; // Stop submission if validation fails
+  }
+
+  // Clear the email error if validation passes
+  setEmailError('');
     setStep((prev) => prev + 1);
   };
 
@@ -19,15 +40,16 @@ const MultiStepForm = () => {
     setStep((prev) => prev - 1);
   };
   const [selectedOption, setSelectedOption] = useState('');
-  const [error, setError] = useState('');
   const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
       const value = e.target.value;
       setSelectedOption(value);
       // You can also update the address state if needed
       // setAddress(value);
   };
+  
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    console.log(recipientName,"recipientName");
     // Handle final submission logic here
     if (!recipientName) {
       setError('Recipient name is required.');
@@ -119,7 +141,7 @@ const MultiStepForm = () => {
                   required
                   className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                 />
-                   {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
+                   {!recipientName &&error && <p className="text-red-500 text-sm mt-2">{error}</p>}
               </div>
 
               {/* Recipient Email Input */}
@@ -138,6 +160,7 @@ const MultiStepForm = () => {
                   onChange={(e) => setRecipientEmail(e.target.value)}
                   className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                 />
+                 {!recipientEmail ?<p className="text-red-500 text-sm mt-2">{emailError}</p>:""}
               </div>
 
               <button

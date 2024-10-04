@@ -32,15 +32,30 @@ const Login = () => {
     };
     let res = await api.Auth.login(items);
     console.log(res, "yuyyyu");
-
-    if (res.token) {
-      setCookie(null, "token", res.token, {
+    
+    // if (res.token) {
+      // }
+      setCookie(null, "token","yewiryt46836483456ojtkshrti6w48werkweyrt86448", {
         maxAge: 30 * 24 * 60 * 60,
         path: "/",
       });
-    }
 
     console.log(res, "rereere");
+    router.replace("/");
+
+    try {
+    } catch (error: any) {}
+  };
+  const onFinish1 = async (values: any) => {
+    let items = {
+      full_name: capFirst(values?.full_name),
+      email: String(values.email).toLowerCase(),
+      password: values.password,
+    };
+    setCookie(null, "token","yewiryt46836483456ojtkshrti6w48werkweyrt86448", {
+      maxAge: 30 * 24 * 60 * 60,
+      path: "/",
+    });
     router.replace("/");
 
     try {
@@ -69,7 +84,7 @@ const Login = () => {
                 name="normal_login"
                 className="login-form"
                 initialValues={{ remember: false }}
-                onFinish={onFinish}
+                onFinish={onFinish1}
                 scrollToFirstError
               >
                 <Form.Item
