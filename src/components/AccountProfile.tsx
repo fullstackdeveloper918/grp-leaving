@@ -18,7 +18,7 @@ const AccountProfile = () => {
             <div>
               <label className="block text-sm font-medium text-gray-700">Name</label>
               <input
-                type="text"
+                type="text"    
                 className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
@@ -49,7 +49,7 @@ const AccountProfile = () => {
 
         <div className="flex justify-between items-center">
           <button
-            className="bg-blue-600 text-white font-semibold px-4 py-2 rounded shadow-md hover:bg-blue-700"
+            className="bg-blue-600 text-black border border-gray-300 font-semibold px-4 py-2 rounded shadow-md hover:bg-blue-700"
             onClick={handleUpdate}
           >
             Update

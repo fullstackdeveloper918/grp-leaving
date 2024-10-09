@@ -1,5 +1,6 @@
 "use client"
 import React, { useState } from 'react'
+import { toast } from 'react-toastify';
 
 const AccountEmailprefrence = () => {
     const [cardReminders, setCardReminders] = useState<boolean>(true);
@@ -13,7 +14,8 @@ const AccountEmailprefrence = () => {
           paidCardUpdates,
           marketingEmails,
         });
-        alert("Preferences updated!");
+        // alert("Preferences updated!");
+        toast.success("Preferences updated!")
       };
   return (
     <div className="max-w-md mx-auto bg-white p-6 rounded-lg shadow-lg">
@@ -21,29 +23,34 @@ const AccountEmailprefrence = () => {
 
     <div className="space-y-4">
       {/* Card Reminders */}
-      <div className="flex items-center justify-between">
-        <label htmlFor="card-reminders" className="text-sm font-medium">Card Reminders</label>
+      <div className="form-check form-switch items-center justify-between">
         <input
-          type="checkbox"
+          type="radio"
           id="card-reminders"
           checked={cardReminders}
           onChange={() => setCardReminders(!cardReminders)}
-          className="toggle toggle-primary"
+          className="form-check-input"
         />
+        <label htmlFor="card-reminders" className="text-sm font-medium">Card Reminders</label>
+        {/* <div className="form-check form-switch"> */}
+  {/* <input className="form-check-input" type="checkbox" id="flexSwitchCheckChecked"  />
+  <label htmlFor="card-reminders" className="text-sm font-medium">Card Reminders</label> */}
+{/* </div> */}
+
       </div>
       <p className="text-xs text-gray-500 pl-4">
         Receive specific emails about the cards you’ve created, e.g., a reminder to finish a started card
       </p>
 
       {/* Event Reminders */}
-      <div className="flex items-center justify-between">
+      <div className="form-check form-switch items-center justify-between">
         <label htmlFor="event-reminders" className="text-sm font-medium">Event Reminders</label>
         <input
           type="checkbox"
           id="event-reminders"
           checked={eventReminders}
           onChange={() => setEventReminders(!eventReminders)}
-          className="toggle toggle-primary"
+      className="form-check-input"
         />
       </div>
       <p className="text-xs text-gray-500 pl-4">
@@ -51,14 +58,14 @@ const AccountEmailprefrence = () => {
       </p>
 
       {/* Paid Card Updates */}
-      <div className="flex items-center justify-between">
+      <div className="form-check form-switch items-center justify-between">
         <label htmlFor="paid-updates" className="text-sm font-medium">Paid Card Updates</label>
         <input
           type="checkbox"
           id="paid-updates"
           checked={paidCardUpdates}
           onChange={() => setPaidCardUpdates(!paidCardUpdates)}
-          className="toggle toggle-primary"
+            className="form-check-input"
         />
       </div>
       <p className="text-xs text-gray-500 pl-4">
@@ -66,14 +73,14 @@ const AccountEmailprefrence = () => {
       </p>
 
       {/* Marketing Emails */}
-      <div className="flex items-center justify-between">
+      <div className="form-check form-switch items-center justify-between">
         <label htmlFor="marketing-emails" className="text-sm font-medium">Marketing Emails and Discounts</label>
         <input
           type="checkbox"
           id="marketing-emails"
           checked={marketingEmails}
           onChange={() => setMarketingEmails(!marketingEmails)}
-          className="toggle toggle-primary"
+             className="form-check-input"
         />
       </div>
       <p className="text-xs text-gray-500 pl-4">

@@ -18,7 +18,7 @@ const page = () => {
             <OptionCard
               title="Card"
               imageSrc={Images?.cards}
-              description="It’s like a regular greeting card but with unlimited pages, giving everyone plenty of space to share their thoughts and make it truly special."
+              description="It is like a regular greeting card but with unlimited pages, giving everyone plenty of space to share their thoughts and make it truly special."
               buttonText="Create Card"
             />
           </Link>

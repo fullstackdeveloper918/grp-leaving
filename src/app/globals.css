@@ -115,7 +115,7 @@ transform: scale(1.1);
 
 .btnPrimary,.submitbtnPrimary,.loginBtn,
 .btnSecondary, .btnSecondary:hover{
-  background-color: #7550AB;
+  background-color: #00C4CC;
   color: #fff;
   font-size: 24px;
   border-radius: 10px;
@@ -123,7 +123,7 @@ transform: scale(1.1);
   text-align: center;
   padding: 16px 36px;
   text-decoration: none;
-  border: 1px solid #7550AB;
+  border: 1px solid #00C4CC;
   transition: all .3s ease-in;
   font-size: 20px;
   font-weight: 500;
@@ -135,17 +135,17 @@ transform: scale(1.1);
 }
 .btnPrimary:hover{
   background-color: #fff;
-  border-color: #7550AB !important;
-  color: #7550AB !important;
+  border-color: #00C4CC !important;
+  color: #00C4CC !important;
 }
 .loginBtn{
   padding: 8px 10px;
-  background-color: #7550AB !important;
+  background-color: #00C4CC !important;
   color: #fff !important;
 }
 .submitbtnPrimary{
   background-color: #fff;
-  color: #7550AB;
+  color: #00C4CC;
 }
 .submitbtnPrimary:hover{
   background-color: transparent !important;
@@ -177,7 +177,7 @@ input:focus{
   width: 3px;
   height: 34px;
   top: 0;
-  background-color: #7550ab;
+  background-color: #00C4CC;
 }
 
 /* Create card page css atart */
@@ -199,7 +199,7 @@ input:focus{
 
 .cardBox button{
 color: #fff;
-background-color: #7550ab;
+background-color: #00C4CC;
 font-size: 16px !important;
 }
 
@@ -208,7 +208,7 @@ font-size: 16px !important;
   padding: 0 !important;
 }
 :where(.css-dev-only-do-not-override-11lehqq).ant-input-outlined:focus, :where(.css-dev-only-do-not-override-11lehqq).ant-input-outlined:focus-within {
-  border-color: #7550ab !important;
+  border-color: #00C4CC !important;
 }
 .microsoftBtn{
   transition: background-color .218s, border-color .218s;
@@ -252,7 +252,7 @@ border-radius: 5px;
   transition: all .3s ease-in;
 }
 .alreadyText:hover{
-  color: #7550ab;
+  color: #00C4CC;
 }
 .loginPage .auth-footer.text-center.mt-2 p {
   font-size: 15px;

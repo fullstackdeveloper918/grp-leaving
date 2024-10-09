@@ -48,6 +48,7 @@
     "superagent": "^10.1.0",
     "superagent-promise": "^1.1.0",
     "swiper": "^11.1.14",
+    "translations": "^2.2.1",
     "use-image": "^1.1.1"
   },
   "devDependencies": {

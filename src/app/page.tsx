@@ -17,6 +17,8 @@ import Images from "@/constants/images";
 import { Swiper, SwiperSlide } from "swiper/react";
 import ExpolreallcategoryCraousal from "@/components/ExpolreallcategoryCraousal";
 import ImageSlider from "@/components/common/ImageSlider";
+import Filter from "@/components/common/Filter";
+import HomeCategorySection from "@/components/HomeCategorySection";
 // import 'antd/dist/antd.css';
 const images = [
   { src: "https://img.freepik.com/premium-psd/greeting-card-with-flowers-it-pink-background_74869-4261.jpg?w=826", alt: "Image 1" },
@@ -33,6 +35,7 @@ const array = [
   "https://img.freepik.com/free-psd/beautiful-watercolor-wedding-invitation-card-with-elegant-flower-tiny-foliage_44538-10601.jpg?t=st=1726235036~exp=1726238636~hmac=d1dc9a692078bdca87612cb7db66afe125d8c3af762cab4f66d5add701eac784&w=1060"
 ]
 const Home = async () => {
+  
   const api: Api = {
     url: "https://fakestoreapi.com/products",
     method: "GET",
@@ -59,13 +62,17 @@ const Home = async () => {
           <Hero {...cardData} />
         </div>
        
-        <ExpolreallcategoryCraousal />
+        {/* <ExpolreallcategoryCraousal /> */}
+        <HomeCategorySection/>
+        <div className="bg-testimonialBg bg-no-repeat py-12 mt-4">
+          <div className=" mx-auto px-5 text-center container-fluid">
+            <CustomerReview />
+          </div>
+        </div>
         {/* <ImageSlider  /> */}
         <div className="container-fluid text-center py-12">
-          <h3 className="xl:text-4xl md:text-xl sm:text-md font-semibold lg:max-w-[50%] md:max-w-[60%] max-w-[100%] mx-auto">
-            We have Group Greeting Cards for all occasions{" "}
-            <span className="text-blueText"> Premium </span> cards start at{" "}
-            <span className="text-blueText">$1 </span>
+          <h3 className="xl:text-6xl md:text-xl sm:text-md text-2xlg font-bold lg:max-w-[50%] md:max-w-[60%] max-w-[100%] mx-auto">
+           Make it your own
           </h3>
           <div className="justify-center items-center gap-5 mt-5">
           {/* <Carousel 
@@ -76,7 +83,8 @@ const Home = async () => {
           // slidesToShow={3}
         > */}
         
-        <ImageSlider  />
+        {/* <ImageSlider  /> */}
+        <Image_text_Card />
             {/* </Carousel> */}
           </div>
         </div>
@@ -103,17 +111,7 @@ const Home = async () => {
           </div>
         </div>
         {/* Section 6 */}
-        <div className="bg-testimonialBg bg-no-repeat py-12">
-          <div className=" mx-auto px-5 text-center container-fluid">
-            <h2 className="xl:text-4xl md:text-xl sm:text-md font-semibold mb-10">
-              See Why Our Customers Love Our Cards
-            </h2>
-
-            {/* Reviews Grid */}
-
-            <CustomerReview />
-          </div>
-        </div>
+       
 
         {/* Section 7 */}
         <NewsletterForm />

@@ -52,7 +52,7 @@ const AccountCards = () => {
             <path d="M10 2a8 8 0 100 16 8 8 0 000-16zM2 10a8 8 0 1112.32 6.906l4.386 4.387a1 1 0 01-1.415 1.414l-4.386-4.386A8 8 0 012 10z" />
           </svg>
         </div>
-        <button className="bg-blue-500 text-white px-4 py-2 rounded-full ml-4 hover:bg-blue-600">
+        <button className="bg-blue-500 text-black border border-gray-300 px-4 py-2 rounded-full ml-4 hover:bg-blue-600">
           Search
         </button>
       </div>
@@ -80,14 +80,13 @@ const AccountCards = () => {
           <div className="text-right">
             <p className="text-gray-500 text-sm">DELIVERY DATE: {card.deliveryDate}</p>
             <p className="text-gray-500 text-sm">SIGNATURES: {card.signatures} signatures</p>
-
             {/* Action Buttons */}
             {card.status === 'Active' ? (
-              <button className="mt-2 bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-600">
+              <button className="mt-2 bg-blue-500 text-black border border-gray-300 px-4 py-2 rounded-full hover:bg-blue-600">
                 View Gift
               </button>
             ) : (
-              <button className="mt-2 bg-yellow-500 text-white px-4 py-2 rounded-full hover:bg-yellow-600">
+              <button className="mt-2 bg-yellow-500 text-black border border-gray-300 px-4 py-2 rounded-full hover:bg-yellow-600">
                 Pay now
               </button>
             )}

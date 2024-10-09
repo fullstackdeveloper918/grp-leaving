@@ -146,6 +146,9 @@ import congratulations8 from "../assets/images/congratulations/450w-LZ1P52l8j0g.
 import congratulations9 from "../assets/images/congratulations/900w-sDtbHeKIZZk.webp"
 import congratulations10 from "../assets/images/congratulations/900w-ro4ooDErdb0.webp"
 
+
+
+import laptop_img from "../assets/images/laptop_image.png"
 const Images = {
   // congratulation
   congratulations1,
@@ -289,7 +292,8 @@ thanks10,
   board,
   money,
   loginPage,
-  microsoftLogo
+  microsoftLogo,
+  laptop_img
 };
 
 export default Images;
