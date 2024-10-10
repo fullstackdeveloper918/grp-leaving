@@ -124,15 +124,14 @@ const CardCollection = ({ params }: any) => {
    
   ]
 
-  const type = params.slug[0]; // 'baby' or other types
-  const cardLabel = params.slug[1]; // 'trending' or 'latest'
+  const type = params.slug[0];
+  const cardLabel = params.slug[1];
 
-  // Filtering the array based on cardLabel
   const filteredCards = array.filter(card => 
     card.type === type && 
     (cardLabel === "trending" ? card.card_label === "trending" :
      cardLabel === "latest" ? card.card_label === "latest" :
-     true) // Show all if no specific cardLabel is provided
+     true)
   );
 
   return (

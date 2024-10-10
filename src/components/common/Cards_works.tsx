@@ -18,7 +18,7 @@ const Cards_works = () => {
           Pick one of our designs, add your friends name, email and select a delivery date.
         </p>
       </div>
-
+      {/* Rectangle_303 */}
       {/* Step 2: Invite Others */}
       <div className="text-center imgAfter relative">
         <div className="w-16 h-16 mx-auto mb-4">

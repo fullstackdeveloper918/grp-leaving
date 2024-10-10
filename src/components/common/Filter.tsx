@@ -1,13 +1,11 @@
-"use client";
 import { useRouter, useSearchParams } from 'next/navigation';
 import React from 'react';
 import Link from 'next/link';
 
-const Filter = () => {
+const Filter = ({searchParams}:any) => {
     let array=["birthday", "farewell", "baby", "wedding", "get-well", "sympathy"]
-  const searchParams = useSearchParams();
 
-  const type = searchParams.get('category');
+  const type = searchParams?.category
   console.log(type, "Selected category");
   return (
     <div className="flex flex-col items-center p-8 bg-white">

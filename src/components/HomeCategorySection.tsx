@@ -1,16 +1,14 @@
-"use client";
-import React, { useEffect } from "react";
+import React from "react";
 import Filter from "./common/Filter";
-import Card from "./common/Card";
-import { useSearchParams } from "next/navigation";
 import Images from "@/constants/images";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.css"; // Import Swiper styles
 import { Navigation, Pagination, Scrollbar } from "swiper/modules";
 
-const HomeCategorySection = () => {
-    const searchParams = useSearchParams(); // Get current query parameters
+const HomeCategorySection = ({searchParams}:any) => {
+  console.log(searchParams,"yuuuuuuu");
+  
   const array = [
     {
       id: 1,
@@ -410,12 +408,12 @@ const HomeCategorySection = () => {
   ];
 
 
-  // Extract the 'category' parameter
-  const type = searchParams.get("category");
-  const filteredCards = array.filter((card) => card.type === type);
+
+  const filteredCards = array.filter((card) => card.type === searchParams?.category);
+  const filteredCards1 = array.filter((card) => card.type);
   return (
     <div>
-      <Filter />
+      <Filter searchParams={searchParams} />
 
       <div className="flex flex-col items-center  bg-white">
         <div className=" flex space-x-8">
@@ -435,7 +433,20 @@ const HomeCategorySection = () => {
               </div>
             ))
           ) : (
-            <p>No cards available for this category.</p>
+            filteredCards1.slice(0, 4).map((card) => (
+              <div
+                key={card.id}
+                className="max-w-sm w-44 h-60 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 overflow-hidden"
+              >
+                <a href={`/card/new/${card.id}?category=${card.type}`}>
+                  <Image
+                    className="rounded-t-lg w-full h-full object-cover"
+                    src={card.image}
+                    alt="card-img"
+                  />
+                </a>
+              </div>
+            ))
           )}
         </div>
       </div>

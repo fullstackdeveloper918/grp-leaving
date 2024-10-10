@@ -13,7 +13,7 @@ const config: Config = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
           "heroImage":"url('../assets/images/heroImage.png')",
-          "workBg":"url('../assets/images/bg_2.png')",
+          "workBg":"url('../assets/images/frame.png')",
           "testimonialBg":"url('../assets/images/testimonialBg.png')",
           "newsletterbg":"url('../assets/images/newsletterbg.png')",
       },
