@@ -1,5 +1,6 @@
 import GroupLeaving from "../assets/images/Groupleavingcards.svg";
 import Hero from "../assets/images/hero.svg";
+import HeroImg from "../assets/images/banner_sliderimg.png";
 import Search from "../assets/images/search.svg";
 import Man from "../assets/images/man.jpg";
 import Category_img from "../assets/images/category.png";
@@ -272,6 +273,7 @@ thanks10,
 
   GroupLeaving,
   Hero,
+  HeroImg,
   Man,
   Category_img,
   Search,

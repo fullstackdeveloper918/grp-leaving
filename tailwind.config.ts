@@ -12,7 +12,7 @@ const config: Config = {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
-          "heroImage":"url('../assets/images/heroImage.png')",
+          "heroImage":"url('../assets/images/hero_image.png')",
           "workBg":"url('../assets/images/frame.png')",
           "testimonialBg":"url('../assets/images/testimonialBg.png')",
           "newsletterbg":"url('../assets/images/newsletterbg.png')",
@@ -30,7 +30,7 @@ const config: Config = {
       "bgWhite":"#fff"
     },
     lineHeight: {
-      'extra-loose': '80px !important',
+      'extra-loose': '110px !important',
     },
     boxShadow: {
       'blueShadow': '0 4px 10px rgba(85, 142, 201, 0.4)',
