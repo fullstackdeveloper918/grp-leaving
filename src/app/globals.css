@@ -46,7 +46,6 @@ body {
 
 /* Adjust responsive design */
 
-
 .listBefore::before,
 .beforeListIcon::before{
   content: "";
@@ -111,17 +110,19 @@ transform: scale(1.1);
   max-height: 145px !important;
   height: 145px !important;
 }
-
+.textColor{
+  color: #00C4CC;
+}
 
 .btnPrimary,.submitbtnPrimary,.loginBtn,
 .btnSecondary, .btnSecondary:hover{
   background-color: #00C4CC;
   color: #fff;
   font-size: 24px;
-  border-radius: 10px;
+  border-radius: 30px;
   display: inline-block;
   text-align: center;
-  padding: 16px 36px;
+  padding: 10px 36px;
   text-decoration: none;
   border: 1px solid #00C4CC;
   transition: all .3s ease-in;
@@ -309,6 +310,9 @@ border-radius: 5px;
   .responiveSlider ul::-webkit-scrollbar{
     display: none;
   }
+  .lineHeight {
+    line-height: 45px !important;
+}
 }
 @media (min-width: 768px) {
   .navLinks {

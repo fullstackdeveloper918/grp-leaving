@@ -1,8 +1,8 @@
 "use client";
-import { Quicksand } from "next/font/google";
+import { Montserrat } from "next/font/google";
 import "./globals.css";
 // import NextTopLoader from "nextjs-toploader";
-const quicksand = Quicksand({ subsets: ["latin"] });
+const quicksand = Montserrat({ subsets: ["latin"] });
 // import "nprogress/nprogress.css";
 import Navbar from "@/components/common/Navbar";
 import Footer from "@/components/common/Footer";
@@ -13,6 +13,23 @@ import { PublicClientApplication } from "@azure/msal-browser";
 import msalConfig from "../utils/msalConfig";
 import NextTopLoader from "nextjs-toploader";
 const msalInstance = new PublicClientApplication(msalConfig);
+import { Roboto } from 'next/font/google';
+// import { Montserrat } from 'next/font/google'
+ 
+const roboto = Roboto({
+  weight: ['400', '700'],
+  subsets: ['latin'],
+  display: 'swap',
+})
+
+const montserrat:any = Montserrat({
+  weight: ['400', '700'],
+  subsets: ['latin'],
+  display: 'swap',
+})
+
+
+
 export default function RootLayout({
   children,
 }: Readonly<{
