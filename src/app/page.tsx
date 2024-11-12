@@ -75,6 +75,7 @@ const Home = async ({ searchParams }: any) => {
 
         {/* <ExpolreallcategoryCraousal /> */}
         <HomeCategorySection searchParams={searchParams} />
+        
         <div className="bg-testimonialBg bg-no-repeat py-12 mt-4">
           <div className=" mx-auto px-5 text-center container-fluid">
             <CustomerReview />

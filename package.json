@@ -25,7 +25,7 @@
     "jquery": "^3.7.1",
     "konva": "^9.3.15",
     "next": "14.2.7",
-    "nextjs-toploader": "^3.6.15",
+    "nextjs-toploader": "^3.7.15",
     "nookies": "^2.5.2",
     "paytm-sdk": "^0.0.2",
     "paytmchecksum": "^1.5.1",

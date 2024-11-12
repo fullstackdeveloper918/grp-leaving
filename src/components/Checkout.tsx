@@ -27,6 +27,14 @@ const Checkout = () => {
   const [bundleOption, setBundleOption] = useState<any>("single");
   const [numCards, setNumCards] = useState<any>(5); // Default card bundle selection
   const [paywith, setPaywith] = useState<any>("STRIPE");
+  const [voucher,setVaoucher]=useState<any>("")
+  const [voucher1,setVaoucher1]=useState<any>("")
+  const onChange=(e:any)=>{
+    setVaoucher(e)
+  }
+const onSubmit=()=>{
+  setVaoucher1(voucher)
+}
   const stripe = useStripe();
   const cardPrices: any = {
     5: { price: 22.45, perCard: 4.49, discount: "10%" },
@@ -44,7 +52,9 @@ const Checkout = () => {
       : cardType === "individual"
       ? individualCardprice
       : bundleSingleCard;
-  const TotalAmount = 800;
+  const TotalAmount = bundleOption === "bundle"
+  ? `$${parseFloat(cardPrices[numCards].price.toFixed(2))-voucher1} USD`
+  : `$${AmountCondition-voucher1} USD`;
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col justify-center items-center p-5">
       <div className="w-full max-w-4xl bg-white shadow-lg rounded-lg p-6 md:flex">
@@ -84,40 +94,42 @@ const Checkout = () => {
               </label>
             </div>
           </div>
-          {cardType !== "individual" ? 
-              <>
-          {/* Bundle Discount Section */}
-          <div className="mb-6">
-            <h2 className="text-xl font-bold mb-2">Bundle Discount</h2>
-            <div className="flex flex-col space-y-2">
-              <label className="flex items-center">
-                <input
-                  type="radio"
-                  name="bundleOption"
-                  value="single"
-                  checked={bundleOption === "single"}
-                  onChange={() => setBundleOption("single")}
-                  className="mr-2"
-                />
-                <span className="text-lg">Single Card</span>
-                <span className="ml-auto text-gray-500">
-                  ${bundleSingleCard} USD
-                </span>
-              </label>
-              <label className="flex items-center">
-                <input
-                  type="radio"
-                  name="bundleOption"
-                  value="bundle"
-                  checked={bundleOption === "bundle"}
-                  onChange={() => setBundleOption("bundle")}
-                  className="mr-2"
-                />
-                <span className="text-lg">Card Bundle</span>
-                <span className="ml-auto text-green-500">From $22.45 USD</span>
-              </label>
-            </div>
-           
+          {cardType !== "individual" ? (
+            <>
+              {/* Bundle Discount Section */}
+              <div className="mb-6">
+                <h2 className="text-xl font-bold mb-2">Bundle Discount</h2>
+                <div className="flex flex-col space-y-2">
+                  <label className="flex items-center">
+                    <input
+                      type="radio"
+                      name="bundleOption"
+                      value="single"
+                      checked={bundleOption === "single"}
+                      onChange={() => setBundleOption("single")}
+                      className="mr-2"
+                    />
+                    <span className="text-lg">Single Card</span>
+                    <span className="ml-auto text-gray-500">
+                      ${bundleSingleCard} USD
+                    </span>
+                  </label>
+                  <label className="flex items-center">
+                    <input
+                      type="radio"
+                      name="bundleOption"
+                      value="bundle"
+                      checked={bundleOption === "bundle"}
+                      onChange={() => setBundleOption("bundle")}
+                      className="mr-2"
+                    />
+                    <span className="text-lg">Card Bundle</span>
+                    <span className="ml-auto text-green-500">
+                      From $22.45 USD
+                    </span>
+                  </label>
+                </div>
+
                 {bundleOption === "bundle" && (
                   <div className="mt-4 p-4 bg-gray-50 rounded-md border">
                     <ul className="text-green-600 mb-4 space-y-1">
@@ -161,19 +173,21 @@ const Checkout = () => {
                       </p>
                     </div>
                   </div>
-                )} 
-          </div>
-</>:"This is a 1-1 card. Group signing will be disabled and only you will be able to add messages.Please select Group Card if you want to collect messages from others and receive a share URL."}
-
+                )}
+              </div>
+            </>
+          ) : (
+            "This is a 1-1 card. Group signing will be disabled and only you will be able to add messages.Please select Group Card if you want to collect messages from others and receive a share URL."
+          )}
 
           {/* Payment Options */}
           <div className="space-y-4">
-            <a href="/card/checkout/1">
+            {/* <a href="/card/checkout/1">
               <button className="w-full bg-blue-500 text-black py-2   border-2 border-blue-700 rounded-md hover:bg-blue-600 transition">
                 Pay with Debit/Credit Card
               </button>
-            </a>
-            <RazorPay amount={AmountCondition}/>
+            </a> */}
+            <RazorPay amount={TotalAmount} />
             {/* <EscrowPayment/> */}
             {/* <CardElement />
             <GooglePay
@@ -194,11 +208,13 @@ const Checkout = () => {
             </div>
             <div className="flex justify-between items-center mb-4">
               <input
-                type="text"
+                type="number"
                 placeholder="Voucher Code"
                 className="border border-gray-300 rounded-lg p-2 w-full"
+                onChange={(e:any)=>onChange(e.target.value)}
+                value={voucher}
               />
-              <button className="ml-2 bg-blue-500 text-black  border-2 border-blue-700 py-2 px-4 rounded-md hover:bg-blue-600 transition">
+              <button onClick={onSubmit} className="ml-2 bg-blue-500 text-black  border-2 border-blue-700 py-2 px-4 rounded-md hover:bg-blue-600 transition">
                 Apply
               </button>
             </div>
@@ -207,16 +223,16 @@ const Checkout = () => {
                 <span>Card Price</span>
                 <span className="font-bold">
                   {bundleOption === "bundle"
-                    ? `$${cardPrices[numCards].price.toFixed(2)} USD`
-                    : `$${AmountCondition} USD`}
+                    ? `$${parseFloat(cardPrices[numCards].price.toFixed(2))-voucher1} USD`
+                    : `$${AmountCondition-voucher1} USD`}
                 </span>
               </div>
               <div className="flex justify-between mt-2">
                 <span>Total</span>
                 <span className="font-bold text-xl">
                   {bundleOption === "bundle"
-                    ? `$${cardPrices[numCards].price.toFixed(2)} USD`
-                    : `$${AmountCondition} USD`}
+                    ? `$${parseFloat(cardPrices[numCards].price.toFixed(2))-voucher1} USD`
+                    : `$${AmountCondition-voucher1} USD`}
                 </span>
               </div>
             </div>

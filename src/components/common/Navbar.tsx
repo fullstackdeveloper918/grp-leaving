@@ -173,7 +173,7 @@ const Navbar = () => {
                   </a>
 
                   <Link href={`/register`}>
-                    <button className="text-white px-3 py-2 rounded-md bg-blueBg">
+                    <button className="text-black px-3 py-2 rounded-md bg-blueBg">
                       Register
                     </button>
                   </Link>

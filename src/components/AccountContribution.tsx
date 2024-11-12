@@ -22,8 +22,8 @@ const AccountContribution = () => {
             <span className="text-3xl font-semibold">£0.00</span>
           <div className="flex justify-center mt-4 mb-2">
             <button className="text-blue-600 text-black  hover:underline">Transaction History</button>
-          </div>
             <button className="px-4 py-2 bg-blue-600 text-black border-2 rounded-lg hover:bg-blue-700">Top Up</button>
+          </div>
         </div>
       </div>
 

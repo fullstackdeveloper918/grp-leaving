@@ -30,3 +30,7 @@ export const review = {
 export const joinCompany = {
   listing: `${apiLink}join-company`,
 };
+
+export const colldectionCard={
+  listing :`${apiLink}card/card-listing`
+}

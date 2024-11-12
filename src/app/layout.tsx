@@ -11,7 +11,7 @@ import Script from "next/script";
 import { MsalProvider, useMsal } from "@azure/msal-react";
 import { PublicClientApplication } from "@azure/msal-browser";
 import msalConfig from "../utils/msalConfig";
-
+import NextTopLoader from "nextjs-toploader";
 const msalInstance = new PublicClientApplication(msalConfig);
 export default function RootLayout({
   children,
@@ -45,6 +45,17 @@ export default function RootLayout({
         <AntdRegistry>
           <MsalProvider instance={msalInstance}>
             <Navbar />
+            <NextTopLoader
+              color="#00C4CC"
+              initialPosition={0.08}
+              crawlSpeed={20}
+              height={3}
+              crawl={true}
+              showSpinner={false}
+              easing="ease"
+              speed={100}
+              shadow="0 0 10px #2299DD,0 0 5px #2299DD"
+            />
             {/* <NextTopLoader
             color="#2299DD"
             initialPosition={0.08}

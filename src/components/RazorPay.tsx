@@ -9,7 +9,9 @@ declare global {
 }
 
 const RazorPay = ({amount}:any) => {
-  const AMOUNT = 100;
+  console.log(amount,"amount");
+  
+  const AMOUNT = amount;
   const [isProcessing, setIsProcessing] = useState(false);
 
   const handlePayment = async () => {
@@ -20,7 +22,7 @@ const RazorPay = ({amount}:any) => {
 
       const options = {
         key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
-        amount: AMOUNT * 100,
+        amount: amount,
         currency: "INR",
         name: "Testing Solutions",
         description: "Test Transaction",
