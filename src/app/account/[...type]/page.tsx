@@ -1,3 +1,4 @@
+import { fetchFromServer } from "@/app/actions/fetchFromServer";
 import AccountBunddles from "@/components/AccountBunddles";
 import AccountCards from "@/components/AccountCards";
 import AccountContribution from "@/components/AccountContribution";
@@ -5,10 +6,20 @@ import AccountEmailprefrence from "@/components/AccountEmailprefrence";
 import AccountProfile from "@/components/AccountProfile";
 import AccountSlider from "@/components/common/AccountSlider";
 import Table from "@/components/common/Table";
+import { user } from "@/utils/cybersifyApi";
 
-const page = ({ params }: any) => {
+const page = async({ params }: any) => {
   const type = params.type[0];
   console.log(type, "uuusufusd");
+  // const api1: any = {
+  //   url: user?.listing,
+  //   method: "GET",
+  //   // body: { key: 'value' }
+  // };
+
+  // const data1 = await fetchFromServer(api1);
+  // console.log(data1,"werwerrrrrrr");
+  
 
   return (
     <div className=" bg-gray-100 flex justify-center items-center">

@@ -5,7 +5,7 @@ import dynamic from "next/dynamic";
 import SocalLogin from "../components/common/SocialLogin";
 import MicroSoftLogin from "../components/common/MicroSoftLogin";
 import api from "@/utils/api";
-import { capFirst } from "@/utils/validation";
+import validation, { capFirst } from "@/utils/validation";
 import { useRouter } from "next/navigation";
 const { Row, Col, Button } = {
   Row: dynamic(() => import("antd").then((module) => module.Row), {
@@ -22,15 +22,15 @@ const Register = () => {
     const router= useRouter()
   const onFinish = async (values: any) => {
     let items = {
-      full_name: capFirst(values?.full_name),
+      full_name: validation.toLowCase(values?.full_name),
       email: String(values.email).toLowerCase(),
       password: values.password,
     };
-    let res = await api.Auth.signUp(items);
-    console.log(res, "rereere");
-    router.replace("/")
-
+    
     try {
+      let res = await api.Auth.signUp(items);
+      console.log(res, "rereere");
+      // router.replace("/")
     } catch (error: any) {}
   };
   return (

@@ -10,7 +10,7 @@ export const header = {
   list: `${apiLink}header`,
 };
 export const user = {
-  // listing:`${apiLink}user/dashboard`,
+  listing:`${apiLink}user/profile`,
   add: `${apiLink}favourite`,
 };
 

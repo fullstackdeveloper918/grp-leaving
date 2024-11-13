@@ -11,6 +11,7 @@ import { setCookie } from "nookies";
 import { GooglePayWithCDN } from "./common/GooglePayWithCDN";
 import GooglePay from "./common/GooglePay"
 import GooglePayButton from "./common/GooglePayButton";
+import { toast } from "react-toastify";
 const { Row, Col, Button } = {
   Row: dynamic(() => import("antd").then((module) => module.Row), {
     ssr: false,
@@ -48,17 +49,25 @@ const Login = () => {
   };
   const onFinish1 = async (values: any) => {
     let items = {
-      full_name: capFirst(values?.full_name),
+      // full_name: capFirst(values?.full_name),
       email: String(values.email).toLowerCase(),
       password: values.password,
     };
-    setCookie(null, "token","yewiryt46836483456ojtkshrti6w48werkweyrt86448", {
-      maxAge: 30 * 24 * 60 * 60,
-      path: "/",
-    });
-    router.replace("/");
-
+ 
     try {
+      const res=await api.Auth.login(items)
+      console.log(res,"reerrer");
+      
+      setCookie(null, "userInfo", JSON.stringify(res?.data), {
+        maxAge: 30 * 24 * 60 * 60, // 30 days
+        path: "/",
+      });
+      setCookie(null, "auth_token",res?.token, {
+        maxAge: 30 * 24 * 60 * 60,
+        path: "/",
+      });
+      toast.success("Login Successfully")
+      router.replace("/");
     } catch (error: any) {}
   };
 
@@ -163,7 +172,7 @@ const Login = () => {
             </div> */}
               <div className="auth-footer text-center mt-2">
                 <h6>
-                  <a href="/login">Forgot Password</a>
+                  <a href="/#">Forgot Password</a>
                 </h6>
                 <p>
                   Need an account? <a href="/register" className="text-blueBg font-bold alreadyText">Register</a>
