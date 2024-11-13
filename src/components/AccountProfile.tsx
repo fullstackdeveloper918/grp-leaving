@@ -1,5 +1,6 @@
 "use client"
-import React, { useState } from 'react'
+import api from '@/utils/api';
+import React, { useEffect, useState } from 'react'
 
 const AccountProfile = () => {
     const [name, setName] = useState('Full Stack Developer');
@@ -10,6 +11,18 @@ const AccountProfile = () => {
     // Handle the update logic here
     console.log('Profile Updated');
   };
+
+  const getData=async()=>{
+    try {
+      const res= await api.User.listing()
+      console.log(res,"jkjkjk");
+    } catch (error) {
+      
+    }
+    }
+    useEffect(()=>{
+      getData()
+    })
   return (
     <div>
           <div className="mb-8">

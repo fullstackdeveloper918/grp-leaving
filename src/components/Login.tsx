@@ -57,7 +57,7 @@ const Login = () => {
     try {
       const res=await api.Auth.login(items)
       console.log(res,"reerrer");
-      
+      api.setToken(res?.token)
       setCookie(null, "userInfo", JSON.stringify(res?.data), {
         maxAge: 30 * 24 * 60 * 60, // 30 days
         path: "/",

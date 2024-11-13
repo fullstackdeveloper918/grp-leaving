@@ -1,14 +1,21 @@
 
 "use server";
+import { parseCookies } from "nookies";
 import { Api } from "../../interfaces/interfaces";
 
 export async function fetchFromServer(api: Api): Promise<any> {
   const { url, method, body = null } = api;
-
+  const cookies = parseCookies();
+  console.log(cookies,"klll");
+  
+  const accessToken = cookies.auth_token;
+  console.log(accessToken,"qweqweqwe");
+  
   const options: RequestInit = {
     method,
     headers: {
       "Content-Type": "application/json",
+      "Authorization": `Bearer Token ${accessToken}`
     },
   };
 

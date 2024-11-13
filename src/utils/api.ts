@@ -17,7 +17,7 @@ const API_FILE_ROOT_VIDEO = `${BUCKET_ROOT}video/`;
 const API_FILE_ROOT_DOCUMENTS = `${BUCKET_ROOT}documents/`;
 const API_FILE_ROOT_DB_BACKUP = `${BUCKET_ROOT}backup/`;
 const cookies = parseCookies();
-const accessToken = cookies.COOKIES_USER_ACCESS_TOKEN;
+const accessToken = cookies.auth_token;
 
 
 const encode = encodeURIComponent;
@@ -25,9 +25,11 @@ const responseBody = (res: any) => res.body;
 
 
 let token: any = accessToken;
+console.log(token,"oooo");
+
 const tokenPlugin = (req: any) => {
   if (token) {
-    req.set('Bearer', `${token}`);
+    req.set('Bearer Token', `${token}`);
     // req.set('token', token || "mim");
   }
 }
@@ -69,6 +71,7 @@ const Auth = {
   edit: (info: any) =>
     requests.patch('profile', info),
 };
+
 const dashboard={
   upcoming: () =>
     requests.get(`upcoming-meeting`),
@@ -109,8 +112,8 @@ const User = {
     requests.post('add-adtional-user', info),
   edit_additional_user: (info: any) =>
     requests.post('update-additional-users', info),
-  listing: (q?: string) =>
-    requests.get(`list${q ? `?${q}` : ""}`),
+  listing: () =>
+    requests.get(`user/profile`),
   // additional_user_listing: (q?: string) =>
   //   requests.get(`addtional-user-list${q ? `?${q}` : ""}`),
   additional_user_listing: (info: any) =>
