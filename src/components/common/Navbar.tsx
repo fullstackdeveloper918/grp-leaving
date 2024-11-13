@@ -40,7 +40,10 @@ const Navbar = () => {
     setIsModalOpen(false);
   };
   const cookies = parseCookies();
-  const accessToken = cookies.token;
+  const accessToken = cookies.auth_token;
+const getuserData= cookies.userInfo
+const user_info=JSON.parse(getuserData)
+console.log(user_info,"user_info");
 
   return (
     <>
