@@ -40,7 +40,7 @@ console.log(displayedText,"displayedText");
       <section className="bg-heroImage  bg-cover bg-no-repeat dark:bg-gray-900 heroSectionHeight  align-middle d-flex">
         <div className="container-fluid  py-8 mx-auto  xl:gap-0 lg:py-16 d-flex justify-between flex-col lg:flex-nowrap flex-wrap space-y-10 items-center">
           <div className=" mx-0	 d-flex flex-col items-center	 w-full md:text-center xs:text-center lg:text-left ">
-            <h1 className="max-w-6xl mx-0	 w-full text-center	pb-6 text-4xl tracking-tight  md:text-8xl xl:text-10xl dark:text-white text-black xl:leading-extra-loose lineHeight">
+            <h1 className="max-w-6xl mx-0	 w-full text-center	pb-6 text-4xl tracking-tight  md:text-6xl xl:text-8xl dark:text-white text-black xl:leading-extra-loose lineHeight">
             Virtual group cards <b >Made <span className="textColor">Easy</span></b> 
             {/* {" "} */}
               {/* <span className="text-blueText">for {displayedText||"''"}</span> */}
@@ -67,7 +67,7 @@ console.log(displayedText,"displayedText");
             </a>
            </div>
           </div>
-          <div className="w-full">
+          <div className="w-full images-div">
             <Image
               src={Images.HeroImg}
               width={1200}

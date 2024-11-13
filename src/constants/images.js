@@ -23,6 +23,7 @@ import money from "../assets/images/money.png";
 import loginPage from "../assets/images/loginPage.png";
 import microsoftLogo from "../assets/icons/microsoftLogo.png"
 
+
 // fairwell_images
 import fairwell1 from "../assets/images/farewell/1600w-5_dWjmdZAbo.webp"
 import fairwell2 from "../assets/images/farewell/1600w-7UJ8_LquRMA.webp"
@@ -146,6 +147,7 @@ import congratulations7 from "../assets/images/congratulations/450w-IHpuwx28z4M.
 import congratulations8 from "../assets/images/congratulations/450w-LZ1P52l8j0g.webp"
 import congratulations9 from "../assets/images/congratulations/900w-sDtbHeKIZZk.webp"
 import congratulations10 from "../assets/images/congratulations/900w-ro4ooDErdb0.webp"
+
 
 
 
