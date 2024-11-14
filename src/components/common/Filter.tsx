@@ -8,7 +8,7 @@ const Filter = ({searchParams}:any) => {
   const type = searchParams?.category
   console.log(type, "Selected category");
   return (
-    <div className="flex flex-col items-center p-8 bg-white">
+    <div className="flex flex-col items-center p-8 bg-white margin100">
       <h2 className="text-center text-xl font-semibold text-gray-600">
         Get Started by Selecting a Card
       </h2>

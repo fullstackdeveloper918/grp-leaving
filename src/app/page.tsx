@@ -76,14 +76,15 @@ const Home = async ({ searchParams }: any) => {
         {/* <ExpolreallcategoryCraousal /> */}
         <HomeCategorySection searchParams={searchParams} />
         
-        <div className="bg-testimonialBg bg-no-repeat py-12 mt-4">
+        <div className="bg-testimonialBg2 bg-no-repeat py-12 mt-4">
           <div className=" mx-auto px-5 text-center container-fluid">
             <CustomerReview />
           </div>
         </div>
         {/* <ImageSlider  /> */}
+        <div className="ownBg">
         <div className="container-fluid text-center py-12">
-          <h3 className="xl:text-6xl md:text-xl sm:text-md text-2xlg font-bold lg:max-w-[50%] md:max-w-[60%] max-w-[100%] mx-auto">
+          <h3 className="xl:text-6xl md:text-xl sm:text-md text-2xlg lg:max-w-[50%] md:max-w-[60%] max-w-[100%] mx-auto">
             Make it your own
           </h3>
           <div className="justify-center items-center gap-5 mt-5">
@@ -99,6 +100,7 @@ const Home = async ({ searchParams }: any) => {
             <Image_text_Card />
             {/* </Carousel> */}
           </div>
+        </div>
         </div>
         <PartnerCompanies />
         {/* Section 4 */}
