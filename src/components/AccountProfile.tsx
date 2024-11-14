@@ -2,11 +2,12 @@
 import api from '@/utils/api';
 import React, { useEffect, useState } from 'react'
 
-const AccountProfile = () => {
-    const [name, setName] = useState('Full Stack Developer');
-  const [email, setEmail] = useState('fullstackdeveloper918@gmail.com');
-  const [invoiceDetails, setInvoiceDetails] = useState('testing');
+const AccountProfile = ({userInfoCookie}:any) => {
 
+console.log(userInfoCookie,"userInfoCookie");
+const [name, setName] = useState(userInfoCookie?.full_name);
+const [email, setEmail] = useState(userInfoCookie?.email);
+const [invoiceDetails, setInvoiceDetails] = useState(userInfoCookie?.additional_invoice||"N/A");
   const handleUpdate = () => {
     // Handle the update logic here
     console.log('Profile Updated');
@@ -20,9 +21,7 @@ const AccountProfile = () => {
       
     }
     }
-    useEffect(()=>{
-      getData()
-    })
+   
   return (
     <div>
           <div className="mb-8">
@@ -63,7 +62,7 @@ const AccountProfile = () => {
         <div className="flex justify-between items-center">
           <button
             className="bg-blue-600 text-black border border-gray-300 font-semibold px-4 py-2 rounded shadow-md hover:bg-blue-700"
-            onClick={handleUpdate}
+            onClick={getData}
           >
             Update
           </button>

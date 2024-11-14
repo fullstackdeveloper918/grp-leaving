@@ -22,6 +22,11 @@ import board from "../assets/images/board.png";
 import money from "../assets/images/money.png";
 import loginPage from "../assets/images/loginPage.png";
 import microsoftLogo from "../assets/icons/microsoftLogo.png"
+import herobannner1 from "../assets/images/1.png";
+import herobannner2 from "../assets/images/2.png";
+import herobannner3 from "../assets/images/3.png";
+import herobannner4 from "../assets/images/4.png";
+import herobannner5 from "../assets/images/5.png";
 
 
 // fairwell_images
@@ -297,7 +302,12 @@ thanks10,
   money,
   loginPage,
   microsoftLogo,
-  laptop_img
+  laptop_img,
+  herobannner1,
+  herobannner2,
+  herobannner3,
+  herobannner4,
+  herobannner5
 };
 
 export default Images;

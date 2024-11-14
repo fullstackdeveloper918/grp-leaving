@@ -4,6 +4,15 @@ import { List } from "antd";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import cardData from "../constants/CardJson/card.json";
+import herobannner1 from "../assets/images/1.png"
+import herobannner2 from "../assets/images/2.png"
+import herobannner3 from "../assets/images/3.png"
+import herobannner4 from "../assets/images/4.png"
+import herobannner5 from "../assets/images/5.png"
+// import Slider from 'react-slick';
+import Carousel from 'react-multi-carousel';
+import 'react-multi-carousel/lib/styles.css';
+
 const categoriesName = ['Farewell', 'Birthday', 'Baby', 'Wedding', 'Get Well', 'Sympathy', 'Thank you', 'Retirement', 'Congratulations', 'Anniversary', 'Welcome', 'New Home'];
 const Hero = (props:any) => {
  console.log(props,"props");
@@ -34,7 +43,50 @@ useEffect(() => {
   }
 }, [currentCategoryIndex, isTyping]); 
 console.log(displayedText,"displayedText");
-
+const settings = {
+  dots: true,
+  // infinite: true,
+  // speed: 500,
+  slidesToShow: 1,
+  slidesToScroll: 1
+};
+// const images = [
+//   Images.herobannner1,
+//   Images.herobannner2,
+//   Images.herobannner3,
+//   Images.herobannner4,
+//   Images.herobannner5
+// ];
+const images = [
+  herobannner1,
+  herobannner2,
+  herobannner3,
+  herobannner4,
+  herobannner5,
+];
+console.log(images,"lkjk");
+const responsive = {
+  superLargeDesktop: {
+    // Screens larger than 2560px
+    breakpoint: { max: 4000, min: 3000 },
+    items: 5,
+  },
+  desktop: {
+    // Screens larger than 1024px
+    breakpoint: { max: 3000, min: 1024 },
+    items: 3,
+  },
+  tablet: {
+    // Screens larger than 464px
+    breakpoint: { max: 1024, min: 464 },
+    items: 2,
+  },
+  mobile: {
+    // Screens smaller than 464px
+    breakpoint: { max: 464, min: 0 },
+    items: 1,
+  },
+};
   return (
     <>
       <section className="bg-heroImage  bg-cover bg-no-repeat dark:bg-gray-900 heroSectionHeight  align-middle d-flex">
@@ -67,14 +119,51 @@ console.log(displayedText,"displayedText");
             </a>
            </div>
           </div>
-          <div className="w-full images-div">
-            <Image
-              src={Images.HeroImg}
-              width={1200}
-              height={500}
-              alt="hero_image"
+          <div className="w-full gap-3 d-flex justify-content-center images-div">
+          {/* <Carousel
+  responsive={responsive}
+  infinite={true}  // Enable infinite looping
+  autoPlay={true}  // Enable autoplay
+  autoPlaySpeed={3000}  // Duration between each slide (in milliseconds)
+  showDots={true}  // Display navigation dots
+>
+        <div>
+        1
+        </div>
+        <div>
+         2
+        </div>
+        <div>
+       3
+        </div>
+        <div>
+        4
+        </div>
+        <div>
+          5
+        </div>
+        <div>
+         7
+        </div>
+      </Carousel> */}
+          {/* <Slider {...settings}> */}
+            
+        {images.map((image, index) => (
+          <div key={index}>
+          <Image 
+              src={image.src} 
+              alt={`Slide ${index + 1}`} 
+              layout="responsive" 
+              width={1200} 
+              height={600}
+              objectFit="cover"
             />
           </div>
+        ))}
+      {/* </Slider> */}
+     
+          </div>
+          
         </div>
       </section>
     </>

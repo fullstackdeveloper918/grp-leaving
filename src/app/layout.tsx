@@ -12,23 +12,25 @@ import { MsalProvider, useMsal } from "@azure/msal-react";
 import { PublicClientApplication } from "@azure/msal-browser";
 import msalConfig from "../utils/msalConfig";
 import NextTopLoader from "nextjs-toploader";
+// import "slick-carousel/slick/slick.css";
+// import "slick-carousel/slick/slick-theme.css";
 const msalInstance = new PublicClientApplication(msalConfig);
-import { Roboto } from 'next/font/google';
+import { Roboto } from "next/font/google";
 // import { Montserrat } from 'next/font/google'
- 
+// import 'slick-carousel/slick/slick.css';
+// import 'slick-carousel/slick/slick-theme.css';
+
 const roboto = Roboto({
-  weight: ['400', '700'],
-  subsets: ['latin'],
-  display: 'swap',
-})
+  weight: ["400", "700"],
+  subsets: ["latin"],
+  display: "swap",
+});
 
-const montserrat:any = Montserrat({
-  weight: ['400', '700'],
-  subsets: ['latin'],
-  display: 'swap',
-})
-
-
+const montserrat: any = Montserrat({
+  weight: ["400", "700"],
+  subsets: ["latin"],
+  display: "swap",
+});
 
 export default function RootLayout({
   children,
@@ -51,6 +53,17 @@ export default function RootLayout({
           crossOrigin="anonymous"
           referrerPolicy="no-referrer"
         />
+        {/* <link
+          rel="stylesheet"
+          type="text/css"
+          charSet="UTF-8"
+          href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css"
+        />
+        <link
+          rel="stylesheet"
+          type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"
+        /> */}
         <Script
           src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"
           strategy="beforeInteractive" // This ensures it loads before the page is interactive
