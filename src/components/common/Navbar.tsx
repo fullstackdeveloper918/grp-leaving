@@ -93,7 +93,7 @@ if (getuserData) {
             </div> */}
 
             {/* Auth and Button */}
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center lg:space-x-4 sm:space-x-2">
             <a
                     href="/account/cards"
                     className="text-sm text-blackText hidden md:block text-blackText no-underline"
@@ -184,7 +184,7 @@ if (getuserData) {
                   </a>
 
                   <Link href={`/register`}>
-                    <button className="text-black px-3 py-2 rounded-md bg-blueBg">
+                    <button className="text-white px-3 py-2 rounded-md bg-blueBg">
                       Register
                     </button>
                   </Link>
@@ -201,7 +201,7 @@ if (getuserData) {
                   </button>
                 ) : (
                   <button
-                    className="text-gray-600 z-20 "
+                    className="text-gray-600 z-20 ml-2"
                     onClick={handleMenuToggle}
                   >
                     {"☰"}
