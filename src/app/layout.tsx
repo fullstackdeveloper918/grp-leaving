@@ -53,7 +53,7 @@ export default function RootLayout({
           crossOrigin="anonymous"
           referrerPolicy="no-referrer"
         />
-        {/* <link
+        <link
           rel="stylesheet"
           type="text/css"
           charSet="UTF-8"
@@ -63,7 +63,7 @@ export default function RootLayout({
           rel="stylesheet"
           type="text/css"
           href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"
-        /> */}
+        />
         <Script
           src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"
           strategy="beforeInteractive" // This ensures it loads before the page is interactive

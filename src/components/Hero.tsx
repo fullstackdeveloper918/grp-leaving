@@ -12,6 +12,7 @@ import herobannner5 from "../assets/images/5.png"
 // import Slider from 'react-slick';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
+import Silder from "./common/Silder";
 
 const categoriesName = ['Farewell', 'Birthday', 'Baby', 'Wedding', 'Get Well', 'Sympathy', 'Thank you', 'Retirement', 'Congratulations', 'Anniversary', 'Welcome', 'New Home'];
 const Hero = (props:any) => {
@@ -120,35 +121,8 @@ const responsive = {
            </div>
           </div>
           <div className="w-full gap-3 d-flex justify-content-center images-div">
-          {/* <Carousel
-  responsive={responsive}
-  infinite={true}  // Enable infinite looping
-  autoPlay={true}  // Enable autoplay
-  autoPlaySpeed={3000}  // Duration between each slide (in milliseconds)
-  showDots={true}  // Display navigation dots
->
-        <div>
-        1
-        </div>
-        <div>
-         2
-        </div>
-        <div>
-       3
-        </div>
-        <div>
-        4
-        </div>
-        <div>
-          5
-        </div>
-        <div>
-         7
-        </div>
-      </Carousel> */}
-          {/* <Slider {...settings}> */}
-            
-        {images.map((image, index) => (
+        
+        {/* {images.map((image, index) => (
           <div key={index}>
           <Image 
               src={image.src} 
@@ -159,13 +133,14 @@ const responsive = {
               objectFit="cover"
             />
           </div>
-        ))}
-      {/* </Slider> */}
-     
+        ))} */}
           </div>
           
         </div>
       </section>
+       <Silder/>
+    
+
     </>
   );
 };

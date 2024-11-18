@@ -69,14 +69,16 @@ const Home = async ({ searchParams }: any) => {
 
   // const categoriesChunks = chunkArray(cardData.data, 5);
   const settings = {
-    dots: true,
+    className: "center",
     infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    // autoplay: true,
-    autoplaySpeed: 2000,
-    arrows: true,
+    centerPadding: "60px",
+    slidesToShow: 5,
+    swipeToSlide: true,
+    afterChange: function(index:any) {
+      console.log(
+        `Slider Changed to: ${index + 1}, background: #222; color: #bada55`
+      );
+    }
   };
   return (
     <>
@@ -84,6 +86,7 @@ const Home = async ({ searchParams }: any) => {
         <div className="mt-50">
           <Hero {...cardData} />
         </div>
+        
         {/* <Slider {...settings}>
       <div>
         <h3>1</h3>
