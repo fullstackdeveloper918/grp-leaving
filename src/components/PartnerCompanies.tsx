@@ -21,16 +21,16 @@ const PartnerCompanies = () => {
   return (
     <>
     <section className="flex flex-col items-center justify-center py-8 bg-white">
-    <p className="text-lg md:text-4xl font-medium text-gray-700 text-center">
+    <p className="lg:text-3xl xl:text-4xl text-2xl font-medium text-gray-700 text-center xl:max-w-full max-w-[80%] m-auto">
       Join over <span className="font-bold">5,000,000</span> other people using our group greeting cards
     </p>
-  
-    {/* <div className="flex items-center justify-between space-x-8 mt-6 partner_logos">
+    <div className="flex items-center justify-between md:space-x-8 space-x-0 mt-6 partner_logos">
+      {/* Logos */}
       <img
         src={Images.src}
         alt="Airbnb Logo"
         style={{width:"15"}}
-        className="h-15"
+        className="h-15 w-auto"
       />
       <img
           src={Images1.src}
@@ -52,38 +52,45 @@ const PartnerCompanies = () => {
         alt="Accenture Logo"
         className="h-15 w-auto"
       />
-    </div> */}
+    </div> 
   </section>
     <div className="slider-containe">
     <Slider {...settings}>
       <div>
       <img
-      src={Images.src}
-      alt="Airbnb Logo"
-      style={{width:"15"}}
-      className="h-15"
-    />
+        src={Images.src}
+        alt="Airbnb Logo"
+        style={{width:"15"}}
+        className="h-15 w-auto"
+      />
       </div>
       <div>
       <img
-        src={Images1.src}
-      alt="Harris Logo"
-      className="h-15 w-auto"
-    />
+          src={Images1.src}
+        alt="Harris Logo"
+        className="h-15 w-auto"
+      />
       </div>
       <div>
       <img
-     src={Images2.src}
-      alt="Scotiabank Logo"
-      className="h-15 w-auto"
-    />
+      src={Images3.src}
+        alt="Toronto Pearson Logo"
+        className="h-15 w-auto"
+      />
       </div>
       <div>
       <img
-     src={Images4.src}
-      alt="Accenture Logo"
-      className="h-15 w-auto"
-    />
+       src={Images2.src}
+        alt="Scotiabank Logo"
+        className="h-15 w-auto"
+      />
+      </div>
+      <div>
+      <img
+       src={Images4.src}
+        alt="Accenture Logo"
+        className="h-15 w-auto"
+      />
       </div>
     </Slider>
   </div>

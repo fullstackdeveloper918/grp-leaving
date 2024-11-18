@@ -110,7 +110,7 @@ const Home = async ({ searchParams }: any) => {
         {/* <ExpolreallcategoryCraousal /> */}
         <HomeCategorySection searchParams={searchParams} />
         
-        <div className="bg-testimonialBg2 bg-no-repeat py-12 mt-4">
+        <div className="bg-testimonialBg2 bg-no-repeat md:py-12 py-8  mt-4">
           <div className=" mx-auto px-5 text-center container-fluid">
             <CustomerReview />
           </div>
@@ -144,10 +144,10 @@ const Home = async ({ searchParams }: any) => {
         {/* Section 5 */}
         <div className=" bg-workBg bg-cover bg-no-repeat  py-16">
           <div className="text-center container-fluid ">
-            <h1 className="xl:text-4xl md:text-xl sm:text-md font-semibold">
+            <h1 className="xl:text-4xl md:tex-2xl text-2xl font-semibold">
               How group cards work?
             </h1>
-            <p className="text-xl text-gray-600 font-semibold mb-8">
+            <p className="md:text-xl text-lg text-gray-600 font-semibold mb-8">
               How to create a group ecard signed by multiple people.
             </p>
           </div>

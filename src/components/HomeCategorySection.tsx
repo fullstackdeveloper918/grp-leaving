@@ -416,12 +416,12 @@ const HomeCategorySection = ({searchParams}:any) => {
       <Filter searchParams={searchParams} />
 
       <div className="flex flex-col items-center  bg-white">
-        <div className=" flex space-x-8">
+        <div className=" flex lg:space-x-8  space-x-6 md:w-full md:max-w-full justify-center max-w-[96%] mx-auto" >
           {filteredCards.length > 0 ? (
             filteredCards.slice(0, 4).map((card) => (
               <div
                 key={card.id}
-                className="max-w-sm w-44 h-60 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 overflow-hidden"
+                className="max-w-sm lg:w-44 lg:h-60 md:w-[150px] md:h-[150px] w-[100px] h-[100px] bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 overflow-hidden"
               >
                 <a href={`/card/new/${card.id}?category=${card.type}`}>
                   <Image
@@ -436,8 +436,8 @@ const HomeCategorySection = ({searchParams}:any) => {
             filteredCards1.slice(0, 4).map((card) => (
               <div
                 key={card.id}
-                className="max-w-sm w-44 h-60 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 overflow-hidden"
-              >
+                className="max-w-sm lg:w-44 lg:h-60 md:w-[150px] md:h-[150px] w-[100px] h-[100px] bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 overflow-hidden"
+                >
                 <a href={`/card/new/${card.id}?category=${card.type}`}>
                   <Image
                     className="rounded-t-lg w-full h-full object-cover"

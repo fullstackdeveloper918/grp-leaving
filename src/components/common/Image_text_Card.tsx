@@ -15,13 +15,13 @@ const Image_text_Card = () => {
 
         {/* Right Text Section */}
         <div className="flex flex-col justify-center lg:mb-5 ">
-          <h1 className="xl:text-4xl md:text-xl sm:text-md font-semibold mb-4 text-left">Unlimited Signatures</h1>
+          <h1 className=" font-semibold mb-4 text-left lg:text-3xl xl:text-4xl text-2xl">Unlimited Signatures</h1>
           <ul className="space-y-3 text-gray-700 text-left paddingleft0 mxwidth33">
             <li className=" relative text-left ">
               Unlimited messages on the card. Unlimited messages on the card. Unlimited messages on the card. Unlimited messages on the card. Unlimited messages on the card.
             </li>
           </ul>
-          <div className="text-left mt-2"><a href="/create"><button className="btnthird px-4  py-2">Get Started</button></a></div>
+          <div className="text-left mt-2"><a href="/create"><button className="btnthird px-4  py-2 border  border-[#a0ecef]">Get Started</button></a></div>
         </div>
      
 
