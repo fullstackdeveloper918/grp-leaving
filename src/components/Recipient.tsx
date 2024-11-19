@@ -211,7 +211,7 @@ console.log( params?.id,"check");
         </div>
       </div>
 
-      {/* Right Part - Form Section */}
+      {/* Right Part  Form Section */}
       <div className="w-1/2 bg-white flex flex-col items-center justify-center">
         <MultiStepForm />
       </div>
