@@ -71,7 +71,7 @@ background-size: cover;
   background-size: contain;
   background-repeat: no-repeat;
 } */
-.imgAfter::after{
+/* .imgAfter::after{
   content: "";
   background-image: url("../assets/images/linePurple.png");
   position: absolute;
@@ -87,7 +87,7 @@ background-size: cover;
 .imgAfter + .imgAfter::after{
   background-image: url("../assets/images/linePurple_2.png");
  
-}
+} */
 .heroSectionHeight{
   min-height: calc(100vh - 230px);
 }
@@ -311,6 +311,29 @@ section.bg-heroImage img {
   max-width: 33rem;
 }
 
+html,body{
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.btnWhite {
+  background-color: #fff;
+  color: #00C4CC;
+  border-color: #fff;
+  padding: auto 50px;
+}
+.btnWhite:hover{
+  color: #fff !important;
+  background-color: #00C4CC;
+  border-color: #00C4CC
+}
+
+
+
+.mobileVisible{
+  display: none;
+}
+
 @media (max-width: 1600px) {
 .partner_logos img{
   max-width: 200px !important;
@@ -347,7 +370,8 @@ section.bg-heroImage img {
     background-size: contain;
     background-repeat: no-repeat;
     cursor: pointer;
-    background-color: #fff;
+    /* background-color: #fff; */
+    z-index: 999;
   }
   .responiveSlider::after{
     background-image: url("../assets/images/nextArrow.png");
@@ -378,6 +402,15 @@ section.bg-heroImage img {
 }
 
 
+@media (max-width: 575px) {
+.mobileVisible{
+  display: block;
+  max-width: 22px;
+}
+.d-hide-btn{
+  display: none;
+}
+}
 @media (max-width: 480px) {
   .margin100 {
     margin-top: 70px;

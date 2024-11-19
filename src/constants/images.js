@@ -22,6 +22,8 @@ import board from "../assets/images/board.png";
 import money from "../assets/images/money.png";
 import loginPage from "../assets/images/loginPage.png";
 import microsoftLogo from "../assets/icons/microsoftLogo.png"
+
+// herobannner 
 import herobannner1 from "../assets/images/1.png";
 import herobannner2 from "../assets/images/2.png";
 import herobannner3 from "../assets/images/3.png";

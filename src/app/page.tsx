@@ -155,7 +155,7 @@ const Home = async ({ searchParams }: any) => {
           <Cards_works />
           <div className="text-center mt-8">
             <Link href={`/create`}>
-              <button className="btnPrimary px-4  py-2">Get Started</button>
+              <button className="btnPrimary btnWhite px-6 ">Get Started</button>
             </Link>
           </div>
         </div>

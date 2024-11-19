@@ -4,7 +4,7 @@ import DemoCartimg from "../../assets/images/demo_cart.png"
 import Images from "../assets/images/logo_1.png"
 const DemoCart = () => {
   return (
-    <div className=" bg-gray-100 container-fluid items-center mb-5 relative">
+    <div className=" bg-gray-100 container-fluid items-center mb-5 relative mt-5">
       <div className="shadow-md">
       
         <div className="lg:mb-5 imgBottomBefore relative max-w-4xl	mx-auto">

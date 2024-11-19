@@ -10,7 +10,7 @@ const AccountSlider = ({type}:any) => {
     router.push(url);
   };
   return (
-    <div className="flex justify-between items-center border-b border-gray-200 mb-6">
+    <div className="flex justify-center items-center  border-gray-200 mb-6">
     <div className="flex space-x-6">
         {/* Navigate to Cards */}
         <a

@@ -3,9 +3,9 @@ import React from 'react';
 import Link from 'next/link';
 
 const Filter = ({searchParams}:any) => {
-    let array=["birthday", "farewell", "baby", "wedding", "get-well", "sympathy"]
+    let array=[ "farewell","birthday", "baby", "wedding", "get-well", "sympathy"]
 
-  const type = searchParams?.category
+  const type = searchParams?.category||"farewell"
   console.log(type, "Selected category");
   return (
     <div className="flex flex-col items-center p-8 bg-white margin100">
@@ -29,6 +29,8 @@ const Filter = ({searchParams}:any) => {
               </>
         ))}
       </div>
+
+      
     </div>
   );
 };

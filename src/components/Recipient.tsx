@@ -163,9 +163,9 @@ console.log( params?.id,"check");
   console.log(searchParams?.category);
   const filteredCard = array.find(card => card.type === searchParams?.category && card.id === Number(params?.id));
   return (
-    <div className="min-h-screen flex">
+    <div className="min-h-screen flex flex-wrap">
       {/* Left Part - Card Design */}
-      <div className="w-1/2 bg-blue-50 flex items-center justify-center">
+      <div className="md:w-1/2 flex-wrap w-2/2  bg-blue-50 flex items-center justify-center md:order-none order-1 bg-blueBg ">
         <div className="text-center">
           <h1 className="text-2xl font-semibold mb-1">Create a Group Card</h1>
           <p className="text-gray-500 mb-6">
@@ -204,7 +204,7 @@ console.log( params?.id,"check");
 
           {/* Choose another design */}
           <a href={`/card/${searchParams?.category}`} className="text-red-500 no-underline">
-          <p className="mt-6 text-red-500 text-sm  hover:underline">
+          <p className="mt-6 text-red-500 text-md  text-white hover:underline">
             Choose another design
           </p>
           </a>
@@ -212,7 +212,7 @@ console.log( params?.id,"check");
       </div>
 
       {/* Right Part  Form Section */}
-      <div className="w-1/2 bg-white flex flex-col items-center justify-center">
+      <div className="md:w-1/2 w-full w-2/2 bg-lightBg flex flex-col items-center justify-center relative">
         <MultiStepForm />
       </div>
     </div>

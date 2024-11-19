@@ -7,7 +7,7 @@ const { Title, Text } = Typography;
 const Cards_works = () => {
   return (
    
-    <div className="flex flex-col lg:flex-row justify-center gap-12 lg:gap-24 items-center">
+    <div className="flex flex-col lg:flex-row justify-center gap-12 lg:gap-24 items-center mt-5">
       {/* Step 1: Choose a Design */}
       <div className="text-center relative imgAfter">
         <div className="w-16 h-16 mx-auto mb-4">

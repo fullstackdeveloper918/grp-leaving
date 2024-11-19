@@ -448,7 +448,13 @@ const HomeCategorySection = ({searchParams}:any) => {
               </div>
             ))
           )}
+          
         </div>
+        <div>
+        <button className=' btnPrimary mx-auto my-5 mb-3'>
+        See more designs
+        </button>
+      </div>
       </div>
    {/* <div className="flex justify-center">
   <Swiper

@@ -8,6 +8,7 @@ import LogoutModal from "./LogoutModal";
 import { useRouter } from "next/navigation";
 import { destroyCookie, parseCookies } from "nookies";
 import GoodLuckCad from "../../assets/svg/GoodLuckCards.svg"
+import register from "../../assets/images/register.png"
 const Navbar = () => {
   const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -184,9 +185,10 @@ if (getuserData) {
                   </a>
 
                   <Link href={`/register`}>
-                    <button className="text-white px-3 py-2 rounded-md bg-blueBg">
+                    <button className="text-white px-3 py-2 rounded-md bg-blueBg d-hide-btn">
                       Register
                     </button>
+                    <img src={register.src} alt="img" className="mobileVisible" />
                   </Link>
                 </>
               }

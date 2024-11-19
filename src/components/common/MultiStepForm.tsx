@@ -62,19 +62,14 @@ const MultiStepForm = () => {
   };
   return (
     <>
-      <div className="flex space-x-8 mb-8">
-        <div
-          className={`flex items-center space-x-2 ${
-            step >= 1 ? "text-blue-600" : "text-gray-500"
-          }`}
-        >
-          <div
-            className={`w-4 h-4 rounded-full ${
-              step >= 1 ? "bg-blue-600" : "bg-gray-400"
-            }`}
-          ></div>
-          <p>Pick a Design</p>
+      <div className="flex space-x-8 mb-8 absolute top-10">
+        <div  >
+          <div>23</div>
+          <p className="md:text-md text-sm font-medium mb-0" >Pick a Design</p>
         </div>
+
+
+
         <div
           className={`flex items-center space-x-2 ${
             step >= 2 ? "text-blue-600" : "text-gray-500"
@@ -85,7 +80,7 @@ const MultiStepForm = () => {
               step >= 2 ? "bg-blue-600" : "bg-gray-400"
             }`}
           ></div>
-          <p>Enter Details</p>
+          <p className="md:text-md text-sm font-medium mb-0">Enter Details</p>
         </div>
         <div
           className={`flex items-center space-x-2 ${
@@ -97,7 +92,7 @@ const MultiStepForm = () => {
               step >= 3 ? "bg-blue-600" : "bg-gray-400"
             }`}
           ></div>
-          <p>Pay and Share</p>
+          <p className="md:text-md text-sm font-medium mb-0" >Pay and Share</p>
         </div>
         <div
           className={`flex items-center space-x-2 ${
@@ -109,10 +104,10 @@ const MultiStepForm = () => {
               step >= 4 ? "bg-blue-600" : "bg-gray-400"
             }`}
           ></div>
-          <p>Submit</p>
+          <p className="md:text-md text-sm font-medium mb-0" >Submit</p>
         </div>
       </div>
-      <div className="bg-white shadow-lg rounded-lg p-10 w-full max-w-md">
+      <div className="bg-white shadow-lg rounded-lg p-10 w-full max-w-sm">
         <h2 className="text-2xl font-semibold mb-6">
           {step === 1
             ? "Who is the card for?"

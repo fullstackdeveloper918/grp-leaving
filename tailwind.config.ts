@@ -25,7 +25,7 @@ const config: Config = {
       "shadowBlue":"0 ",
       "blueText":"#3B989C",
       "menuColor":"#252C32",
-      "lightBg":"#f0f3fc",
+      "lightBg":"#00c4cc08 ",
       "greyBorder":" #f0f3fc",
       "bgWhite":"#fff"
     },

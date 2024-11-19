@@ -30,7 +30,8 @@ const Sidebar = ({ urlValue,cardLabel }: { urlValue: string,cardLabel:any }) => 
   };
   return (
     <aside className="md:w-64 sm:w-100   rounded-[10px] bg-[#ffffffcc] border p-3 responiveSlider relative">
-      <ul className="md:space-y-2    md:block flex md:space-x-0 space-x-3 items-start overflow-x-auto md:sticky md:top-5 md:m-0 p-0  md:w-100  w-[90%] m-auto ">
+      <div className="sticky top-0"> 
+      <ul className="md:space-y-2    md:block flex md:space-x-0 space-x-3 items-start overflow-x-auto md:sticky md:top-5 md:m-0 p-0  md:w-100  w-[100%] m-auto ">
         {categories.map((category) => (
           <li
             key={category}
@@ -45,6 +46,7 @@ const Sidebar = ({ urlValue,cardLabel }: { urlValue: string,cardLabel:any }) => 
           </li>
         ))}
       </ul>
+      </div>
     </aside>
   );
 };

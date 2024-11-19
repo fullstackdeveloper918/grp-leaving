@@ -59,7 +59,7 @@ const Card = ({ item, index }) => {
 
   return (
     <>
-      <div className="max-w-sm w-64 h-80 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 overflow-hidden">
+      <div className="max-w-sm md:w-64 md:h-80 w-44 h-44 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 overflow-hidden">
         <a href={`/card/new/${item?.id}?category=${item?.type}`}>
           <Image
             className="rounded-t-lg w-full h-full object-cover"

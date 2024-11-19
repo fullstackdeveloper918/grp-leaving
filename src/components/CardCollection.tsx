@@ -140,8 +140,8 @@ const CardCollection = ({ params }: any) => {
       <div className="md:flex md:space-x-3 md:space-y-0 space-y-6 ">
         <Sidebar urlValue={params?.slug[0]} cardLabel={cardLabel} />
         <main className="flex-1 lg:px-8 md:px-6 px-2">
-          <div className="flex md:justify-between md:items-center mb-6 md:flex-row  sm:flex-column-reverse justify-start ">
-            <h2 className="xl:text-4xl md:text-xl sm:text-md font-semibold justify-center items-center">
+          <div className="flex md:justify-between md:items-center mb-6 md:flex-row  flex-col-reverse  justify-start ">
+            <h2 className="xl:text-4xl  md:text-lg text-md font-semibold justify-center items-cente mt-3">
               Pick a <span className="capitalize">{params?.slug[0]}</span> Card Design
             </h2>
             <CollectionFilter />

@@ -38,8 +38,8 @@ const page = async({ params }: any) => {
   
  
   return (
-    <div className=" bg-gray-100 flex justify-center items-center">
-      <div className="w-full max-w-2xl bg-white shadow-md rounded-lg p-8">
+    <div className=" bg-lightbg flex justify-center items-center">
+      <div className="w-full max-w-[70%] bg-white shadow-md rounded-lg p-8">
         <h1 className="text-3xl font-bold text-center mb-6">Account</h1>
         <AccountSlider type={type}/>
         {type==="profile" && <AccountProfile userInfoCookie={userInfo}/>}
