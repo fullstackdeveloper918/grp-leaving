@@ -4,7 +4,6 @@ import Images from "@/constants/images";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.css"; // Import Swiper styles
-import { Navigation, Pagination, Scrollbar } from "swiper/modules";
 
 const HomeCategorySection = ({searchParams}:any) => {
   console.log(searchParams,"yuuuuuuu");
