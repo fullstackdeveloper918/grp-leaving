@@ -32,7 +32,8 @@ const Navbar = () => {
   const handleLogout = async () => {
     // let res = await api.Auth.logout();
     // console.log(res, "qweqwe");
-    destroyCookie(null, "token", { path: "/" });
+    destroyCookie(null, "auth_token", { path: "/" });
+    destroyCookie(null, "COOKIES_USER_ACCESS_TOKEN", { path: "/" });
     router.push(`/login`);
   };
 
@@ -40,8 +41,15 @@ const Navbar = () => {
     handleLogout();
     setIsModalOpen(false);
   };
+  const [state,setState]=useState<any>("")
   const cookies = parseCookies();
-  const accessToken = cookies.auth_token;
+  console.log(state,"state");
+  
+  // const accessToken = cookies.auth_token;
+  useEffect(()=>{
+    const accessToken = cookies.auth_token;
+    setState(accessToken)
+  },[state])
 const getuserData= cookies.userInfo
 if (getuserData) {
   try {
@@ -95,37 +103,37 @@ if (getuserData) {
 
             {/* Auth and Button */}
             <div className="flex items-center lg:space-x-4 sm:space-x-2">
-            <a
+            {/* <a
                     href="/account/cards"
                     className="text-sm text-blackText hidden md:block text-blackText no-underline"
                   >
                     Cards by occasion
-                  </a>
+                  </a> */}
                   <a
-                    href="/account/cards"
+                    href="/card/farewell"
                     className="text-sm text-blackText hidden md:block text-blackText no-underline"
                   >
                     Cards
                   </a>
                   <a
-                    href="/account/cards"
+                    href="/pricing"
                     className="text-sm text-blackText hidden md:block text-blackText no-underline"
                   >
                     Pricing
                   </a>
-                  <a
+                  {/* <a
                     href="/account/cards"
                     className="text-sm text-blackText hidden md:block text-blackText no-underline"
                   >
                     Computers
-                  </a>
-                  <a
+                  </a> */}
+                  {/* <a
                     href="/account/cards"
                     className="text-sm text-blackText hidden md:block text-blackText no-underline"
                   >
                     Fashion
-                  </a>
-              {accessToken ? 
+                  </a> */}
+              {state ? 
                 <>
                   <button
                     className="text-sm text-blackText hidden md:block text-blackText no-underline"
@@ -144,10 +152,10 @@ if (getuserData) {
                       src="https://img.freepik.com/premium-psd/greeting-card-…h-flowers-it-pink-background_74869-4261.jpg?w=826"
                       alt="Profile"
                       style={{
-                        width: "40px", // Adjust size as needed
-                        height: "40px", // Adjust size as needed
-                        borderRadius: "50%", // Makes the image circular
-                        cursor: "pointer", // Changes the cursor to indicate it's clickable
+                        width: "40px", 
+                        height: "40px",
+                        borderRadius: "50%",
+                        cursor: "pointer",
                       }}
                       id="dropdownMenuButton1"
                       data-bs-toggle="dropdown"

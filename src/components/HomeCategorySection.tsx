@@ -4,6 +4,7 @@ import Images from "@/constants/images";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.css"; // Import Swiper styles
+import Link from "next/link";
 
 const HomeCategorySection = ({searchParams}:any) => {
   console.log(searchParams,"yuuuuuuu");
@@ -410,6 +411,9 @@ const HomeCategorySection = ({searchParams}:any) => {
 
   const filteredCards = array.filter((card) => card.type === searchParams?.category);
   const filteredCards1 = array.filter((card) => card.type);
+  const type = searchParams?.category||"farewell"
+  console.log(type,"ioioio");
+  
   return (
     <div>
       <Filter searchParams={searchParams} />
@@ -450,9 +454,11 @@ const HomeCategorySection = ({searchParams}:any) => {
           
         </div>
         <div>
+          <Link href={`/card/${type}`}>
         <button className=' btnPrimary mx-auto my-5 mb-3'>
         See more designs
         </button>
+          </Link>
       </div>
       </div>
    {/* <div className="flex justify-center">
