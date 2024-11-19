@@ -21,6 +21,7 @@ import Filter from "@/components/common/Filter";
 import HomeCategorySection from "@/components/HomeCategorySection";
 import PartnerCompanies from "@/components/PartnerCompanies";
 import Slider from "react-slick";
+import DemoCart from "@/components/common/demoCard";
 // import "slick-carousel/slick/slick.css";
 // import "slick-carousel/slick/slick-theme.css";
 // import 'antd/dist/antd.css';
@@ -139,7 +140,7 @@ const Home = async ({ searchParams }: any) => {
         <PartnerCompanies />
         {/* Section 4 */}
 
-        <Image_text_Card />
+        <DemoCart />
 
         {/* Section 5 */}
         <div className=" bg-workBg bg-cover bg-no-repeat  py-16">

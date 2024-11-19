@@ -31,11 +31,11 @@ const Silder = () => {
     const settings = {
         dots: true,
         infinite: true,
-        slidesToShow: 3,
+        slidesToShow: 5,
         slidesToScroll: 1,
         autoplay: true,
-        speed: 8000,
-        autoplaySpeed: 8000,
+        speed: 3000,
+        autoplaySpeed: 3000,
         cssEase: "linear",               
         pauseOnHover: true
       };

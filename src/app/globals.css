@@ -141,6 +141,10 @@ transform: scale(1.1);
   font-size: 20px;
   font-weight: 500;
 }
+strong.democard {
+  color: #00C4CC;
+  font-weight: 700;
+}
 .btnSecondary{
   border-color:#282828 ;
   color: #000;

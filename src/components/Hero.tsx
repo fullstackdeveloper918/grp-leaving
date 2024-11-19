@@ -11,7 +11,7 @@ import herobannner4 from "../assets/images/4.png"
 import herobannner5 from "../assets/images/5.png"
 // import Slider from 'react-slick';
 import Carousel from 'react-multi-carousel';
-import 'react-multi-carousel/lib/styles.css';
+// import 'react-multi-carousel/lib/styles.css';
 import Silder from "./common/Silder";
 
 const categoriesName = ['Farewell', 'Birthday', 'Baby', 'Wedding', 'Get Well', 'Sympathy', 'Thank you', 'Retirement', 'Congratulations', 'Anniversary', 'Welcome', 'New Home'];
@@ -93,7 +93,7 @@ const responsive = {
       <section className="bg-heroImage  bg-cover bg-no-repeat dark:bg-gray-900 heroSectionHeight  align-middle d-flex">
         <div className="container-fluid  py-8 mx-auto  xl:gap-0 lg:py-16 d-flex justify-between flex-col lg:flex-nowrap flex-wrap space-y-10 items-center">
           <div className=" mx-0	 d-flex flex-col items-center	 w-full md:text-center xs:text-center lg:text-left ">
-            <h1 className="max-w-6xl mx-0	 w-full text-center	pb-6 text-4xl tracking-tight  md:text-5xl xl:text-6xl dark:text-white text-black xl:leading-extra-loose lineHeight">
+            <h1 className="max-w-6xl mx-0	 w-full text-center	pb-6 text-4xl tracking-tight  md:text-5xl xl:text-8xl dark:text-white text-black xl:leading-extra-loose lineHeight">
             Virtual group cards <b >Made <span className="textColor">Easy</span></b> 
             {/* {" "} */}
               {/* <span className="text-blueText">for {displayedText||"''"}</span> */}
@@ -121,7 +121,7 @@ const responsive = {
            </div>
           </div>
           <div className="w-full gap-3 d-flex justify-content-center images-div">
-        
+          {/* <Silder/> */}
         {/* {images.map((image, index) => (
           <div key={index}>
           <Image 
@@ -138,7 +138,7 @@ const responsive = {
           
         </div>
       </section>
-       <Silder/>
+      <Silder/>
     
 
     </>
