@@ -105,45 +105,45 @@ if (getuserData) {
             <div className="flex items-center lg:space-x-4 sm:space-x-2">
             {/* <a
                     href="/account/cards"
-                    className="text-sm text-blackText hidden md:block text-blackText no-underline"
+                    className="text-md text-blackText hidden md:block text-blackText no-underline font-medium hover:text-blueText "
                   >
                     Cards by occasion
                   </a> */}
                   <a
                     href="/card/farewell"
-                    className="text-sm text-blackText hidden md:block text-blackText no-underline"
+                    className="text-md text-blackText hidden md:block text-blackText no-underline font-medium hover:text-blueText "
                   >
                     Cards
                   </a>
                   <a
                     href="/pricing"
-                    className="text-sm text-blackText hidden md:block text-blackText no-underline"
+                    className="text-md text-blackText hidden md:block text-blackText no-underline font-medium hover:text-blueText "
                   >
                     Pricing
                   </a>
                   {/* <a
                     href="/account/cards"
-                    className="text-sm text-blackText hidden md:block text-blackText no-underline"
+                    className="text-md text-blackText hidden md:block text-blackText no-underline font-medium hover:text-blueText "
                   >
                     Computers
                   </a> */}
                   {/* <a
                     href="/account/cards"
-                    className="text-sm text-blackText hidden md:block text-blackText no-underline"
+                    className="text-md text-blackText hidden md:block text-blackText no-underline font-medium hover:text-blueText "
                   >
                     Fashion
                   </a> */}
               {state ? 
                 <>
                   <button
-                    className="text-sm text-blackText hidden md:block text-blackText no-underline"
+                    className="text-md text-blackText hidden md:block text-blackText no-underline font-medium hover:text-blueText "
                     onClick={() => setIsModalOpen(true)}
                   >
                     Logout
                   </button>
                   <a
                     href="/account/cards"
-                    className="text-sm text-blackText hidden md:block text-blackText no-underline"
+                    className="text-md text-blackText hidden md:block text-blackText no-underline font-medium hover:text-blueText "
                   >
                     My Account
                   </a>
@@ -187,7 +187,7 @@ if (getuserData) {
                 <>
                   <a
                     href="/login"
-                    className="text-sm text-blackText hidden md:block text-blackText no-underline"
+                    className="text-md text-blackText hidden md:block text-blackText no-underline font-medium hover:text-blueText "
                   >
                     Login
                   </a>

@@ -42,16 +42,16 @@ const Footer: React.FC = () => {
             Company
           </Title>
           <ul className="p-0">
-            <li className="block  py-2 hover:text-orange-500 no-underline text-black  transition-all ease-in  hover:text-blueBg hover:px-2 ">
+            <li className="block  py-2  no-underline text-black  transition-all ease-in  hover:text-blueBg hover:px-2 ">
               About
             </li>
-            <li className="block  py-2 hover:text-orange-500 no-underline text-black  transition-all ease-in  hover:text-blueBg hover:px-2  ">
+            <li className="block  py-2  no-underline text-black  transition-all ease-in  text-black hover:text-blueBg hover:px-2  ">
               Office
             </li>
-            <li className="block  py-2 hover:text-orange-500 no-underline text-black  transition-all ease-in  hover:text-blueBg hover:px-2  ">
+            <li className="block  py-2  no-underline text-black  transition-all ease-in  text-black hover:text-blueBg hover:px-2  ">
               License Verification{" "}
             </li>
-            <li className="block  py-2 hover:text-orange-500 no-underline text-black  transition-all ease-in  hover:text-blueBg hover:px-2 ">
+            <li className="block  py-2  no-underline text-black  transition-all ease-in  hover:text-blueBg hover:px-2 ">
               Spay & Neuter
             </li>
           </ul>
@@ -66,7 +66,7 @@ const Footer: React.FC = () => {
               {" "}
               <a
                 href="/pricing"
-                className="block  py-2 hover:text-orange-500 no-underline text-black  transition-all ease-in  hover:text-blueBg hover:px-2 inline-block "
+                className="block  py-2  no-underline text-black  transition-all ease-in  hover:text-blueBg hover:px-2 inline-block "
               >
                 Pricing{" "}
               </a>
@@ -74,7 +74,7 @@ const Footer: React.FC = () => {
             <li className="block">
               <a
                 href="/gift-cards"
-                className="block  py-2 hover:text-orange-500 no-underline text-black  transition-all ease-in  hover:text-blueBg hover:px-2 inline-block "
+                className="block  py-2  no-underline text-black  transition-all ease-in  hover:text-blueBg hover:px-2 inline-block "
               >
                 Gift Cards
               </a>
@@ -82,7 +82,7 @@ const Footer: React.FC = () => {
             <li className="block">
               <a
                 href="/faq"
-                className="block  py-2 hover:text-orange-500 no-underline text-black  transition-all ease-in  hover:text-blueBg hover:px-2 inline-block "
+                className="block  py-2  no-underline text-black  transition-all ease-in  hover:text-blueBg hover:px-2 inline-block "
               >
                 FAQ
               </a>
@@ -90,7 +90,7 @@ const Footer: React.FC = () => {
             <li className="block">
               <a
                 href="/#"
-                className="block  py-2 hover:text-orange-500 no-underline text-black  transition-all ease-in  hover:text-blueBg hover:px-2 inline-block "
+                className="block  py-2  no-underline text-black  transition-all ease-in  hover:text-blueBg hover:px-2 inline-block "
               >
                 Terms & Conditions{" "}
               </a>{" "}
@@ -98,7 +98,7 @@ const Footer: React.FC = () => {
             <li className="block">
               <a
                 href="/#"
-                className="block  py-2 hover:text-orange-500 no-underline text-black  transition-all ease-in  hover:text-blueBg hover:px-2 inline-block "
+                className="block  py-2  no-underline text-black  transition-all ease-in  hover:text-blueBg hover:px-2 inline-block "
               >
                 Privacy Policy{" "}
               </a>{" "}
@@ -111,16 +111,16 @@ const Footer: React.FC = () => {
             Resources
           </Title>
           <ul className="p-0">
-            <li className="block  py-2 hover:text-orange-500 no-underline text-black  transition-all ease-in  hover:text-blueBg hover:px-2   hover:text-blueBg hover:px-2">
+            <li className="block  py-2  no-underline text-black  transition-all ease-in  text-black hover:text-blueBg hover:px-2   hover:text-blueBg hover:px-2">
               Free eBooks
             </li>
-            <li className="block  py-2 hover:text-orange-500 no-underline text-black  transition-all ease-in  hover:text-blueBg hover:px-2  ">
+            <li className="block  py-2  no-underline text-black  transition-all ease-in  text-black hover:text-blueBg hover:px-2  ">
               Development Tutorial
             </li>
-            <li className="block  py-2 hover:text-orange-500 no-underline text-black  transition-all ease-in  hover:text-blueBg hover:px-2  ">
+            <li className="block  py-2  no-underline text-black  transition-all ease-in  text-black hover:text-blueBg hover:px-2  ">
               How to - Blog
             </li>
-            <li className="block  py-2 hover:text-orange-500 no-underline text-black  transition-all ease-in  hover:text-blueBg hover:px-2  ">
+            <li className="block  py-2  no-underline text-black  transition-all ease-in  text-black hover:text-blueBg hover:px-2  ">
               Youtube Playlist
             </li>
           </ul>
