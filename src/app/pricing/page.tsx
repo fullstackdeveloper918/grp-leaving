@@ -448,11 +448,11 @@ const Page = () => {
                   </li>
                 </ul>
               </div>
-              <Link href={`/create`}>
-                <button className="mt-6 bg-blue-600 text-blueText w-full py-2 rounded-xl border-2 border-[blueText] hover:bg-blue-700">
-                  Create a card for $10
+              {/* <Link href={`/create`}> */}
+                <button onClick={scrollToBundles} className="mt-6 bg-blue-600 text-blueText w-full py-2 rounded-xl border-2 border-[blueText] hover:bg-blue-700">
+                View Bundle
                 </button>
-              </Link>
+              {/* </Link> */}
             </div>
 
           </div>
