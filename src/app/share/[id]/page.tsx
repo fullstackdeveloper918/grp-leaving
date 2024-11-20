@@ -1,5 +1,6 @@
 import CopyclickBoard from "@/components/common/CopyclickBoard";
 import EscrowPayment from "@/components/EscrowPayment";
+import Link from "next/link";
 import React from "react";
 
 const page = () => {
@@ -45,9 +46,12 @@ const page = () => {
           collect unlimited personalised messages from everyone
           contributing.
         </p>
+        <Link href={`/card/farewell/1`}>
+
         <button className="bg-blue-600 text-black px-4 py-2 border-2 border-blue-700 rounded-md hover:bg-blue-700 transition">
           Add Greeting Card
         </button>
+</Link>
       </div>
     </div>
 
@@ -75,6 +79,7 @@ const page = () => {
         <button className="bg-blue-600 text-black border-2 border-blue-700 px-4 py-2 rounded-md hover:bg-blue-700 transition">
           Add Gift Card
         </button>
+        {/* </Link> */}
       </div>
     </div>
   </div>
