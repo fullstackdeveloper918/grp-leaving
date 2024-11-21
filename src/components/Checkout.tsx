@@ -19,22 +19,35 @@ import FormItem from "antd/es/form/FormItem";
 import AddCardElement from "./common/AddCard";
 import RazorPay from "./RazorPay";
 import EscrowPayment from "./EscrowPayment";
+import { cookies } from "next/headers";
 
 const Checkout = () => {
   const [cardType, setCardType] = useState<any>("group");
   console.log(cardType, "cardType");
-
+  // const cookiesList = cookies();
+  // const userInfoCookie = cookiesList.get('userInfo'); 
+  // console.log(userInfoCookie,"ppppp");
+  // let userInfo = null;
+  // if (userInfoCookie) {
+  //   try {
+  //     userInfo = JSON.parse(userInfoCookie.value);
+  //   } catch (error) {
+  //     console.error("Error parsing userInfo cookie", error);
+  //   }
+  // }
+  // console.log(userInfo,"pooooo");
+  
   const [bundleOption, setBundleOption] = useState<any>("single");
   const [numCards, setNumCards] = useState<any>(5); // Default card bundle selection
   const [paywith, setPaywith] = useState<any>("STRIPE");
-  const [voucher,setVaoucher]=useState<any>("")
-  const [voucher1,setVaoucher1]=useState<any>("")
-  const onChange=(e:any)=>{
-    setVaoucher(e)
-  }
-const onSubmit=()=>{
-  setVaoucher1(voucher)
-}
+  const [voucher, setVaoucher] = useState<any>("");
+  const [voucher1, setVaoucher1] = useState<any>("");
+  const onChange = (e: any) => {
+    setVaoucher(e);
+  };
+  const onSubmit = () => {
+    setVaoucher1(voucher);
+  };
   const stripe = useStripe();
   const cardPrices: any = {
     5: { price: 22.45, perCard: 4.49, discount: "10%" },
@@ -52,9 +65,10 @@ const onSubmit=()=>{
       : cardType === "individual"
       ? individualCardprice
       : bundleSingleCard;
-  const TotalAmount = bundleOption === "bundle"
-  ? `$${parseFloat(cardPrices[numCards].price.toFixed(2))-voucher1} USD`
-  : `$${AmountCondition-voucher1} USD`;
+  const TotalAmount =
+    bundleOption === "bundle"
+      ? `$${parseFloat(cardPrices[numCards].price.toFixed(2)) - voucher1} USD`
+      : `$${AmountCondition - voucher1} USD`;
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col justify-center items-center p-5">
       <div className="w-full max-w-4xl bg-white shadow-lg rounded-lg p-6 md:flex">
@@ -210,10 +224,13 @@ const onSubmit=()=>{
                 type="number"
                 placeholder="Voucher Code"
                 className="border border-gray-300 rounded-lg p-2 w-full"
-                onChange={(e:any)=>onChange(e.target.value)}
+                onChange={(e: any) => onChange(e.target.value)}
                 value={voucher}
               />
-              <button onClick={onSubmit} className="ml-2 bg-blue-500 text-black  border-2 border-blue-700 py-2 px-4 rounded-md hover:bg-blue-600 transition">
+              <button
+                onClick={onSubmit}
+                className="ml-2 bg-blue-500 text-black  border-2 border-blue-700 py-2 px-4 rounded-md hover:bg-blue-600 transition"
+              >
                 Apply
               </button>
             </div>
@@ -222,16 +239,22 @@ const onSubmit=()=>{
                 <span>Card Price</span>
                 <span className="font-bold">
                   {bundleOption === "bundle"
-                    ? `$${parseFloat(cardPrices[numCards].price.toFixed(2))-voucher1} USD`
-                    : `$${AmountCondition-voucher1} USD`}
+                    ? `$${
+                        parseFloat(cardPrices[numCards].price.toFixed(2)) -
+                        voucher1
+                      } USD`
+                    : `$${AmountCondition - voucher1} USD`}
                 </span>
               </div>
               <div className="flex justify-between mt-2">
                 <span>Total</span>
                 <span className="font-bold text-xl">
                   {bundleOption === "bundle"
-                    ? `$${parseFloat(cardPrices[numCards].price.toFixed(2))-voucher1} USD`
-                    : `$${AmountCondition-voucher1} USD`}
+                    ? `$${
+                        parseFloat(cardPrices[numCards].price.toFixed(2)) -
+                        voucher1
+                      } USD`
+                    : `$${AmountCondition - voucher1} USD`}
                 </span>
               </div>
             </div>

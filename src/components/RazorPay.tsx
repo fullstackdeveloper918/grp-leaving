@@ -1,16 +1,29 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Script from "next/script";
-
+// import { cookies } from "next/dist/client/components/headers";
+// import { cookies } from "next/headers";
+import nookies from 'nookies'
 declare global {
   interface Window {
     Razorpay: any;
   }
 }
-
+interface UserInfo {
+  name: string
+  email: string
+}
 const RazorPay = ({ amount }: any) => {
   console.log(amount, "amount");
+  const [userInfo, setUserInfo] = useState<any>(null)
 
+  useEffect(() => {
+    const cookies = nookies.get()
+    const userInfoFromCookie: UserInfo | null = cookies.userInfo ? JSON.parse(cookies.userInfo) : null
+    setUserInfo(userInfoFromCookie)
+  }, [])
+  console.log(userInfo,"userInfouserInfo");
+  
   const AMOUNT = amount;
   const [isProcessing, setIsProcessing] = useState(false);
 
@@ -44,8 +57,8 @@ const RazorPay = ({ amount }: any) => {
             {
               method: "POST",
               body: JSON.stringify({
-                product_id: product_id, // Send product_id in the request body
-                // paymentid: paymentId,   // Optionally, include the paymentid in the body as well
+                product_id: product_id,
+                user_uuid:userInfo?.uuid
               }),
             }
           );
