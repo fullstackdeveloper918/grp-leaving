@@ -111,12 +111,12 @@ transform: scale(1.1);
   height: 145px !important;
 }
 .textColor{
-  color: #00C4CC;
+  color: #558EC9;
 }
 
 .btnPrimary,.submitbtnPrimary,.loginBtn,
 .btnSecondary, .btnSecondary:hover, .btnthird:hover{
-  background-color: #00C4CC;
+  background-color: #558EC9;
   color: #fff;
   font-size: 24px;
   border-radius: 30px;
@@ -124,14 +124,14 @@ transform: scale(1.1);
   text-align: center;
   padding: 10px 36px;
   text-decoration: none;
-  border: 1px solid #00C4CC;
+  border: 1px solid #558EC9;
   transition: all .3s ease-in;
   font-size: 20px;
   font-weight: 500;
 }
 .btnthird{
   background-color: #fff;
-  color: #00C4CC;
+  color: #558EC9;
   border-radius: 30px;
   display: inline-block;
   border: 1px solid #fff;
@@ -142,7 +142,7 @@ transform: scale(1.1);
   font-weight: 500;
 }
 strong.democard {
-  color: #00C4CC;
+  color: #558EC9;
   font-weight: 700;
 }
 .btnSecondary{
@@ -152,17 +152,17 @@ strong.democard {
 }
 .btnPrimary:hover{
   background-color: #fff;
-  border-color: #00C4CC !important;
-  color: #00C4CC !important;
+  border-color: #558EC9 !important;
+  color: #558EC9 !important;
 }
 .loginBtn{
   padding: 8px 10px;
-  background-color: #00C4CC !important;
+  background-color: #558EC9 !important;
   color: #fff !important;
 }
 .submitbtnPrimary{
   background-color: #fff;
-  color: #00C4CC;
+  color: #558EC9;
 }
 .submitbtnPrimary:hover{
   background-color: transparent !important;
@@ -194,7 +194,7 @@ input:focus{
   width: 3px;
   height: 34px;
   top: 0;
-  background-color: #00C4CC;
+  background-color: #558EC9;
 }
 
 /* Create card page css atart */
@@ -216,7 +216,7 @@ input:focus{
 
 .cardBox button{
 color: #fff;
-background-color: #00C4CC;
+background-color: #558EC9;
 font-size: 16px !important;
 }
 
@@ -225,7 +225,7 @@ font-size: 16px !important;
   padding: 0 !important;
 }
 :where(.css-dev-only-do-not-override-11lehqq).ant-input-outlined:focus, :where(.css-dev-only-do-not-override-11lehqq).ant-input-outlined:focus-within {
-  border-color: #00C4CC !important;
+  border-color: #558EC9 !important;
 }
 .microsoftBtn{
   transition: background-color .218s, border-color .218s;
@@ -269,7 +269,7 @@ border-radius: 5px;
   transition: all .3s ease-in;
 }
 .alreadyText:hover{
-  color: #00C4CC;
+  color: #558EC9;
 }
 .loginPage .auth-footer.text-center.mt-2 p {
   font-size: 15px;
@@ -318,14 +318,14 @@ html,body{
 
 .btnWhite {
   background-color: #fff;
-  color: #00C4CC;
+  color: #558EC9;
   border-color: #fff;
   padding: auto 50px;
 }
 .btnWhite:hover{
   color: #fff !important;
-  background-color: #00C4CC;
-  border-color: #00C4CC
+  background-color: #558EC9;
+  border-color: #558EC9
 }
 
 

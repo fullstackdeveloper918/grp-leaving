@@ -19,13 +19,13 @@ const config: Config = {
       },
     },
     colors:{
-      "blueBg" :"#00C4CC",
+      "blueBg" :"#558EC9",
       "heroBg": "#3B989C",
       "blackText":"#111111",
       "shadowBlue":"0 ",
-      "blueText":"#3B989C",
+      "blueText":"#558EC9",
       "menuColor":"#252C32",
-      "lightBg":"#00c4cc08 ",
+      "lightBg":"#558ec914 ",
       "greyBorder":" #f0f3fc",
       "bgWhite":"#fff"
     },

@@ -4,16 +4,6 @@ import { List } from "antd";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import cardData from "../constants/CardJson/card.json";
-import herobannner1 from "../assets/images/1.png"
-import herobannner2 from "../assets/images/2.png"
-import herobannner3 from "../assets/images/3.png"
-import herobannner4 from "../assets/images/4.png"
-import herobannner5 from "../assets/images/5.png"
-// import Slider from 'react-slick';
-import Carousel from 'react-multi-carousel';
-// import 'react-multi-carousel/lib/styles.css';
-import Silder from "./common/Silder";
-
 const categoriesName = ['Farewell', 'Birthday', 'Baby', 'Wedding', 'Get Well', 'Sympathy', 'Thank you', 'Retirement', 'Congratulations', 'Anniversary', 'Welcome', 'New Home'];
 const Hero = (props:any) => {
  console.log(props,"props");
@@ -44,103 +34,49 @@ useEffect(() => {
   }
 }, [currentCategoryIndex, isTyping]); 
 console.log(displayedText,"displayedText");
-const settings = {
-  dots: true,
-  // infinite: true,
-  // speed: 500,
-  slidesToShow: 1,
-  slidesToScroll: 1
-};
-// const images = [
-//   Images.herobannner1,
-//   Images.herobannner2,
-//   Images.herobannner3,
-//   Images.herobannner4,
-//   Images.herobannner5
-// ];
-const images = [
-  herobannner1,
-  herobannner2,
-  herobannner3,
-  herobannner4,
-  herobannner5,
-];
-console.log(images,"lkjk");
-const responsive = {
-  superLargeDesktop: {
-    // Screens larger than 2560px
-    breakpoint: { max: 4000, min: 3000 },
-    items: 5,
-  },
-  desktop: {
-    // Screens larger than 1024px
-    breakpoint: { max: 3000, min: 1024 },
-    items: 3,
-  },
-  tablet: {
-    // Screens larger than 464px
-    breakpoint: { max: 1024, min: 464 },
-    items: 2,
-  },
-  mobile: {
-    // Screens smaller than 464px
-    breakpoint: { max: 464, min: 0 },
-    items: 1,
-  },
-};
+
   return (
     <>
-      <section className="bg-heroImage  bg-cover bg-no-repeat dark:bg-gray-900 heroSectionHeight  align-middle d-flex">
-        <div className="container-fluid  py-8 mx-auto  xl:gap-0 lg:py-16 d-flex justify-between flex-col lg:flex-nowrap flex-wrap space-y-10 items-center">
-          <div className=" mx-0	 d-flex flex-col items-center	 w-full md:text-center xs:text-center lg:text-left ">
-            <h1 className="max-w-6xl mx-0	 w-full text-center	pb-6 text-4xl tracking-tight  md:text-5xl xl:text-8xl dark:text-white text-black xl:leading-extra-loose lineHeight">
-            Virtual group cards <b >Made <span className="textColor">Easy</span></b> 
-            {/* {" "} */}
-              {/* <span className="text-blueText">for {displayedText||"''"}</span> */}
+      <section className="bg-heroImage  dark:bg-gray-900 heroSectionHeight  align-middle d-flex">
+        <div className="container-fluid  py-8 mx-auto  xl:gap-0 lg:py-16 d-flex justify-between  lg:flex-nowrap flex-wrap space-y-10 items-center">
+          <div className="lg:w-1/2 w-full md:text-center xs:text-center lg:text-left ">
+            <h1 className="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight  md:text-5xl xl:text-6xl dark:text-white text-black xl:leading-extra-loose lineHeight">
+              Group Greeting Cards{" "}
+              <span className="text-blueText">for {displayedText||"''"}</span>
             </h1>
-            <p className="text-black max-w-6xl mx-0	 d-flex justify-center w-full text-center pb-6 font-normal lg:mb-6 md:text-lg lg:text-xl  font-medium">
-            Effortlessly send online cards for all occasions, including birthdays, farewells, and thank you notes! Plus, you can add a gift card from a wide selection of  our partnered merchants.
+            <p className="text-black max-w-2xl mb-6 font-normal lg:mb-6 md:text-lg lg:text-xl  font-medium">
+              The easiest way to pass a virtual greeting card around your
+              office.
             </p>
 
-            {/* <ul className="list-none d-flex xl:pl-8 lg:px-5 gap-10">
+            <ul className="list-none d-flex xl:pl-8 lg:px-5 gap-10">
               <List className="relative listBefore ml-4 md:text-lg lg:text-xl font-medium">Easy to share</List>
               <List className="relative listBefore ml-5 md:text-lg lg:text-xl font-medium">Quick to create </List>
               <List className="relative listBefore ml-5 md:text-lg lg:text-xl font-medium">Unlimited signatures</List>
-            </ul> */}
+            </ul>
 
-           <div className="d-flex justify-center">
+           <div className="mt-5">
            <a
               href="/create"
               className=" btnPrimary"
-            >Get Started</a>
+            > Start a group Card</a>
             <a
               href="#"
               className="btnSecondary ml-3"
-            >Explan card
+            >              Try Our Demo Card
             </a>
            </div>
           </div>
-          <div className="w-full gap-3 d-flex justify-content-center images-div">
-          {/* <Silder/> */}
-        {/* {images.map((image, index) => (
-          <div key={index}>
-          <Image 
-              src={image.src} 
-              alt={`Slide ${index + 1}`} 
-              layout="responsive" 
-              width={1200} 
-              height={600}
-              objectFit="cover"
+          <div className="lg:w-1/2 w-full">
+            <Image
+              src={Images.Hero}
+              width={900}
+              height={900}
+              alt="hero_image"
             />
           </div>
-        ))} */}
-          </div>
-          
         </div>
       </section>
-      <Silder/>
-    
-
     </>
   );
 };
