@@ -5,7 +5,7 @@ export default {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'img.freepik.com',
+        hostname: '*',
         pathname: '/**',
       },
     ],

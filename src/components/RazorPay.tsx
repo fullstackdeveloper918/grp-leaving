@@ -26,7 +26,7 @@ const RazorPay = ({ amount }: any) => {
   
   const AMOUNT = amount;
   const [isProcessing, setIsProcessing] = useState(false);
-
+  const product_id= "sadasd_e21ZXC31332212_fdgh";
   const handlePayment = async () => {
     setIsProcessing(true);
     try {
@@ -50,19 +50,21 @@ const RazorPay = ({ amount }: any) => {
           // console.log("Payment ID0:", paymentId?.razorpay_payment_id);
           // console.log("Payment ID1:",JSON.stringify({ paymentId }));
           const product_id= "sadasd_e21ZXC31332212_fdgh";
-          // Optionally, send the payment ID to your server for verification or further processing
           // For example:
           fetch(
-            `https://magshopify.goaideme.com/razorpay/save-payment?paymentid=${paymentId}`,
+            'https://magshopify.goaideme.com/razorpay/save-payment',
             {
-              method: "POST",
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',  
+              },
               body: JSON.stringify({
                 product_id: product_id,
-                user_uuid:userInfo?.uuid
+                user_uuid: userInfo?.uuid,
+                paymentId: paymentId,
               }),
             }
-          );
-
+          )
           // Handle success as per your application's need (e.g., updating UI, sending confirmation)
         },
         prefill: {
@@ -71,7 +73,8 @@ const RazorPay = ({ amount }: any) => {
           contact: "9999999999",
         },
         notes: {
-          card_id: "sadasd_e21ZXC31332212_fdgh", // Custom note that stores the card_id
+          product_id: product_id,
+          user_uuid:userInfo?.uuid,
         },
         theme: {
           color: "#3399cc",

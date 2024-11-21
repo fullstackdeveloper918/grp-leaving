@@ -4,17 +4,9 @@ import { colldectionCard } from '@/utils/cybersifyApi'
 import React from 'react'
 import { Api } from "@/interfaces/interfaces";
   const page = async({params}:any) => {
-    // const api: Api = {
-    //   url:colldectionCard,
-    //   method: "GET",
-    //   // body: { key: 'value' }
-    //   // comment only
-    // } as any;
-    // const getData= await fetchFromServer(api)
-    // console.log(getData,"getData");
-    
+ console.log(params,"params");
     return (
-      <div><CardCollection params={params}/></div>
+      <div><CardCollection params={params} /></div>
     )
   }
   

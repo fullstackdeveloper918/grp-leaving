@@ -10,13 +10,16 @@ export async function fetchFromServer(api: Api): Promise<any> {
   
   const accessToken = cookies.auth_token;
   console.log(accessToken,"qweqweqwe");
-  
+  const headers: Record<string, string> = {
+    "Content-Type": "application/json",
+    // "Cache-Control": "no-store", // Ensure no caching on the server side.
+    // "Pragma": "no-cache",         // For older HTTP/1.0 caches.
+    // "Expires": "0",               // Ensure no expiration.
+  };
   const options: RequestInit = {
     method,
-    headers: {
-      "Content-Type": "application/json",
-      "Authorization": `Bearer Token ${accessToken}`
-    },
+    headers,
+    // cache: 'no-store', // Disable caching for sensitive requests
   };
 
   if (body) {
