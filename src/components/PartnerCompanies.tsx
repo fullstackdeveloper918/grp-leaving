@@ -21,9 +21,11 @@ const PartnerCompanies = () => {
   return (
     <>
     <section className="flex flex-col items-center justify-center py-8 bg-white">
-    <p className="lg:text-3xl xl:text-4xl text-2xl font-medium text-gray-700 text-center xl:max-w-full max-w-[80%] m-auto">
-      Join over <span className="font-bold">5,000,000</span> other people using our group greeting cards
-    </p>
+    <h2 className="text-center text-lg mb-0 xl:text-xl font-semibold text-gray-600">Trusted by Over Seven Million Users</h2>
+    <h3 className="mt-2 text-2xl  xl:text-3xl font-bold text-center text-gray-900">
+    Virtual Cards for Individuals & Businesses
+      {/* Join over <span className="font-bold">5,000,000</span> other people using our group greeting cards */}
+    </h3>
     {/* <div className="flex items-center justify-between md:space-x-8 space-x-0 mt-6 partner_logos">
       <img
         src={Images.src}

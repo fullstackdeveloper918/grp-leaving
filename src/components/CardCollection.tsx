@@ -19,7 +19,7 @@ const CardCollection = async ({ params }: any) => {
   };
 
   const data = await fetchFromServer(api);
-  console.log(data, "check123");
+  console.log(data, "check145454523");
   const normalizedType = type.replace('-', ' ');
   const matchedObject = data.data.find((item: any) => {
     const normalizedTags = item.collection_title.replace('-', ' ');

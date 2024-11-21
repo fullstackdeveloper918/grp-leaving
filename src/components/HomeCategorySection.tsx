@@ -424,7 +424,7 @@ const HomeCategorySection = ({searchParams}:any) => {
             filteredCards.slice(0, 4).map((card) => (
               <div
                 key={card.id}
-                className="max-w-sm lg:w-44 lg:h-60 md:w-[150px] md:h-[150px] w-[100px] h-[100px] bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 overflow-hidden"
+                className="max-w-sm lg:w-64 lg:h-80 md:w-[150px] md:h-[150px] w-[100px] h-[100px] bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 overflow-hidden"
               >
                 <a href={`/card/new/${card.id}?category=${card.type}`}>
                   <Image
@@ -439,7 +439,7 @@ const HomeCategorySection = ({searchParams}:any) => {
             filteredCards1.slice(0, 4).map((card) => (
               <div
                 key={card.id}
-                className="max-w-sm lg:w-44 lg:h-60 md:w-[150px] md:h-[150px] w-[100px] h-[100px] bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 overflow-hidden"
+                className="max-w-sm 2xl:w-64 2xl:h-80 xl:w-56 xl:h-56 md:w-[150px] md:h-[150px] w-[100px] h-[100px] bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 overflow-hidden"
                 >
                 <a href={`/card/new/${card.id}?category=${card.type}`}>
                   <Image

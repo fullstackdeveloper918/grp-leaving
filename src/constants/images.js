@@ -159,6 +159,9 @@ import congratulations10 from "../assets/images/congratulations/900w-ro4ooDErdb0
 
 
 import laptop_img from "../assets/images/laptop_image.png"
+
+
+
 const Images = {
   // congratulation
   congratulations1,

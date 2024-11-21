@@ -27,6 +27,7 @@ const config: Config = {
       "menuColor":"#252C32",
       "lightBg":"#558ec914 ",
       "greyBorder":" #f0f3fc",
+      "heroColor":" #E8F3FF",
       "bgWhite":"#fff"
     },
     lineHeight: {

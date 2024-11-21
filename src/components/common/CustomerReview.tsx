@@ -50,7 +50,7 @@ const CustomerReview = (props:any) => {
               <p className="text-gray-700 mb-4">
                 {review.review} <span className="text-blue-500 cursor-pointer">Show more</span>
               </p>
-              <p className="text-sm text-gray-400 m-0">{review.date}</p>
+              <p className="text-sm text-gray-500 mb-2">{review.date}</p>
               {/* User Info */}
               <div className="flex ">
                 <img src={`https://img.freepik.com/premium-psd/greeting-card-with-flowers-it-pink-background_74869-4261.jpg?w=826`} alt={review.name} className="w-10 h-10 rounded-full mr-3" />

@@ -19,7 +19,7 @@ export async function fetchFromServer(api: Api): Promise<any> {
   const options: RequestInit = {
     method,
     headers,
-    // cache: 'no-store', // Disable caching for sensitive requests
+    cache: "no-store" // Disable caching for sensitive requests
   };
 
   if (body) {
