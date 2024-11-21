@@ -81,7 +81,7 @@ const RazorPay = ({ amount }: any) => {
       <button
         onClick={handlePayment}
         disabled={isProcessing}
-        className="w-full bg-blue-500 text-black py-2   border-2 border-blue-700 rounded-md hover:bg-blue-600 transition"
+        className="mt-6 bg-blue-600 text-blueText w-full py-2 rounded-xl border-2 border-[blueText] hover:bg-blue-700"
       >
         {isProcessing ? "Processign..." : `Pay Now :${amount} INR`}
       </button>

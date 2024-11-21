@@ -4,8 +4,8 @@ import React from "react";
 const page = () => {
   const AmountCondition = 126;
   return (
-    <div className="min-h-screen bg-gray-50 flex justify-center items-center">
-      <div className="w-full max-w-md bg-white shadow-lg rounded-lg p-6">
+    <div className="min-h-screen bg-gray-50 flex justify-center items-center bg-lightBg">
+      <div className="bg-white p-6 rounded-[20px] hover:shadow-lg transition-all  border border-[#e5e7eb] flex flex-col justify-between h-full">
         <h1 className="text-center text-2xl font-bold mb-4">5 Cards Bundle</h1>
 
         <div className="bg-gray-50 p-5 rounded-lg border border-gray-200">
