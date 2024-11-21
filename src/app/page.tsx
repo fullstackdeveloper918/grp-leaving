@@ -18,6 +18,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import ExpolreallcategoryCraousal from "@/components/ExpolreallcategoryCraousal";
 import ImageSlider from "@/components/common/ImageSlider";
 import PartnerCompanies from "@/components/PartnerCompanies";
+import HomeCategorySection from "@/components/HomeCategorySection";
 // import 'antd/dist/antd.css';
 const images = [
   { src: "https://img.freepik.com/premium-psd/greeting-card-with-flowers-it-pink-background_74869-4261.jpg?w=826", alt: "Image 1" },
@@ -33,7 +34,7 @@ const array = [
   "https://img.freepik.com/free-vector/summer-wedding-invitation_53876-92838.jpg?t=st=1726235013~exp=1726238613~hmac=83595c3903b855f20775c71b2bc347e136a2d79fd424053a26770c2514f71cdd&w=826",
   "https://img.freepik.com/free-psd/beautiful-watercolor-wedding-invitation-card-with-elegant-flower-tiny-foliage_44538-10601.jpg?t=st=1726235036~exp=1726238636~hmac=d1dc9a692078bdca87612cb7db66afe125d8c3af762cab4f66d5add701eac784&w=1060"
 ]
-const Home = async () => {
+const Home = async ({ searchParams }: any) => {
   const api: Api = {
     url: "https://fakestoreapi.com/products",
     method: "GET",
@@ -62,7 +63,8 @@ const Home = async () => {
        <div className="mt-5 mb-4">
         <PartnerCompanies/>
        </div>
-        <ExpolreallcategoryCraousal />
+        {/* <ExpolreallcategoryCraousal /> */}
+        <HomeCategorySection searchParams={searchParams} />
         {/* <ImageSlider  /> */}
         <div className="container-fluid text-center py-12">
           <h3 className="xl:text-4xl md:text-xl sm:text-md font-semibold lg:max-w-[50%] md:max-w-[60%] max-w-[100%] mx-auto">
