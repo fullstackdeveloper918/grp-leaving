@@ -60,19 +60,19 @@ const Home = async ({ searchParams }: any) => {
         <div className="mt-50">
           <Hero {...cardData} />
         </div>
-       <div className="mt-5 mb-4">
+       <div className=" section_space_50">
         <PartnerCompanies/>
        </div>
         {/* <ExpolreallcategoryCraousal /> */}
         <HomeCategorySection searchParams={searchParams} />
         {/* <ImageSlider  /> */}
-        <div className="container-fluid text-center py-12">
+        {/* <div className="container-fluid text-center py-12">
           <h3 className="xl:text-4xl md:text-xl sm:text-md font-semibold lg:max-w-[50%] md:max-w-[60%] max-w-[100%] mx-auto">
             We have Group Greeting Cards for all occasions{" "}
             <span className="text-blueText"> Premium </span> cards start at{" "}
             <span className="text-blueText">$1 </span>
           </h3>
-          <div className="justify-center items-center gap-5 mt-5">
+          <div className="justify-center items-center gap-5 mt-5"> */}
           {/* <Carousel 
           autoplay={true}  
           arrows={true} 
@@ -81,17 +81,17 @@ const Home = async ({ searchParams }: any) => {
           // slidesToShow={3}
         > */}
         
-        <ImageSlider  />
+        {/* <ImageSlider  /> */}
             {/* </Carousel> */}
-          </div>
-        </div>
+          {/* </div>
+        </div> */}
 
         {/* Section 4 */}
 
         <Image_text_Card />
 
         {/* Section 5 */}
-        <div className=" bg-workBg  py-16">
+        <div className=" bg-workBg bg-no-repeat bg-cover py-16 how_we_work">
           <div className="text-center container-fluid ">
             <h1 className="xl:text-4xl md:text-xl sm:text-md font-semibold">
               How group cards work?
@@ -108,7 +108,7 @@ const Home = async ({ searchParams }: any) => {
           </div>
         </div>
         {/* Section 6 */}
-        <div className="bg-testimonialBg bg-no-repeat py-12">
+        <div className="bg-testimonialBg common_padding bg-no-repeat testimonial_section">
           <div className=" mx-auto px-5 text-center container-fluid">
             <h2 className="xl:text-4xl md:text-xl sm:text-md font-semibold mb-10">
               See Why Our Customers Love Our Cards

@@ -20,9 +20,9 @@ const NewsletterForm: React.FC = () => {
   };
 
   return (
-    <div className="container-fluid py-12">
+    <div className="container-fluid newsletter_section common_padding">
       <div className="bg-newsletterbg p-5 bg-cover rounded-[20px]">
-        <h2 className="xl:text-4xl md:text-xl sm:text-md font-semibold text-center text-white">Subscribe to our newsletter</h2>
+        <h2 className="mt-2 text-2xl  xl:text-3xl font-bold text-center text-gray-600 text-white">Subscribe to Our Newsletter</h2>
         <form className="flex space-x-2 max-w-[90%] mx-auto newsForm mt-5" onSubmit={handleSubmit}>
           
             <input

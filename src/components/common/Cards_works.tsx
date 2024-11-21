@@ -31,7 +31,7 @@ const Cards_works = () => {
       </div>
 
       {/* Step 3: Send the Card */}
-      <div className="text-center">
+      <div className="text-center imgAfter relative">
         <div className="w-16 h-16 mx-auto mb-4">
         <Image src={Images.step_3} alt="card 3" className="w-full h-full object-cover " style={{ width: '100%', height:'100%'}} />
           </div>

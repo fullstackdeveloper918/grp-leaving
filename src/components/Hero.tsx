@@ -37,25 +37,24 @@ console.log(displayedText,"displayedText");
 
   return (
     <>
-      <section className="bg-heroImage  dark:bg-gray-900 heroSectionHeight  align-middle d-flex">
+      <section className="bg-heroColor  dark:bg-gray-900 heroSectionHeight  align-middle d-flex homeBanner">
         <div className="container-fluid  py-8 mx-auto  xl:gap-0 lg:py-16 d-flex justify-between  lg:flex-nowrap flex-wrap space-y-10 items-center">
           <div className="lg:w-1/2 w-full md:text-center xs:text-center lg:text-left ">
-            <h1 className="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight  md:text-5xl xl:text-6xl dark:text-white text-black xl:leading-extra-loose lineHeight">
+            <h1 className="bannerHeaderH1">
               Group Greeting Cards{" "}
               <span className="text-blueText">for {displayedText||"''"}</span>
             </h1>
-            <p className="text-black max-w-2xl mb-6 font-normal lg:mb-6 md:text-lg lg:text-xl  font-medium">
-              The easiest way to pass a virtual greeting card around your
-              office.
+            <p className="text-blackText font-medium">
+            The simplest way to share a virtual greeting card with everyone in your office.
             </p>
 
-            <ul className="list-none d-flex xl:pl-8 lg:px-5 gap-10">
-              <List className="relative listBefore ml-4 md:text-lg lg:text-xl font-medium">Easy to share</List>
-              <List className="relative listBefore ml-5 md:text-lg lg:text-xl font-medium">Quick to create </List>
-              <List className="relative listBefore ml-5 md:text-lg lg:text-xl font-medium">Unlimited signatures</List>
+            <ul className="list-none d-flex xl:pl-7 lg:px-5 gap-10">
+              <li className="relative listBefore ml-4 md:text-lg lg:text-lg font-medium">Easy to share</li>
+              <li className="relative listBefore ml-5 md:text-lg lg:text-lg font-medium">Quick to create </li>
+              <li className="relative listBefore ml-5 md:text-lg lg:text-lg font-medium">Unlimited signatures</li>
             </ul>
 
-           <div className="mt-5">
+           <div className="mt-5 center_text">
            <a
               href="/create"
               className=" btnPrimary"

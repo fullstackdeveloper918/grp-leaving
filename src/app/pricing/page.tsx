@@ -21,10 +21,10 @@ const Page = () => {
           <span className="block text-blueBg text-md font-medium text-center">
             Pricing
           </span>
-          <h1 className="2xl:text-4xl text-center lg:text-2xl text-xl font-semibold mb-6 text-gray-800">
+          <h1 className="2xl:text-4xl text-center lg:text-2xl text-xl font-semibold lg:mb-6 mb-2 text-gray-800">
             Pricing that grows with you
           </h1>
-          <p className="text-center text-[#4b5563] mb-10 md:text-xl  text-lg 2xl:max-w-[60%] mx-auto font-medium ">
+          <p className="text-center text-[#4b5563] mb-10 md:text-xl  text-md 2xl:max-w-[60%] mx-auto font-medium ">
             Create cards one at a time to send to a friend or colleague or
             purchase a card bundle if you plan to send 5 or more cards.
           </p>
@@ -102,7 +102,7 @@ const Page = () => {
             </div>
 
             {/* Card group Section */}
-            {/* <div className="bg-white p-6 rounded-lg hover:shadow-lg border flex flex-col justify-between h-full">
+            {/* <div className="bg-white p-6 rounded-[20px] hover:shadow-lg transition-all  border border-[#e5e7eb] flex flex-col justify-between h-full">
               <div>
                 <h2 className="text-xl font-semibold mb-4 text-center text-gray-800">
                   Card Bundle
@@ -275,10 +275,10 @@ const Page = () => {
         ref={bundlesRef}
         className="container py-20 "
       >
-        <h1 className="2xl:text-4xl text-center lg:text-2xl text-xl font-semibold mb-6 text-gray-800">
+        <h1 className="2xl:text-4xl text-center lg:text-2xl text-xl font-semibold lg:mb-6 mb:2 text-gray-800">
           Pricing and Card Bundles
         </h1>
-        <p className="text-center text-[#4b5563] mb-10 md:text-xl  text-lg 2xl:max-w-[60%] mx-auto font-medium ">
+        <p className="text-center text-[#4b5563] mb-10 md:text-xl  text-md 2xl:max-w-[60%] mx-auto font-medium ">
           Create cards one at a time to send to a friend or colleague or
           purchase a card bundle if you plan to send 5 or more cards.
         </p>
@@ -286,7 +286,7 @@ const Page = () => {
         {/* Card Bundles */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl">
           {/* Bundle Option 1 */}
-          <div className="bg-white p-6 rounded-lg hover:shadow-lg border flex flex-col justify-between h-full">
+          <div className="bg-white p-6 rounded-[20px] hover:shadow-lg transition-all  border border-[#e5e7eb] flex flex-col justify-between h-full">
             <div>
               <h2 className="text-xl font-semibold mb-4 text-center text-gray-800">
                 5 cards
@@ -307,7 +307,7 @@ const Page = () => {
           </div>
 
           {/* Bundle Option 2 */}
-          <div className="bg-white p-6 rounded-lg hover:shadow-lg border flex flex-col justify-between h-full">
+          <div className="bg-white p-6 rounded-[20px] hover:shadow-lg transition-all  border border-[#e5e7eb] flex flex-col justify-between h-full">
             <div>
               <h2 className="text-xl font-semibold mb-4 text-center text-gray-800">
                 10 cards
@@ -328,7 +328,7 @@ const Page = () => {
           </div>
 
           {/* Bundle Option 3 */}
-          <div className="bg-white p-6 rounded-lg hover:shadow-lg border flex flex-col justify-between h-full">
+          <div className="bg-white p-6 rounded-[20px] hover:shadow-lg transition-all  border border-[#e5e7eb] flex flex-col justify-between h-full">
             <div>
               <h2 className="text-xl font-semibold mb-4 text-center text-gray-800">
                 25 cards
@@ -354,7 +354,7 @@ const Page = () => {
           </div>
 
           {/* Bundle Option 4 */}
-          <div className="bg-white p-6 rounded-lg hover:shadow-lg border flex flex-col justify-between h-full">
+          <div className="bg-white p-6 rounded-[20px] hover:shadow-lg transition-all  border border-[#e5e7eb] flex flex-col justify-between h-full">
             <div>
               <h2 className="text-xl font-semibold mb-4 text-center text-gray-800">
                 50 cards
@@ -375,7 +375,7 @@ const Page = () => {
           </div>
 
           {/* Bundle Option 5 */}
-          <div className="bg-white p-6 rounded-lg hover:shadow-lg border flex flex-col justify-between h-full">
+          <div className="bg-white p-6 rounded-[20px] hover:shadow-lg transition-all  border border-[#e5e7eb] flex flex-col justify-between h-full">
             <div>
               <h2 className="text-xl font-semibold mb-4 text-center text-gray-800">
                 100 cards
@@ -396,7 +396,7 @@ const Page = () => {
           </div>
 
           {/* Custom Option */}
-          <div className="bg-white p-6 rounded-lg hover:shadow-lg border flex flex-col justify-between h-full">
+          <div className="bg-white p-6 rounded-[20px] hover:shadow-lg transition-all  border border-[#e5e7eb] flex flex-col justify-between h-full">
             <div>
               <h2 className="text-xl font-semibold mb-4 text-center text-gray-800">
                 Custom
@@ -421,7 +421,7 @@ const Page = () => {
           You can use them on all designs and categories and they do not expire.
         </p>
 
-        <h4 className="2xl:text-4xl text-center lg:text-2xl text-xl font-semibold mb-6 text-gray-800 mt-5">Gift Card Pricing</h4>
+        <h4 className="2xl:text-4xl text-center lg:text-2xl text-xl font-semibold lg:mb-6 mb-4 text-gray-800 mt-5">Gift Card Pricing</h4>
 
         <p className="mt-3 text-center text-gray-500">
           Gift cards are included with all greeting cards at no additional cost.
