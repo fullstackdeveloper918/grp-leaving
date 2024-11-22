@@ -7,8 +7,8 @@ import api from "@/utils/api";
 import LogoutModal from "./LogoutModal";
 import { useRouter } from "next/navigation";
 import { destroyCookie, parseCookies } from "nookies";
-// import GoodLuckCad from "../../assets/images/congratulations/good_luck.png"
-import GoodLuckCad from "../../assets/svg/GoodLuckCards.svg"
+import GoodLuckCad from "../../assets/images/congratulations/good_luck.png"
+// import GoodLuckCad from "../../assets/svg/GoodLuckCards.svg"
 import register from "../../assets/images/register.png"
 const Navbar = () => {
   const router = useRouter();
@@ -81,7 +81,7 @@ if (getuserData) {
         <div className="flex justify-between items-center md:py-4 md:px-6 px-2 py-3 container-fluid">
           {/* Logo */}
           <Link href={`/`} className="no-underline w-3/12">
-          <Image src={GoodLuckCad.src} height={100} width={300} alt="Good Luck" className="text-4xl font-bold" />
+          <Image src={GoodLuckCad.src} height={100} width={100} alt="Good Luck" className="text-4xl font-bold" />
           </Link>
 
           <div className="flex items-center space-x-4 w-9/12 justify-end">
