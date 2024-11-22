@@ -20,7 +20,7 @@ const OptionCard: React.FC<OptionCardProps> = ({ title, imageSrc, description, b
         </span>
       )}
       <Image src={imageSrc} alt={title} className="mx-auto h-24  object-contain" width={60}  />
-      <h3 className="text-xl font-bold mb-2">{title}</h3>
+      <h3 className="md:text-xl tex-lg font-medium mb-2">{title}</h3>
       <p className="text-gray-600 mb-4">{description}</p>
       <button className="btnPrimary text-xs  ">{buttonText}</button>
     </div>
