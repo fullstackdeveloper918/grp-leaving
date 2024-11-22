@@ -176,17 +176,17 @@ console.log( params?.id,"check");
   console.log(`https://magshopify.goaideme.com/${data?.data?.collection_image}`,"poopopopop");
   
   return (
-    <div className="min-h-screen flex flex-wrap">
+    <div className="min-h-screen flex flex-wrap choose_section">
       {/* Left Part - Card Design */}
-      <div className="md:w-1/2 flex-wrap w-2/2  bg-blue-50 flex items-center justify-center md:order-none order-1 bg-blueBg ">
+      <div className="md:w-1/2 flex-wrap w-2/2  bg-blue-50 flex items-center justify-center md:order-none order_1 bg-blueBg px-3 choose_card-wrapper">
         <div className="text-center">
-          <h1 className="text-2xl font-semibold mb-1">Create a Group Card</h1>
-          <p className="text-gray-500 mb-6">
+          <h1 className="text-2xl font-semibold mb-1 text-white">Create a Group Card</h1>
+          <p className="text-[#d9d9d9] mb-6">
             Watering can {searchParams?.category} card
           </p>
 
           {/* Card Image */}
-          <div className="bg-white rounded-lg shadow-lg p-4">
+          <div className="bg-white rounded-lg shadow-lg p-4 text-white">
           {data?.data ? (
         <span>
           <Image
@@ -225,7 +225,7 @@ console.log( params?.id,"check");
       </div>
 
       {/* Right Part  Form Section */}
-      <div className="md:w-1/2 w-full w-2/2 bg-lightBg flex flex-col items-center justify-center relative">
+      <div className="md:w-1/2 w-full w-2/2 bg-lightBg flex flex-col items-center justify-center relative px-3 choose_content_wrapper">
         <MultiStepForm params={params?.id} />
       </div>
     </div>

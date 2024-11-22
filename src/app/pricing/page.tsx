@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useRef } from "react";
+import cardPricing from "../../assets/images/card_pricing.png"
 
 const Page = () => {
   const bundlesRef = useRef<any>(null);
@@ -420,10 +421,13 @@ const Page = () => {
           Card bundles are a one-time payment and do not automatically renew.
           You can use them on all designs and categories and they do not expire.
         </p>
+        </div>
 
-        <h4 className="2xl:text-4xl text-center lg:text-2xl text-xl font-semibold lg:mb-6 mb-4 text-gray-800 mt-5">Gift Card Pricing</h4>
+  <section className="container-fluid bg-lightBg  common_padding px-5 rounded-md relative card_pricing_Wapper">
+    <div>
+        <h4 className="2xl:text-4xl text-left lg:text-2xl text-xl font-semibold lg:mb-6 mb-4 text-gray-800">Gift Card Pricing</h4>
 
-        <p className="mt-3 text-center text-gray-500">
+        <p className="mt-3 text-left text-gray-400 max-w-[60%]  md:text-md lg:text-md  ">
           Gift cards are included with all greeting cards at no additional cost.
           We do however charge a small fee on each contribution to cover the
           cost of managing the service, payment costs and fraud prevention. The
@@ -436,7 +440,13 @@ const Page = () => {
           redeeming the gift card so the recipient will get the full value of
           the card.
         </p>
-      </div>
+        </div>
+        <div className="card_pricing_img">
+<img src={cardPricing.src} alt="img pricing" />
+        </div>
+        </section>
+     
+    
     </>
   );
 };

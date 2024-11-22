@@ -54,7 +54,7 @@ const NewsletterForm: React.FC = () => {
             type="submit"
             className="bg-white submitbtnPrimary text-blueText"
           >
-            Subscribe Now
+            Subscribe
           </button>
         </form>
       </div>

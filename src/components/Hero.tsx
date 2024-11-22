@@ -54,7 +54,7 @@ console.log(displayedText,"displayedText");
               <li className="relative listBefore ml-5 md:text-lg lg:text-lg font-medium">Unlimited signatures</li>
             </ul>
 
-           <div className="mt-5 center_text">
+           <div className="bannerButton">
            <a
               href="/create"
               className=" btnPrimary"

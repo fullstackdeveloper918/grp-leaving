@@ -15,7 +15,7 @@ const Filter = ({searchParams}:any) => {
       <h3 className="mt-2 text-2xl  xl:text-3xl font-bold text-center text-gray-900">
         Design or Uploading Your Own!
       </h3>
-      <div className="mt-4 flex lg:space-x-8 space-x-4">
+      <div className="mt-4 flex lg:space-x-8 space-x-4 filter_responsive">
         {array.map((category) => (
             <>
             <Link href={`/?category=${category}`} className='no-underline' scroll={false}>
