@@ -3,13 +3,14 @@ import validation from "@/utils/validation";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
-import checkSvg from "../../assets/images/check.svg"
+import checkSvg from "../../assets/images/check.svg";
+import api from "@/utils/api";
 
-const MultiStepForm = ({params}:any) => {
+const MultiStepForm = ({ params }: any) => {
   const router = useRouter();
   const [step, setStep] = useState(1);
   const [recipientName, setRecipientName] = useState("");
-  const [loading,setLoading]=useState(false)
+  const [loading, setLoading] = useState(false);
   const [senderName, setSenderName] = useState("");
   const [recipientEmail, setRecipientEmail] = useState("");
   const [address, setAddress] = useState("");
@@ -18,12 +19,20 @@ const MultiStepForm = ({params}:any) => {
   const [error, setError] = useState("");
   const [senderError, setSenderError] = useState("");
   const [emailError, setEmailError] = useState("");
+  console.log(recipientName, "recipientName");
+  console.log(senderName, "senderName");
+  console.log(cardType, "cardType");
+  console.log(params, "params");
+  // console.log(recipientName,"recipientName");
+  // console.log(recipientName,"recipientName");
+  const [selectedDate, setSelectedDate] = useState(""); // to store date value
+  const [selectedTime, setSelectedTime] = useState(""); // to store time value
   const handleNext = () => {
     if (!recipientName) {
       setError("Recipient name is required.");
       return; // Stop submission if validation fails
     }
-  
+
     if (!recipientEmail) {
       setEmailError("Recipient Email is required.");
       return; // Stop submission if validation fails
@@ -84,29 +93,58 @@ const MultiStepForm = ({params}:any) => {
     // You can also update the address state if needed
     // setAddress(value);
   };
+  console.log(selectedDate, "selectedDate");
+  console.log(selectedTime, "selectedTime");
+  console.log(cardType, "cardType");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-   try {
-    setLoading(true)
-    console.log(recipientName, "recipientName");
-    // Handle final submission logic here
-    if (!recipientName) {
-      setError("Recipient name is required.");
-      return; // Stop submission if validation fails
+    console.log(
+      {
+        recipientName,
+        recipientEmail,
+        cardType,
+        selectedDate,
+        selectedTime,
+        senderName,
+      },
+      "ioioioio"
+    );
+
+    try {
+      let item = {
+        user_uuid: params,
+        card_uuid: params,
+        currency_type: "USD",
+        recipient_name: recipientName,
+        recipient_email: recipientEmail,
+        sender_name: senderName,
+        do_it_late: cardType === "later" ? true : false,
+        delivery_date: `${selectedDate} ${selectedTime}`,
+        allow_private: false,
+        add_confetti: false,
+      };
+      setLoading(true);
+      console.log(item, "item");
+      // Handle final submission logic here
+      if (!recipientName) {
+        setError("Recipient name is required.");
+        return; // Stop submission if validation fails
+      }
+
+      const res = await api.Cart.addCart(item);
+      setError("");
+      setRecipientName("");
+      router.push(`/card/pay/${params}`);
+      console.log("Final submission", { recipientName, recipientEmail });
+    } catch (error) {
+      setLoading(false);
     }
-    setError("");
-    setRecipientName("");
-    router.push(`/card/pay/${params}`);
-    console.log("Final submission", { recipientName, recipientEmail });
-   } catch (error) {
-    setLoading(false)
-   }
   };
   return (
     <>
       <div className="flex space-x-8 mb-8 absolute top-10">
-           {/* <div
+        {/* <div
           className={`flex items-center space-x-2 ${
             step >= 3 ? "text-blue-600" : "text-gray-500"
           }`}
@@ -118,7 +156,7 @@ const MultiStepForm = ({params}:any) => {
           ></div>
           <p className="md:text-md text-sm font-medium mb-0">Pay and Share</p>
         </div> */}
-         {/* <div
+        {/* <div
           className={`flex items-center space-x-2 ${
             step >= 4 ? "text-blue-600" : "text-gray-500"
           }`}
@@ -131,8 +169,6 @@ const MultiStepForm = ({params}:any) => {
           <p className="md:text-md text-sm font-medium mb-0">Submit</p>
         </div> */}
 
-
-
         {/* count steps  */}
         <div className="text-center after_line">
           <div className="step_count ">1</div>
@@ -143,19 +179,19 @@ const MultiStepForm = ({params}:any) => {
           <div className="step_count">2</div>
           <p className="md:text-md text-sm font-medium mb-0">Enter Details</p>
         </div>
-         
+
         <div className="text-center before_line">
           <div className="step_count">3</div>
           <p className="md:text-md text-sm font-medium mb-0">Pay and Share</p>
         </div>
-       
-           <div className="text-center">
-          <div className="submit_svg"><img src={checkSvg.src} alt="imgccheck" /></div>
+
+        <div className="text-center">
+          <div className="submit_svg">
+            <img src={checkSvg.src} alt="imgccheck" />
+          </div>
           <p className="md:text-md text-sm font-medium mb-0">Submit</p>
         </div>
       </div>
-
-
 
       <div className="bg-white shadow-lg rounded-lg p-10 w-full max-w-lg">
         <h2 className="text-2xl font-semibold mb-6">
@@ -167,10 +203,13 @@ const MultiStepForm = ({params}:any) => {
             ? "Want to collect funds for a gift card?"
             : "Who is the card from?"}
         </h2>
-        <form onSubmit={handleSubmit} aria-disabled={loading} className="space-y-6">
+        <form
+          onSubmit={handleSubmit}
+          aria-disabled={false}
+          className="space-y-6"
+        >
           {step === 1 && (
             <>
-              {/* Recipient Name Input */}
               <div>
                 <label
                   htmlFor="recipientName"
@@ -184,7 +223,7 @@ const MultiStepForm = ({params}:any) => {
                   value={recipientName}
                   onChange={(e) => setRecipientName(e.target.value)}
                   required
-                  className="mt-1 block w-full  px-3 py-2 border border-gray-300 rounded-md  focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                 />
                 {!recipientName && error && (
                   <p
@@ -196,7 +235,6 @@ const MultiStepForm = ({params}:any) => {
                 )}
               </div>
 
-              {/* Recipient Email Input */}
               <div>
                 <label
                   htmlFor="recipientEmail"
@@ -210,7 +248,7 @@ const MultiStepForm = ({params}:any) => {
                   required
                   value={recipientEmail}
                   onChange={(e) => setRecipientEmail(e.target.value)}
-                  className="mt-1 block w-full  px-3 py-2 border border-gray-300 rounded-md  focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                 />
                 {emailError && (
                   <p
@@ -245,9 +283,6 @@ const MultiStepForm = ({params}:any) => {
                     className="mr-2"
                   />
                   <span className="text-lg">Set delivery date</span>
-                  <span className="ml-auto text-gray-500">
-                    {/* ${individualCardprice} USD */}
-                  </span>
                 </label>
                 <label className="flex items-center">
                   <input
@@ -259,10 +294,8 @@ const MultiStepForm = ({params}:any) => {
                     className="mr-2"
                   />
                   <span className="text-lg">Do this later</span>
-                  <span className="ml-auto text-gray-500">
-                    {/* ${individualCardprice} USD */}
-                  </span>
                 </label>
+
                 {cardType === "date" && (
                   <>
                     <p className="mt-3">
@@ -271,20 +304,23 @@ const MultiStepForm = ({params}:any) => {
                     <div className="gap-3">
                       <input
                         type="date"
+                        value={selectedDate}
+                        onChange={(e) => setSelectedDate(e.target.value)}
                         className="ml-auto text-gray-500"
                         placeholder="Date"
-                        name="cardType"
                       />
                       <input
                         type="time"
+                        value={selectedTime}
+                        onChange={(e) => setSelectedTime(e.target.value)}
                         className="ml-auto text-gray-500"
                         placeholder="Time"
-                        name="cardType"
                       />
                     </div>
                   </>
                 )}
               </div>
+
               <button
                 type="button"
                 onClick={handlePrevious}
@@ -302,6 +338,7 @@ const MultiStepForm = ({params}:any) => {
               </button>
             </>
           )}
+
           {step === 3 && (
             <>
               <div>
@@ -315,7 +352,7 @@ const MultiStepForm = ({params}:any) => {
                   id="selectOption"
                   value={selectedOption}
                   onChange={handleSelectChange}
-                  className="mt-1 block w-full  px-3 py-2 border border-gray-300 rounded-md  focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                 >
                   <option value="">Disable Collection</option>
                   <option value="gbp">GBP</option>
@@ -324,6 +361,7 @@ const MultiStepForm = ({params}:any) => {
                   <option value="eur">EUR</option>
                 </select>
               </div>
+
               <button
                 type="button"
                 onClick={handlePrevious}
@@ -341,15 +379,10 @@ const MultiStepForm = ({params}:any) => {
               </button>
             </>
           )}
+
           {step === 4 && (
             <>
               <div>
-                {/* <label
-                  htmlFor="recipientName"
-                  className="block text-sm font-medium text-gray-700"
-                >
-                  Recipient Name <span className="text-red-500">*</span>
-                </label> */}
                 <input
                   id="senderName"
                   type="text"
@@ -357,9 +390,9 @@ const MultiStepForm = ({params}:any) => {
                   placeholder="Sender Name"
                   onChange={(e) => setSenderName(e.target.value)}
                   required
-                  className="mt-1 block w-full  px-3 py-2 border border-gray-300 rounded-md  focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                 />
-                 {!senderName && senderError && (
+                {!senderName && senderError && (
                   <p
                     className="text-red-500 text-sm mt-2"
                     style={{ color: "red" }}
@@ -367,23 +400,8 @@ const MultiStepForm = ({params}:any) => {
                     {senderError}
                   </p>
                 )}
-                {/* <p className="">e.g. Your Name or Team Name
-
-We’ll use your name if you leave this blank</p> */}
               </div>
-              {/* <label className="flex items-center">
-                  <input
-                    type="checkbox"
-                    name="cardType"
-                    value="later"
-                    // checked={cardType === "later"}
-                    // onChange={() => setCardType("later")}
-                    className="mr-2"
-                  />
-                  <span className="text-lg">Add confetti to this card</span>
-                  <span className="ml-auto text-gray-500">
-                  </span>
-                </label> */}
+
               <div className="form-check form-switch">
                 <input
                   className="form-check-input"
@@ -397,6 +415,7 @@ We’ll use your name if you leave this blank</p> */}
                   Add confetti to this card
                 </label>
               </div>
+
               <div className="form-check form-switch">
                 <input
                   className="form-check-input"
@@ -410,6 +429,7 @@ We’ll use your name if you leave this blank</p> */}
                   Allow private/hidden message
                 </label>
               </div>
+
               <button
                 type="button"
                 onClick={handlePrevious}
@@ -417,14 +437,13 @@ We’ll use your name if you leave this blank</p> */}
               >
                 Back
               </button>
-              {/* <Link href={`card/pay/1`}> */}
+
               <button
                 type="submit"
-                className="w-full bg-blueBg text-white py-2 px-4  rounded-md shadow-sm hover:bg-blue-700 "
+                className="w-full bg-blueBg text-white py-2 px-4 rounded-md shadow-sm hover:bg-blue-700"
               >
                 Submit
               </button>
-              {/* </Link> */}
             </>
           )}
         </form>

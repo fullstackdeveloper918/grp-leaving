@@ -72,6 +72,11 @@ const Auth = {
     requests.patch('profile', info),
 };
 
+const Cart={
+  addCart: (info:any) =>
+    requests.post('cart/add-cart', info),
+}
+
 const dashboard={
   upcoming: () =>
     requests.get(`upcoming-meeting`),
@@ -377,6 +382,7 @@ const cybersify = {
   Genre,
   Homepage,
   Notification,
+  Cart,
   Products,
   Staff,
   Search,
