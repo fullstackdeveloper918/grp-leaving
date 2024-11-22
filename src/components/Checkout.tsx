@@ -20,10 +20,14 @@ import AddCardElement from "./common/AddCard";
 import RazorPay from "./RazorPay";
 import EscrowPayment from "./EscrowPayment";
 import { cookies } from "next/headers";
+import { useParams } from "next/navigation";
 
 const Checkout = () => {
   const [cardType, setCardType] = useState<any>("group");
   console.log(cardType, "cardType");
+  const param=useParams()
+  console.log(param.id,"param");
+  
   // const cookiesList = cookies();
   // const userInfoCookie = cookiesList.get('userInfo'); 
   // console.log(userInfoCookie,"ppppp");

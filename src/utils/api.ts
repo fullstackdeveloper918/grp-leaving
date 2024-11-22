@@ -77,6 +77,22 @@ const Cart={
     requests.post('cart/add-cart', info),
 }
 
+const Collection={
+  create: (info:any) =>
+    requests.post('razorpay/create-link', info),
+}
+
+
+
+
+
+
+
+
+
+
+
+
 const dashboard={
   upcoming: () =>
     requests.get(`upcoming-meeting`),
@@ -382,6 +398,7 @@ const cybersify = {
   Genre,
   Homepage,
   Notification,
+  Collection,
   Cart,
   Products,
   Staff,

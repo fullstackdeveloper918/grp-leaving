@@ -4,6 +4,7 @@ import Script from "next/script";
 // import { cookies } from "next/dist/client/components/headers";
 // import { cookies } from "next/headers";
 import nookies from 'nookies'
+import { useParams } from "next/navigation";
 declare global {
   interface Window {
     Razorpay: any;
@@ -16,7 +17,8 @@ interface UserInfo {
 const RazorPay = ({ amount }: any) => {
   console.log(amount, "amount");
   const [userInfo, setUserInfo] = useState<any>(null)
-
+  const param=useParams()
+  console.log(param.id,"param");
   useEffect(() => {
     const cookies = nookies.get()
     const userInfoFromCookie: UserInfo | null = cookies.userInfo ? JSON.parse(cookies.userInfo) : null
@@ -49,7 +51,7 @@ const RazorPay = ({ amount }: any) => {
           // console.log("Payment ID:", paymentId);
           // console.log("Payment ID0:", paymentId?.razorpay_payment_id);
           // console.log("Payment ID1:",JSON.stringify({ paymentId }));
-          const product_id= "sadasd_e21ZXC31332212_fdgh";
+          const product_id= param.id;
           // For example:
           fetch(
             'https://magshopify.goaideme.com/razorpay/save-payment',

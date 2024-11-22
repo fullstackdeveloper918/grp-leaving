@@ -5,6 +5,7 @@ import cardData from "../constants/CardJson/card.json";
 import Images from "@/constants/images";
 import { fetchFromServer } from "@/app/actions/fetchFromServer";
 import { Api } from "@/interfaces/interfaces";
+import { cookies } from "next/headers";
 // const array = [
 //   {
 //     id: 1,
@@ -159,15 +160,10 @@ const array = [
   { id: 95, image: Images.congratulations9, type: "congratulations" },
   { id: 96, image: Images.congratulations10, type: "congratulations" },
 ];
-const Recipient = async ({
-  searchParams,
-  params,
-}: {
-  searchParams: any;
-  params: any;
-}) => {
+const Recipient = async ({searchParams, params,}: {searchParams: any;params: any;}) => {
   console.log(params?.id, "check");
   console.log(searchParams?.category);
+ 
   const api: Api = {
     url: `https://magshopify.goaideme.com/card/edit-card/${params?.id}`,
     method: "GET",

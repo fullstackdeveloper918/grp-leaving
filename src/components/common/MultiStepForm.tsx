@@ -2,9 +2,11 @@
 import validation from "@/utils/validation";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import checkSvg from "../../assets/images/check.svg";
 import api from "@/utils/api";
+import { cookies } from "next/dist/client/components/headers";
+import { toast } from "react-toastify";
 
 const MultiStepForm = ({ params }: any) => {
   const router = useRouter();
@@ -23,6 +25,29 @@ const MultiStepForm = ({ params }: any) => {
   console.log(senderName, "senderName");
   console.log(cardType, "cardType");
   console.log(params, "params");
+  const [userInfo, setUserInfo] = useState<any>(null);
+  const [uuid, setUuid] = useState<string | null>(null);
+console.log(uuid,"uuid")
+  useEffect(() => {
+    const cookies = document.cookie.split('; ');
+    const userInfoCookie = cookies.find(cookie => cookie.startsWith('userInfo='));
+
+    if (userInfoCookie) {
+      const cookieValue = userInfoCookie.split('=')[1];
+      try {
+        const parsedUserInfo = JSON.parse(decodeURIComponent(cookieValue));
+        setUserInfo(parsedUserInfo);
+        
+        // Extracting the UUID from the parsed userInfo object
+        if (parsedUserInfo && parsedUserInfo.uuid) {
+          setUuid(parsedUserInfo.uuid);
+          console.log('UUID:', parsedUserInfo.uuid);
+        }
+      } catch (error) {
+        console.error('Error parsing userInfo cookie', error);
+      }
+    }
+  }, []);
   // console.log(recipientName,"recipientName");
   // console.log(recipientName,"recipientName");
   const [selectedDate, setSelectedDate] = useState(""); // to store date value
@@ -99,46 +124,52 @@ const MultiStepForm = ({ params }: any) => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log(
-      {
-        recipientName,
-        recipientEmail,
-        cardType,
-        selectedDate,
-        selectedTime,
-        senderName,
-      },
-      "ioioioio"
-    );
-
+  
     try {
       let item = {
-        user_uuid: params,
+        user_uuid: uuid,
         card_uuid: params,
         currency_type: "USD",
         recipient_name: recipientName,
         recipient_email: recipientEmail,
         sender_name: senderName,
         do_it_late: cardType === "later" ? true : false,
-        delivery_date: `${selectedDate} ${selectedTime}`,
+        delivery_date: selectedDate,
+        delivery_time: selectedTime,
         allow_private: false,
         add_confetti: false,
       };
+  
       setLoading(true);
       console.log(item, "item");
-      // Handle final submission logic here
-      if (!recipientName) {
-        setError("Recipient name is required.");
-        return; // Stop submission if validation fails
+  
+      // Make the fetch POST request
+      const response = await fetch('https://magshopify.goaideme.com/cart/add-cart', { // replace '/api/cart' with the correct endpoint
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(item),
+      });
+  
+      // Check if the request was successful
+      if (!response.ok) {
+        throw new Error('Failed to add item to cart');
       }
-
-      const res = await api.Cart.addCart(item);
-      setError("");
-      setRecipientName("");
+  
+      const data = await response.json(); // Assuming the response returns JSON
+      toast.success("Added Successfully");
+  
+      // Optionally reset form values or error states
+      // setError("");
+      // setRecipientName("");
+  
       router.push(`/card/pay/${params}`);
       console.log("Final submission", { recipientName, recipientEmail });
     } catch (error) {
       setLoading(false);
+      console.error("Error during submission", error);
+      toast.error("Something went wrong");
     }
   };
   return (
