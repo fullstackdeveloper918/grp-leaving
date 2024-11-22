@@ -48,7 +48,7 @@ const Silder = () => {
         src={image.src} 
         alt={`Slide ${index + 1}`} 
         layout="responsive" 
-        width={1200} 
+        width={100} 
         height={600}
         objectFit="cover"
       />

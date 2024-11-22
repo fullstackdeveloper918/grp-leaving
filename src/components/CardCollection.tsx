@@ -464,7 +464,7 @@ let data1 = await data.json();
       <div className="container-fluid">
         <div className="md:flex md:space-x-3 md:space-y-0 space-y-6 ">
           <Sidebar urlValue={params?.slug[0]} cardLabel={cardLabel} response={data1} />
-          <main className="flex-1 lg:px-8 md:px-6 px-2">
+          <main className="flex-1 lg:px-8 md:px-6 md:px-2 px-0">
             <div className="flex md:justify-between md:items-center mb-6 md:flex-row  flex-col-reverse  justify-start ">
               <h2 className="xl:text-4xl  md:text-lg text-md font-semibold justify-center items-cente mt-3">
                 Pick a <span className="capitalize">{params?.slug[0]}</span>{" "}
@@ -473,7 +473,7 @@ let data1 = await data.json();
               <CollectionFilter />
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 gap-8">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-2 lg:grid-cols-4 gap-8 min_gap">
               {/* {cardData.data.map((card, index) => (
                 <Card item={card} index={index} />
               ))} */}

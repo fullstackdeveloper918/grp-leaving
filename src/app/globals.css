@@ -178,6 +178,9 @@ strong.democard {
   max-width: 26%;
   color: #fff;
 }
+.newsForm .submitbtnPrimary {
+  border-radius: 0.375rem;
+}
 .newsForm input::placeholder {
   color: #ffffffd2;
 }
@@ -427,29 +430,22 @@ body {
   z-index: -1;
 }
 
-
-
 /* price page css started */
 /* .faq_wrapper .border-b:last-child {
   border: 0 !important;
 } */
 
-
 /* price page css started */
-.card_pricing_img{
+.card_pricing_img {
   position: absolute;
   right: 0;
   bottom: 0;
-  }
-.card_pricing_img img{
+}
+.card_pricing_img img {
   width: 100%;
   max-width: 380px;
   object-fit: cover;
 }
-
-
-
-
 
 @media (max-width: 1600px) {
   .partner_logos img {
@@ -469,6 +465,9 @@ body {
   }
   .container-fluid {
     max-width: 96%;
+  }
+  .min_gap{
+    gap: 20px !important;
   }
 }
 @media (max-width: 1366px) {
@@ -503,6 +502,9 @@ body {
   }
   .list_group li {
     font-size: 16px !important;
+  }
+  .min_height{
+    min-height: 220px !important ;
   }
 }
 
@@ -620,13 +622,19 @@ body {
   .gift_img_wrapper {
     margin-bottom: 20px !important;
   }
-  .card_pricing_Wapper .card_pricing_img{
+  .card_pricing_Wapper .card_pricing_img {
     position: relative;
     right: 0;
-    }
-    .card_pricing_Wapper p{
-max-width: 100% !important;
-    }
+  }
+  .card_pricing_Wapper p {
+    max-width: 100% !important;
+  }
+  .min_height{
+    min-height: 200px !important ;
+  }
+  .min_gap{
+    gap: 20px !important;
+  }
 }
 
 @media screen and (max-width: 767px) {
@@ -673,20 +681,18 @@ max-width: 100% !important;
     padding-left: 10px !important;
     padding: 10px !important;
   }
-  .choose_content_wrapper{
+  .choose_content_wrapper {
     padding: 120px 20px 40px !important;
   }
   .choose_content_wrapper .top-10 {
     top: 1.5rem !important;
     padding: 0 10px !important;
+  }
+  .choose_card-wrapper {
+    padding: 30px 20px 10px;
+    width: 100%;
+  }
 }
-.choose_card-wrapper{
-  padding: 30px 20px 10px;
-  width: 100%;
-}
-
-}
-
 
 @media (max-width: 575px) {
   .mobileVisible {
@@ -759,15 +765,21 @@ max-width: 100% !important;
   .center_text {
     text-align: center;
   }
-  .choose_content_wrapper p{
+  .choose_content_wrapper p {
     font-size: 12px !important;
   }
   .choose_content_wrapper .p-10 {
     padding: 1.5rem !important;
   }
+  .min_gap{
+    gap: 15px !important;
+  }
 }
 @media (max-width: 480px) {
   .margin100 {
     margin-top: 70px;
+  }
+  .min_height{
+    min-height: 200px !important ;
   }
 }

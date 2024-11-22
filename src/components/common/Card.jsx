@@ -62,11 +62,12 @@ console.log(matchingCard,"matchingCard");
 
   return (
     <>
-      <div className="max-w-sm 2xl:w-64 2xl:h-80 md:w-40 md:w-48 sm:w-48 md:h-40 sm:w-44  sm:h-44 sm:w-40  sm:h-40 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 overflow-hidden">
+      {/* <div className="max-w-sm 2xl:w-64 2xl:h-80 md:w-40 md:w-48 sm:w-48 md:h-40 sm:w-44  sm:h-44 sm:w-40  sm:h-40 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 overflow-hidden"> */}
        {/* <p className="">{item?.collection_uri}</p> */}
+       <div className="min-h-[300px] min_height">
         <a href={`/card/new/${item?.uuid}?category=${item?.title}`}>
           <Image
-            className="rounded-t-lg w-full h-full object-cover"
+            className="rounded-t-lg w-full h-full object-cover rounded-md "
             src={`https://magshopify.goaideme.com/${item?.images[0]?.card_images[0]}`}
           width={100}
           height={100}

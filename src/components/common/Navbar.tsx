@@ -7,6 +7,7 @@ import api from "@/utils/api";
 import LogoutModal from "./LogoutModal";
 import { useRouter } from "next/navigation";
 import { destroyCookie, parseCookies } from "nookies";
+// import GoodLuckCad from "../../assets/images/congratulations/good_luck.png"
 import GoodLuckCad from "../../assets/svg/GoodLuckCards.svg"
 import register from "../../assets/images/register.png"
 const Navbar = () => {
