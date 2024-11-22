@@ -4,71 +4,111 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
-const MultiStepForm = () => {
+const MultiStepForm = ({params}:any) => {
   const router = useRouter();
   const [step, setStep] = useState(1);
   const [recipientName, setRecipientName] = useState("");
+  const [loading,setLoading]=useState(false)
+  const [senderName, setSenderName] = useState("");
   const [recipientEmail, setRecipientEmail] = useState("");
   const [address, setAddress] = useState("");
   const [number, setNumber] = useState("");
   const [cardType, setCardType] = useState<any>("later");
-  const [error, setError] = useState('');
-  const [emailError, setEmailError] = useState('');
-
+  const [error, setError] = useState("");
+  const [senderError, setSenderError] = useState("");
+  const [emailError, setEmailError] = useState("");
   const handleNext = () => {
     if (!recipientName) {
-      setError('Recipient name is required.');
+      setError("Recipient name is required.");
       return; // Stop submission if validation fails
-  }
+    }
+  
     if (!recipientEmail) {
-      setEmailError('Recipient Email is required.');
+      setEmailError("Recipient Email is required.");
       return; // Stop submission if validation fails
-  }
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-  if (!emailRegex.test(recipientEmail)) {
-    setEmailError('Recipient Email is required.');
-    return; // Stop submission if validation fails
-  }
+    if (!emailRegex.test(recipientEmail)) {
+      // If email is missing '@' symbol
+      if (!recipientEmail.includes("@")) {
+        setEmailError("@ symbol is required.");
+        return;
+      }
 
-  // Clear the email error if validation passes
-  setEmailError('');
+      // If email contains '@' but no domain or ends with '@' (like 'example@')
+      const parts = recipientEmail.split("@");
+      if (parts.length === 2 && !parts[1]) {
+        setEmailError("Domain (e.g., gmail.com) is required.");
+        return;
+      }
+
+      // If email contains '@' but the domain is incomplete or malformed
+      if (parts.length === 2 && parts[1].length < 3) {
+        // Basic domain check
+        setEmailError("Invalid domain. Example: gmail.com");
+        return;
+      }
+
+      // If email is in an incomplete format like 'skjfhdkjsd@'
+      if (
+        recipientEmail.indexOf("@") > -1 &&
+        recipientEmail.split("@").length === 2
+      ) {
+        setEmailError("Invalid email format. Example: user@example.com");
+        return;
+      }
+
+      // Catch all for any invalid email format
+      setEmailError("Invalid email format.");
+      return;
+    }
+
+    // Clear the email error if validation passes
+    setEmailError("");
     setStep((prev) => prev + 1);
+    if (!senderName) {
+      setSenderError("Sender name is required.");
+      return; // Stop submission if validation fails
+    }
   };
 
   const handlePrevious = () => {
     setStep((prev) => prev - 1);
   };
-  const [selectedOption, setSelectedOption] = useState('');
+  const [selectedOption, setSelectedOption] = useState("");
   const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-      const value = e.target.value;
-      setSelectedOption(value);
-      // You can also update the address state if needed
-      // setAddress(value);
+    const value = e.target.value;
+    setSelectedOption(value);
+    // You can also update the address state if needed
+    // setAddress(value);
   };
-  
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log(recipientName,"recipientName");
+   try {
+    setLoading(true)
+    console.log(recipientName, "recipientName");
     // Handle final submission logic here
     if (!recipientName) {
-      setError('Recipient name is required.');
+      setError("Recipient name is required.");
       return; // Stop submission if validation fails
-  }
-  setError('')
-  setRecipientName('');
-    router.push(`/card/pay/1`);
+    }
+    setError("");
+    setRecipientName("");
+    router.push(`/card/pay/${params}`);
     console.log("Final submission", { recipientName, recipientEmail });
+   } catch (error) {
+    setLoading(false)
+   }
   };
   return (
     <>
       <div className="flex space-x-8 mb-8 absolute top-10">
-        <div  >
+        <div>
           <div>23</div>
-          <p className="md:text-md text-sm font-medium mb-0" >Pick a Design</p>
+          <p className="md:text-md text-sm font-medium mb-0">Pick a Design</p>
         </div>
-
-
 
         <div
           className={`flex items-center space-x-2 ${
@@ -92,7 +132,7 @@ const MultiStepForm = () => {
               step >= 3 ? "bg-blue-600" : "bg-gray-400"
             }`}
           ></div>
-          <p className="md:text-md text-sm font-medium mb-0" >Pay and Share</p>
+          <p className="md:text-md text-sm font-medium mb-0">Pay and Share</p>
         </div>
         <div
           className={`flex items-center space-x-2 ${
@@ -104,7 +144,7 @@ const MultiStepForm = () => {
               step >= 4 ? "bg-blue-600" : "bg-gray-400"
             }`}
           ></div>
-          <p className="md:text-md text-sm font-medium mb-0" >Submit</p>
+          <p className="md:text-md text-sm font-medium mb-0">Submit</p>
         </div>
       </div>
       <div className="bg-white shadow-lg rounded-lg p-10 w-full max-w-sm">
@@ -117,7 +157,7 @@ const MultiStepForm = () => {
             ? "Want to collect funds for a gift card?"
             : "Who is the card from?"}
         </h2>
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit} aria-disabled={loading} className="space-y-6">
           {step === 1 && (
             <>
               {/* Recipient Name Input */}
@@ -136,7 +176,14 @@ const MultiStepForm = () => {
                   required
                   className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                 />
-                   {!recipientName &&error && <p className="text-red-500 text-sm mt-2">{error}</p>}
+                {!recipientName && error && (
+                  <p
+                    className="text-red-500 text-sm mt-2"
+                    style={{ color: "red" }}
+                  >
+                    {error}
+                  </p>
+                )}
               </div>
 
               {/* Recipient Email Input */}
@@ -155,7 +202,14 @@ const MultiStepForm = () => {
                   onChange={(e) => setRecipientEmail(e.target.value)}
                   className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                 />
-                 {!recipientEmail ?<p className="text-red-500 text-sm mt-2">{emailError}</p>:""}
+                {emailError && (
+                  <p
+                    className="text-red-500 text-sm mt-2"
+                    style={{ color: "red" }}
+                  >
+                    {emailError}
+                  </p>
+                )}
               </div>
 
               <button
@@ -241,21 +295,24 @@ const MultiStepForm = () => {
           {step === 3 && (
             <>
               <div>
-              <label htmlFor="selectOption" className="block text-sm font-medium text-gray-700 mt-4">
-                Select an option <span className="text-red-500">*</span>
-            </label>
-            <select
-                id="selectOption"
-                value={selectedOption} 
-                onChange={handleSelectChange}
-                className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-            >
-                <option value="">Disable Collection</option>
-                <option value="gbp">GBP</option>
-                <option value="usd">USD</option>
-                <option value="aud">AUD</option>
-                <option value="eur">EUR</option>
-            </select>
+                <label
+                  htmlFor="selectOption"
+                  className="block text-sm font-medium text-gray-700 mt-4"
+                >
+                  Select an option <span className="text-red-500">*</span>
+                </label>
+                <select
+                  id="selectOption"
+                  value={selectedOption}
+                  onChange={handleSelectChange}
+                  className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                >
+                  <option value="">Disable Collection</option>
+                  <option value="gbp">GBP</option>
+                  <option value="usd">USD</option>
+                  <option value="aud">AUD</option>
+                  <option value="eur">EUR</option>
+                </select>
               </div>
               <button
                 type="button"
@@ -276,7 +333,7 @@ const MultiStepForm = () => {
           )}
           {step === 4 && (
             <>
-               <div>
+              <div>
                 {/* <label
                   htmlFor="recipientName"
                   className="block text-sm font-medium text-gray-700"
@@ -284,14 +341,22 @@ const MultiStepForm = () => {
                   Recipient Name <span className="text-red-500">*</span>
                 </label> */}
                 <input
-                  id="recipientName"
+                  id="senderName"
                   type="text"
-                  value={recipientName}
+                  value={senderName}
                   placeholder="Sender Name"
-                  onChange={(e) => setRecipientName(e.target.value)}
+                  onChange={(e) => setSenderName(e.target.value)}
                   required
                   className="mt-1 block w-full px-4 py-2 text-black border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                 />
+                 {!senderName && senderError && (
+                  <p
+                    className="text-red-500 text-sm mt-2"
+                    style={{ color: "red" }}
+                  >
+                    {senderError}
+                  </p>
+                )}
                 {/* <p className="">e.g. Your Name or Team Name
 
 We’ll use your name if you leave this blank</p> */}
@@ -309,15 +374,32 @@ We’ll use your name if you leave this blank</p> */}
                   <span className="ml-auto text-gray-500">
                   </span>
                 </label> */}
-<div className="form-check form-switch">
-  <input className="form-check-input" type="checkbox" id="flexSwitchCheckChecked"  />
-  <label className="form-check-label" htmlFor="flexSwitchCheckChecked">Add confetti to this card</label>
-</div>
-<div className="form-check form-switch">
-  <input className="form-check-input" type="checkbox" id="flexSwitchCheckChecked"  />
-  <label className="form-check-label" htmlFor="flexSwitchCheckChecked">
-  Allow private/hidden message</label>
-</div>
+              <div className="form-check form-switch">
+                <input
+                  className="form-check-input"
+                  type="checkbox"
+                  id="flexSwitchCheckChecked"
+                />
+                <label
+                  className="form-check-label"
+                  htmlFor="flexSwitchCheckChecked"
+                >
+                  Add confetti to this card
+                </label>
+              </div>
+              <div className="form-check form-switch">
+                <input
+                  className="form-check-input"
+                  type="checkbox"
+                  id="flexSwitchCheckChecked"
+                />
+                <label
+                  className="form-check-label"
+                  htmlFor="flexSwitchCheckChecked"
+                >
+                  Allow private/hidden message
+                </label>
+              </div>
               <button
                 type="button"
                 onClick={handlePrevious}

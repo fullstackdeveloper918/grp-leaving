@@ -3,6 +3,8 @@ import React from "react";
 import MultiStepForm from "./common/MultiStepForm";
 import cardData from "../constants/CardJson/card.json";
 import Images from "@/constants/images";
+import { fetchFromServer } from "@/app/actions/fetchFromServer";
+import { Api } from "@/interfaces/interfaces";
 // const array = [
 //   {
 //     id: 1,
@@ -158,10 +160,21 @@ const array = [
   { id: 96, image: Images.congratulations10, type: "congratulations" },
  
 ]
-const Recipient = ({ searchParams, params }: { searchParams: any; params: any }) => {
+const Recipient =async ({ searchParams, params }: { searchParams: any; params: any }) => {
 console.log( params?.id,"check");
   console.log(searchParams?.category);
+  const api: Api = {
+    url: `https://magshopify.goaideme.com/card/edit-collection/${params?.id}`,
+    method: "GET",
+    // body: { key: 'value' }
+    // comment only
+  };
+
+  const data = await fetchFromServer(api);
+  console.log(data, "apqwertyuiiRes");
   const filteredCard = array.find(card => card.type === searchParams?.category && card.id === Number(params?.id));
+  console.log(`https://magshopify.goaideme.com/${data?.data?.collection_image}`,"poopopopop");
+  
   return (
     <div className="min-h-screen flex flex-wrap">
       {/* Left Part - Card Design */}
@@ -174,11 +187,11 @@ console.log( params?.id,"check");
 
           {/* Card Image */}
           <div className="bg-white rounded-lg shadow-lg p-4">
-          {filteredCard ? (
+          {data?.data ? (
         <span>
           <Image
-            src={filteredCard.image}
-            alt={`Card type: ${filteredCard.type}`}
+            src={`https://magshopify.goaideme.com/${data?.data?.collection_image}`}
+            alt={`Card type: ${data?.data.type}`}
             className="rounded-lg object-cover"
             height={300}
             width={400}
@@ -213,7 +226,7 @@ console.log( params?.id,"check");
 
       {/* Right Part  Form Section */}
       <div className="md:w-1/2 w-full w-2/2 bg-lightBg flex flex-col items-center justify-center relative">
-        <MultiStepForm />
+        <MultiStepForm params={params?.id} />
       </div>
     </div>
   );

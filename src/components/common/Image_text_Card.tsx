@@ -36,7 +36,7 @@ const Image_text_Card = () => {
             Invite friends and send reminders.
             </li>
             <li className="relative listBefore ml-4 md:text-lg lg:text-lg font-medium">
-            Your group doesn't need an account to sign.
+            Your group does not need an account to sign.
             </li>
             <li className=" relative listBefore ml-4 md:text-lg lg:text-lg font-medium">
             No apps or downloads.
@@ -68,7 +68,7 @@ const Image_text_Card = () => {
               Add photos and GIFs to the card.
             </li>
             <li className=" relative listBefore ml-4 md:text-lg lg:text-lg font-medium ">
-            Your group doesn’t see who contributed what.
+            Your group does not see who contributed what.
             </li>
             <li className="  relative listBefore ml-4 md:text-lg lg:text-lg font-medium ">
             Choose from eGift Cards, hampers and flowers in our Gift Store.
