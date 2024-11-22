@@ -20,7 +20,7 @@ const PartnerCompanies = () => {
   };
   return (
     <>
-    <section className="flex flex-col items-center justify-center py-8 bg-white">
+    <section className="flex flex-col items-center justify-center py-8 bg-white slider_Section">
     <h2 className="text-center text-lg mb-0 xl:text-xl font-semibold text-gray-600">Trusted by Over Seven Million Users</h2>
     <h3 className="mt-2 text-2xl  xl:text-3xl font-bold text-center text-gray-900">
     Virtual Cards for Individuals & Businesses
@@ -61,7 +61,7 @@ const PartnerCompanies = () => {
       <img
         src={Images.src}
         alt="Airbnb Logo"
-        style={{width:"15"}}
+        // style={{width:"20"}}
         className="h-15 w-auto"
       />
       </div>

@@ -10,7 +10,7 @@ const Faqinputs = ({index,items}:any) => {
 
   return (
     // <div className=''>
-    <div key={index} className="border-b border-[#1118271a] mb-2  p-0">
+    <div key={index} className="border-b border-[#1118271a] mb-2  p-0 ">
     <button
       onClick={() => toggleFAQ(index)}
       className="w-full flex justify-between items-center py-3 focus:outline-none"

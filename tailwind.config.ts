@@ -16,6 +16,7 @@ const config: Config = {
           "workBg":"url('../assets/images/frame.png')",
           "testimonialBg":"url('../assets/images/testimonialBg.png')",
           "newsletterbg":"url('../assets/images/newsletterbg.png')",
+          "bannerGroup":"url('../assets/images/bannerGroup.png')",
       },
     },
     colors:{

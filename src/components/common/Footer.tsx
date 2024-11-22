@@ -134,7 +134,7 @@ const Footer: React.FC = () => {
           padding: "20px 0",
         }}
       >
-        <Text>© Copyright 2022, All Rights Reserved by Groupluckcards</Text>
+        <Text>© Copyright 2024, All Rights Reserved by Groupluckcards</Text>
       </Row>
     </div>
   );

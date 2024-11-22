@@ -3,6 +3,7 @@ import validation from "@/utils/validation";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
+import checkSvg from "../../assets/images/check.svg"
 
 const MultiStepForm = ({params}:any) => {
   const router = useRouter();
@@ -105,24 +106,7 @@ const MultiStepForm = ({params}:any) => {
   return (
     <>
       <div className="flex space-x-8 mb-8 absolute top-10">
-        <div>
-          <div>23</div>
-          <p className="md:text-md text-sm font-medium mb-0">Pick a Design</p>
-        </div>
-
-        <div
-          className={`flex items-center space-x-2 ${
-            step >= 2 ? "text-blue-600" : "text-gray-500"
-          }`}
-        >
-          <div
-            className={`w-4 h-4 rounded-full ${
-              step >= 2 ? "bg-blue-600" : "bg-gray-400"
-            }`}
-          ></div>
-          <p className="md:text-md text-sm font-medium mb-0">Enter Details</p>
-        </div>
-        <div
+           {/* <div
           className={`flex items-center space-x-2 ${
             step >= 3 ? "text-blue-600" : "text-gray-500"
           }`}
@@ -133,8 +117,8 @@ const MultiStepForm = ({params}:any) => {
             }`}
           ></div>
           <p className="md:text-md text-sm font-medium mb-0">Pay and Share</p>
-        </div>
-        <div
+        </div> */}
+         {/* <div
           className={`flex items-center space-x-2 ${
             step >= 4 ? "text-blue-600" : "text-gray-500"
           }`}
@@ -145,9 +129,35 @@ const MultiStepForm = ({params}:any) => {
             }`}
           ></div>
           <p className="md:text-md text-sm font-medium mb-0">Submit</p>
+        </div> */}
+
+
+
+        {/* count steps  */}
+        <div className="text-center after_line">
+          <div className="step_count ">1</div>
+          <p className="md:text-md text-sm font-medium mb-0">Pick a Design</p>
+        </div>
+
+        <div className="text-center  before_line">
+          <div className="step_count">2</div>
+          <p className="md:text-md text-sm font-medium mb-0">Enter Details</p>
+        </div>
+         
+        <div className="text-center before_line">
+          <div className="step_count">3</div>
+          <p className="md:text-md text-sm font-medium mb-0">Pay and Share</p>
+        </div>
+       
+           <div className="text-center">
+          <div className="submit_svg"><img src={checkSvg.src} alt="imgccheck" /></div>
+          <p className="md:text-md text-sm font-medium mb-0">Submit</p>
         </div>
       </div>
-      <div className="bg-white shadow-lg rounded-lg p-10 w-full max-w-sm">
+
+
+
+      <div className="bg-white shadow-lg rounded-lg p-10 w-full max-w-lg">
         <h2 className="text-2xl font-semibold mb-6">
           {step === 1
             ? "Who is the card for?"
@@ -174,7 +184,7 @@ const MultiStepForm = ({params}:any) => {
                   value={recipientName}
                   onChange={(e) => setRecipientName(e.target.value)}
                   required
-                  className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                  className="mt-1 block w-full  px-3 py-2 border border-gray-300 rounded-md  focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                 />
                 {!recipientName && error && (
                   <p
@@ -200,7 +210,7 @@ const MultiStepForm = ({params}:any) => {
                   required
                   value={recipientEmail}
                   onChange={(e) => setRecipientEmail(e.target.value)}
-                  className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                  className="mt-1 block w-full  px-3 py-2 border border-gray-300 rounded-md  focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                 />
                 {emailError && (
                   <p
@@ -215,7 +225,7 @@ const MultiStepForm = ({params}:any) => {
               <button
                 type="button"
                 onClick={handleNext}
-                className="w-full bg-blue-600 text-black py-2 px-4 rounded-md shadow-sm hover:bg-blue-700"
+                className="w-full bg-blueBg text-white py-2 px-4 rounded-md shadow-sm hover:bg-blue-700"
               >
                 Next
               </button>
@@ -305,7 +315,7 @@ const MultiStepForm = ({params}:any) => {
                   id="selectOption"
                   value={selectedOption}
                   onChange={handleSelectChange}
-                  className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                  className="mt-1 block w-full  px-3 py-2 border border-gray-300 rounded-md  focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                 >
                   <option value="">Disable Collection</option>
                   <option value="gbp">GBP</option>
@@ -347,7 +357,7 @@ const MultiStepForm = ({params}:any) => {
                   placeholder="Sender Name"
                   onChange={(e) => setSenderName(e.target.value)}
                   required
-                  className="mt-1 block w-full px-4 py-2 text-black border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                  className="mt-1 block w-full  px-3 py-2 border border-gray-300 rounded-md  focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                 />
                  {!senderName && senderError && (
                   <p
@@ -410,7 +420,7 @@ We’ll use your name if you leave this blank</p> */}
               {/* <Link href={`card/pay/1`}> */}
               <button
                 type="submit"
-                className="w-full bg-blue-600 text-black py-2 px-4 rounded-md shadow-sm hover:bg-blue-700"
+                className="w-full bg-blueBg text-white py-2 px-4  rounded-md shadow-sm hover:bg-blue-700 "
               >
                 Submit
               </button>
@@ -419,7 +429,7 @@ We’ll use your name if you leave this blank</p> */}
           )}
         </form>
         {/* Pagination Dots */}
-        <div className="flex space-x-2 mt-6 items-center justify-center">
+        <div className="flex space-x-2 mt-6 items-center justify-center d-none">
           <div
             className={`w-3 h-3 ${
               step >= 1 ? "bg-blue-600" : "bg-gray-300"

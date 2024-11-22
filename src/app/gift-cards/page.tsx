@@ -17,7 +17,7 @@ const page = () => {
             </p>
 
             {/* Image section */}
-            <div className="flex justify-center space-x-4 mb-12">
+            <div className="flex justify-center space-x-4 mb-12 gift_img_wrapper">
               <img
                 src="/amazon-card.png"
                 alt="Amazon gift card"

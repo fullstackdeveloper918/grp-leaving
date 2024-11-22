@@ -7,14 +7,14 @@ const Image_text_Card = () => {
     <div className=" bg-gray-100 container-fluid items-center mb-5 relative sectionSpace">
       <div className="shadow-md rounded-lg  column_gap grid lg:grid-cols-2  ">
         {/* Left Image Grid Section */}
-        <div className="lg:mb-5 imgBottomBefore relative">
+        <div className="lg:mb-5 imgBottomBefore relative order_2">
           <div className="w-full  relative">
             <Image src={Images.laptop_img} alt='card'  className='object-cover rounded-[30px] w-100' />
              </div>
         </div>
 
         {/* Right Text Section */}
-        <div className="flex flex-col justify-center lg:mb-5 maxWidth ">
+        <div className="flex flex-col justify-center lg:mb-5 maxWidth order_1">
           <h1 className="mt-2 text-2xl  xl:text-3xl font-bold text-gray-900">The #1 rated group greeting card</h1>
           <ul className="space-y-3 text-gray-700 text-left paddingleft0 mxwidth33 pl-3">
             <li className=" relative listBefore ml-4 md:text-lg lg:text-lg font-medium mt-3 ">
@@ -54,7 +54,7 @@ const Image_text_Card = () => {
 
      
          {/* left Text Section */}
-         <div className="flex flex-col justify-center lg:my-5 imgBottomBefore relative list_group">
+         <div className="flex flex-col justify-center lg:my-5 imgBottomBefore relative list_group order_3">
           <h1 className="mt-2 text-2xl  xl:text-3xl font-bold text-gray-900">Need an eGift Card? Easy!</h1>
           <ul className="space-y-3 text-gray-700 paddingleft0 ">
             <li className=" relative listBefore ml-4 md:text-lg lg:text-lg font-medium mt-3  ">
@@ -79,7 +79,7 @@ const Image_text_Card = () => {
           </ul>
         </div>
         {/* right Image Grid Section */}
-         <div className="lg:mt-5 ">
+         <div className="lg:mt-5 order_4">
           <div className="w-full   ">
             <Image src={Images.top_2} alt='card'  className='object-cover rounded-[30px]' style={{ width: '100%', maxHeight:'600px'}}  />
              </div>
