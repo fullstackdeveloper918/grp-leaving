@@ -11,25 +11,34 @@ const CardCollection = async ({ params }: any) => {
  
  console.log(type,"type");
  
-  const api: Api = {
-    url: `https://magshopify.goaideme.com/card/collection-listing`,
-    method: "GET",
-    // body: { key: 'value' }
-    // comment only
-  };
 
-  const data = await fetchFromServer(api);
-  console.log(data, "check145454523");
+//  Sidebar
+
+let data = await fetch('https://magshopify.goaideme.com/card/collection-listing', { cache: 'no-store' })
+let data1 = await data.json();
+  console.log(data1, "qwe323355");
+//  const url = 'https://magshopify.goaideme.com/card/collection-listing';
+
+//  const response1 = await fetch(url, {
+//   method: 'GET',
+//   cache: 'no-store',
+// });
+
+// const data = await response1.json();
+//   console.log(data, "check145454523");
   const normalizedType = type.replace('-', ' ');
-  const matchedObject = data.data.find((item: any) => {
+  const matchedObject = data1.data.find((item: any) => {
     const normalizedTags = item.collection_title.replace('-', ' ');
     return normalizedTags === normalizedType;
   });
   console.log(matchedObject,"matchedObject");
   const collectionType = matchedObject ? matchedObject.uuid : null;
   console.log(collectionType,"collectionType");
+
+  // All cards
+
   const api2: Api = {
-    url: "https://magshopify.goaideme.com/card/card-listing",
+    url: `https://magshopify.goaideme.com/card/single-card-listing/${collectionType}`,
     method: "GET",
     // body: { key: 'value' }
     // comment only
@@ -454,7 +463,7 @@ const CardCollection = async ({ params }: any) => {
     <div className=" bg-lightBg py-12">
       <div className="container-fluid">
         <div className="md:flex md:space-x-3 md:space-y-0 space-y-6 ">
-          <Sidebar urlValue={params?.slug[0]} cardLabel={cardLabel} response={data} />
+          <Sidebar urlValue={params?.slug[0]} cardLabel={cardLabel} response={data1} />
           <main className="flex-1 lg:px-8 md:px-6 px-2">
             <div className="flex md:justify-between md:items-center mb-6 md:flex-row  flex-col-reverse  justify-start ">
               <h2 className="xl:text-4xl  md:text-lg text-md font-semibold justify-center items-cente mt-3">
@@ -473,9 +482,8 @@ const CardCollection = async ({ params }: any) => {
               
                 // <Card item={card} index={index} key={index}/>
               ))} */}
-              {Array.isArray(data?.data) &&
-                data?.data?.map((card: any) => {
-                  console.log(card, "carddddddd");
+              {response?.data?.map((card: any) => {
+                  console.log(card, "sdfsdfcarddddddd");
 
                   // Assuming card has a unique id field
                   return <Card item={card} index={card.id} key={card.id} />;

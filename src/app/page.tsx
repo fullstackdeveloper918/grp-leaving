@@ -53,7 +53,15 @@ const Home = async ({ searchParams }: any) => {
   // };
 
   // const categoriesChunks = chunkArray(cardData.data, 5);
+  const api2: Api = {
+    url: `https://magshopify.goaideme.com/card/collection-listing`,
+    method: "GET",
+    // body: { key: 'value' }
+    // comment only
+  };
 
+  const data2 = await fetchFromServer(api2);
+  console.log(data2.data, "qwertyuiop");
   return (
     <>
       <section className="">

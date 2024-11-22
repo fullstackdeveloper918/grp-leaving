@@ -28,13 +28,13 @@ const Sidebar = ({ urlValue,cardLabel,response }: { urlValue: string,cardLabel:a
   const handleClick = (category: string, id:any) => {
     console.log(category, "category");
     const formattedCategory = category.toLowerCase().replace(/\s+/g, '-');
-    router.push(cardLabel?`/card/${formattedCategory}/${cardLabel}/${id}`:`/card/${formattedCategory}/${id}`);
+    router.push(cardLabel?`/card/${formattedCategory}/${cardLabel}`:`/card/${formattedCategory}`);
   };
   return (
     <aside className="lg:w-64 lg:w-48 sm:w-100   rounded-[10px] bg-[#ffffffcc] border p-3 responiveSlider relative">
       <div className="sticky top-0"> 
       <ul className="md:space-y-2    md:block flex md:space-x-0 space-x-3 items-start overflow-x-auto md:sticky md:top-5 md:m-0 p-0  md:w-100  w-[100%] m-auto ">
-        {response?.data?.slice(7,50).map((category:any) => (
+        {response?.data?.map((category:any) => (
           <li
             key={category}
             onClick={() => handleClick(category?.collection_title,category?.uuid)}
