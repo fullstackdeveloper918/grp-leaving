@@ -17,6 +17,9 @@ const config: Config = {
           "testimonialBg":"url('../assets/images/testimonialBg.png')",
           "newsletterbg":"url('../assets/images/newsletterbg.png')",
           "bannerGroup":"url('../assets/images/bannerGroup.png')",
+          "hero_banenr":"url('../assets/images/hero_banenr.png')",
+          "demo_banner":"url('../assets/images/demo_banner.webp')",
+          "hero_banner_new":"url('../assets/images/hero_banner_new.png')",
       },
     },
     colors:{

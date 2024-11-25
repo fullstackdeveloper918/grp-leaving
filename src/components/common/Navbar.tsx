@@ -65,6 +65,9 @@ if (getuserData) {
 
   return (
     <>
+    <div className="announcementBar bg-blueText text-center py-2 text-white">
+      <p className="text-sm font-normal mb-0">Our back-to-school sale is here! <span className="font-bold">Save 15%</span> on Coins for all your fall invitations with code BACKTOFALL. Ends 9/3. <a href="#" className="underline">Shop Now.</a></p>
+    </div>
       <header className="w-full">
         {/* Banner */}
         {/* <div className="bg-blueBg text-center text-sm md:py-3 py-2 text-white ">
@@ -81,7 +84,7 @@ if (getuserData) {
         <div className="flex justify-between items-center md:py-4 md:px-6 px-2 py-3 container-fluid">
           {/* Logo */}
           <Link href={`/`} className="no-underline w-3/12">
-          <Image src={GoodLuckCad.src} height={100} width={100} alt="Good Luck" className="text-4xl font-bold" />
+          <Image src={GoodLuckCad.src} height={80} width={80} alt="Good Luck" className="text-4xl font-bold" />
           </Link>
 
           <div className="flex items-center space-x-4 w-9/12 justify-end">
@@ -103,7 +106,7 @@ if (getuserData) {
             </div> */}
 
             {/* Auth and Button */}
-            <div className="flex items-center lg:space-x-4 sm:space-x-2">
+            <div className="flex items-center lg:space-x-6 sm:space-x-4">
             {/* <a
                     href="/account/cards"
                     className="text-md text-blackText hidden md:block text-blackText no-underline font-medium hover:text-blueText "
@@ -194,7 +197,7 @@ if (getuserData) {
                   </a>
 
                   <Link href={`/register`}>
-                    <button className="text-white px-3 py-2 rounded-md bg-blueBg d-hide-btn">
+                    <button className="text-white px-3 py-2  ml-2 rounded-md bg-blueBg d-hide-btn">
                       Register
                     </button>
                     <img src={register.src} alt="img" className="mobileVisible" />

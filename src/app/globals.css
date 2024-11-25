@@ -58,6 +58,9 @@ body {
   top: -1px;
   background-size: cover;
 }
+.listBefore::before{
+  background-image: url("../assets/images/liBefore_hero.svg");
+}
 .imgBottomBefore::after {
   content: "";
   background-image: url("../assets/images/beforeLine.png");
@@ -88,7 +91,7 @@ body {
   background-image: url("../assets/images/linePurple_2.png");
 } */
 .heroSectionHeight {
-  min-height: calc(100vh - 230px);
+  min-height: 100vh;
 }
 
 .container-fluid {
@@ -189,6 +192,17 @@ input:focus {
   outline: 0 !important;
   outline-offset: 0;
   box-shadow: none !important;
+}
+
+.bannerButton .btnPrimary{
+  background-color: #fff;
+  color: #558ec9;
+  padding: 14px 28px;
+}
+.bannerButton .btnSecondary {
+  border-color: #fff;
+  color: #fff;
+  background-color: transparent;
 }
 
 /* sidebar activeList */
@@ -343,12 +357,13 @@ body {
 .bannerHeaderH1 {
   font-size: 60px;
   font-weight: 600;
+  color: #fff;
 }
 
 .homeBanner p {
   font-size: 22px;
   margin: 25px 0;
-  max-width: 90%;
+  max-width: 40%;
 }
 
 .bannerButton {
@@ -446,6 +461,26 @@ body {
   max-width: 380px;
   object-fit: cover;
 }
+
+/* demo page css started */
+.demo_section button,
+.demo_section button:hover{
+  padding: 10px 30px;
+  font-size: 16px;
+}
+.absolute_img{
+  max-width: 900px;
+  margin: auto;
+  position: absolute;
+  bottom: -8rem;
+  left: 0;
+  right: 0;
+}
+/* demo page css ended */
+
+
+
+
 
 @media (max-width: 1600px) {
   .partner_logos img {
