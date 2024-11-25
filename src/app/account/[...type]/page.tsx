@@ -1,5 +1,6 @@
 
 // import { fetchFromServer } from "@/app/actions/fetchFromServer";
+import { fetchFromServer } from "@/app/actions/fetchFromServer";
 import AccountBunddles from "@/components/AccountBunddles";
 import AccountCards from "@/components/AccountCards";
 import AccountContribution from "@/components/AccountContribution";
@@ -27,14 +28,14 @@ const page = async({ params }: any) => {
       console.error("Error parsing userInfo cookie", error);
     }
   }
-  // const api1: any = {
-  //   url: user?.listing,
-  //   method: "GET",
-  //   // body: { key: 'value' }
-  // };
+  const api1: any = {
+    url: `https://magshopify.goaideme.com/cart/cart-listing`,
+    method: "GET",
+    // body: { key: 'value' }
+  };
 
-  // const data1 = await fetchFromServer(api1);
-  // console.log(data1,"werwerrrrrrr");
+  const data1 = await fetchFromServer(api1);
+  console.log(data1,"werwerrrrrrr");
   
  
   return (
@@ -43,7 +44,7 @@ const page = async({ params }: any) => {
         <h1 className="text-3xl font-bold text-center mb-6">Account</h1>
         <AccountSlider type={type}/>
         {type==="profile" && <AccountProfile userInfoCookie={userInfo}/>}
-        {type==="cards" && <AccountCards />}
+        {type==="cards" && <AccountCards data={data1}/>}
         {type==="bundles" && <AccountBunddles />}
         {type==="email-preferences" && <AccountEmailprefrence />}
         {type==="contributions" && <AccountContribution />}
