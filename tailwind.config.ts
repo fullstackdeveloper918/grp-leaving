@@ -12,14 +12,15 @@ const config: Config = {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
-          "heroImage":"url('../assets/images/hero_image.png')",
+          // "heroImage":"url('../assets/images/hero_image.png')",
           "workBg":"url('../assets/images/frame.png')",
           "testimonialBg":"url('../assets/images/testimonialBg.png')",
           "newsletterbg":"url('../assets/images/newsletterbg.png')",
           "bannerGroup":"url('../assets/images/bannerGroup.png')",
-          "hero_banenr":"url('../assets/images/hero_banenr.png')",
+          // "hero_banenr":"url('../assets/images/hero_banenr.png')",
           "demo_banner":"url('../assets/images/demo_banner.webp')",
-          "hero_banner_new":"url('../assets/images/hero_banner_new.png')",
+          "hero_banner_new":"url('../assets/images/hero_banner_new.jpg')",
+          "hero_banner_two":"url('../assets/images/hero_banner_two.png')",
       },
     },
     colors:{

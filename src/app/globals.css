@@ -33,14 +33,16 @@ body {
 } */
 
 /* Add to your global CSS or Tailwind config if not using Tailwind's default classes */
+
+
+
+
 .navLinks {
-  /* Initial state for mobile menu hidden */
   transform: translateX(-100%);
   transition: transform 0.3s ease-in-out;
 }
 
 .navLinks.open {
-  /* State for mobile menu visible */
   transform: translateX(0);
 }
 
@@ -74,24 +76,10 @@ body {
   background-size: contain;
   background-repeat: no-repeat;
 }
-/* .imgAfter::after{
-  content: "";
-  background-image: url("../assets/images/linePurple.png");
-  position: absolute;
-  right: -80px;
-  width: 100px;
-  height: 100px;
-  background-position: left;
-  top: 20px;
-  background-size: contain;
-  background-repeat: no-repeat;
-}
 
-.imgAfter + .imgAfter::after{
-  background-image: url("../assets/images/linePurple_2.png");
-} */
 .heroSectionHeight {
-  min-height: 100vh;
+  min-height: 85vh;
+  background-position: bottom;
 }
 
 .container-fluid {
@@ -124,15 +112,14 @@ body {
 .btnthird:hover {
   background-color: #558ec9;
   color: #fff;
-  font-size: 24px;
   border-radius: 30px;
   display: inline-block;
   text-align: center;
-  padding: 10px 36px;
+  padding: 13px 22px;
+  font-size: 16px;
   text-decoration: none;
   border: 1px solid #558ec9;
   transition: all 0.3s ease-in;
-  font-size: 20px;
   font-weight: 500;
 }
 .btnthird {
@@ -144,7 +131,7 @@ body {
   text-align: center;
   padding: 10px 36px;
   text-decoration: none;
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 500;
 }
 strong.democard {
@@ -194,16 +181,38 @@ input:focus {
   box-shadow: none !important;
 }
 
+/* homepage banner design */
+
+img.card_img_left ,
+img.card_img_right{
+  position: absolute;
+  max-width: 170px;
+  top: 35%;
+  transform: translateY(-35%);
+  margin: auto;
+  transform: rotate(-20deg);
+}
+
+img.card_img_right{
+  right: 15%;
+  transform: rotate(20deg);
+}
+
 .bannerButton .btnPrimary{
   background-color: #fff;
   color: #558ec9;
-  padding: 14px 28px;
+  padding: 14px 22px;
+  font-size: 16px;
 }
 .bannerButton .btnSecondary {
   border-color: #fff;
   color: #fff;
   background-color: transparent;
 }
+
+
+/* homepage banner design  */
+
 
 /* sidebar activeList */
 .activeList::after {
@@ -355,21 +364,49 @@ body {
 
 /* banner section custom css  start*/
 .bannerHeaderH1 {
-  font-size: 60px;
+  font-size: 50px;
   font-weight: 600;
   color: #fff;
+  max-width: 40%;
+}
+.slider_two .bannerHeaderH1 {
+  font-size: 80px;
+  font-weight: 600;
+  color: #fff;
+  max-width: 58%;
+  line-height: 80px;
 }
 
 .homeBanner p {
-  font-size: 22px;
-  margin: 25px 0;
+  font-size: 20px;
+  margin: 20px 0;
   max-width: 40%;
+}
+.slider_two  p {
+color: #000;
+font-size: 22px;
+font-weight: 400;
 }
 
 .bannerButton {
-  margin-top: 40px;
+  margin-top: 30px;
 }
 
+/* .slider_two    */
+.banner_slider_two.heroSectionHeight {
+  min-height: calc(100vh - 122px);
+  background-position: bottom;
+}
+
+
+.slider_two{
+  margin-top: 5rem;
+}
+.slider_two  .bannerButton .btnPrimary {
+  background-color: #91100f;
+  color: #ffffff;
+  border-color: #91100f;
+}
 /* banner section custom css ended */
 
 /*  */
@@ -469,10 +506,10 @@ body {
   font-size: 16px;
 }
 .absolute_img{
-  max-width: 900px;
+  max-width: 650px;
   margin: auto;
   position: absolute;
-  bottom: -8rem;
+  bottom: -4rem;
   left: 0;
   right: 0;
 }
