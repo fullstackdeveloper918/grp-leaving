@@ -7,8 +7,8 @@ import api from "@/utils/api";
 import LogoutModal from "./LogoutModal";
 import { useRouter } from "next/navigation";
 import { destroyCookie, parseCookies } from "nookies";
-import GoodLuckCad from "../../assets/images/congratulations/good_luck.png"
-// import GoodLuckCad from "../../assets/svg/GoodLuckCards.svg"
+// import GoodLuckCad from "../../assets/images/congratulations/good_luck.png"
+import GoodLuckCad from "../../assets/images/new_logo.png"
 import register from "../../assets/images/register.png"
 const Navbar = () => {
   const router = useRouter();
@@ -66,7 +66,7 @@ if (getuserData) {
   return (
     <>
     <div className="announcementBar bg-blueText text-center py-2 text-white">
-      <p className="text-sm font-normal mb-0">Our back-to-school sale is here! <span className="font-bold">Save 15%</span> on Coins for all your fall invitations with code BACKTOFALL. Ends 9/3. <a href="#" className="underline">Shop Now.</a></p>
+      <p className="text-sm font-normal mb-0 text-center">Our back-to-school sale is here! <span className="font-bold">Save 15%</span> on Coins for all your fall invitations with code BACKTOFALL. Ends 9/3. <a href="#" className="underline">Shop Now.</a></p>
     </div>
       <header className="w-full">
         {/* Banner */}
@@ -84,7 +84,7 @@ if (getuserData) {
         <div className="flex justify-between items-center md:py-4 md:px-6 px-2 py-3 container-fluid">
           {/* Logo */}
           <Link href={`/`} className="no-underline w-3/12">
-          <Image src={GoodLuckCad.src} height={80} width={80} alt="Good Luck" className="text-4xl font-bold" />
+          <Image src={GoodLuckCad.src} height={200} width={200} alt="Good Luck" className="text-4xl font-bold" />
           </Link>
 
           <div className="flex items-center space-x-4 w-9/12 justify-end">

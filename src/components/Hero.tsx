@@ -54,13 +54,15 @@ const Hero = (props: any) => {
 
   return (
     <>
-      <section className="  dark:bg-gray-900  bg-cover bg-no-repeat  align-middle  homeBanner ">
-
+      <section className="  dark:bg-gray-900   align-middle  homeBanner ">
 
         {/********** slide 1 started  ***********/}
-        <div className="relative bg-hero_banner_new slider_one heroSectionHeight">
+        <div className="relative bg-hero_banner_new slider_onebg-cover bg-no-repeat  heroSectionHeight">
+          
+        <img src={banner_flower.src} className="banner_flower" />
+       
           <div className="container-fluid  py-6 mx-auto  xl:gap-0 lg:py-14  space-y-10 items-center">
-            <img src={banner_flower.src} className="card_img_left" />
+           
             <img src={banner_card.src} className="card_img_left" />
             <div className=" mx-auto text-center w-full md:text-center xs:text-center lg:text-left ">
               <h1 className="bannerHeaderH1 text-center  mx-auto">
@@ -89,11 +91,13 @@ const Hero = (props: any) => {
             className="absolute_img"
             alt="img card"
           />
+            <img src={banner_flower.src} className="banner_flower_right" />
         </div>
         {/************ slide 1 ended ************/}
 
+
         {/************ slide 2 started ************/}
-        {/* <div className="relative bg-hero_banner_two  banner_slider_two heroSectionHeight">
+        {/* <div className="relative bg-hero_banner_two bg-cover bg-no-repeat  banner_slider_two heroSectionHeight">
           <div className="container-fluid  py-6 mx-auto  xl:gap-0 lg:py-14  space-y-10 items-center">
             <div className=" mx-auto text-center w-full md:text-lrft  slider_two  xs:text-center lg:text-left ">
               <h1 className="bannerHeaderH1 text-left ">
@@ -113,6 +117,21 @@ const Hero = (props: any) => {
           </div>
         </div> */}
         {/************ slide 2 ended ************/}
+
+
+        {/************ slide 3 ended ************/}
+         {/* <div className="relative bg-hero_banner_three slider_three bg-cover bg-no-repeat  heroSectionHeight">
+          <div className="container-fluid  py-6 mx-auto  xl:gap-0 lg:py-14  space-y-10 items-center">
+            <div className=" mx-auto text-center w-full md:text-center xs:text-center lg:text-left ">
+              <h1 className="bannerHeaderH1 text-center  font-light mx-auto">
+                New <span className="font-bold">Christmas Cards </span>
+                Design Available Here
+              </h1>
+            </div>
+            <img src={banner_card.src} className="card_img_right" />
+          </div>
+        </div>  */}
+        {/************ slide 3 ended ************/}
       </section>
     </>
   );

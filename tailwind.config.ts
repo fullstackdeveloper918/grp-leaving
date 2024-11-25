@@ -21,6 +21,7 @@ const config: Config = {
           "demo_banner":"url('../assets/images/demo_banner.webp')",
           "hero_banner_new":"url('../assets/images/hero_banner_new.jpg')",
           "hero_banner_two":"url('../assets/images/hero_banner_two.png')",
+          "hero_banner_three":"url('../assets/images/chritmas_card.jpg')",
       },
     },
     colors:{

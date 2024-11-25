@@ -1,6 +1,8 @@
 "use client";
 import Link from "next/link";
 import React from "react";
+import upload_img from "../assets/images/upload_img.png"
+import upload_gif from "../assets/images/upload_gif.png"
 
 const DemoCard = () => {
   return (
@@ -30,19 +32,20 @@ const DemoCard = () => {
           <div className="flex">
             <div className="w-1/2">
               <div className="flex space-x-2">
-                <button>Add Message</button>
-                <button>Image</button>
+                <button className="btnPrimary py-2 px-3">Add Message</button>
+                <button className="bg-lightBg rounded-md p-2"><img src={upload_img.src} alt="upload img" className="upload_img" /></button>
+                <button className="bg-lightBg rounded-md p-2"><img src={upload_gif.src} alt="upload img" className="upload_img" /></button>
               </div>
             </div>
-            <div className="bg-white shadow-lg rounded-lg p-10 w-full max-w-lg">
-              <div>
-                <h3>Gift Card Collection Pot</h3>
+            <div >
+              <div className="bg-white shadow-lg rounded-lg p-10 w-full max-w-lg">
+                <h3 className="text-center text-md font-normal">Gift Card Collection Pot</h3>
                 <button>User Image Popup</button>
-                <img src="" alt="amazon image" />
-                <p>£360</p>
-                <button>Contribute to Hagrid's Gift Card</button>
+                <img src="https://gift.wegift.io/static/product_assets/AMZ-GB/AMZ-GB-card.png"   alt="Amazon" className="voucher_img mx-auto rounded" />
+                <p className="font-bold text-center text-lg">£360</p>
+                <button className="bg-greyBorder text-blackText rounded-lg  w-100 text-sm p-2.5">Contribute to Hagrid's Gift Card</button>
               </div>
-              <button>Share Card</button>
+              <button className=" btnPrimary text-center w-100 mt-3 rounded-md">Share Card</button>
             </div>
           </div>
         </div>

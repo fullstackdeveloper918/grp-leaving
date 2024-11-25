@@ -34,9 +34,6 @@ body {
 
 /* Add to your global CSS or Tailwind config if not using Tailwind's default classes */
 
-
-
-
 .navLinks {
   transform: translateX(-100%);
   transition: transform 0.3s ease-in-out;
@@ -46,7 +43,7 @@ body {
   transform: translateX(0);
 }
 
-/* Adjust responsive design */
+/***************** Adjust responsive design *****************/
 
 .listBefore::before,
 .beforeListIcon::before {
@@ -60,9 +57,7 @@ body {
   top: -1px;
   background-size: cover;
 }
-.listBefore::before{
-  background-image: url("../assets/images/liBefore_hero.svg");
-}
+
 .imgBottomBefore::after {
   content: "";
   background-image: url("../assets/images/beforeLine.png");
@@ -78,7 +73,8 @@ body {
 }
 
 .heroSectionHeight {
-  min-height: 85vh;
+  /* min-height: 85vh; */
+  min-height: calc(100vh - 122px);
   background-position: bottom;
 }
 
@@ -87,7 +83,7 @@ body {
   margin: auto;
 }
 
-/* .hoverZoom */
+/***************** hoverZoom *****************/
 .hoverZoom:hover img {
   transform: scale(1.1);
 }
@@ -181,24 +177,24 @@ input:focus {
   box-shadow: none !important;
 }
 
-/* homepage banner design */
+/***************** homepage banner design *****************/
 
-img.card_img_left ,
-img.card_img_right{
+img.card_img_left,
+img.card_img_right {
   position: absolute;
-  max-width: 170px;
+  max-width: 190px;
   top: 35%;
   transform: translateY(-35%);
   margin: auto;
-  transform: rotate(-20deg);
+  transform: rotate(-28deg);
 }
 
-img.card_img_right{
+img.card_img_right {
   right: 15%;
-  transform: rotate(20deg);
+  transform: rotate(28deg);
 }
 
-.bannerButton .btnPrimary{
+.bannerButton .btnPrimary {
   background-color: #fff;
   color: #558ec9;
   padding: 14px 22px;
@@ -210,11 +206,9 @@ img.card_img_right{
   background-color: transparent;
 }
 
+/***************** homepage banner design  *****************/
 
-/* homepage banner design  */
-
-
-/* sidebar activeList */
+/***************** sidebar activeList *****************/
 .activeList::after {
   content: "";
   position: absolute;
@@ -225,7 +219,7 @@ img.card_img_right{
   background-color: #558ec9;
 }
 
-/* Create card page css atart */
+/***************** Create card page css atart *****************/
 
 .cardBox {
   border: 1px solid #ffffffcf;
@@ -248,7 +242,7 @@ img.card_img_right{
   font-size: 16px !important;
 }
 
-/* login page css started */
+/***************** login page css started *****************/
 .loginPage .ant-card-body {
   padding: 0 !important;
 }
@@ -313,7 +307,7 @@ img.card_img_right{
   margin: -14px 0 20px;
   display: block;
 }
-/* login page css ended */
+/***************** login page css ended *****************/
 
 section.bg-heroImage img {
   width: 22%;
@@ -362,12 +356,15 @@ body {
   display: none;
 }
 
-/* banner section custom css  start*/
+/***************** banner section custom css  start *****************/
 .bannerHeaderH1 {
-  font-size: 50px;
+  font-size: 65px;
   font-weight: 600;
   color: #fff;
-  max-width: 40%;
+  max-width: 820px;
+}
+.slider_one {
+  overflow: hidden;
 }
 .slider_two .bannerHeaderH1 {
   font-size: 80px;
@@ -382,32 +379,53 @@ body {
   margin: 20px 0;
   max-width: 40%;
 }
-.slider_two  p {
-color: #000;
-font-size: 22px;
-font-weight: 400;
+.slider_two p {
+  color: #000;
+  font-size: 22px;
+  font-weight: 400;
 }
 
 .bannerButton {
   margin-top: 30px;
 }
 
-/* .slider_two    */
+/***************** homebanner slidertwo    *****************/
 .banner_slider_two.heroSectionHeight {
   min-height: calc(100vh - 122px);
   background-position: bottom;
 }
-
-
-.slider_two{
+.slider_two {
   margin-top: 5rem;
 }
-.slider_two  .bannerButton .btnPrimary {
+.slider_two .bannerButton .btnPrimary {
   background-color: #91100f;
   color: #ffffff;
   border-color: #91100f;
 }
-/* banner section custom css ended */
+.banner_flower,
+.banner_flower_right {
+  position: absolute;
+  top: -8rem;
+  left: -8rem;
+  max-width: 24%;
+}
+.banner_flower_right {
+  left: auto;
+  right: -8rem;
+  transform: rotate(90deg);
+}
+
+/***************** slider three *****************/
+.slider_three.heroSectionHeight {
+  background-position: unset;
+}
+.slider_three .bannerHeaderH1 {
+  max-width: 815px;
+  font-weight: 400;
+  font-size: 50px;
+  margin-top: 60px;
+}
+/***************** banner section custom css ended *****************/
 
 /*  */
 .sectionSpace {
@@ -416,7 +434,7 @@ font-weight: 400;
 .column_gap {
   gap: 100px;
 }
-/*  how_we_work started*/
+/*****************  how_we_work started *****************/
 .how_we_work {
   margin-top: 120px !important;
 }
@@ -428,7 +446,7 @@ font-weight: 400;
   padding: 70px 0;
 }
 
-/* step div */
+/***************** form step div *****************/
 .step_count,
 .submit_svg {
   border: 5px #ebebeb solid;
@@ -483,11 +501,6 @@ font-weight: 400;
 }
 
 /* price page css started */
-/* .faq_wrapper .border-b:last-child {
-  border: 0 !important;
-} */
-
-/* price page css started */
 .card_pricing_img {
   position: absolute;
   right: 0;
@@ -499,13 +512,13 @@ font-weight: 400;
   object-fit: cover;
 }
 
-/* demo page css started */
+/***************** demo page css started *****************/
 .demo_section button,
-.demo_section button:hover{
+.demo_section button:hover {
   padding: 10px 30px;
   font-size: 16px;
 }
-.absolute_img{
+.absolute_img {
   max-width: 650px;
   margin: auto;
   position: absolute;
@@ -513,11 +526,19 @@ font-weight: 400;
   left: 0;
   right: 0;
 }
-/* demo page css ended */
+.voucher_img{
+  max-width: 200px;
+  max-height: 200px;
+  object-fit: cover;
+  margin: 20px 0;
+}
+.upload_img{
+  max-width: 30px;
+  margin: auto;
+}
+/***************** demo page css ended *****************/
 
-
-
-
+/***************** responsive css *****************/
 
 @media (max-width: 1600px) {
   .partner_logos img {
@@ -538,12 +559,37 @@ font-weight: 400;
   .container-fluid {
     max-width: 96%;
   }
-  .min_gap{
+  .min_gap {
     gap: 20px !important;
+  }
+  /***** banner slider *******/
+  img.card_img_left {
+    left: 5rem;
+    max-width: 150px;
+  }
+  img.card_img_right {
+    right: 5rem;
+    max-width: 150px;
+  }
+  .banner_flower,
+  .banner_flower_right {
+    max-width: 30%;
+  }
+  .slider_two .bannerHeaderH1 {
+    font-size: 60px;
+    max-width: 58%;
+    line-height: 60px;
+  }
+  .slider_two p {
+    font-size: 18px;
+  }
+  .slider_two .bannerButton .btnPrimary {
+    padding: 12px 22px;
+    font-size: 15px;
   }
 }
 @media (max-width: 1366px) {
-  .bannerHeaderH1 {
+  .slider_one .bannerHeaderH1 {
     font-size: 42px;
     max-width: 80%;
   }
@@ -575,7 +621,7 @@ font-weight: 400;
   .list_group li {
     font-size: 16px !important;
   }
-  .min_height{
+  .min_height {
     min-height: 220px !important ;
   }
 }
@@ -597,13 +643,53 @@ font-weight: 400;
   .faq_section {
     margin-top: 50px !important;
   }
+  .slider_one .bannerHeaderH1 {
+    font-size: 42px;
+    max-width: 500px;
+  }
+  .homeBanner p {
+    font-size: 18px;
+    margin: 17px 0;
+  }
+  .absolute_img {
+    max-width: 560px;
+    bottom: -1rem;
+  }
 }
 
 @media (min-width: 768px) {
   .navLinks {
-    /* Show the menu by default on larger screens */
     transform: translateX(0);
   }
+}
+
+@media screen and (max-width: 1199px) {
+  .slider_two .bannerHeaderH1 {
+    font-size: 50px;
+    max-width: 39%;
+    line-height: 60px;
+  }
+}
+@media screen and (max-width: 991px) {
+  img.card_img_left,
+  img.card_img_right {
+    left: 2rem;
+    max-width: 100px;
+  }
+  img.card_img_right {
+    right: -30rem;
+  }
+  .homeBanner p {
+    max-width: 60%;
+  }
+  .banner_flower,
+  .banner_flower_right {
+    max-width: 320px;
+  }
+  .slider_two .bannerHeaderH1 {
+    max-width: 50%;
+    line-height: 60px;
+}
 }
 @media screen and (max-width: 768px) {
   .partner_logos img {
@@ -701,12 +787,31 @@ font-weight: 400;
   .card_pricing_Wapper p {
     max-width: 100% !important;
   }
-  .min_height{
+  .min_height {
     min-height: 200px !important ;
   }
-  .min_gap{
+  .min_gap {
     gap: 20px !important;
   }
+
+  /* banner slider css */
+  .slider_two .bannerHeaderH1 {
+    font-size: 40px;
+    max-width: 360px;
+    line-height: normal;
+    text-align: left;
+    margin:10px 0;
+}
+ .homeBanner   .slider_two p {
+    font-size: 20px;
+    margin: 22px 0 !important;
+    max-width: 100%;
+    text-align: left;
+}
+.slider_two .bannerButton {
+
+    text-align: left;
+}
 }
 
 @media screen and (max-width: 767px) {
@@ -723,7 +828,6 @@ font-weight: 400;
     background-size: contain;
     background-repeat: no-repeat;
     cursor: pointer;
-    /* background-color: #fff; */
     z-index: 999;
   }
   .responiveSlider::after {
@@ -764,8 +868,15 @@ font-weight: 400;
     padding: 30px 20px 10px;
     width: 100%;
   }
+
 }
 
+@media (max-width: 765px) {
+  img.card_img_left,
+  img.card_img_right {
+    display: none;
+  }
+}
 @media (max-width: 575px) {
   .mobileVisible {
     display: block;
@@ -843,15 +954,28 @@ font-weight: 400;
   .choose_content_wrapper .p-10 {
     padding: 1.5rem !important;
   }
-  .min_gap{
+  .min_gap {
     gap: 15px !important;
+  }
+
+  /* banner design */
+  .absolute_img {
+    max-width: 100%;
+    bottom: -1rem;
+  }
+  .heroSectionHeight {
+    min-height: calc(100vh - 285px);
+    background-position: center;
+  }
+  .slider_one .bannerHeaderH1 {
+    font-size: 30px;
   }
 }
 @media (max-width: 480px) {
   .margin100 {
     margin-top: 70px;
   }
-  .min_height{
+  .min_height {
     min-height: 200px !important ;
   }
 }
