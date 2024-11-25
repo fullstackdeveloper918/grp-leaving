@@ -1,5 +1,7 @@
+"use client"
 import CopyclickBoard from "@/components/common/CopyclickBoard";
 import EscrowPayment from "@/components/EscrowPayment";
+import GiftCardCollectionPot from "@/components/GiftCardCollectionPot";
 import Link from "next/link";
 import React from "react";
 
@@ -26,66 +28,37 @@ const page = () => {
         </button>
       </div>
       <div className="flex items-center justify-center ">
-  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-6xl">
-    <div className="bg-white shadow-md rounded-lg p-6 ">
-      <h2 className="text-lg font-semibold mb-2">Abhay Singh</h2>
-      <p className="text-gray-500 mb-4">Organiser</p>
-      <div className="flex">
-        <button className="text-blue-600 hover:underline mb-2">
-          Add message to your team
-        </button>
-      </div>
-      <CopyclickBoard />
-      <div className="mt-4 border-t pt-4">
-        <h3 className="text-md font-semibold mb-2">
-          Add Greeting Card to Collection?
-        </h3>
-        <p className="text-gray-500 mb-4">
-          Make this collection even more special by adding a group greeting
-          card to it. Your gift card will remain at this same URL but also
-          collect unlimited personalised messages from everyone
-          contributing.
-        </p>
-        <Link href={`/card/farewell/1`}>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-6xl">
+          <div className="bg-white shadow-md rounded-lg p-6 ">
+            <h2 className="text-lg font-semibold mb-2">Abhay Singh</h2>
+            <p className="text-gray-500 mb-4">Organiser</p>
+            <div className="flex">
+              <button className="text-blue-600 hover:underline mb-2">
+                Add message to your team
+              </button>
+            </div>
+            <CopyclickBoard />
+            <div className="mt-4 border-t pt-4">
+              <h3 className="text-md font-semibold mb-2">
+                Add Greeting Card to Collection?
+              </h3>
+              <p className="text-gray-500 mb-4">
+                Make this collection even more special by adding a group
+                greeting card to it. Your gift card will remain at this same URL
+                but also collect unlimited personalised messages from everyone
+                contributing.
+              </p>
+              <Link href={`/card/farewell/1`}>
+                <button className="bg-blue-600 text-black px-4 py-2 border-2 border-blue-700 rounded-md hover:bg-blue-700 transition">
+                  Add Greeting Card
+                </button>
+              </Link>
+            </div>
+          </div>
 
-        <button className="bg-blue-600 text-black px-4 py-2 border-2 border-blue-700 rounded-md hover:bg-blue-700 transition">
-          Add Greeting Card
-        </button>
-</Link>
+         <GiftCardCollectionPot/>
+        </div>
       </div>
-    </div>
-
-    <div className="bg-white shadow-md rounded-lg p-6">
-      <h2 className="text-lg font-semibold mb-4 text-center">
-        Gift Card Collection Pot
-      </h2>
-      <div className="flex justify-center mb-4">
-        <img
-          src="https://gift.runa.io/static/product_assets/AMZ-GB/AMZ-GB-card.png" // Replace with your gift card image
-          alt="Gift Card"
-          className="w-32 h-20 object-contain"
-        />
-      </div>
-      {/* <div className="text-center mb-4 justify-center">
-        <p className="text-2xl font-bold">£0</p>
-      </div> */}
-      <EscrowPayment />
-      <div className="text-center mb-2 justify-center">
-        <button className="text-black-600 hover:underline">
-          Delete
-        </button>
-      </div>
-      <div className="mt-6 text-center justify-center">
-        <button className="bg-blue-600 text-black border-2 border-blue-700 px-4 py-2 rounded-md hover:bg-blue-700 transition">
-          Add Gift Card
-        </button>
-        {/* </Link> */}
-      </div>
-    </div>
-  </div>
-</div>
-
-
     </div>
   );
 };

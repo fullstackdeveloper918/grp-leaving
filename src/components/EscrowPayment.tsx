@@ -8,8 +8,8 @@ declare global {
   }
 }
 
-const EscrowPayment = () => {
-  const AMOUNT = 120; // Amount in INR
+const EscrowPayment = ({closeModal}:any) => {
+  const AMOUNT = 0; // Amount in INR
   const [isProcessing, setIsProcessing] = useState(false);
 
   const handlePayment = async () => {
@@ -38,6 +38,20 @@ const EscrowPayment = () => {
         order_id: data.orderId, // Use the order ID from the backend response
         handler: function (response: any) {
           console.log("Payment successful", response);
+          fetch(
+            'https://magshopify.goaideme.com/razorpay/link-by-user-id',
+            {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',  
+              },
+              body: JSON.stringify({
+                product_id: "product_id",
+                user_uuid: "userInfo?.uuid",
+                paymentId: "paymentId",
+              }),
+            }
+          )
         },
         prefill: {
           name: "Abhay Singh",
@@ -52,6 +66,7 @@ const EscrowPayment = () => {
       // Initialize and open Razorpay Checkout
       const rzp1 = new window.Razorpay(options);
       rzp1.open();
+      closeModal()
     } catch (error) {
       console.error("Payment failed", error);
     } finally {
@@ -70,11 +85,11 @@ const EscrowPayment = () => {
         {isProcessing ? "Processing..." : `Escrow Pay Now: ${AMOUNT} INR`}
       </button> */}
        <div className="text-center mb-4 justify-center">
-            <p className="text-2xl font-bold">£{AMOUNT}</p>
+            {/* <p className="text-2xl font-bold">£{AMOUNT}</p> */}
             <button  onClick={handlePayment}
         disabled={isProcessing}
          className="bg-blue-600 text-black  border-2 border-blue-700 px-4 py-2  rounded-md hover:bg-blue-700 transition">
-              {isProcessing ? "Processing..." : `Contribute to Gift Card`}
+              {isProcessing ? "Processing..." : `Continue to Payment`}
             </button>
           </div>
      
