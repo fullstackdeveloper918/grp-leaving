@@ -22,11 +22,12 @@ import EscrowPayment from "./EscrowPayment";
 import { cookies } from "next/headers";
 import { useParams } from "next/navigation";
 
-const Checkout = () => {
+const Checkout = ({data}:any) => {
   const [cardType, setCardType] = useState<any>("group");
   console.log(cardType, "cardType");
   const param=useParams()
   console.log(param.id,"param");
+  console.log(data,"datadatadata");
   
   // const cookiesList = cookies();
   // const userInfoCookie = cookiesList.get('userInfo'); 
@@ -42,10 +43,26 @@ const Checkout = () => {
   // console.log(userInfo,"pooooo");
   
   const [bundleOption, setBundleOption] = useState<any>("single");
-  const [numCards, setNumCards] = useState<any>(5); // Default card bundle selection
+  const [numCards, setNumCards] = useState<any>(null);
+
+  // State to store the selected sale price
+  const [salePrice, setSalePrice] = useState(null);
+
+  // Handle selection change
+  const handleChange = (e:any) => {
+    const selectedCount = data?.data.find((count:any) => count.number_of_cards === Number(e.target.value));
+    setNumCards(Number(e.target.value)); // Update number of cards state
+    if (selectedCount) {
+      setSalePrice(selectedCount.sale_price); // Update sale price state
+    }
+  };
   const [paywith, setPaywith] = useState<any>("STRIPE");
   const [voucher, setVaoucher] = useState<any>("");
   const [voucher1, setVaoucher1] = useState<any>("");
+  console.log(numCards,"numCards");
+  console.log(salePrice,"salePrice");
+  console.log(bundleOption,"bundleOption");
+  
   const onChange = (e: any) => {
     setVaoucher(e);
   };
@@ -69,10 +86,23 @@ const Checkout = () => {
       : cardType === "individual"
       ? individualCardprice
       : bundleSingleCard;
-  const TotalAmount =
-    bundleOption === "bundle"
-      ? `$${parseFloat(cardPrices[numCards].price.toFixed(2)) - voucher1} USD`
-      : `$${AmountCondition - voucher1} USD`;
+
+
+      const TotalAmount = cardType === "individual"
+      ? individualCardprice
+      : cardType === "group"
+      ? (bundleOption === "single" ? bundleSingleCard : salePrice)
+      : "22.45";
+      // const TotalAmount = bundleOption === "single" 
+      // ? bundleSingleCard 
+      // : cardType === "group" 
+      // ? groupCardPrice 
+      // : cardType === "individual" 
+      // ? individualCardprice 
+      // : salePrice;
+    // bundleOption === "bundle"
+    //   ? `$${parseFloat(cardPrices[numCards].price.toFixed(2)) - voucher1} USD`
+    //   : `$${AmountCondition - voucher1} USD`;
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col justify-center items-center p-5">
       <div className="w-full max-w-4xl bg-white shadow-lg rounded-lg p-6 md:flex">
@@ -143,7 +173,8 @@ const Checkout = () => {
                     />
                     <span className="text-lg">Card Bundle</span>
                     <span className="ml-auto text-green-500">
-                      From $22.45 USD
+                      From ${data?.data[0].sale_price} USD
+                      {/* From $22.45 USD */}
                     </span>
                   </label>
                 </div>
@@ -162,24 +193,20 @@ const Checkout = () => {
                         Select number of cards:
                       </label>
                       <select
-                        value={numCards}
-                        onChange={(e) => setNumCards(Number(e.target.value))}
+                        // value={numCards}
+                        onChange={handleChange}
                         className="border border-gray-300 p-2 rounded-lg w-full"
                       >
-                        {Object.keys(cardPrices).map((count: any) => (
-                          <option key={count} value={count}>
-                            {count} Cards — $
-                            {cardPrices[
-                              count as keyof typeof cardPrices
-                            ].price.toFixed(2)}{" "}
+                        {data?.data.map((count: any) => (
+                          // console.log(count,"count")
+                          
+                          <option key={count.number_of_cards} value={count.number_of_cards}>
+                            {count?.number_of_cards} Cards — $
+                            {count.sale_price.toFixed(2)}{" "}
                             USD ($
-                            {cardPrices[
-                              count as keyof typeof cardPrices
-                            ].perCard.toFixed(2)}{" "}
+                            {count.per_card.toFixed(2)}{" "}
                             USD/card) -{" "}
-                            {
-                              cardPrices[count as keyof typeof cardPrices]
-                                .discount
+                            {count.discount
                             }{" "}
                             off
                           </option>
@@ -242,23 +269,23 @@ const Checkout = () => {
               <div className="flex justify-between">
                 <span>Card Price</span>
                 <span className="font-bold">
-                  {bundleOption === "bundle"
+                  {/* {bundleOption === "bundle"
                     ? `$${
                         parseFloat(cardPrices[numCards].price.toFixed(2)) -
                         voucher1
                       } USD`
-                    : `$${AmountCondition - voucher1} USD`}
+                    : `$${AmountCondition - voucher1} USD`} */}
                 </span>
               </div>
               <div className="flex justify-between mt-2">
                 <span>Total</span>
                 <span className="font-bold text-xl">
-                  {bundleOption === "bundle"
+                  {/* {bundleOption === "bundle"
                     ? `$${
                         parseFloat(cardPrices[numCards].price.toFixed(2)) -
                         voucher1
                       } USD`
-                    : `$${AmountCondition - voucher1} USD`}
+                    : `$${AmountCondition - voucher1} USD`} */}
                 </span>
               </div>
             </div>

@@ -65,7 +65,7 @@ const Hero = (props: any) => {
       <div className="slider-containe">
     <Slider {...settings}>
       {/********** slide 1 started  ***********/}
-      <div className="relative bg-hero_banner_new slider_onebg-cover bg-no-repeat  heroSectionHeight">
+      <div className="relative bg-hero_banner_new bg-cover slider_onebg-cover bg-no-repeat  heroSectionHeight">
           
           <img src={banner_flower.src} className="banner_flower" />
          
