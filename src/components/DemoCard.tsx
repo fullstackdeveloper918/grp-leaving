@@ -43,7 +43,7 @@ const DemoCard = () => {
                 <button>User Image Popup</button>
                 <img src="https://gift.wegift.io/static/product_assets/AMZ-GB/AMZ-GB-card.png"   alt="Amazon" className="voucher_img mx-auto rounded" />
                 <p className="font-bold text-center text-lg">£360</p>
-                <button className="bg-greyBorder text-blackText rounded-lg  w-100 text-sm p-2.5">Contribute to Hagrid's Gift Card</button>
+                <button className="bg-greyBorder text-blackText rounded-lg  w-100 text-sm p-2.5">Contribute to Hagrid Gift Card</button>
               </div>
               <button className=" btnPrimary text-center w-100 mt-3 rounded-md">Share Card</button>
             </div>

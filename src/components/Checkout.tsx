@@ -46,7 +46,7 @@ const Checkout = ({data}:any) => {
   const [numCards, setNumCards] = useState<any>(null);
 
   // State to store the selected sale price
-  const [salePrice, setSalePrice] = useState(null);
+  const [salePrice, setSalePrice] = useState("22.45");
 
   // Handle selection change
   const handleChange = (e:any) => {
