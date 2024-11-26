@@ -22,12 +22,14 @@ const page = () => {
               buttonText="Create Card"
             />
           </Link>
+          <Link href={`/board`}  className="no-underline">
           <OptionCard
             title="Board"
             imageSrc={Images?.board}
             description="Boards function like a digital pinboard, allowing you to add unlimited messages and images on a scrollable page for endless creativity!"
             buttonText="Create Board"
-          />
+            />
+            </Link>
           <Link href={`/pool/new`} className="no-underline">
           <OptionCard
             title="Money Pool"
