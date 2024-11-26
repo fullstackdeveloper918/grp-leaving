@@ -5,9 +5,11 @@ import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.css"; // Import Swiper styles
 import Link from "next/link";
+import { Api } from "@/interfaces/interfaces";
+import { fetchFromServer } from "@/app/actions/fetchFromServer";
 
-const HomeCategorySection = ({searchParams}:any) => {
-  console.log(searchParams,"yuuuuuuu");
+const HomeCategorySection = async({params,searchParams}:any) => {
+  console.log(searchParams?.category,"yuuuuuuu");
   
   const array = [
     {
@@ -409,18 +411,102 @@ const HomeCategorySection = ({searchParams}:any) => {
 
 
 
-  const filteredCards = array.filter((card) => card.type === searchParams?.category);
+  const filteredCards = array.filter((card) => card.type === searchParams?.category?.category);
   const filteredCards1 = array.filter((card) => card.type);
-  const type = searchParams?.category||"farewell"
-  console.log(type,"ioioio");
+  // const type = searchParams?.category||"farewell"
+  // console.log(type,"ioioio");
   
+  // const type = params.slug[0];
+ 
+  // console.log(type,"type");
+  
+ 
+ //  Sidebar
+ 
+ let data = await fetch('https://magshopify.goaideme.com/card/collection-listing', { cache: 'no-store' })
+ let data1 = await data.json();
+   console.log(data1, "qwe323355");
+ //  const url = 'https://magshopify.goaideme.com/card/collection-listing';
+ 
+ //  const response1 = await fetch(url, {
+ //   method: 'GET',
+ //   cache: 'no-store',
+ // });
+ 
+ // const data = await response1.json();
+ //   console.log(data, "check145454523");
+   const normalizedType =searchParams?.category?.replace('-', ' ')||"farewell";
+   console.log(normalizedType,"normalizedType");
+   
+   const matchedObject = data1.data.find((item: any) => {
+     const normalizedTags = item.collection_title.replace('-', ' ');
+     return normalizedTags === normalizedType;
+   });
+   console.log(matchedObject,"matchedObject");
+   const collectionType = matchedObject ? matchedObject.uuid : null;
+   console.log(collectionType,"collectionType");
+ 
+   // All cards
+ 
+   const api2: Api = {
+     url: `https://magshopify.goaideme.com/card/single-card-listing/${collectionType}`,
+     method: "GET",
+     // body: { key: 'value' }
+     // comment only
+   };
+ 
+   const response = await fetchFromServer(api2);
+   console.log(response, "response");
+ 
+  
+ 
+ 
+   const cardLabel = "params.slug[1]";
+  //  console.log(type, "tyjgjgjgjgpe");
+ 
   return (
     <div>
-      <Filter searchParams={searchParams} />
+      <Filter urlValue={searchParams?.category} cardLabel={cardLabel} response={data1} />
+      {/* <Filter searchParams={searchParams} /> */}
 
       <div className="flex flex-col items-center  bg-white">
         <div className=" flex lg:space-x-8  space-x-6 md:w-full md:max-w-full justify-center max-w-[96%] mx-auto" >
-          {filteredCards.length > 0 ? (
+          {response?.data > 0 ? (
+            response?.data?.slice(0, 4).map((card:any) => (
+              <div
+                key={card.id}
+                className="max-w-sm lg:w-64 lg:h-80 md:w-[150px] md:h-[150px] w-[100px] h-[100px] bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 overflow-hidden"
+              >
+                <a href={`/card/new/${card?.uuid}?category=${card?.title}`}>
+                  <Image
+                    className="rounded-t-lg w-full h-full object-cover"
+                    src={`https://magshopify.goaideme.com/${card?.images[0]?.card_images[0]}`}
+                    alt="card-img"
+                    width={100}
+                    height={100}
+                  />
+                </a>
+              </div>
+            ))
+          ) : (
+            response?.data?.slice(0, 4).map((card:any) => (
+              <div
+                key={card.id}
+                className="max-w-sm 2xl:w-64 2xl:h-80 xl:w-56 xl:h-56 md:w-[150px] md:h-[150px] w-[100px] h-[100px] bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 overflow-hidden"
+                >
+                <a href={`/card/new/${card?.uuid}?category=${card?.title}`}>
+                  <Image
+                    className="rounded-t-lg w-full h-full object-cover"
+                    src={`https://magshopify.goaideme.com/${card?.images[0]?.card_images[0]}`}
+                    alt="card-img"
+                    width={100}
+                    height={100}
+                  />
+                </a>
+              </div>
+            ))
+          )}
+          {/* {filteredCards.length > 0 ? (
             filteredCards.slice(0, 4).map((card) => (
               <div
                 key={card.id}
@@ -450,11 +536,11 @@ const HomeCategorySection = ({searchParams}:any) => {
                 </a>
               </div>
             ))
-          )}
+          )} */}
           
         </div>
         <div>
-          <Link href={`/card/${type}`}>
+          <Link href={`/card/${searchParams?.category||"farewell"}`}>
         <button className=' btnPrimary mx-auto my-5 mb-3'>
         See more designs
         </button>
