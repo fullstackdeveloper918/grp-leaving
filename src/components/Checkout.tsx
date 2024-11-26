@@ -47,6 +47,7 @@ const Checkout = ({data}:any) => {
 
   // State to store the selected sale price
   const [salePrice, setSalePrice] = useState("22.45");
+  const [exact, setExact] = useState<any>("");
 
   // Handle selection change
   const handleChange = (e:any) => {
@@ -54,6 +55,7 @@ const Checkout = ({data}:any) => {
     setNumCards(Number(e.target.value)); // Update number of cards state
     if (selectedCount) {
       setSalePrice(selectedCount.sale_price); // Update sale price state
+      setExact(selectedCount.cost_price)
     }
   };
   const [paywith, setPaywith] = useState<any>("STRIPE");
@@ -88,11 +90,14 @@ const Checkout = ({data}:any) => {
       : bundleSingleCard;
 
 
-      const TotalAmount = cardType === "individual"
+      const amount:any = cardType === "individual"
       ? individualCardprice
       : cardType === "group"
       ? (bundleOption === "single" ? bundleSingleCard : salePrice)
       : "22.45";
+
+
+      const TotalAmount =amount - voucher1
       // const TotalAmount = bundleOption === "single" 
       // ? bundleSingleCard 
       // : cardType === "group" 
@@ -275,11 +280,13 @@ const Checkout = ({data}:any) => {
                         voucher1
                       } USD`
                     : `$${AmountCondition - voucher1} USD`} */}
+                    {`$${exact - voucher1} USD`}
                 </span>
               </div>
               <div className="flex justify-between mt-2">
                 <span>Total</span>
                 <span className="font-bold text-xl">
+                  { `$${TotalAmount} USD`}
                   {/* {bundleOption === "bundle"
                     ? `$${
                         parseFloat(cardPrices[numCards].price.toFixed(2)) -
