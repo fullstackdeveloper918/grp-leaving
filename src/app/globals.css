@@ -570,6 +570,14 @@ body {
   gap: 10px;
 }
 
+/***************** demp page css started *****************/
+.demo_paragraph{
+  max-width: 60%;
+  margin: 10px auto 10px;
+}
+
+/***************** demp page css  ended*****************/
+
 /***************** responsive css *****************/
 
 @media (max-width: 1600px) {
@@ -701,6 +709,10 @@ body {
     max-width: 39%;
     line-height: 60px;
   }
+  .demo_section button, .demo_section button:hover {
+    padding: 8px 19px;
+    font-size: 14px;
+}
 }
 @media screen and (max-width: 991px) {
   img.card_img_left,
@@ -722,6 +734,10 @@ body {
     max-width: 50%;
     line-height: 60px;
   }
+  .demo_paragraph {
+    max-width: 90%;
+    font-size: 14px;
+}
 }
 @media screen and (max-width: 768px) {
   .partner_logos img {
