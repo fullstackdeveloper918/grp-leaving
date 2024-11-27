@@ -104,7 +104,7 @@ const Home = async ({ searchParams }: any) => {
             <h1 className="xl:text-4xl md:text-xl sm:text-md font-semibold">
               How group cards work?
             </h1>
-            <p className="text-xl text-gray-600 font-semibold mb-8">
+            <p className="md:text-xl text-md text-gray-600 font-semibold mb-8">
               How to create a group ecard signed by multiple people.
             </p>
           </div>

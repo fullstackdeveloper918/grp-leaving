@@ -2,6 +2,9 @@ import Faqinputs from "@/components/common/Faqinputs";
 import Faq from "@/components/Faq";
 import React from "react";
 import FaqJson from "../../constants/FaqJson/faq.json";
+import piggy_bank from "../../assets/images/piggy_bank.png";
+import appreciation from "../../assets/images/appreciation.png";
+import amazon_gift from "../../assets/images/amazon_gift.png";
 const page = () => {
   return (
     <>
@@ -17,7 +20,7 @@ const page = () => {
             </p>
 
             {/* Image section */}
-            <div className="flex justify-center space-x-4 mb-12 gift_img_wrapper">
+            {/* <div className="flex justify-center space-x-4 mb-12 gift_img_wrapper">
               <img
                 src="/amazon-card.png"
                 alt="Amazon gift card"
@@ -38,20 +41,20 @@ const page = () => {
                 alt="John Lewis gift card"
                 className="w-24"
               />
-            </div>
+            </div> */}
 
             {/* How it works section */}
-            <h3 className="text-2xl font-semibold mb-6">How it works</h3>
+            {/* <h3 className="text-2xl font-semibold mb-6">How it works</h3> */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <div className="text-center">
                 <div className="bg-white p-6 rounded-[20px] hover:shadow-lg transition-all  border border-[#e5e7eb]  h-full">
                 <img
-                src="https://groupleavingcards.com/_next/image?url=%2Fimages%2Fgift%2Fselect_gift.png&w=256&q=75"
+                    src={amazon_gift.src} 
                 alt="Amazon gift card"
                 className="w-24 mx-auto"
               />
                   <h4 className="text-xl font-semibold mt-3 mb-1 ">Add gift card</h4>
-                  <p>Add a cash collection pot and select a gift card.</p>
+                  <p className="mb-0">Add a cash collection pot and select a gift card.</p>
                 </div>
               </div>
 
@@ -59,12 +62,11 @@ const page = () => {
                 <div className="bg-white p-6 rounded-[20px] hover:shadow-lg transition-all  border border-[#e5e7eb]  h-full">
                   {/* <span className="text-4xl font-bold text-purple-500">2</span> */}
                   <img
-                src="	https://groupleavingcards.com/_next/image?url=%2Fimages%2Fgift%2Fcollect_cash.png&w=256&q=75"
-                alt="Amazon gift card"
-                  className="w-24 mx-auto"
+                src={piggy_bank.src} alt="Amazon gift card"
+                  className=" mx-auto"
               />
                   <h4 className="text-xl font-semibold mt-3 mb-1">Collect cash</h4>
-                  <p>Anyone can add to the collection.</p>
+                  <p className="mb-0">Anyone can add to the collection.</p>
                 </div>
               </div>
 
@@ -72,14 +74,14 @@ const page = () => {
                 <div className="bg-white p-6 rounded-[20px] hover:shadow-lg transition-all  border border-[#e5e7eb]  h-full">
                   {/* <span className="text-4xl font-bold text-purple-500">3</span> */}
                   <img
-                src="	https://groupleavingcards.com/_next/image?url=%2Fimages%2Fgift%2Fdeliver_gift.png&w=256&q=75"
+                   src={appreciation.src}
                 alt="Amazon gift card"
              className="w-24 mx-auto"
               />
                   <h4 className="text-xl font-semibold mt-3 mb-1">
                     Deliver appreciation
                   </h4>
-                  <p>Recipient receives their gift card via email.</p>
+                  <p className="mb-0">Recipient receives their gift card via email.</p>
                 </div>
               </div>
             </div>

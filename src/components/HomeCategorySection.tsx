@@ -470,7 +470,7 @@ const HomeCategorySection = async({params,searchParams}:any) => {
       {/* <Filter searchParams={searchParams} /> */}
 
       <div className="flex flex-col items-center  bg-white">
-        <div className=" flex lg:space-x-8  space-x-6 md:w-full md:max-w-full justify-center max-w-[96%] mx-auto" >
+        <div className=" flex lg:space-x-8  space-x-6 md:w-full md:max-w-full justify-center max-w-[96%] mx-auto flex_responsive" >
           {response?.data > 0 ? (
             response?.data?.slice(0, 4).map((card:any) => (
               <div
@@ -492,8 +492,9 @@ const HomeCategorySection = async({params,searchParams}:any) => {
             response?.data?.slice(0, 4).map((card:any) => (
               <div
                 key={card.id}
-                className="max-w-sm 2xl:w-64 2xl:h-80 xl:w-56 xl:h-56 md:w-[150px] md:h-[150px] w-[100px] h-[100px] bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 overflow-hidden"
-                >
+                // className="max-w-sm 2xl:w-64 2xl:h-80 xl:w-56 xl:h-56 md:w-[150px] md:h-[150px] w-[100px] h-[100px] bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 overflow-hidden"
+            className="card_width_img"
+            >
                 <a href={`/card/new/${card?.uuid}?category=${card?.title}`}>
                   <Image
                     className="rounded-t-lg w-full h-full object-cover"

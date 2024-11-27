@@ -402,6 +402,11 @@ body {
   color: #ffffff;
   border-color: #91100f;
 }
+.slider_two .bannerButton .btnPrimary:hover {
+ color: #91100f !important;
+ background-color: transparent !important; 
+ border-color: #91100f !important;
+}
 .banner_flower,
 .banner_flower_right {
   position: absolute;
@@ -526,17 +531,52 @@ body {
   left: 0;
   right: 0;
 }
-.voucher_img{
+.voucher_img {
   max-width: 200px;
   max-height: 200px;
   object-fit: cover;
   margin: 20px 0;
 }
-.upload_img{
+.upload_img {
   max-width: 30px;
   margin: auto;
 }
 /***************** demo page css ended *****************/
+
+
+/******** card img *********/
+.card_width_img {
+  width: 100%;
+  min-width: 180px;
+  max-width: 230px;
+}
+
+.saveAmount {
+  position: absolute;
+  top: 0;
+  left: 0px;
+  background-color: #558ec9;
+  color: #fff;
+  font-size: 12px;
+  border-radius: 10px 0 10px 0;
+  padding: 4px 12px;
+  text-transform: uppercase;
+}
+.card_bulk_images img{
+  max-width: 30px;
+}
+.card_bulk_images{
+  justify-content: center;
+  gap: 10px;
+}
+
+/***************** demp page css started *****************/
+.demo_paragraph{
+  max-width: 60%;
+  margin: 10px auto 10px;
+}
+
+/***************** demp page css  ended*****************/
 
 /***************** responsive css *****************/
 
@@ -669,6 +709,10 @@ body {
     max-width: 39%;
     line-height: 60px;
   }
+  .demo_section button, .demo_section button:hover {
+    padding: 8px 19px;
+    font-size: 14px;
+}
 }
 @media screen and (max-width: 991px) {
   img.card_img_left,
@@ -689,6 +733,10 @@ body {
   .slider_two .bannerHeaderH1 {
     max-width: 50%;
     line-height: 60px;
+  }
+  .demo_paragraph {
+    max-width: 90%;
+    font-size: 14px;
 }
 }
 @media screen and (max-width: 768px) {
@@ -794,24 +842,52 @@ body {
     gap: 20px !important;
   }
 
+  .flex_responsive{
+    flex-wrap: wrap;
+    gap: 20px;
+    flex: 1;
+    justify-content: center;
+  }
+  .flex_responsive .card_width_img {
+    width: 100%;
+    min-width: 160px;
+    max-width: 160px;
+    text-align: center;
+    margin: 0 !important;
+    min-height: 170px;
+}
+
   /* banner slider css */
   .slider_two .bannerHeaderH1 {
     font-size: 40px;
     max-width: 360px;
     line-height: normal;
     text-align: left;
-    margin:10px 0;
-}
- .homeBanner   .slider_two p {
+    margin: 10px 0;
+  }
+  .homeBanner .slider_two p {
     font-size: 20px;
     margin: 22px 0 !important;
     max-width: 100%;
     text-align: left;
-}
-.slider_two .bannerButton {
-
+  }
+  .slider_two .bannerButton {
     text-align: left;
+  }
+  .slider_three .bannerHeaderH1 {
+    font-size: 32px;
+    margin-top: 20px;
 }
+
+/****** card page css started ********/
+.margin_responsive{
+  margin-top: 10px !important;
+}
+.margin_responsive.mb-4{
+  margin-bottom: 10px !important;
+}
+/****** card page css ended ********/
+
 }
 
 @media screen and (max-width: 767px) {
@@ -874,7 +950,11 @@ body {
 @media (max-width: 765px) {
   img.card_img_left,
   img.card_img_right {
-    display: none;
+    display: none !important;
+  }
+  .logo_img{
+    width: 100% !important;
+    min-width: 120px;
   }
 }
 @media (max-width: 575px) {
@@ -959,17 +1039,36 @@ body {
   }
 
   /* banner design */
-  .absolute_img {
-    max-width: 100%;
-    bottom: -1rem;
-  }
+
   .heroSectionHeight {
-    min-height: calc(100vh - 285px);
+    min-height: auto;
     background-position: center;
+  }
+  .banner_slider_two.heroSectionHeight {
+    min-height: calc(100vh - 46.5vh);
   }
   .slider_one .bannerHeaderH1 {
     font-size: 30px;
   }
+  .absolute_img {
+    max-width: 70%;
+    bottom: 0;
+    position: relative;
+  }
+  .slider_two .bannerHeaderH1 {
+    font-size: 32px;
+  }
+  .homeBanner .slider_two p {
+    font-size: 16px;
+  }
+  .slider_two {
+    margin-top: 1rem;
+    padding-bottom: 130px;
+}
+.slider_three.heroSectionHeight {
+  background-position: bottom;
+  min-height: calc(100vh - 46.5vh);
+}
 }
 @media (max-width: 480px) {
   .margin100 {

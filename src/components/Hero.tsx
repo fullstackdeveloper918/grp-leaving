@@ -4,6 +4,7 @@ import { List } from "antd";
 import Image from "next/image";
 import card_absolute from "../assets/images/card_absolute.png";
 import banner_card from "../assets/images/banner_card_1.png";
+import card_absolute_1 from "../assets/images/banner_card_2.png";
 import banner_flower from "../assets/images/banner_flower.png";
 // import
 import Slider from "react-slick";
@@ -95,7 +96,7 @@ const Hero = (props: any) => {
               <img src={banner_card.src} className="card_img_right" />
             </div>
             <img
-              src={card_absolute.src}
+              src={card_absolute_1.src}
               className="absolute_img"
               alt="img card"
             />
