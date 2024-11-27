@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useRef } from "react";
 import cardPricing from "../assets/images/card_pricing.png";
+import greeting_cards from "../assets/images/greeting_cards.png";
 const AllCardPricing = ({data,data2}:any) => {
     console.log(data2,"checkcards");
     
@@ -472,7 +473,7 @@ const AllCardPricing = ({data,data2}:any) => {
               {/* <Link href={`/create`}> */}
               <button
                 onClick={scrollToBundles}
-                className="mt-6 bg-blue-600 text-blueText w-full py-2 rounded-xl border-2 border-[blueText] hover:bg-blue-700"
+                className="mt-5 bg-blue-600 text-blueText w-full py-2 rounded-xl border-2 border-[blueText] hover:bg-blue-700"
               >
                 View Bundle
               </button>
@@ -496,21 +497,21 @@ const AllCardPricing = ({data,data2}:any) => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl">
           {/* Bundle Option 1 */}
           {data2?.data.map((res:any, index:number)=>
-          <div key={index} className="bg-white p-6 rounded-[20px] hover:shadow-lg transition-all  border border-[#e5e7eb] flex flex-col justify-between h-full">
-            <div>
-              <h2 className="text-xl font-semibold mb-4 text-center text-gray-800">
-                {res?.number_of_cards} cards
+          <div key={index} className="bg-white p-6 rounded-[20px] hover:shadow-lg transition-all  border border-[#e5e7eb] flex flex-col justify-between h-full relative">
+            <div className="md:pt-3">
+              <h2 className="text-xl font-semibold mb-2 text-center text-gray-800 margin_responsive flex card_bulk_images items-center ">
+             <img src={greeting_cards.src} alt="img" />  <span>{res?.number_of_cards} cards</span>
               </h2>
-              <p className="text-center text-2xl font-bold text-gray-800 mb-2">
-                <span className="line-through text-gray-400">${res?.cost_price}</span>{" "}
+              <p className="text-center text-xl font-bold text-gray-800 mb-2 mb-0">
+                <span className="line-through text-[#707070] font-normal text-md">${res?.cost_price}</span>{" "}
                 ${res?.sale_price}
               </p>
-              <p className="text-center text-green-600">Save {res?.discount}%</p>
-              <p className="text-center text-gray-600 mt-2">${res?.price} per card</p>
+              <p className="text-center text-green-600 saveAmount">Save {res?.discount}%</p>
+              <p className="text-center text-gray-600 mt-2 mb-0">${res?.price} per card</p>
             </div>
             <button
                onClick={() => handlePush(res?.uuid)}
-              className="mt-6 bg-blue-600 text-blueText w-full py-2 rounded-xl border-2 border-[blueText] hover:bg-blue-700"
+              className="mt-6 bg-blue-600 text-blueText w-full py-2 rounded-xl border-2 border-[blueText] hover:bg-blue-700 margin_responsive"
             >
               Select this plan
             </button>

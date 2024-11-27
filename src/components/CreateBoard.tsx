@@ -105,7 +105,7 @@ console.log(uuid,"uuid")
   return (
     <div>
         <ToastContainer/>
-    <div className="flex flex-col items-center justify-center min-h-screen bg-white">
+    <div className="flex flex-col items-center justify-center min-h-screen border border-[#e5e7eb bg-lightBg">
       <h1 className="text-4xl font-bold mb-8">Create a Group Board</h1>
       <form onSubmit={handleSubmit} className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
         <label className="block mb-6">
@@ -115,7 +115,7 @@ console.log(uuid,"uuid")
             value={collectionTitle}
             onChange={handleCollectionTitleChange}
             placeholder="Recipient Name*"
-            className="mt-2 block w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
             required
           />
         </label>
@@ -126,7 +126,7 @@ console.log(uuid,"uuid")
             value={collectionTitle}
             onChange={handleCollectionTitleChange}
             placeholder="Board Title *"
-            className="mt-2 block w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
             required
           />
         </label>
@@ -137,7 +137,7 @@ console.log(uuid,"uuid")
           </p>
           <button
             type="button"
-            className="flex items-center justify-center border border-dashed border-blue-500 bg-blue-50 rounded-md p-4 text-blue-600 font-medium transition duration-300 hover:bg-blue-100"
+            className="flex items-center justify-center border border-dashed border-blue-500 bg-blue-50 rounded-md px-4 text-blue-600 font-medium transition duration-300 hover:bg-blue-100"
             onClick={() => setFormData({ ...formData, selectedGift: 'gift card' })} // Update the selected gift here
           >
             <span className="text-2xl mr-2">+</span>Select gift card
@@ -147,7 +147,7 @@ console.log(uuid,"uuid")
           <button
         //   disabled={setLoading}
             type="submit"
-            className="w-full bg-blue-600 text-black border-2 border-blue-700 py-3 rounded-md hover:bg-blue-700 transition duration-300"
+            className="w-full bg-blueBg text-white py-2 px-4  rounded-md hover:bg-blue-700 transition duration-300"
           >
            
               Continue

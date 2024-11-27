@@ -65,8 +65,8 @@ if (getuserData) {
 
   return (
     <>
-    <div className="announcementBar bg-blueText text-center py-2 text-white">
-      <p className="text-sm font-normal mb-0 text-center">Our back-to-school sale is here! <span className="font-bold">Save 15%</span> on Coins for all your fall invitations with code BACKTOFALL. Ends 9/3. <a href="#" className="underline">Shop Now.</a></p>
+    <div className="announcementBar bg-blueText text-center md:py-2 p-1 text-white">
+      <p className="text-xs font-normal mb-0 text-center">Our back-to-school sale is here! <span className="font-bold">Save 15%</span> on Coins for all your fall invitations with code BACKTOFALL. Ends 9/3. <a href="#" className="underline text-white font-medium">Shop Now.</a></p>
     </div>
       <header className="w-full">
         {/* Banner */}
@@ -84,7 +84,7 @@ if (getuserData) {
         <div className="flex justify-between items-center md:py-4 md:px-6 px-2 py-3 container-fluid">
           {/* Logo */}
           <Link href={`/`} className="no-underline w-3/12">
-          <Image src={GoodLuckCad.src} height={200} width={200} alt="Good Luck" className="text-4xl font-bold" />
+          <Image src={GoodLuckCad.src} height={200} width={200} alt="Good Luck" className="text-4xl font-bold logo_img" />
           </Link>
 
           <div className="flex items-center space-x-4 w-9/12 justify-end">
@@ -229,55 +229,55 @@ if (getuserData) {
         {/* Navigation Links */}
         {isMobile ? (
           <nav
-            className={`md:hidden text-sm text-gray-700  absolute inset-x-0 top-16 transition-transform duration-300 p-5 top-0 bg-white z-10 h-lvh ${
+            className={`md:hidden text-sm text-gray-700  absolute inset-x-0 top-16 transition-transform duration-300 p-5 px-4 top-0 bg-[#e2eefa] z-10 h-lvh ${
               isMenuOpen ? "translate-x-0" : "-translate-x-full"
             }`}
           >
             <a
               href="/card/farewell"
-              className="block lg:px-4 md:px-2 py-2 hover:text-blueText no-underline text-black m-0  border-b border-[#f6faff]"
+              className="block lg:px-4 md:px-2 py-3 hover:text-blueText no-underline text-black m-0 text-md  border-b border-[#8b8b8b29]"
             >
-              Farewellsf
+              Farewell
             </a>
             <a
               href="/card/birthday"
-              className="block lg:px-4 md:px-2 py-2 hover:text-blueText no-underline text-black m-0"
+              className="block lg:px-4 md:px-2 py-3 hover:text-blueText no-underline text-black m-0 text-md  border-b border-[#8b8b8b29]"
             >
               Birthday Cards
             </a>
             <a
               href="/card/baby"
-              className="block lg:px-4 md:px-2 py-2 hover:text-blueText no-underline text-black m-0"
+              className="block lg:px-4 md:px-2 py-3 hover:text-blueText no-underline text-black m-0 text-md  border-b border-[#8b8b8b29]"
             >
               New Baby
             </a>
             <a
               href="/card/retirement"
-              className="block lg:px-4 md:px-2 py-2 hover:text-blueText no-underline text-black m-0"
+              className="block lg:px-4 md:px-2 py-3 hover:text-blueText no-underline text-black m-0 text-md  border-b border-[#8b8b8b29]"
             >
               Retirement
             </a>
             <a
               href="/card/sympathy"
-              className="block lg:px-4 md:px-2 py-2 hover:text-blueText no-underline text-black m-0"
+              className="block lg:px-4 md:px-2 py-3 hover:text-blueText no-underline text-black m-0 text-md  border-b border-[#8b8b8b29]"
             >
               Sympathy
             </a>
             <a
               href="/card/wedding"
-              className="block lg:px-4 md:px-2 py-2 hover:text-blueText no-underline text-black m-0"
+              className="block lg:px-4 md:px-2 py-3 hover:text-blueText no-underline text-black m-0 text-md  border-b border-[#8b8b8b29]"
             >
               Wedding
             </a>
             <a
               href="/card/welcome"
-              className="block lg:px-4 md:px-2 py-2 hover:text-blueText no-underline text-black m-0"
+              className="block lg:px-4 md:px-2 py-3 hover:text-blueText no-underline text-black m-0 text-md  border-b border-[#8b8b8b29]"
             >
               Welcome
             </a>
             <a
               href="/card/thank-you"
-              className="block lg:px-4 md:px-2 py-2 hover:text-blueText no-underline text-black m-0"
+              className="block lg:px-4 md:px-2 py-3 hover:text-blueText no-underline text-black m-0 text-md "
             >
               Thank You
             </a>
