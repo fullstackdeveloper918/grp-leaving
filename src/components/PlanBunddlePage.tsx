@@ -66,7 +66,7 @@ const PlanBunddlePage = ({data2}:any) => {
         </div>
       </div>
       <div className="p-2">
-        <RazorPay amount={TotalAmount} />
+        <RazorPay amount={TotalAmount} type={"bundle"}/>
       </div>
     </div>
   </div>

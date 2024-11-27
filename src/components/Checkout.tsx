@@ -237,7 +237,7 @@ const Checkout = ({data}:any) => {
                 Pay with Debit/Credit Card
               </button>
             </a> */}
-            <RazorPay amount={TotalAmount} />
+            <RazorPay amount={TotalAmount} type={"card"} />
             {/* <EscrowPayment/> */}
             {/* <CardElement />
             <GooglePay

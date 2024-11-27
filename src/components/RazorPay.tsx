@@ -3,32 +3,36 @@ import React, { useEffect, useState } from "react";
 import Script from "next/script";
 // import { cookies } from "next/dist/client/components/headers";
 // import { cookies } from "next/headers";
-import nookies from 'nookies'
-import { useParams } from "next/navigation";
+import nookies from "nookies";
+import { useParams, useRouter } from "next/navigation";
 declare global {
   interface Window {
     Razorpay: any;
   }
 }
 interface UserInfo {
-  name: string
-  email: string
+  name: string;
+  email: string;
 }
-const RazorPay = ({ amount }: any) => {
+const RazorPay = ({ amount, type }: any) => {
   console.log(amount, "amount");
-  const [userInfo, setUserInfo] = useState<any>(null)
-  const param=useParams()
-  console.log(param.id,"param");
+  console.log(type, "type");
+  const router = useRouter();
+  const [userInfo, setUserInfo] = useState<any>(null);
+  const param = useParams();
+  console.log(param.id, "param");
   useEffect(() => {
-    const cookies = nookies.get()
-    const userInfoFromCookie: UserInfo | null = cookies.userInfo ? JSON.parse(cookies.userInfo) : null
-    setUserInfo(userInfoFromCookie)
-  }, [])
-  console.log(userInfo,"userInfouserInfo");
-  
+    const cookies = nookies.get();
+    const userInfoFromCookie: UserInfo | null = cookies.userInfo
+      ? JSON.parse(cookies.userInfo)
+      : null;
+    setUserInfo(userInfoFromCookie);
+  }, []);
+  console.log(userInfo, "userInfouserInfo");
+
   const AMOUNT = amount;
   const [isProcessing, setIsProcessing] = useState(false);
-  const product_id= "sadasd_e21ZXC31332212_fdgh";
+  const product_id = "sadasd_e21ZXC31332212_fdgh";
   const handlePayment = async () => {
     setIsProcessing(true);
     try {
@@ -51,22 +55,20 @@ const RazorPay = ({ amount }: any) => {
           // console.log("Payment ID:", paymentId);
           // console.log("Payment ID0:", paymentId?.razorpay_payment_id);
           // console.log("Payment ID1:",JSON.stringify({ paymentId }));
-          const product_id= param.id;
+          const product_id = param.id;
           // For example:
-          fetch(
-            'https://magshopify.goaideme.com/razorpay/save-payment',
-            {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',  
-              },
-              body: JSON.stringify({
-                product_id: product_id,
-                user_uuid: userInfo?.uuid,
-                paymentId: paymentId,
-              }),
-            }
-          )
+          fetch("https://magshopify.goaideme.com/razorpay/save-payment", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              product_id: product_id,
+              user_uuid: userInfo?.uuid,
+              paymentId: paymentId,
+              payment_for: type,
+            }),
+          });
           // Handle success as per your application's need (e.g., updating UI, sending confirmation)
         },
         prefill: {
@@ -76,7 +78,7 @@ const RazorPay = ({ amount }: any) => {
         },
         notes: {
           product_id: product_id,
-          user_uuid:userInfo?.uuid,
+          user_uuid: userInfo?.uuid,
         },
         theme: {
           color: "#3399cc",
@@ -86,6 +88,12 @@ const RazorPay = ({ amount }: any) => {
       rzp1.open();
       console.log(rzp1.open(), "xcxc");
       console.log(rzp1, "rzp1");
+      // router.back()
+      if (type === "bundle") {
+        router.push(`/account/bundles`);
+      } else {
+        router.push(`/card/farewell`);
+      }
     } catch (error) {
       console.log(error, "Payment failed");
     } finally {

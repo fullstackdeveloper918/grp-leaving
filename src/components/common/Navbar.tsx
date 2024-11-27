@@ -47,10 +47,13 @@ const Navbar = () => {
   console.log(state,"state");
   
   // const accessToken = cookies.auth_token;
-  useEffect(()=>{
+  useEffect(() => {
     const accessToken = cookies.auth_token;
-    setState(accessToken)
-  },[state])
+    setState(accessToken); // Set the token to state
+    // if(!cookies.auth_token){
+    //   window.location.reload(); 
+    // }
+  }, [cookies.auth_token])
 const getuserData= cookies.userInfo
 if (getuserData) {
   try {

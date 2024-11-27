@@ -47,7 +47,7 @@ console.log(formattedDate,"jljljlj");
 
     <div className="w-full max-w-4xl">
       {/* Search and Filter Section */}
-      <div className="flex justify-between items-center mb-4">
+      {/* <div className="flex justify-between items-center mb-4">
         <div className="relative">
           <input
             type="text"
@@ -66,7 +66,7 @@ console.log(formattedDate,"jljljlj");
         <button className="bg-blue-500 text-black border border-gray-300 px-4 py-2 rounded-full ml-4 hover:bg-blue-600">
           Search
         </button>
-      </div>
+      </div> */}
 
       {/* Cards List */}
       {/* {cards.map((card) => (

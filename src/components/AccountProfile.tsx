@@ -2,16 +2,39 @@
 import api from '@/utils/api';
 import React, { useEffect, useState } from 'react'
 
-const AccountProfile = ({userInfoCookie}:any) => {
+const AccountProfile = ({userInfo,data}:any) => {
 
-console.log(userInfoCookie,"userInfoCookie");
-const [name, setName] = useState(userInfoCookie?.full_name);
-const [email, setEmail] = useState(userInfoCookie?.email);
-const [invoiceDetails, setInvoiceDetails] = useState(userInfoCookie?.additional_invoice||"N/A");
-  const handleUpdate = () => {
-    // Handle the update logic here
-    console.log('Profile Updated');
+console.log(data?.data,"userInfoCookie");
+const [name, setName] = useState(data?.data?.full_name);
+const [email, setEmail] = useState(data?.data?.email);
+const [invoiceDetails, setInvoiceDetails] = useState(data?.data?.additional_invoice);
+  const handleUpdate = async() => {
+   try {
+    const requestData = {
+      uuid: data?.data?.uuid,
+      full_name:name,
+      additional_invoice:invoiceDetails
+    };
+    
+    let res = await fetch('https://magshopify.goaideme.com/user/update-profile', {
+      method: 'POST', // Method set to POST
+      headers: {
+        'Content-Type': 'application/json', // Indicates that you're sending JSON
+        'Authorization': `Bearer ${userInfo}` // Send the token in the Authorization header
+      },
+      body: JSON.stringify(requestData) // Stringify the data you want to send in the body
+    });
+    
+    // Parse the response JSON
+    let posts = await res.json();
+    console.log(posts,"jklklkj");
+    
+   } catch (error) {
+    
+   }
   };
+
+  // https://magshopify.goaideme.com/user/update-profile
 
   const getData=async()=>{
     try {
@@ -52,7 +75,7 @@ const [invoiceDetails, setInvoiceDetails] = useState(userInfoCookie?.additional_
               <textarea
                 className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                 rows={3}
-                value={invoiceDetails}
+                value={invoiceDetails||"N/A"}
                 onChange={(e) => setInvoiceDetails(e.target.value)}
               />
             </div>
@@ -62,7 +85,7 @@ const [invoiceDetails, setInvoiceDetails] = useState(userInfoCookie?.additional_
         <div className="flex justify-between items-center">
           <button
             className="bg-blue-600 text-black border border-gray-300 font-semibold px-4 py-2 rounded shadow-md hover:bg-blue-700"
-            onClick={getData}
+            onClick={handleUpdate}
           >
             Update
           </button>
