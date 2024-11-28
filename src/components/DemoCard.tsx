@@ -3,6 +3,7 @@ import Link from "next/link";
 import React from "react";
 import upload_img from "../assets/images/upload_img.png"
 import upload_gif from "../assets/images/upload_gif.png"
+import EditorModal from "./common/EditorModal";
 
 const DemoCard = () => {
   return (
@@ -31,13 +32,14 @@ const DemoCard = () => {
         <div className="container-fluid">
           <div className=" md:flex block">
             <div className="md:w-1/2 w-full">
-              <div className="flex space-x-2">
+              {/* <div className="flex space-x-2">
                 <button className="btnPrimary py-2 px-3">Add Message</button>
                 <button className="bg-lightBg rounded-md p-2"><img src={upload_img.src} alt="upload img" className="upload_img" /></button>
                 <button className="bg-lightBg rounded-md p-2"><img src={upload_gif.src} alt="upload img" className="upload_img" /></button>
-              </div>
+              </div> */}
+              <EditorModal/>
             </div>
-            <div className="md:w-1/2 w-full md:mt-0 mt-4">
+            <div className="md:w-1/2 w-full md:mt-0 mt-5">
               <div className="bg-white shadow-lg rounded-lg p-10 w-full max-w-lg">
                 <h3 className="text-center text-md font-normal">Gift Card Collection Pot</h3>
                 <button>User Image Popup</button>

@@ -89,7 +89,7 @@ const [invoiceDetails, setInvoiceDetails] = useState(data?.data?.additional_invo
           >
             Update
           </button>
-          <a href="#" className="text-blue-500 hover:underline">Reset Password</a>
+          <a href="/reset-password" className="text-blue-500 hover:underline">Reset Password</a>
         </div>
 
         <div className="mt-8">

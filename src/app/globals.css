@@ -1078,3 +1078,82 @@ body {
     min-height: 200px !important ;
   }
 }
+
+/* editor_css */
+.editor_app {
+    /* background: #f9f9f9; */
+    padding: 0px 30px;
+}
+
+.editoe_tab {
+  background: #fff;
+  max-width: 60rem;
+  height: 100%;
+  margin: 20px auto 0px;
+  box-shadow: 0px 0px 44px 0px #0000001f;
+}
+.search_input .upload_svg {
+  width: 40px;
+  height: 40px;
+  background: #558ec929;
+  border-radius: 30px;
+  padding: 8px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0px auto;
+  top: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search_input .upload_svg svg {
+  fill: #558ec9;
+  width: 30px;
+  height: 30px;
+}
+
+.search_input {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  margin: 0px auto;
+  cursor: pointer;
+}
+
+.search_input input {
+  opacity: 0;
+  z-index: 9;
+  position: relative;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+}
+.editor_option {
+  display: flex;
+  gap: 7px;
+  max-width: 60rem;
+  margin: 0px auto;
+  justify-content: center;
+  align-items: center;
+}
+.editor_option>div {
+  max-width: fit-content;
+  margin: unset;
+}
+.editor_option input {
+  width: 100%;
+  max-width: fit-content;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+button.add_btn {
+  background: #558ec9;
+  padding: 11px 20px;
+  border-radius: 7px;
+  color: #fff;
+  border: 1px solid;
+}
+/* editor_css end */

@@ -25,6 +25,32 @@ const { Row, Col, Button } = {
 };
 const Login = () => {
   const router = useRouter();
+
+  const setCookie = (name: string, value: string, days: number) => {
+    const expires = new Date();
+    expires.setTime(expires.getTime() + days * 24 * 60 * 60 * 1000);
+    document.cookie = `${name}=${value};expires=${expires.toUTCString()};path=/`;
+  };
+
+  const createSessionCookie = (idToken: string) => {
+    try {
+      setCookie("auth_token", idToken, 30); // 30 days
+    } catch (error) {
+    }
+  };
+  const createSessionCookie2 = (idToken: string) => {
+    try {
+      setCookie("COOKIES_USER_ACCESS_TOKEN", idToken, 30); // 30 days
+    } catch (error) {
+    }
+  };
+  const createSessionCookie1 = (idToken: string) => {
+    try {
+      setCookie("userInfo", idToken, 30); // 30 days
+    } catch (error) {
+    }
+  };
+
   const onFinish = async (values: any) => {
     let items = {
       full_name: capFirst(values?.full_name),
@@ -36,10 +62,10 @@ const Login = () => {
     
     // if (res.token) {
       // }
-      setCookie(null, "token","yewiryt46836483456ojtkshrti6w48werkweyrt86448", {
-        maxAge: 30 * 24 * 60 * 60,
-        path: "/",
-      });
+      // setCookie(null, "token","yewiryt46836483456ojtkshrti6w48werkweyrt86448", {
+      //   maxAge: 30 * 24 * 60 * 60,
+      //   path: "/",
+      // });
 
     console.log(res, "rereere");
     router.replace("/");
@@ -58,14 +84,20 @@ const Login = () => {
       const res=await api.Auth.login(items)
       console.log(res,"reerrer");
       api.setToken(res?.token)
-      setCookie(null, "userInfo", JSON.stringify(res?.data), {
-        maxAge: 30 * 24 * 60 * 60, // 30 days
-        path: "/",
-      });
-      setCookie(null, "auth_token",res?.token, {
-        maxAge: 30 * 24 * 60 * 60,
-        path: "/",
-      });
+      createSessionCookie(res?.token);
+      createSessionCookie2(res?.token);
+      createSessionCookie1(JSON.stringify(res?.data));
+      if (res?.token) {
+        localStorage.setItem("access_token", res?.token); // Store the token in localStorage
+      }
+      // setCookie(null, "userInfo", JSON.stringify(res?.data), {
+      //   maxAge: 30 * 24 * 60 * 60, // 30 days
+      //   path: "/",
+      // });
+      // setCookie(null, "auth_token",res?.token, {
+      //   maxAge: 30 * 24 * 60 * 60,
+      //   path: "/",
+      // });
       toast.success("Login Successfully")
       router.replace("/");
     } catch (error: any) {}
@@ -172,7 +204,7 @@ const Login = () => {
             </div> */}
               <div className="auth-footer text-center mt-2">
                 <h6>
-                  <a href="/#">Forgot Password</a>
+                  <a href="/reset-password">Forgot Password</a>
                 </h6>
                 <p>
                   Need an account? <a href="/register" className="text-blueBg font-bold alreadyText">Register</a>

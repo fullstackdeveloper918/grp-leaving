@@ -8,8 +8,8 @@ import LogoutModal from "./LogoutModal";
 import { useRouter } from "next/navigation";
 import { destroyCookie, parseCookies } from "nookies";
 // import GoodLuckCad from "../../assets/images/congratulations/good_luck.png"
-import GoodLuckCad from "../../assets/images/new_logo.png"
-import register from "../../assets/images/register.png"
+import GoodLuckCad from "../../assets/images/new_logo.png";
+import register from "../../assets/images/register.png";
 const Navbar = () => {
   const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -42,9 +42,37 @@ const Navbar = () => {
     handleLogout();
     setIsModalOpen(false);
   };
-  const [state,setState]=useState<any>("")
+  // const [state, setState] = useState<any>("");
+  // const cookies = parseCookies();
   const cookies = parseCookies();
-  console.log(state,"state");
+  // const accessToken = cookies.COOKIES_USER_ACCESS_TOKEN;
+  // console.log(accessToken,"accessToken");
+  const [accessToken, setAccessToken] = useState<string | null>(null);
+  console.log(accessToken, "accessToken");
+
+  useEffect(() => {
+    const cookies = parseCookies();
+    const token = cookies.COOKIES_USER_ACCESS_TOKEN;
+    if (token) {
+      setAccessToken(token);
+    }
+  }, []);
+
+  const [token, setToken] = useState<string | null>(null);
+  console.log(token, "tsdsdsdoken");
+
+  useEffect(() => {
+    // Retrieve token from localStorage when the component mounts
+    const tokenFromLocalStorage = localStorage.getItem("access_token");
+
+    if (tokenFromLocalStorage) {
+      setToken(tokenFromLocalStorage); // Set it to state if it exists
+    }
+  }, []);
+  const [state,setState]=useState<any>("")
+  console.log(state, "state");
+
+  // const cookies = parseCookies();
   
   // const accessToken = cookies.auth_token;
   useEffect(() => {
@@ -54,23 +82,30 @@ const Navbar = () => {
     //   window.location.reload(); 
     // }
   }, [cookies.auth_token])
-const getuserData= cookies.userInfo
-if (getuserData) {
-  try {
+  const getuserData = cookies.userInfo;
+  if (getuserData) {
+    try {
       const user_info = JSON.parse(getuserData);
       console.log(user_info, "user_info");
-  } catch (error) {
+    } catch (error) {
       console.error("Error parsing JSON:", error);
+    }
+  } else {
+    console.error("getuserData is undefined or null.");
   }
-} else {
-  console.error("getuserData is undefined or null.");
-}
 
   return (
     <>
-    <div className="announcementBar bg-blueText text-center md:py-2 p-1 text-white">
-      <p className="text-xs font-normal mb-0 text-center">Our back-to-school sale is here! <span className="font-bold">Save 15%</span> on Coins for all your fall invitations with code BACKTOFALL. Ends 9/3. <a href="#" className="underline text-white font-medium">Shop Now.</a></p>
-    </div>
+      <div className="announcementBar bg-blueText text-center md:py-2 p-1 text-white">
+        <p className="text-xs font-normal mb-0 text-center">
+          Our back-to-school sale is here!{" "}
+          <span className="font-bold">Save 15%</span> on Coins for all your fall
+          invitations with code BACKTOFALL. Ends 9/3. 
+          <a href="#" className="underline text-white font-medium">
+            Shop Now.
+          </a>
+        </p>
+      </div>
       <header className="w-full">
         {/* Banner */}
         {/* <div className="bg-blueBg text-center text-sm md:py-3 py-2 text-white ">
@@ -87,7 +122,13 @@ if (getuserData) {
         <div className="flex justify-between items-center md:py-4 md:px-6 px-2 py-3 container-fluid">
           {/* Logo */}
           <Link href={`/`} className="no-underline w-3/12">
-          <Image src={GoodLuckCad.src} height={200} width={200} alt="Good Luck" className="text-4xl font-bold logo_img" />
+            <Image
+              src={GoodLuckCad.src}
+              height={200}
+              width={200}
+              alt="Good Luck"
+              className="text-4xl font-bold logo_img"
+            />
           </Link>
 
           <div className="flex items-center space-x-4 w-9/12 justify-end">
@@ -110,37 +151,37 @@ if (getuserData) {
 
             {/* Auth and Button */}
             <div className="flex items-center lg:space-x-6 sm:space-x-4">
-            {/* <a
+              {/* <a
                     href="/account/cards"
                     className="text-md text-blackText hidden md:block text-blackText no-underline font-medium hover:text-blueText "
                   >
                     Cards by occasion
                   </a> */}
-                  <a
-                    href="/card/farewell"
-                    className="text-md text-blackText hidden md:block text-blackText no-underline font-medium hover:text-blueText "
-                  >
-                    Cards
-                  </a>
-                  <a
-                    href="/pricing"
-                    className="text-md text-blackText hidden md:block text-blackText no-underline font-medium hover:text-blueText "
-                  >
-                    Pricing
-                  </a>
-                  {/* <a
+              <a
+                href="/card/farewell"
+                className="text-md text-blackText hidden md:block text-blackText no-underline font-medium hover:text-blueText "
+              >
+                Cards
+              </a>
+              <a
+                href="/pricing"
+                className="text-md text-blackText hidden md:block text-blackText no-underline font-medium hover:text-blueText "
+              >
+                Pricing
+              </a>
+              {/* <a
                     href="/account/cards"
                     className="text-md text-blackText hidden md:block text-blackText no-underline font-medium hover:text-blueText "
                   >
                     Computers
                   </a> */}
-                  {/* <a
+              {/* <a
                     href="/account/cards"
                     className="text-md text-blackText hidden md:block text-blackText no-underline font-medium hover:text-blueText "
                   >
                     Fashion
                   </a> */}
-              {state ? 
+              {state ? (
                 <>
                   <button
                     className="text-md text-blackText hidden md:block text-blackText no-underline font-medium hover:text-blueText "
@@ -159,7 +200,7 @@ if (getuserData) {
                       src="https://img.freepik.com/premium-psd/greeting-card-…h-flowers-it-pink-background_74869-4261.jpg?w=826"
                       alt="Profile"
                       style={{
-                        width: "40px", 
+                        width: "40px",
                         height: "40px",
                         borderRadius: "50%",
                         cursor: "pointer",
@@ -190,7 +231,7 @@ if (getuserData) {
                     </ul>
                   </div>
                 </>
-              : 
+              ) : (
                 <>
                   <a
                     href="/login"
@@ -203,10 +244,14 @@ if (getuserData) {
                     <button className="text-white px-3 py-2  ml-2 rounded-md bg-blueBg d-hide-btn">
                       Register
                     </button>
-                    <img src={register.src} alt="img" className="mobileVisible" />
+                    <img
+                      src={register.src}
+                      alt="img"
+                      className="mobileVisible"
+                    />
                   </Link>
                 </>
-              }
+              )}
 
               {isMobile ? (
                 isMenuOpen ? (
@@ -230,114 +275,117 @@ if (getuserData) {
         </div>
 
         {/* Navigation Links */}
-        {isMobile ? (
-          <nav
-            className={`md:hidden text-sm text-gray-700  absolute inset-x-0 top-16 transition-transform duration-300 p-5 px-4 top-0 bg-[#e2eefa] z-10 h-lvh ${
-              isMenuOpen ? "translate-x-0" : "-translate-x-full"
-            }`}
-          >
-            <a
-              href="/card/farewell"
-              className="block lg:px-4 md:px-2 py-3 hover:text-blueText no-underline text-black m-0 text-md  border-b border-[#8b8b8b29]"
+        {
+          isMobile ? (
+            <nav
+              className={`md:hidden text-sm text-gray-700  absolute inset-x-0 top-16 transition-transform duration-300 p-5 px-4 top-0 bg-[#e2eefa] z-10 h-lvh ${
+                isMenuOpen ? "translate-x-0" : "-translate-x-full"
+              }`}
             >
-              Farewell
-            </a>
-            <a
-              href="/card/birthday"
-              className="block lg:px-4 md:px-2 py-3 hover:text-blueText no-underline text-black m-0 text-md  border-b border-[#8b8b8b29]"
-            >
-              Birthday Cards
-            </a>
-            <a
-              href="/card/baby"
-              className="block lg:px-4 md:px-2 py-3 hover:text-blueText no-underline text-black m-0 text-md  border-b border-[#8b8b8b29]"
-            >
-              New Baby
-            </a>
-            <a
-              href="/card/retirement"
-              className="block lg:px-4 md:px-2 py-3 hover:text-blueText no-underline text-black m-0 text-md  border-b border-[#8b8b8b29]"
-            >
-              Retirement
-            </a>
-            <a
-              href="/card/sympathy"
-              className="block lg:px-4 md:px-2 py-3 hover:text-blueText no-underline text-black m-0 text-md  border-b border-[#8b8b8b29]"
-            >
-              Sympathy
-            </a>
-            <a
-              href="/card/wedding"
-              className="block lg:px-4 md:px-2 py-3 hover:text-blueText no-underline text-black m-0 text-md  border-b border-[#8b8b8b29]"
-            >
-              Wedding
-            </a>
-            <a
-              href="/card/welcome"
-              className="block lg:px-4 md:px-2 py-3 hover:text-blueText no-underline text-black m-0 text-md  border-b border-[#8b8b8b29]"
-            >
-              Welcome
-            </a>
-            <a
-              href="/card/thank-you"
-              className="block lg:px-4 md:px-2 py-3 hover:text-blueText no-underline text-black m-0 text-md "
-            >
-              Thank You
-            </a>
-          </nav>
-        ) :""
-        //  (
-        //   <nav className="hidden md:flex md:justify-center md:space-x-6 text-sm text-gray-700 py-2 bg-white">
-        //     <a
-        //       href="/card/farewell"
-        //       className="block lg:px-4 md:px-2 py-2 hover:text-blueText no-underline text-black m-0"
-        //     >
-        //       Farewell
-        //     </a>
-        //     <a
-        //       href="/card/birthday"
-        //       className="block lg:px-4 md:px-2 py-2 hover:text-blueText no-underline text-black m-0"
-        //     >
-        //       Birthday Cards
-        //     </a>
-        //     <a
-        //       href="/card/baby"
-        //       className="block lg:px-4 md:px-2 py-2 hover:text-blueText no-underline text-black m-0"
-        //     >
-        //       New Baby
-        //     </a>
-        //     <a
-        //       href="/card/retirement"
-        //       className="block lg:px-4 md:px-2 py-2 hover:text-blueText no-underline text-black m-0"
-        //     >
-        //       Retirement
-        //     </a>
-        //     <a
-        //       href="/card/sympathy"
-        //       className="block lg:px-4 md:px-2 py-2 hover:text-blueText no-underline text-black m-0"
-        //     >
-        //       Sympathy
-        //     </a>
-        //     <a
-        //       href="/card/wedding"
-        //       className="block lg:px-4 md:px-2 py-2 hover:text-blueText no-underline text-black m-0"
-        //     >
-        //       Wedding
-        //     </a>
-        //     <a
-        //       href="/card/welcome"
-        //       className="block lg:px-4 md:px-2 py-2 hover:text-blueText no-underline text-black m-0"
-        //     >
-        //       Welcome
-        //     </a>
-        //     <a
-        //       href="/card/thank-you"
-        //       className="block lg:px-4 md:px-2 py-2 hover:text-blueText no-underline text-black m-0"
-        //     >
-        //       Thank You
-        //     </a>
-        //   </nav>
-        // )
+              <a
+                href="/card/farewell"
+                className="block lg:px-4 md:px-2 py-3 hover:text-blueText no-underline text-black m-0 text-md  border-b border-[#8b8b8b29]"
+              >
+                Farewell
+              </a>
+              <a
+                href="/card/birthday"
+                className="block lg:px-4 md:px-2 py-3 hover:text-blueText no-underline text-black m-0 text-md  border-b border-[#8b8b8b29]"
+              >
+                Birthday Cards
+              </a>
+              <a
+                href="/card/baby"
+                className="block lg:px-4 md:px-2 py-3 hover:text-blueText no-underline text-black m-0 text-md  border-b border-[#8b8b8b29]"
+              >
+                New Baby
+              </a>
+              <a
+                href="/card/retirement"
+                className="block lg:px-4 md:px-2 py-3 hover:text-blueText no-underline text-black m-0 text-md  border-b border-[#8b8b8b29]"
+              >
+                Retirement
+              </a>
+              <a
+                href="/card/sympathy"
+                className="block lg:px-4 md:px-2 py-3 hover:text-blueText no-underline text-black m-0 text-md  border-b border-[#8b8b8b29]"
+              >
+                Sympathy
+              </a>
+              <a
+                href="/card/wedding"
+                className="block lg:px-4 md:px-2 py-3 hover:text-blueText no-underline text-black m-0 text-md  border-b border-[#8b8b8b29]"
+              >
+                Wedding
+              </a>
+              <a
+                href="/card/welcome"
+                className="block lg:px-4 md:px-2 py-3 hover:text-blueText no-underline text-black m-0 text-md  border-b border-[#8b8b8b29]"
+              >
+                Welcome
+              </a>
+              <a
+                href="/card/thank-you"
+                className="block lg:px-4 md:px-2 py-3 hover:text-blueText no-underline text-black m-0 text-md "
+              >
+                Thank You
+              </a>
+            </nav>
+          ) : (
+            ""
+          )
+          //  (
+          //   <nav className="hidden md:flex md:justify-center md:space-x-6 text-sm text-gray-700 py-2 bg-white">
+          //     <a
+          //       href="/card/farewell"
+          //       className="block lg:px-4 md:px-2 py-2 hover:text-blueText no-underline text-black m-0"
+          //     >
+          //       Farewell
+          //     </a>
+          //     <a
+          //       href="/card/birthday"
+          //       className="block lg:px-4 md:px-2 py-2 hover:text-blueText no-underline text-black m-0"
+          //     >
+          //       Birthday Cards
+          //     </a>
+          //     <a
+          //       href="/card/baby"
+          //       className="block lg:px-4 md:px-2 py-2 hover:text-blueText no-underline text-black m-0"
+          //     >
+          //       New Baby
+          //     </a>
+          //     <a
+          //       href="/card/retirement"
+          //       className="block lg:px-4 md:px-2 py-2 hover:text-blueText no-underline text-black m-0"
+          //     >
+          //       Retirement
+          //     </a>
+          //     <a
+          //       href="/card/sympathy"
+          //       className="block lg:px-4 md:px-2 py-2 hover:text-blueText no-underline text-black m-0"
+          //     >
+          //       Sympathy
+          //     </a>
+          //     <a
+          //       href="/card/wedding"
+          //       className="block lg:px-4 md:px-2 py-2 hover:text-blueText no-underline text-black m-0"
+          //     >
+          //       Wedding
+          //     </a>
+          //     <a
+          //       href="/card/welcome"
+          //       className="block lg:px-4 md:px-2 py-2 hover:text-blueText no-underline text-black m-0"
+          //     >
+          //       Welcome
+          //     </a>
+          //     <a
+          //       href="/card/thank-you"
+          //       className="block lg:px-4 md:px-2 py-2 hover:text-blueText no-underline text-black m-0"
+          //     >
+          //       Thank You
+          //     </a>
+          //   </nav>
+          // )
         }
       </header>
       <LogoutModal
@@ -345,7 +393,6 @@ if (getuserData) {
         onClose={() => setIsModalOpen(false)}
         onConfirm={confirmLogout}
       />
-
     </>
   );
 };
