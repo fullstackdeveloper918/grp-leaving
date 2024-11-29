@@ -52,9 +52,15 @@ const Navbar = () => {
 
   useEffect(() => {
     const cookies = parseCookies();
-    const token = cookies.COOKIES_USER_ACCESS_TOKEN;
+    console.log(cookies,"cookies");
+    
+    const token = cookies.auth_token;
+    console.log(typeof(token),"iooioio");
+    
     if (token) {
       setAccessToken(token);
+    }else{
+      // alert("nothing")
     }
   }, []);
 
@@ -181,7 +187,7 @@ const Navbar = () => {
                   >
                     Fashion
                   </a> */}
-              {state ? (
+              {token ? (
                 <>
                   <button
                     className="text-md text-blackText hidden md:block text-blackText no-underline font-medium hover:text-blueText "

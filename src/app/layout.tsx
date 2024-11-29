@@ -16,6 +16,8 @@ import NextTopLoader from "nextjs-toploader";
 // import "slick-carousel/slick/slick-theme.css";
 const msalInstance = new PublicClientApplication(msalConfig);
 import { Roboto } from "next/font/google";
+import { useEffect, useState } from "react";
+import { parseCookies } from "nookies";
 // import { Montserrat } from 'next/font/google'
 // import 'slick-carousel/slick/slick.css';
 // import 'slick-carousel/slick/slick-theme.css';
@@ -37,6 +39,23 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
+  const [accessToken, setAccessToken] = useState<string | null>(null);
+  console.log(accessToken, "dfghere");
+
+  useEffect(() => {
+    const cookies = parseCookies();
+    console.log(cookies,"coofghjklkies");
+    
+    const token = cookies.auth_token;
+    console.log(typeof(token),"qwertyu");
+    
+    if (token) {
+      setAccessToken(token);
+    }else{
+      alert("nothing")
+    }
+  }, []);
   return (
     <html lang="en">
       <head>

@@ -83,12 +83,12 @@ const Login = () => {
     try {
       const res=await api.Auth.login(items)
       console.log(res,"reerrer");
-      api.setToken(res?.token)
-      createSessionCookie(res?.token);
-      createSessionCookie2(res?.token);
+      api.setToken(JSON.stringify(res?.token))
+      createSessionCookie(JSON.stringify(res?.token));
+      createSessionCookie2(JSON.stringify(res?.token));
       createSessionCookie1(JSON.stringify(res?.data));
       if (res?.token) {
-        localStorage.setItem("access_token", res?.token); // Store the token in localStorage
+        localStorage.setItem("access_token", JSON.stringify(res?.token)); // Store the token in localStorage
       }
       // setCookie(null, "userInfo", JSON.stringify(res?.data), {
       //   maxAge: 30 * 24 * 60 * 60, // 30 days

@@ -26,6 +26,8 @@ console.log(data,'check');
   };
 
   const data2 = await fetchFromServer(api2);
+  console.log(data2,"ksdfghkdfgh");
+  
   return (
     <>
     <AllCardPricing data={data} data2={data2}/>

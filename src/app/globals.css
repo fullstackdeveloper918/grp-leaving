@@ -1078,13 +1078,26 @@ body {
     min-height: 200px !important ;
   }
 }
-
+.slick-next:before, [dir=rtl] .slick-prev:before {
+  content: '→';
+  color: black !important;  
+}
+.slick-prev:before {
+  content: '←';
+  color: black !important;
+}
 /* editor_css */
 .editor_app {
     /* background: #f9f9f9; */
     padding: 0px 30px;
 }
-
+/* .slick-next:before{
+  color:black
+} */
+.slick-next:before, [dir=rtl] .slick-prev:before {
+  content: '→';
+  color: black;
+}
 .editoe_tab {
   background: #fff;
   max-width: 60rem;
@@ -1157,3 +1170,8 @@ button.add_btn {
   border: 1px solid;
 }
 /* editor_css end */
+
+
+.modal-btn{
+  padding-left: 218px;
+}
