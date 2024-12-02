@@ -10,12 +10,15 @@ import { destroyCookie, parseCookies } from "nookies";
 // import GoodLuckCad from "../../assets/images/congratulations/good_luck.png"
 import GoodLuckCad from "../../assets/images/new_logo.png";
 import register from "../../assets/images/register.png";
+import { useAccessToken } from "@/app/context/AccessTokenContext";
 const Navbar = () => {
   const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-
+  const accessToken3 = useAccessToken();
+  console.log(accessToken3, "accessToken3");
+  const { accessToken, setAccessToken } = useAccessToken();
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 767);
@@ -33,6 +36,7 @@ const Navbar = () => {
   const handleLogout = async () => {
     // let res = await api.Auth.logout();
     // console.log(res, "qweqwe");
+    setAccessToken(null);
     destroyCookie(null, "auth_token", { path: "/" });
     destroyCookie(null, "COOKIES_USER_ACCESS_TOKEN", { path: "/" });
     router.push(`/login`);
@@ -47,19 +51,19 @@ const Navbar = () => {
   const cookies = parseCookies();
   // const accessToken = cookies.COOKIES_USER_ACCESS_TOKEN;
   // console.log(accessToken,"accessToken");
-  const [accessToken, setAccessToken] = useState<string | null>(null);
-  console.log(accessToken, "accessToken");
+  // const [accessToken, setAccessToken] = useState<string | null>(null);
+  // console.log(accessToken, "accessToken");
 
   useEffect(() => {
     const cookies = parseCookies();
-    console.log(cookies,"cookies");
-    
+    console.log(cookies, "cookies");
+
     const token = cookies.auth_token;
-    console.log(typeof(token),"iooioio");
-    
+    console.log(typeof token, "iooioio");
+
     if (token) {
       setAccessToken(token);
-    }else{
+    } else {
       // alert("nothing")
     }
   }, []);
@@ -75,19 +79,19 @@ const Navbar = () => {
       setToken(tokenFromLocalStorage); // Set it to state if it exists
     }
   }, []);
-  const [state,setState]=useState<any>("")
+  const [state, setState] = useState<any>("");
   console.log(state, "state");
 
   // const cookies = parseCookies();
-  
+
   // const accessToken = cookies.auth_token;
   useEffect(() => {
     const accessToken = cookies.auth_token;
     setState(accessToken); // Set the token to state
     // if(!cookies.auth_token){
-    //   window.location.reload(); 
+    //   window.location.reload();
     // }
-  }, [cookies.auth_token])
+  }, [cookies.auth_token]);
   const getuserData = cookies.userInfo;
   if (getuserData) {
     try {
@@ -187,7 +191,7 @@ const Navbar = () => {
                   >
                     Fashion
                   </a> */}
-              {token ? (
+              {accessToken3.accessToken ? (
                 <>
                   <button
                     className="text-md text-blackText hidden md:block text-blackText no-underline font-medium hover:text-blueText "

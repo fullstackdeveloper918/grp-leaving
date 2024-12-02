@@ -18,6 +18,7 @@ const msalInstance = new PublicClientApplication(msalConfig);
 import { Roboto } from "next/font/google";
 import { useEffect, useState } from "react";
 import { parseCookies } from "nookies";
+import { AccessTokenProvider } from "./context/AccessTokenContext";
 // import { Montserrat } from 'next/font/google'
 // import 'slick-carousel/slick/slick.css';
 // import 'slick-carousel/slick/slick-theme.css';
@@ -53,7 +54,7 @@ export default function RootLayout({
     if (token) {
       setAccessToken(token);
     }else{
-      alert("nothing")
+      // alert("nothing")
     }
   }, []);
   return (
@@ -91,6 +92,7 @@ export default function RootLayout({
       </head>
       <body className={quicksand.className}>
         {/* <AntdRegistry> */}
+        <AccessTokenProvider>
         <AntdRegistry>
           <MsalProvider instance={msalInstance}>
             <Navbar />
@@ -120,6 +122,7 @@ export default function RootLayout({
             <Footer />
           </MsalProvider>
         </AntdRegistry>
+        </AccessTokenProvider>
       </body>
     </html>
   );

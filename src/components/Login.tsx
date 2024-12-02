@@ -12,6 +12,7 @@ import { GooglePayWithCDN } from "./common/GooglePayWithCDN";
 import GooglePay from "./common/GooglePay"
 import GooglePayButton from "./common/GooglePayButton";
 import { toast } from "react-toastify";
+import { useAccessToken } from "@/app/context/AccessTokenContext";
 const { Row, Col, Button } = {
   Row: dynamic(() => import("antd").then((module) => module.Row), {
     ssr: false,
@@ -25,7 +26,7 @@ const { Row, Col, Button } = {
 };
 const Login = () => {
   const router = useRouter();
-
+  const { accessToken, setAccessToken } = useAccessToken();
   const setCookie = (name: string, value: string, days: number) => {
     const expires = new Date();
     expires.setTime(expires.getTime() + days * 24 * 60 * 60 * 1000);
@@ -84,6 +85,7 @@ const Login = () => {
       const res=await api.Auth.login(items)
       console.log(res,"reerrer");
       api.setToken(JSON.stringify(res?.token))
+      setAccessToken(JSON.stringify(res?.token));
       createSessionCookie(JSON.stringify(res?.token));
       createSessionCookie2(JSON.stringify(res?.token));
       createSessionCookie1(JSON.stringify(res?.data));
