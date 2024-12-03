@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Script from "next/script";
 
 declare global {
@@ -11,7 +11,29 @@ declare global {
 const EscrowPayment = ({closeModal}:any) => {
   const AMOUNT = 0; // Amount in INR
   const [isProcessing, setIsProcessing] = useState(false);
-
+  const [userInfo, setUserInfo] = useState<any>(null);
+  const [uuid, setUuid] = useState<string | null>(null);
+  console.log(uuid,"uuid")
+    useEffect(() => {
+      const cookies = document.cookie.split('; ');
+      const userInfoCookie = cookies.find(cookie => cookie.startsWith('userInfo='));
+  
+      if (userInfoCookie) {
+        const cookieValue = userInfoCookie.split('=')[1];
+        try {
+          const parsedUserInfo = JSON.parse(decodeURIComponent(cookieValue));
+          setUserInfo(parsedUserInfo);
+          
+          // Extracting the UUID from the parsed userInfo object
+          if (parsedUserInfo && parsedUserInfo.uuid) {
+            setUuid(parsedUserInfo.uuid);
+            console.log('UUID:', parsedUserInfo.uuid);
+          }
+        } catch (error) {
+          console.error('Error parsing userInfo cookie', error);
+        }
+      }
+    }, []);
   const handlePayment = async () => {
     setIsProcessing(true);
     try {
@@ -39,15 +61,17 @@ const EscrowPayment = ({closeModal}:any) => {
         handler: function (response: any) {
           console.log("Payment successful", response);
           fetch(
-            'https://magshopify.goaideme.com/razorpay/link-by-user-id',
+            'https://magshopify.goaideme.com/razorpay/save-payment',
+            // 'https://magshopify.goaideme.com/razorpay/link-by-user-id',
             {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',  
               },
               body: JSON.stringify({
+                payment_for: "group",
                 product_id: "product_id",
-                user_uuid: "userInfo?.uuid",
+                user_uuid: uuid,
                 paymentId: "paymentId",
               }),
             }
