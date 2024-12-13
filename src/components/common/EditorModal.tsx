@@ -271,18 +271,58 @@ const EditorModal: React.FC = () => {
       color: e.target.value,
     }));
   };
+  const [imageBlob, setImageBlob] = useState<any>(null);
   const stageRef = useRef<any>(null);
+  console.log(imageBlob,"imageBlob");
+  console.log(stageRef,"stageRef");
+  
+  // const handleDownloadClick = () => {
+  //   // When the download button is clicked, use Konva's toDataURL method
+  //   if (stageRef.current) {
+  //     // Capture the current stage as a base64-encoded PNG image
+  //     const uri = stageRef.current.toDataURL();
+
+  //     // Create a temporary download link
+  //     const link = document.createElement("a");
+  //     console.log(link,"linklinklink");
+      
+  //     link.href = uri;
+  //     console.log(uri,"uri");
+      
+  //     link.download = "Demo.png"; 
+  //     link.click();
+  //   }
+  // };
   const handleDownloadClick = () => {
-    // When the download button is clicked, use Konva's toDataURL method
     if (stageRef.current) {
       // Capture the current stage as a base64-encoded PNG image
       const uri = stageRef.current.toDataURL();
 
-      // Create a temporary download link
-      const link = document.createElement("a");
-      link.href = uri; // Set the image data as the link's href
-      link.download = "canvas_image.png"; // Set the name of the downloaded file
-      link.click(); // Trigger the download
+      // Convert the base64 string to a Blob
+      fetch(uri)
+        .then((res) => res.blob()) // Convert to Blob
+        .then((blob) => {
+          // Create a Blob URL
+          const blobUrl = URL.createObjectURL(blob);
+          console.log(blobUrl,"blobUrl");
+          const newBlobUrl = URL.createObjectURL(blob);
+          localStorage.setItem('imageBlobUrl', newBlobUrl);
+          console.log(newBlobUrl,"newBlobUrl");
+          // Store the Blob URL in state
+          setImageBlob(blobUrl);
+
+          // Create a temporary download link and trigger the download
+          const link = document.createElement("a");
+          link.href = blobUrl; // Use the Blob URL for the download
+          link.download = "Demo.png"; // Set the download filename
+          link.click();
+
+          // Optionally, revoke the Blob URL after the download
+          URL.revokeObjectURL(blobUrl);
+        })
+        .catch((error) => {
+          console.error("Error generating Blob:", error);
+        });
     }
   };
   return (
@@ -586,6 +626,12 @@ const EditorModal: React.FC = () => {
             </div>
           </div>
         </div>
+      )}
+      {imageBlob && (
+        <>
+          <div>Blob URL: {imageBlob}</div>
+          <img src={imageBlob} alt="Generated Image" style={{ width: "300px", height: "auto" }} />
+        </>
       )}
     </div>
   );
