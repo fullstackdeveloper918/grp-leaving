@@ -35,7 +35,7 @@ const DemoCard = () => {
           </h1>
           <p className="demo_paragraph text-grey ">
             You can test it out by adding messages, images and GIFs to see how
-            it works. When you create a real card you’ll see more options to
+            it works. When you create a real card you will see more options to
             manage and customise your card.
           </p>
           <p>
@@ -61,8 +61,8 @@ const DemoCard = () => {
               </div> */}
 
               
-              {/* <EditorCrousal /> */}
-              <EditorModal/>
+              <EditorCrousal />
+              {/* <EditorModal/> */}
             </div>
             <div className="md:w-1/2 w-full md:mt-0 mt-5">
               <div className="bg-white shadow-lg rounded-lg p-10 w-full max-w-lg">
@@ -102,7 +102,7 @@ const DemoCard = () => {
       {/* Instructions */}
       <Paragraph>
         Share this URL with everyone who you want to be able to add a message. 
-        They'll be able to add a message to the card without having to sign up 
+        They will be able to add a message to the card without having to sign up 
         for an account. You can also share the QR code if that is easier.
       </Paragraph>
 
