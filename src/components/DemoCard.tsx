@@ -42,8 +42,8 @@ const DemoCard = () => {
               </div> */}
 
               
-              {/* <EditorCrousal /> */}
-              <EditorModal/>
+              <EditorCrousal />
+              {/* <EditorModal/> */}
             </div>
             <div className="md:w-1/2 w-full md:mt-0 mt-5">
               <div className="bg-white shadow-lg rounded-lg p-10 w-full max-w-lg">
@@ -61,9 +61,11 @@ const DemoCard = () => {
                   Contribute to Hagrid Gift Card
                 </button>
               </div>
+              <div className="w-full" style={{width: "73%"}}>
               <button className=" btnPrimary text-center w-100 mt-3 rounded-md">
                 Share Card
               </button>
+              </div>
             </div>
           </div>
         </div>

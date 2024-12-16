@@ -627,12 +627,12 @@ const EditorModal: React.FC = () => {
           </div>
         </div>
       )}
-      {imageBlob && (
+      {/* {imageBlob && (
         <>
           <div>Blob URL: {imageBlob}</div>
           <img src={imageBlob} alt="Generated Image" style={{ width: "300px", height: "auto" }} />
         </>
-      )}
+      )} */}
     </div>
   );
 };
