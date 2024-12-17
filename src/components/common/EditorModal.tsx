@@ -325,7 +325,7 @@ console.log(selectedGif,"selectedGif");
     setSelectedGif(prevSelectedGifs => [...prevSelectedGifs, gifUrl]);
     closeModal1(); // Close the modal after selection
   };
-  const [gifImages, setGifImages] = useState<HTMLImageElement[]>([]);
+  const [gifImages, setGifImages] = useState<any>([]);
 console.log(gifImages,"gifImages");
 
   // Load GIFs as Konva Image nodes (HTMLImageElement objects)
@@ -586,8 +586,23 @@ console.log(gifImages,"gifImages");
                 }}
               />
             ))}
-            {gifImages.map((gif, index) => (
-            <Image
+  {/* {gifImages.map((image:any) => (
+              <ImageComponent
+                key={image.id}
+                shapeProps={image}
+                isSelected={image.id === selectedImageId}
+                onSelect={() => setSelectedImageId(image.id)}
+                onChange={(newAttrs) => {
+                  setGifImages((prevImages:any) =>
+                    prevImages.map((img:any) =>
+                      img.id === image.id ? { ...img, ...newAttrs } : img
+                    )
+                  );
+                }}
+              />
+            ))} */}
+            {/* {gifImages.map((gif, index) => (
+            <KonvaImage
               key={index}
               image={gif}  // Pass the loaded image here
               x={index * 120}  // Example: position the GIFs in a row
@@ -595,7 +610,7 @@ console.log(gifImages,"gifImages");
               width={100}
               height={100}
             />
-          ))}
+          ))} */}
             
           </Layer>
         </Stage>
