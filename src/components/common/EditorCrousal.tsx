@@ -17,6 +17,7 @@ const EditorCrousal = () => {
         "https://groupleavingcards.com/assets/design/6734d2bbe8c991dba26a0288_sm.webp",
         "https://groupleavingcards.com/assets/design/66967675b0d2b479aa568c98_sm.avif",
         "https://groupleavingcards.com/assets/design/66d88499b4fb75024aa2d8de_sm.avif",
+        "blob:http://localhost:3000/b4d9188d-acbc-4368-9679-9cf3a1086d12"
       ];
   return (
     <div className="slider-container mt-3" style={{padding: "0px 30px"}}>

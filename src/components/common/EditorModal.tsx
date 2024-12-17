@@ -6,6 +6,7 @@ import {
   Image as KonvaImage,
   Transformer,
   Text as KonvaText,
+  Image ,
   Rect,
 } from "react-konva";
 // import { useNavigate } from "react-router-dom";
@@ -18,7 +19,7 @@ interface ImageProps {
   y: number;
   width: number;
   height: number;
-  src: string;
+  src: any;
   id: string;
   rotation?: number;
   type: "image" | "gif" | "sticker";
@@ -132,6 +133,8 @@ const EditorModal: React.FC = () => {
       fill: string;
     }[]
   >([]);
+  console.log(texts,"texts");
+  
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [gifs, setGifs] = useState<string[]>([]); // State to store GIF URLs
   const [stickers, setStickers] = useState<string[]>([]); // State to store Sticker URLs
@@ -151,21 +154,6 @@ const EditorModal: React.FC = () => {
     openModal(); // Open modal
     setIsAddingText(true); // Set text adding to true
   };
-  useEffect(() => {
-    if (searchTerm) {
-      fetch(
-        `https://api.tenor.com/v1/search?q=${searchTerm}&key=${TENOR_API_KEY}&limit=5`
-      )
-        .then((response) => response.json())
-        .then((data) => {
-          const gifUrls = data.results.map(
-            (result: any) => result.media[0].gif.url
-          );
-          setGifs(gifUrls);
-        })
-        .catch((err) => console.error(err));
-    }
-  }, [searchTerm]);
 
   // Handle image, GIF, and sticker uploads
   const handleMediaUpload = (
@@ -201,21 +189,6 @@ const EditorModal: React.FC = () => {
     }
   };
 
-  // Add selected GIF or Sticker to the editor
-  const handleSelectGifOrSticker = (url: string, type: "gif" | "sticker") => {
-    const newId = `${type}${images.length + 1}`;
-    const newMedia: ImageProps = {
-      x: 100,
-      y: 100,
-      width: 200,
-      height: 200,
-      src: url,
-      id: newId,
-      type: type,
-      rotation: 0,
-    };
-    setImages((prevImages) => [...prevImages, newMedia]);
-  };
 
   // Handle adding text to the canvas
   const handleAddText = () => {
@@ -234,21 +207,6 @@ const EditorModal: React.FC = () => {
     closeModal()
   };
 
-  const handleCartClick = () => {
-    //   navigate("/cart", {
-    //     state: {
-    //       images: images.map((img) => ({
-    //         id: img.id,
-    //         src: img.src,
-    //         width: img.width,
-    //         height: img.height,
-    //         rotation: img.rotation,
-    //         type: img.type, // Include type for media
-    //       })),
-    //       texts: texts, // Include the text styles in the cart
-    //     },
-    //   });
-  };
 
   const handleFontSizeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const size = parseInt(e.target.value);
@@ -276,23 +234,6 @@ const EditorModal: React.FC = () => {
   console.log(imageBlob,"imageBlob");
   console.log(stageRef,"stageRef");
   
-  // const handleDownloadClick = () => {
-  //   // When the download button is clicked, use Konva's toDataURL method
-  //   if (stageRef.current) {
-  //     // Capture the current stage as a base64-encoded PNG image
-  //     const uri = stageRef.current.toDataURL();
-
-  //     // Create a temporary download link
-  //     const link = document.createElement("a");
-  //     console.log(link,"linklinklink");
-      
-  //     link.href = uri;
-  //     console.log(uri,"uri");
-      
-  //     link.download = "Demo.png"; 
-  //     link.click();
-  //   }
-  // };
   const handleDownloadClick = () => {
     if (stageRef.current) {
       // Capture the current stage as a base64-encoded PNG image
@@ -325,6 +266,92 @@ const EditorModal: React.FC = () => {
         });
     }
   };
+
+  const [gifUrls, setGifUrls] = useState<string[]>([]); // State to hold array of GIF URLs
+  // const [selectedGif, setSelectedGif] = useState<string>(''); // State to hold selected GIF URL
+  const [selectedGif, setSelectedGif] = useState<string[]>([]);
+  const [loading, setLoading] = useState<boolean>(false); // Loading state
+  const [searchTerm1, setSearchTerm1] = useState<string>(''); // Default search term
+  const [modalOpen, setModalOpen] = useState<boolean>(false); // Modal visibility state
+  const [error, setError] = useState<string>(''); // State to handle errors
+console.log(selectedGif,"selectedGif");
+
+  // Function to handle search input change
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm1(event.target.value);
+  };
+
+  // Function to fetch GIFs based on search term
+  const fetchGifs = async () => {
+    setLoading(true); // Start loading
+    setError(''); // Reset error state
+    setGifUrls([]); // Clear previous GIFs
+    try {
+      const response = await fetch(
+        `https://api.giphy.com/v1/gifs/search?api_key=LPhD6fIpl4nHpcOFAyvDapGDe679OZ5B&q=${searchTerm1}&limit=100&rating=g`
+      );
+      const data = await response.json();
+      if (data.data.length > 0) {
+        setGifUrls(data.data.map((gif: any) => gif.images.original.url)); // Set URLs of 10 GIFs
+      } else {
+        setError('No GIFs found for your search.'); // Handle no results
+      }
+    } catch (error) {
+      console.error('Error fetching GIFs', error);
+      setError('Failed to fetch GIFs. Please try again later.'); // Handle fetch error
+    } finally {
+      setLoading(false); // Stop loading
+    }
+  };
+
+  // Fetch GIFs when the component mounts or when searchTerm changes
+  useEffect(() => {
+    fetchGifs();
+  }, [searchTerm1]); // Dependency array ensures this runs when searchTerm changes
+
+  // Function to open the modal
+  const openModal1 = () => {
+    setModalOpen(true);
+  };
+
+  // Function to close the modal
+  const closeModal1 = () => {
+    setModalOpen(false);
+  };
+
+  // Function to handle GIF selection
+  const handleGifSelect = (gifUrl: string) => {
+    // setSelectedGif(gifUrl); // Save the selected GIF to the state
+    setSelectedGif(prevSelectedGifs => [...prevSelectedGifs, gifUrl]);
+    closeModal1(); // Close the modal after selection
+  };
+  const [gifImages, setGifImages] = useState<HTMLImageElement[]>([]);
+console.log(gifImages,"gifImages");
+
+  // Load GIFs as Konva Image nodes (HTMLImageElement objects)
+  useEffect(() => {
+    // Function to load GIF URL into an HTMLImageElement
+    const loadImage = (gifUrl: string) => {
+      return new Promise<HTMLImageElement>((resolve, reject) => {
+        const img = new window.Image();
+        img.src = gifUrl;
+        img.onload = () => resolve(img); // Resolve with the loaded image
+        img.onerror = (error) => reject(error); // Handle error
+      });
+    };
+
+    // Load all selected GIFs
+    const loadGifImages = async () => {
+      try {
+        const loadedImages = await Promise.all(selectedGif.map(loadImage));
+        setGifImages(loadedImages);
+      } catch (error) {
+        console.error('Error loading GIFs:', error);
+      }
+    };
+
+    loadGifImages();
+  }, [selectedGif]); 
   return (
     <div className="editor_app">
       {/* Left Section (Editor Canvas) */}
@@ -351,13 +378,17 @@ const EditorModal: React.FC = () => {
             </svg>
           </div>
         </div>
-
+        <div>
+    
+    </div>
         {/* GIFs and Stickers Search */}
         <div className="text_design">
-          <input
+          {/* <input
             type="text"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
+            // value={searchTerm}
+            // onChange={(e) => setSearchTerm(e.target.value)}
+            value={searchTerm1}
+        onChange={handleSearchChange}
             placeholder="Search GIFs or Stickers"
             style={{ padding: "10px", width: "100%" }}
           />
@@ -390,7 +421,26 @@ const EditorModal: React.FC = () => {
                 ))}
               </div>
             )}
-          </div>
+          </div> */}
+           <input
+        type="text"
+        value={searchTerm1}
+        onChange={handleSearchChange}
+        placeholder="Search for a GIF"
+        style={{ padding: '10px', margin: '10px 0' }}
+      />
+      <button onClick={openModal1} style={{ padding: '10px' }}>
+        Search
+      </button>
+
+      {/* Display selected GIF */}
+      {/* {selectedGif && (
+        <div>
+          <h3>Selected GIF:</h3>
+          <img src={selectedGif} alt="Selected GIF" style={{ maxWidth: '100%' }} />
+        </div>
+      )} */}
+
         </div>
 
         {/* Text Style Controls */}
@@ -536,6 +586,17 @@ const EditorModal: React.FC = () => {
                 }}
               />
             ))}
+            {gifImages.map((gif, index) => (
+            <Image
+              key={index}
+              image={gif}  // Pass the loaded image here
+              x={index * 120}  // Example: position the GIFs in a row
+              y={50}  // Example: vertical position
+              width={100}
+              height={100}
+            />
+          ))}
+            
           </Layer>
         </Stage>
       </div>
@@ -633,7 +694,85 @@ const EditorModal: React.FC = () => {
           <img src={imageBlob} alt="Generated Image" style={{ width: "300px", height: "auto" }} />
         </>
       )} */}
+      {modalOpen && (
+        <div
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: 'rgba(0, 0, 0, 0.5)',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            zIndex: 1000,
+          }}
+        >
+          <div
+            style={{
+              backgroundColor: 'white',
+              padding: '20px',
+              borderRadius: '8px',
+              maxWidth: '80%',
+              maxHeight: '80%',
+              overflowY: 'scroll',
+            }}
+          >
+            <button
+              onClick={closeModal1}
+              style={{
+                marginBottom: '20px',
+                padding: '8px 16px',
+                backgroundColor: '#ff6347',
+                color: 'white',
+                border: 'none',
+                borderRadius: '4px',
+                cursor: 'pointer',
+              }}
+            >
+              Close
+            </button>
+            <h2>Search Results</h2>
+            {loading ? (
+              <p>Loading GIFs...</p>
+            ) : (
+              <div
+                style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(auto-fill, minmax(100px, 1fr))',
+                  gap: '10px',
+                }}
+              >
+                {gifUrls.map((gifUrl, index) => (
+                  <div
+                    key={index}
+                    onClick={() => handleGifSelect(gifUrl)}
+                    style={{
+                      cursor: 'pointer',
+                      borderRadius: '8px',
+                      overflow: 'hidden',
+                    }}
+                  >
+                    <img
+                      src={gifUrl}
+                      alt={`GIF ${index}`}
+                      style={{
+                        width: '100%',
+                        borderRadius: '8px',
+                      }}
+                    />
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
+      
     </div>
+    
   );
 };
 
