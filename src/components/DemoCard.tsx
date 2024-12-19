@@ -8,8 +8,10 @@ import EditorCrousal from "./common/EditorCrousal";
 import { CopyOutlined } from "@ant-design/icons";
 import { Button, Input, Modal, QRCode, Space, Typography } from "antd";
 import { toast, ToastContainer } from "react-toastify";
+import DemoViewCard from "./common/DemoViewCard";
+import DemoBoard from "./common/DemoBoard";
 const { Paragraph, Text } = Typography;
-const DemoCard = () => {
+const DemoCard = ({params}:any) => {
   const [show, setShow] = useState<any>(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const handleModalClose = () => {
@@ -35,6 +37,8 @@ const DemoCard = () => {
   };
   return (
     <>
+    {params==="fwzDVjvbQ_X"?
+    <>
       <section className="bg-demo_banner text-center demo_section common_padding bg-cover bg-no-repeat">
         {/* <ToastContainer/> */}
         <div className="container-fluid">
@@ -54,7 +58,10 @@ const DemoCard = () => {
             <Link href={`/create`}>
               <button className=" btnPrimary">Create a Card</button>
             </Link>
+            {/* 0cVkV16gHzX */}
+            <Link href={`/demo/0cVkV16gHzX`}>
             <button className="btnSecondary ml-3">View Demo Board</button>
+            </Link>
           </div>
         </div>
       </section>
@@ -154,6 +161,11 @@ const DemoCard = () => {
           </Space>
         </Modal>
       </section>
+
+      </>
+:
+      <DemoBoard/>
+            }
     </>
   );
 };

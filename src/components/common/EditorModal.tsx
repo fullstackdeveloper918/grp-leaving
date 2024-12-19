@@ -352,6 +352,10 @@ console.log(gifImages,"gifImages");
 
     loadGifImages();
   }, [selectedGif]); 
+
+
+  console.log(images,"images");
+  
   return (
     <div className="editor_app">
       {/* Left Section (Editor Canvas) */}

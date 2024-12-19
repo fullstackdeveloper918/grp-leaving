@@ -87,7 +87,7 @@ const Hero = (props: any) => {
                     {" "}
                     Start a group Card
                   </a>
-                  <a href="/demo" className="btnSecondary ml-3">
+                  <a href="/demo/fwzDVjvbQ_X" className="btnSecondary ml-3">
                     {" "}
                     Try Our Demo Card
                   </a>

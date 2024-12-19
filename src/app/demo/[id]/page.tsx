@@ -1,10 +1,12 @@
 import DemoCard from '@/components/DemoCard'
 import React from 'react'
 
-const page = () => {
+const page = ({params}:any) => {
+  console.log(params.id,"params");
+  
   return (
     <div>
-      <DemoCard/>
+      <DemoCard params={params.id}/>
     </div>
   )
 }
