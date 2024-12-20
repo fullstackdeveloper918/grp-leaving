@@ -6,9 +6,11 @@ const page = async() => {
 
   let data = await fetch('https://magshopify.goaideme.com/tango/fetch-data', {
     method: 'GET', // Method set to GET
-    // headers: {
-    //   'authorization': `Bearer ${gettoken.value}` // Send the token in the Authorization header
-    // }
+    headers: {
+      'Cache-Control': 'no-cache',
+      // 'authorization': `Bearer ${gettoken.value}` // Send the token in the Authorization header
+       cache: 'reload'
+    }
   });
   // console.log(gettoken,"ggg");
   // Parse the response JSON

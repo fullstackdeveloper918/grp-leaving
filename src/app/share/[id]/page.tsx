@@ -1,11 +1,15 @@
-"use client"
+// "use client"
 import CopyclickBoard from "@/components/common/CopyclickBoard";
 import EscrowPayment from "@/components/EscrowPayment";
 import GiftCardCollectionPot from "@/components/GiftCardCollectionPot";
 import Link from "next/link";
-import React from "react";
+import { log } from "node:console";
+import React, { useEffect } from "react";
 
-const page = () => {
+const page = ({params, searchParams}:any) => {
+console.log(searchParams?.brandKey,"khskhk");
+
+
   return (
     <div className="min-h-screen bg-gray-100 p-6">
       <div className="bg-white shadow-lg rounded-lg p-6 mb-6 text-center">
@@ -56,7 +60,7 @@ const page = () => {
             </div>
           </div>
 
-         <GiftCardCollectionPot/>
+         <GiftCardCollectionPot brandKey={searchParams?.brandKey}/>
         </div>
       </div>
     </div>

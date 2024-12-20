@@ -5,7 +5,9 @@ import React, { useState } from 'react'
 import { ToastContainer, toast } from 'react-toastify';
   import 'react-toastify/dist/ReactToastify.css';
 const CopyclickBoard = () => {
-    const url=usePathname()
+  const pathname = usePathname(); // Get the path part of the URL
+  const searchParams = useSearchParams()
+  const url = `${pathname}?${searchParams.toString()}`;
     console.log(url,"hhhh");
     const [showCopyBoard, setShowCopyBoard] = useState(false);
 

@@ -4,6 +4,7 @@ import Link from "next/link";
 import api from "@/utils/api";
 import { toast, ToastContainer } from "react-toastify";
 import { useRouter } from "next/navigation";
+import { log } from "node:console";
 const CreateGroup = ({ data }: any) => {
   console.log(data.data, "datadata");
 const [addCard,setAddCard]=useState<any>("")
@@ -40,7 +41,7 @@ console.log(addCard,"addcard");
   }, []);
   const [collectionTitle, setCollectionTitle] = useState("");
   const [loading, setLoading] = useState<any>(false);
-
+const [brandKeys,setBrandKeys]=useState("")
   // State to store other form data
   const [formData, setFormData] = useState({
     selectedGift: "",
@@ -97,7 +98,7 @@ console.log(addCard,"addcard");
       const data = await response.json(); // Assuming the response returns JSON
       toast.success("Added Successfully");
       console.log(data, "sadfdgsfdg");
-      router.replace(`/share/${data?.data?.uuid}`);
+      router.replace(`/share/${data?.data?.uuid}?brandKey=${brandKeys}`);
     } catch (error) {
       setLoading(false);
     }
@@ -118,6 +119,8 @@ console.log(addCard,"addcard");
   const [selectedImage, setSelectedImage] = useState<any | null>(null);
   const handleImageClick = (imageData: any) => {
     setSelectedImage(imageData);
+    console.log(imageData,"imageData");
+    setBrandKeys(imageData.brandKey)
     setIsModalOpen(true); // Open modal when an image is clicked
   };
 
@@ -134,6 +137,8 @@ console.log(addCard,"addcard");
   };
   console.log(selectedImage,"selectedImage");
   // const faceValues = selectedImage?.items.map((item:any) => item.faceValue);
+  // console.log(faceValues,"faceValues");
+  
   const faceValues = selectedImage?.items
   .map((item: any) => item.faceValue) // Extract faceValue
   .filter((value: any) => value !== undefined && value !== null); // Filter out undefined or null values
@@ -277,7 +282,7 @@ const selectGiftImage = selectedImage?.imageUrls["278w-326ppi"];
           <div className="relative">
             {/* Image Grid */}
             <div className="grid grid-cols-2 gap-4 max-h-80 overflow-y-auto">
-              {data.data.brands.map((res: any, index: number) => {
+              {data?.data.map((res: any, index: number) => {
                 const imageUrl = res.imageUrls["200w-326ppi"]; // You can change this key to any other size if needed
 
                 return (

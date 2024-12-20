@@ -1,15 +1,42 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import EscrowPayment from "./EscrowPayment";
+import axios from "axios";
 
-const GiftCardCollectionPot = () => {
+const GiftCardCollectionPot = ({brandKey}:any) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedAmount, setSelectedAmount] = useState(20); // Default selected amount
   const [isCustomAmount, setIsCustomAmount] = useState<any>(false); // Tracks if "Other" is selected
   const [customAmount, setCustomAmount] = useState<any>(20); // Custom amount input
   const [name, setName] = useState("");
+  const [giftCard, setGiftCard] = useState<any>("");
   const [makeAnonymous, setMakeAnonymous] = useState(false);
-
+  console.log(brandKey,"brandKey");
+  
+  const fetchGiftCard = async () => {
+    const response = await fetch(
+      `https://magshopify.goaideme.com/tango/single-tango-card/${brandKey}`, // Sending brandKey as query parameter
+      {
+        method: 'GET', // No body for GET requests
+        headers: {
+          'Content-Type': 'application/json', // Only for JSON responses
+        },
+      }
+    );
+  
+              const data = await response.json();
+    console.log(data, "lsjdflj");
+  
+    setGiftCard(data)
+    // return data;
+  };
+  
+  useEffect(() => {
+    // const brandKey = 'yourBrandKeyValue';  // Replace with your actual brandKey value
+    fetchGiftCard();
+  }, []);
+  console.log(giftCard,"giftCard");
+  
   const serviceFee = 1.3;
   const totalAmount = isCustomAmount
     ? parseFloat(customAmount) + serviceFee
@@ -29,7 +56,12 @@ const GiftCardCollectionPot = () => {
       setCustomAmount(parseFloat(value));
     }
   };
+// Check if giftCard and giftCard.data are defined before accessing imageUrls
+const selectGiftImage = giftCard.data?.imageUrls["278w-326ppi"]
+// const selectGiftImage = giftCard?.data?.imageUrls ? giftCard.data.imageUrls["278w-326ppi"] : null;
 
+  console.log(selectGiftImage,"selectGiftImage");
+  
   return (
     <div className="bg-white shadow-md rounded-lg p-6">
       <h2 className="text-lg font-semibold mb-4 text-center">
@@ -37,7 +69,7 @@ const GiftCardCollectionPot = () => {
       </h2>
       <div className="flex justify-center mb-4">
         <img
-          src="https://gift.runa.io/static/product_assets/AMZ-GB/AMZ-GB-card.png" // Replace with your gift card image
+          src={selectGiftImage} // Replace with your gift card image
           alt="Gift Card"
           className="w-32 h-20 object-contain"
         />
