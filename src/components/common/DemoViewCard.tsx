@@ -1,7 +1,10 @@
+import { useRouter } from 'next/navigation';
 import React from 'react'
 
 
 const DemoViewCard = ({downloadBoard,excludeDiv}:any) => {
+
+    const router= useRouter()
     const messages = [
         {
             imgSrc: "https://media1.giphy.com/media/L2qe789Bpy2IM/giphy.gif",
@@ -27,7 +30,14 @@ const DemoViewCard = ({downloadBoard,excludeDiv}:any) => {
         },
     ];
 
- 
+    
+ const Addmsg=()=>{
+    try {
+        router.replace(`/demo/board/sign_board/${1}`)
+    } catch (error) {
+        
+    }
+ }
     return (
         <div className="bg-blue-900 min-h-screen p-8">
             <div className="text-center bg-black text-white">
@@ -41,7 +51,7 @@ const DemoViewCard = ({downloadBoard,excludeDiv}:any) => {
                     <h1 className="text-4xl mt- font-bold mb-4">
                         Happy Birthday Harry! <span role="img" aria-label="party">🥳</span>
                     </h1>
-                    <button className="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg">
+                    <button className="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg" onClick={Addmsg}>
                         + Add Message
                     </button>
                 </div>

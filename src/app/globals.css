@@ -1172,3 +1172,6 @@ button.add_btn {
 /* editor_css end */
 
 /* Apply transition to all images */
+.demo-board-msg{
+  word-wrap: break-word;
+}
