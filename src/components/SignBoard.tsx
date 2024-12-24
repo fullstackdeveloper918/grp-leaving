@@ -1,10 +1,13 @@
 "use client"
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Modal from "react-modal";
-const SignBoard = () => {
+const SignBoard = ({searchParams}:any) => {
     const router = useRouter();
+    const[state,  setState]=useState<any>({})
+    console.log(state,"state");
+    
     const [message, setMessage] = useState<any>("");
     const [name, setName] = useState<any>("");
     const [gifUrl, setGifUrl] = useState<any>(null);
@@ -17,12 +20,15 @@ const SignBoard = () => {
   
     const handleRemoveGif = () => {
       setGifUrl(null);
+      setImageUrl(null)
     };
   
     const [isOpen, setIsOpen] = useState(false);
     const [gifs, setGifs] = useState<string[]>([]);
     const [searchTerm, setSearchTerm] = useState("");
+    const [imageUrl, setImageUrl] = useState<any>(null); // New state for image
     console.log(gifs, "fgdhjkl");
+    console.log(imageUrl, "imageUrl");
     console.log(searchTerm, "searchTerm");
     const defaultTerm = "wave";
     const fetchGifs = async (term: string) => {
@@ -67,6 +73,91 @@ const SignBoard = () => {
     const back = () => {
       router.replace(`/demo/0cVkV16gHzX`);
     };
+
+    const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      const file = e.target.files?.[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          setImageUrl(reader.result); // Save base64 image URL to state
+        };
+        reader.readAsDataURL(file);
+      }
+    };
+  
+    const handleAddImage = () => {
+      document.getElementById("image-upload")?.click(); // Open file picker when the button is clicked
+    };
+
+
+    const handleSubmit = async (e: React.FormEvent) => {
+      e.preventDefault();
+  
+      // Create FormData object
+      const formData = new FormData();
+      formData.append("board_id", "6596cd66c5e414022f5cdc9c");
+      formData.append("message", message);
+      formData.append("name", name);
+      formData.append("gifUrl", `${gifUrl}`); // Send gifUrl as a string
+      if (imageUrl) {
+        const fileBlob = dataURLtoBlob(imageUrl); // Convert base64 to Blob
+        formData.append("file", fileBlob, "image.png"); // Append the image file
+      }
+      const logFormData = (formData: FormData) => {
+        formData.forEach((value, key) => {
+          console.log(`${key}:`, value);
+        });
+      };
+      logFormData(formData);
+      try {
+        const response = await axios.post("https://magshopify.goaideme.com/messages/demo-sign-board", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data", // Set header to multipart/form-data
+          },
+        });
+        console.log('Success:', response.data);
+        let existingResponses = JSON.parse(sessionStorage.getItem('signboarddata') || '[]');
+
+        // Add the new API response to the array
+        existingResponses.push(response.data.demoBoard);
+    
+        sessionStorage.setItem('signboarddata', JSON.stringify(existingResponses));
+        router.replace(`/demo/0cVkV16gHzX`);
+        // Optionally reset the form or show success message
+      } catch (error) {
+        console.error('Error sending data:', error);
+      }
+    };
+  
+    // Helper function to convert base64 to Blob
+    const dataURLtoBlob = (dataURL: any) => {
+      const [base64String] = dataURL.split(','); // Split to get base64 string
+      const mimeType = base64String.match(/:(.*?);/)[1]; // Get mime type from the base64
+      const byteString = atob(dataURL.split(',')[1]); // Get byte string from base64
+      const arrayBuffer = new ArrayBuffer(byteString.length);
+      const uintArray = new Uint8Array(arrayBuffer);
+  
+      for (let i = 0; i < byteString.length; i++) {
+        uintArray[i] = byteString.charCodeAt(i);
+      }
+  
+      return new Blob([uintArray], { type: mimeType });
+    };
+
+
+const getData=async()=>{
+try {
+  let res=await axios.get(`https://magshopify.goaideme.com/messages/single-demo-board/${searchParams}`)
+  console.log(res.data.data,"lsjlsjdfjsljd");
+  setState(res.data.data)
+} catch (error) {
+  
+}
+}
+useEffect(()=>{
+  getData()
+},[])
+
   return (
     <>
          <div className="flex h-screen">
@@ -82,19 +173,29 @@ const SignBoard = () => {
                </div>
              )} */}
    
+             <h2 className="">Preview</h2>
+{/* {!message||!gifUrl||!imageUrl&& */}
+             <h4 className="">Add a message, image or gif and see a preview here.</h4>
              <div className="bg-white border rounded-lg p-6 shadow-md w-3/4 max-w-md">
+
                {gifUrl && (
                  <div className="mb-4">
                    <img
                      src={gifUrl}
+                    //  src={gifUrl||state?.gifUrl}
                      alt="Selected GIF"
                      style={{ width: "100%", height: "50%" }}
                      className="w-full h-auto rounded-md"
                    />
                  </div>
                )}
-               <div className="text-gray-800  h-64">
-                 {message ? (
+                {imageUrl && (
+              <div className="mb-4">
+                <img src={imageUrl} alt="Selected Image" style={{ width: "100%", height: "50%" }} className="w-full h-auto rounded-md" />
+              </div>
+            )}
+               <div className="text-gray-800  h-64">  
+                 {message? (
                    <p className="demo-board-msg">{message}</p>
                  ) : (
                    <p className="text-gray-400">
@@ -102,8 +203,9 @@ const SignBoard = () => {
                    </p>
                  )}
                </div>
-               {name && (
+               {name&& (
                  <p className="mt-4 text-right text-gray-600 ">From {name}</p>
+                //  <p className="mt-4 text-right text-gray-600 ">From {name||state?.name}</p>
                )}
              </div>
              {gifUrl && (
@@ -112,6 +214,14 @@ const SignBoard = () => {
                  className="mt-4 px-4 py-2 border border-red-600 text-red-600 rounded-md hover:bg-red-600 hover:text-white transition"
                >
                  Remove gif
+               </button>
+             )}
+             {imageUrl && (
+               <button
+                 onClick={handleRemoveGif}
+                 className="mt-4 px-4 py-2 border border-red-600 text-red-600 rounded-md hover:bg-red-600 hover:text-white transition"
+               >
+                 Remove Image
                </button>
              )}
              <button
@@ -125,6 +235,7 @@ const SignBoard = () => {
            {/* Right Section - Form */}
            <div className="w-1/2 bg-white flex flex-col justify-center items-center p-8">
              <h1 className="text-3xl font-bold mb-6">Sign Board</h1>
+             {!(gifUrl || imageUrl) ?
              <div className="flex flex-wrap gap-4 mb-6">
                <button
                  onClick={openModal}
@@ -138,17 +249,18 @@ const SignBoard = () => {
                >
                  Add Sticker
                </button>
-               <button className="px-4 py-2 bg-white border border-blue-600 text-blue-600 rounded-md hover:bg-blue-600 hover:text-white transition">
+               <button  onClick={handleAddImage} className="px-4 py-2 bg-white border border-blue-600 text-blue-600 rounded-md hover:bg-blue-600 hover:text-white transition">
                  Add Image
                </button>
-               <button className="px-4 py-2 bg-white border border-blue-600 text-blue-600 rounded-md hover:bg-blue-600 hover:text-white transition">
+               <button onClick={handleAddImage} className="px-4 py-2 bg-white border border-blue-600 text-blue-600 rounded-md hover:bg-blue-600 hover:text-white transition">
                  Add Handwriting
                </button>
              </div>
-   
+   :""}
              <form
                className="w-full max-w-md space-y-4"
-               onSubmit={(e) => e.preventDefault()}
+              //  onSubmit={(e) => e.preventDefault()}
+              onSubmit={handleSubmit}
              >
                <div>
                  <label
@@ -161,7 +273,7 @@ const SignBoard = () => {
                    id="message"
                    className="w-full h-44 px-4 py-2 border rounded-md focus:ring-blue-500 focus:border-blue-500"
                    placeholder="Message"
-                   value={message}
+                   value={message||state?.message}
                    onChange={(e) => setMessage(e.target.value)}
                  ></textarea>
                </div>
@@ -231,6 +343,13 @@ const SignBoard = () => {
              Close
            </button>
          </Modal>
+         <input
+        id="image-upload"
+        type="file"
+        accept="image/*"
+        onChange={handleImageChange}
+        className="hidden"
+      />
        </>
   )
 }
