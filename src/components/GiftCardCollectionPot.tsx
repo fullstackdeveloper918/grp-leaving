@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import EscrowPayment from "./EscrowPayment";
 import axios from "axios";
 
-const GiftCardCollectionPot = ({brandKey}:any) => {
+const GiftCardCollectionPot = ({brandKey,groupId}:any) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedAmount, setSelectedAmount] = useState(20); // Default selected amount
   const [isCustomAmount, setIsCustomAmount] = useState<any>(false); // Tracks if "Other" is selected
@@ -207,7 +207,7 @@ const selectGiftImage = giftCard.data?.imageUrls["278w-326ppi"]
               >
                 Continue to Payment
               </button> */}
-              <EscrowPayment closeModal={closeModal}/> 
+              <EscrowPayment closeModal={closeModal} brandKey={brandKey} groupId={groupId}/> 
             </div>
 
             <p className="text-sm text-gray-500 mt-4 text-center">

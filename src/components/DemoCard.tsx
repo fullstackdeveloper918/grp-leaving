@@ -10,10 +10,13 @@ import { Button, Input, Modal, QRCode, Space, Typography } from "antd";
 import { toast, ToastContainer } from "react-toastify";
 import DemoViewCard from "./common/DemoViewCard";
 import DemoBoard from "./common/DemoBoard";
+import userIcon from "../assets/icons/ab.png"
+import Image from 'next/image';
 const { Paragraph, Text } = Typography;
 const DemoCard = ({params}:any) => {
   const [show, setShow] = useState<any>(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const handleModalClose = () => {
     setIsModalVisible(false); // Close the modal
   };
@@ -22,7 +25,7 @@ const DemoCard = ({params}:any) => {
   const handleShare = () => {
     setIsModalVisible(true);
   };
-  const shareableLink = "https://group-leaving-1lpt.vercel.app/demo";
+  const shareableLink = "https://group-leaving-1lpt.vercel.app/demo/fwzDVjvbQ_X";
 
   const handleCopy = () => {
     navigator.clipboard.writeText(shareableLink);
@@ -35,6 +38,18 @@ const DemoCard = ({params}:any) => {
   const showCard = () => {
     setShow(false);
   };
+
+  const contributors = [
+    { name: "Harry", amount: 100 },
+    { name: "Hermione", amount: 50 },
+    { name: "Anonymous", amount: 20 },
+    { name: "Neville", amount: 80 },
+    { name: "Draco", amount: 2 },
+    { name: "Severus", amount: 8 },
+    { name: "Minerva", amount: 100 },
+  ];
+
+  const totalAmount = contributors.reduce((sum, c) => sum + c.amount, 0);
   return (
     <>
     {params==="fwzDVjvbQ_X"?
@@ -95,13 +110,18 @@ const DemoCard = ({params}:any) => {
                 <h3 className="text-center text-md font-normal">
                   Gift Card Collection Pot
                 </h3>
-                <button>User Image Popup</button>
+                <button className='text-center text-md font-normal'  onClick={() => setIsModalOpen(true)}>
+          <span className="">
+
+          <Image src={userIcon} alt='user' />
+          </span>
+        </button>
                 <img
                   src="https://gift.wegift.io/static/product_assets/AMZ-GB/AMZ-GB-card.png"
                   alt="Amazon"
                   className="voucher_img mx-auto rounded"
                 />
-                <p className="font-bold text-center text-lg">£360</p>
+                <h4 className="font-bold text-center ">£360</h4>
                 <button className="bg-greyBorder text-blackText rounded-lg  w-100 text-sm p-2.5">
                   Contribute to Hagrid Gift Card
                 </button>
@@ -160,12 +180,67 @@ const DemoCard = ({params}:any) => {
             <QRCode value={shareableLink} size={160} />
           </Space>
         </Modal>
+
+
+        
       </section>
 
       </>
 :
       <DemoBoard/>
             }
+
+            
+{isModalOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+          <div className="relative bg-white rounded-lg shadow-lg p-6 w-full max-w-lg">
+            {/* Close Button */}
+            <button
+              onClick={() => setIsModalOpen(false)}
+              className="absolute top-2 right-2 text-gray-600 hover:text-gray-800 focus:outline-none"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={2}
+                stroke="currentColor"
+                className="w-6 h-6"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
+            <h2 className="text-lg font-semibold text-gray-800 mb-4">
+              Contributors
+            </h2>
+            <ul>
+              {contributors.map((contributor, index) => (
+                <li
+                  key={index}
+                  className="flex justify-between items-center border-b py-2"
+                >
+                  <span>{contributor.name}</span>
+                  <span>£{contributor.amount.toFixed(2)}</span>
+                </li>
+              ))}
+            </ul>
+            <div className="flex justify-between items-center mt-4 font-bold text-gray-800">
+              <span>Total:</span>
+              <span>£{totalAmount.toFixed(2)}</span>
+            </div>
+            {/* <button
+              onClick={() => setIsModalOpen(false)}
+              className="mt-4 bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
+            >
+              Close
+            </button> */}
+          </div>
+        </div>
+      )}
     </>
   );
 };

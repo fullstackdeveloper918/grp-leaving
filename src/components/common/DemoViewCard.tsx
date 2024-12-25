@@ -84,8 +84,8 @@ const DemoViewCard = ({ downloadBoard, excludeDiv }: any) => {
         </div>
       </div>
       <div
-        className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-6"
-        style={{ height: "60%", width: "60%" }}
+        className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4  mt-6"
+        style={{ height: "60%", width: "100%" }}
       >
         {/* {messages.map((msg, index) => ( */}
         {boardData?.map((msg: any, index: number) => {
@@ -96,6 +96,7 @@ const DemoViewCard = ({ downloadBoard, excludeDiv }: any) => {
             <div
               key={index}
               className="bg-white rounded-lg shadow-md p-4 text-gray-800"
+              // style={{width:"60%"}}
             >
               {msg.image && (
                 <img

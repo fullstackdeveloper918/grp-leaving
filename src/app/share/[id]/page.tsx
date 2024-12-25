@@ -7,7 +7,7 @@ import { log } from "node:console";
 import React, { useEffect } from "react";
 
 const page = ({params, searchParams}:any) => {
-console.log(searchParams?.brandKey,"khskhk");
+console.log(params.id,"khskhk");
 
 
   return (
@@ -60,7 +60,7 @@ console.log(searchParams?.brandKey,"khskhk");
             </div>
           </div>
 
-         <GiftCardCollectionPot brandKey={searchParams?.brandKey}/>
+         <GiftCardCollectionPot brandKey={searchParams?.brandKey} groupId={params.id}/>
         </div>
       </div>
     </div>

@@ -7,7 +7,6 @@ const SignBoard = ({searchParams}:any) => {
     const router = useRouter();
     const[state,  setState]=useState<any>({})
     console.log(state,"state");
-    
     const [message, setMessage] = useState<any>("");
     const [name, setName] = useState<any>("");
     const [gifUrl, setGifUrl] = useState<any>(null);
@@ -158,6 +157,53 @@ useEffect(()=>{
   getData()
 },[])
 
+useEffect(() => {
+  if (state) {
+    setMessage(state.message || "");
+    setName(state.name || "");
+    setGifUrl(state.gifUrl || "");
+  }
+}, [state]);
+
+const editBoard = async (e: React.FormEvent) => {
+  e.preventDefault();
+  
+  // Create FormData object
+  const formData = new FormData();
+  formData.append("uuid", searchParams);
+  formData.append("board_id", "6596cd66c5e414022f5cdc9c");
+  formData.append("message", message);
+  formData.append("name", name);
+  formData.append("gifUrl", `${gifUrl}`); // Send gifUrl as a string
+  if (imageUrl) {
+    const fileBlob = dataURLtoBlob(imageUrl); // Convert base64 to Blob
+    formData.append("file", fileBlob, "image.png"); // Append the image file
+  }
+  const logFormData = (formData: FormData) => {
+    formData.forEach((value, key) => {
+      console.log(`${key}:`, value);
+    });
+  };
+  logFormData(formData);
+  try {
+    const response = await axios.post("https://magshopify.goaideme.com/messages/update-single-demo-board", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data", // Set header to multipart/form-data
+      },
+    });
+    console.log('Success:', response.data);
+    let existingResponses = JSON.parse(sessionStorage.getItem('signboarddata') || '[]');
+
+    // Add the new API response to the array
+    existingResponses.push(response.data.demoBoard);
+
+    sessionStorage.setItem('signboarddata', JSON.stringify(existingResponses));
+    router.replace(`/demo/0cVkV16gHzX`);
+    // Optionally reset the form or show success message
+  } catch (error) {
+    console.error('Error sending data:', error);
+  }
+};
   return (
     <>
          <div className="flex h-screen">
@@ -260,7 +306,7 @@ useEffect(()=>{
              <form
                className="w-full max-w-md space-y-4"
               //  onSubmit={(e) => e.preventDefault()}
-              onSubmit={handleSubmit}
+              onSubmit={searchParams?editBoard: handleSubmit}
              >
                <div>
                  <label
@@ -273,7 +319,7 @@ useEffect(()=>{
                    id="message"
                    className="w-full h-44 px-4 py-2 border rounded-md focus:ring-blue-500 focus:border-blue-500"
                    placeholder="Message"
-                   value={message||state?.message}
+                   value={message}
                    onChange={(e) => setMessage(e.target.value)}
                  ></textarea>
                </div>
@@ -350,6 +396,8 @@ useEffect(()=>{
         onChange={handleImageChange}
         className="hidden"
       />
+
+
        </>
   )
 }

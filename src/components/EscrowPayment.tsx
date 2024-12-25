@@ -8,7 +8,9 @@ declare global {
   }
 }
 
-const EscrowPayment = ({closeModal}:any) => {
+const EscrowPayment = ({closeModal,brandKey,groupId}:any) => {
+  console.log(groupId,"groupId");
+  
   const AMOUNT = 0; // Amount in INR
   const [isProcessing, setIsProcessing] = useState(false);
   const [userInfo, setUserInfo] = useState<any>(null);
@@ -57,7 +59,7 @@ const EscrowPayment = ({closeModal}:any) => {
         currency: "INR",
         name: "Testing Solutions",
         description: "Test Transaction with Escrow",
-        order_id: data.orderId, // Use the order ID from the backend response
+        order_id: data.orderId, // Use the order ID from the backend respo7nse
         handler: function (response: any) {
           console.log("Payment successful", response);
           fetch(
@@ -70,9 +72,10 @@ const EscrowPayment = ({closeModal}:any) => {
               },
               body: JSON.stringify({
                 payment_for: "group",
-                product_id: "product_id",
+                product_id: brandKey,
                 user_uuid: uuid,
-                paymentId: "paymentId",
+                collection_link:groupId,
+                paymentId: response.razorpay_payment_id,
               }),
             }
           )
