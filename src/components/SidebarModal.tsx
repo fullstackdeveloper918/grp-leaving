@@ -4,7 +4,8 @@ import nookies from 'nookies';
 interface SidebarModalProps {
   isOpen: boolean;
   onClose: () => void;
-  data:any
+  data:any,
+  
 }
 
 const SidebarModal: React.FC<SidebarModalProps> = ({ isOpen, onClose,data }) => {

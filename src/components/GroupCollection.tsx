@@ -154,10 +154,11 @@ const [isModalOpen, setIsModalOpen] = useState(false);
       </div>
       <SidebarModal
         isOpen={isSidebarOpen}
+     
         onClose={() => setIsSidebarOpen(false)}
         data={data.data}
       />
-       <SendGiftModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}  onSubmit={handleSend}/>
+       <SendGiftModal isOpen={isModalOpen}    setIsModalOpen={setIsModalOpen} onClose={() => setIsModalOpen(false)}  onSubmit={handleSend}/>
     </div>
   );
 };

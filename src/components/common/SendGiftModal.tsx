@@ -6,22 +6,24 @@ type ModalProps = {
   isOpen: boolean;
   onClose: () => void;
   onSubmit: (email: string) => void;
+  setIsModalOpen:any
 };
 
-const SendGiftModal: React.FC<ModalProps> = ({ isOpen, onClose,onSubmit }) => {
+const SendGiftModal: React.FC<ModalProps> = ({ isOpen, onClose,onSubmit,setIsModalOpen }) => {
     const [email, setEmail] = useState("");
   if (!isOpen) return null;
   const handleSend = () => {
     if (email.trim() === "") {
         toast.warning("Please enter a valid email address.", {
             position: "top-center",
-            autoClose: 3000, // Optional: The toast will disappear after 3 seconds
-            hideProgressBar: true, // Optional: To hide the progress bar
+            autoClose: 3000, 
+            hideProgressBar: true, 
           });
         
       return;
     }
     onSubmit(email);
+    onClose()
   };
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-800 bg-opacity-75">

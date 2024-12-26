@@ -206,6 +206,7 @@ const selectGiftImage = selectedImage?.imageUrls["278w-326ppi"];
             </div>
           </div>
           {/* <Link href={`/share/1`}> */}
+          {uuid?
           <button
             //   disabled={setLoading}
             type="submit"
@@ -213,6 +214,18 @@ const selectGiftImage = selectedImage?.imageUrls["278w-326ppi"];
           >
             Continue
           </button>
+          :
+          <Link href={`/login`}>
+          <button
+            //   disabled={setLoading}
+            type="submit"
+            className="w-full bg-blue-600 text-black border-2 border-blue-700 py-3 rounded-md hover:bg-blue-700 transition duration-300"
+            >
+            Continue
+          </button>
+            </Link>
+          }
+
           {/* </Link> */}
         </form>
       </div>
