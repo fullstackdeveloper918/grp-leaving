@@ -72,7 +72,8 @@ const [brandKeys,setBrandKeys]=useState("")
       user_uuid: uuid,
       collection_title: collectionTitle,
       // gift_card_id:addCard,
-      file: "",
+      brandKey:brandKeys,
+      // file: "",
     };
     console.log(item, "item");
 

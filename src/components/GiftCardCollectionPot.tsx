@@ -90,12 +90,12 @@ const selectGiftImage = giftCard.data?.imageUrls["278w-326ppi"]
       <div className="text-center mb-2 justify-center">
         <button className="text-black-600 hover:underline">Delete</button>
       </div>
-      <div className="mt-6 text-center justify-center">
+      {/* <div className="mt-6 text-center justify-center">
         <button className="bg-blue-600 text-black border-2 border-blue-700 px-4 py-2 rounded-md hover:bg-blue-700 transition">
           Add Gift Card
         </button>
+      </div> */}
         {/* </Link> */}
-      </div>
 
       {isModalOpen && (
         <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 z-50">
