@@ -116,7 +116,7 @@ const ImageComponent: React.FC<{
   );
 };
 
-const EditorModal: React.FC = () => {
+const EditorModal = ({showCard}:any) => {
   const [images, setImages] = useState<ImageProps[]>([]);
   const [thumbnails, setThumbnails] = useState<{ id: string; src: string }[]>(
     []
@@ -362,6 +362,23 @@ console.log(gifImages,"gifImages");
 
       {/* Right Section (Options and Thumbnails) */}
       <div className="editor_option">
+      <div>
+          <button
+          className="add_btn"
+            onClick={handleButtonClick}
+            style={{
+              padding: "10px",
+              // backgroundColor: "#28a745",
+              // color: "white",
+              border: "none",
+              borderRadius: "50px",
+            }}
+          >
+            Add Message
+          </button>
+
+        
+        </div>
         {/* Image Upload */}
         <div className="search_input">
           <input
@@ -382,50 +399,23 @@ console.log(gifImages,"gifImages");
             </svg>
           </div>
         </div>
+        <div className="search_input">
+          <input
+            type="file"
+            accept="image/*"
+            // onChange={(e) => handleMediaUpload(e.target.files!, "image")}
+            multiple
+          />
+          <div className="upload_svg">
+          <svg className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium mus-vubbuv" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="GifIcon"><path d="M11.5 9H13v6h-1.5zM9 9H6c-.6 0-1 .5-1 1v4c0 .5.4 1 1 1h3c.6 0 1-.5 1-1v-2H8.5v1.5h-2v-3H10V10c0-.5-.4-1-1-1m10 1.5V9h-4.5v6H16v-2h2v-1.5h-2v-1z"></path></svg>
+          </div>
+        </div>
         <div>
     
     </div>
         {/* GIFs and Stickers Search */}
-        <div className="text_design">
-          {/* <input
-            type="text"
-            // value={searchTerm}
-            // onChange={(e) => setSearchTerm(e.target.value)}
-            value={searchTerm1}
-        onChange={handleSearchChange}
-            placeholder="Search GIFs or Stickers"
-            style={{ padding: "10px", width: "100%" }}
-          />
-          <div>
-            {gifs.length > 0 && (
-              <div>
-                <h4>GIFs</h4>
-                {gifs.map((gif, index) => (
-                  <img
-                    key={index}
-                    src={gif}
-                    alt="gif"
-                    style={{ width: "50px", cursor: "pointer" }}
-                    onClick={() => handleSelectGifOrSticker(gif, "gif")}
-                  />
-                ))}
-              </div>
-            )}
-            {stickers.length > 0 && (
-              <div>
-                <h4>Stickers</h4>
-                {stickers.map((sticker, index) => (
-                  <img
-                    key={index}
-                    src={sticker}
-                    alt="sticker"
-                    style={{ width: "50px", cursor: "pointer" }}
-                    onClick={() => handleSelectGifOrSticker(sticker, "sticker")}
-                  />
-                ))}
-              </div>
-            )}
-          </div> */}
+        {/* <div className="text_design">
+         
            <input
         type="text"
         value={searchTerm1}
@@ -437,54 +427,14 @@ console.log(gifImages,"gifImages");
         Search
       </button>
 
-      {/* Display selected GIF */}
-      {/* {selectedGif && (
-        <div>
-          <h3>Selected GIF:</h3>
-          <img src={selectedGif} alt="Selected GIF" style={{ maxWidth: '100%' }} />
-        </div>
-      )} */}
+  
 
-        </div>
+        </div> */}
 
-        {/* Text Style Controls */}
-        {/* {isAddingText&&
-          <div> 
-            <div>
-              <label>Font Size:</label>
-              <input
-                type="number"
-                value={textStyles.fontSize}
-                onChange={handleFontSizeChange}
-                style={{ marginLeft: "10px", padding: "5px", width: "60px" }}
-              />
-            </div>
-            <div>
-              <label>Font Family:</label>
-              <select
-                value={textStyles.fontFamily}
-                onChange={handleFontFamilyChange}
-                style={{ marginLeft: "10px", padding: "5px" }}
-              >
-                <option value="Arial">Arial</option>
-                <option value="Verdana">Verdana</option>
-                <option value="Times New Roman">Times New Roman</option>
-                <option value="Courier New">Courier New</option>
-              </select>
-            </div>
-            <div>
-              <label>Text Color:</label>
-              <input
-                type="color"
-                value={textStyles.color}
-                onChange={handleColorChange}
-                style={{ marginLeft: "10px" }}
-              />
-            </div>
-          </div>} */}
+       
 
         {/* Add Text Section */}
-        <div>
+        {/* <div>
           <button
             onClick={handleButtonClick}
             style={{
@@ -498,55 +448,41 @@ console.log(gifImages,"gifImages");
             Add Text
           </button>
 
-          {/* {isAddingText && (
-              <div>
-                <input
-                  type="text"
-                  value={currentText}
-                  onChange={(e) => setCurrentText(e.target.value)}
-                  placeholder="Enter text"
-                  style={{ padding: "5px", width: "200px" }}
-                />
-                <button
-                  onClick={handleAddText}
-                  style={{
-                    padding: "5px 10px",
-                    backgroundColor: "#28a745",
-                    color: "white",
-                    border: "none",
-                    borderRadius: "4px",
-                    marginLeft: "10px",
-                  }}
-                >
-                  Add Text
-                </button>
-              </div>
-            )} */}
-        </div>
+        
+        </div> */}
 
         {/* Add to Cart Button */}
-        {/* <div style={{ textAlign: "center"}}>
-            <button
-              onClick={handleCartClick}
-              className="add_btn"
-            >
-              Add
-            </button>
-          </div> */}
+      
         <div style={{ textAlign: "center" }}>
           <button
             onClick={handleDownloadClick}
             className="add_btn"
 
-            //   style={{
-            //     padding: "10px 20px",
-            //     backgroundColor: "#007bff",
-            //     color: "white",
-            //     border: "none",
-            //     borderRadius: "4px",
-            //   }}
+              style={{
+              // padding: "10px 20px",
+              // backgroundColor: "#007bff",
+              // color: "white",
+              // border: "none",
+              borderRadius: "40px",
+            }}
           >
-            Add All Content
+           Download
+          </button>
+        </div>
+        <div style={{ textAlign: "center" }}>
+          <button
+            onClick={showCard}
+            className="add_btn"
+
+              style={{
+                // padding: "10px 20px",
+                // backgroundColor: "#007bff",
+                // color: "white",
+                // border: "none",
+                borderRadius: "40px",
+              }}
+          >
+           Show Card
           </button>
         </div>
       </div>

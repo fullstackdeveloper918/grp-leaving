@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import Slider from "react-slick";
-const EditorCrousal = () => {
+const EditorCrousal = ({showCard,addCard}:any) => {
   const [centerIndex, setCenterIndex] = useState(0); // Track the center image index
   const [currentSlide, setCurrentSlide] = useState(0);
   const settings = {
@@ -29,7 +29,106 @@ const EditorCrousal = () => {
     // "blob:http://localhost:3000/b4d9188d-acbc-4368-9679-9cf3a1086d12"
   ];
   return (
-    <div className="slider-container mt-3" style={{ padding: "0px 30px" }}>
+    <div className="slider-container mt-3" style={{ padding: "0px 30px",width:"85%" }}>
+       <div className="editor_option mb-3">
+       <div>
+          <button
+          className="add_btn"
+            onClick={addCard}        
+            style={{
+              padding: "10px",
+              // backgroundColor: "#28a745",
+              // color: "white",
+              border: "none",
+              borderRadius: "50px",
+            }}
+          >
+            Add Message
+          </button>
+
+        
+        </div>
+        {/* Image Upload */}
+        <div className="search_input">
+          <input
+            type="file"
+            accept="image/*"
+            // onChange={(e) => handleMediaUpload(e.target.files!, "image")}
+            onClick={addCard}
+            multiple
+          />
+          <div className="upload_svg">
+            <svg
+              className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium mus-vubbuv"
+              focusable="false"
+              aria-hidden="true"
+              viewBox="0 0 24 24"
+              data-testid="AddPhotoAlternateIcon"
+            >
+              <path d="M19 7v2.99s-1.99.01-2 0V7h-3s.01-1.99 0-2h3V2h2v3h3v2zm-3 4V8h-3V5H5c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-8zM5 19l3-4 2 3 3-4 4 5z"></path>
+            </svg>
+          </div>
+        </div>
+        <div className="search_input">
+          <input
+            type="file"
+            accept="image/*"
+            // onChange={(e) => handleMediaUpload(e.target.files!, "image")}
+            onClick={addCard}
+            multiple
+          />
+          <div className="upload_svg">
+          <svg className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium mus-vubbuv" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="GifIcon"><path d="M11.5 9H13v6h-1.5zM9 9H6c-.6 0-1 .5-1 1v4c0 .5.4 1 1 1h3c.6 0 1-.5 1-1v-2H8.5v1.5h-2v-3H10V10c0-.5-.4-1-1-1m10 1.5V9h-4.5v6H16v-2h2v-1.5h-2v-1z"></path></svg>
+          </div>
+        </div>
+        <div>
+    
+    </div>
+        {/* GIFs and Stickers Search */}
+        {/* <div className="text_design">
+         
+           <input
+        type="text"
+        // value={searchTerm1}
+        // onChange={handleSearchChange}
+        placeholder="Search for a GIF"
+        style={{ padding: '10px', margin: '10px 0' }}
+      />
+      <button
+      //  onClick={openModal1}
+        style={{ padding: '10px' }}>
+        Search
+      </button>
+
+  
+
+        </div> */}
+
+       
+
+        {/* Add Text Section */}
+      
+
+        {/* Add to Cart Button */}
+      
+        <div style={{ textAlign: "center" }}>
+          <button
+            // onClick={handleDownloadClick}
+            className="add_btn"
+            onClick={addCard}
+              style={{
+                // padding: "10px 20px",
+                // backgroundColor: "#007bff",
+                // color: "white",
+                // border: "none",
+                borderRadius: "40px",
+              }}
+          >
+            {/* Add All Content */}
+            Download
+          </button>
+        </div>
+      </div>
       <div style={{ position: "relative", height: "700px" }}>
         <Slider {...settings}>
           {images.map((image, index) => (
