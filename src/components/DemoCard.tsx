@@ -101,7 +101,7 @@ const DemoCard = ({params}:any) => {
                 <button className="bg-lightBg rounded-md p-2"><img src={upload_gif.src} alt="upload img" className="upload_img" /></button> */}
               </div>
 
-              {show ? <EditorModal showCard={showCard}/> : <EditorCrousal showCard={showCard} addCard={addCard}/>}
+              {show ? <EditorModal showCard={showCard}/> : <EditorCrousal />}
               {/* <Carousel /> */}
               {/* <EditorModal/> */}
             </div>

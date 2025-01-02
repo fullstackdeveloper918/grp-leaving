@@ -1,24 +1,13 @@
-"use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Slider from "react-slick";
-const EditorCrousal = ({showCard,addCard}:any) => {
-  const [centerIndex, setCenterIndex] = useState(0); // Track the center image index
+import Draggable from "react-draggable";
+
+const EditorCarousel = () => {
+  const [messages, setMessages] = useState<
+    { id: number; text: string; x: number; y: number; slide: number; name: string; zIndex: number }[]
+  >([]);
   const [currentSlide, setCurrentSlide] = useState(0);
-  const settings = {
-    className: "center",
-    centerMode: true,
-    infinite: true,
-    centerPadding: "60px",
-    slidesToShow: 1,
-    speed: 500,
-    focusOnSelect: true, // Ensures scaling is applied on focus
-    beforeChange: (current: any, next: any) => {
-      setCenterIndex(next); // Update center index before the change
-    },
-    afterChange: (current: any) => {
-      setCurrentSlide(current); // Update current slide index for progress bar
-    },
-  };
+
   const images = [
     "https://groupleavingcards.com/assets/design/617318f94c962c605abdeabb.jpg",
     "https://groupleavingcards.com/assets/design/66bd382d51e4bce9bdd31fc6_sm.avif",
@@ -26,113 +15,77 @@ const EditorCrousal = ({showCard,addCard}:any) => {
     "https://groupleavingcards.com/assets/design/6734d2bbe8c991dba26a0288_sm.webp",
     "https://groupleavingcards.com/assets/design/66967675b0d2b479aa568c98_sm.avif",
     "https://groupleavingcards.com/assets/design/66d88499b4fb75024aa2d8de_sm.avif",
-    // "blob:http://localhost:3000/b4d9188d-acbc-4368-9679-9cf3a1086d12"
   ];
+
+  // Load saved messages from local storage when the component mounts
+  useEffect(() => {
+    const savedMessages = JSON.parse(localStorage.getItem("messages") || "[]");
+    setMessages(savedMessages);
+  }, []);
+
+  const settings = {
+    className: "center",
+    centerMode: true,
+    infinite: true,
+    centerPadding: "60px",
+    slidesToShow: 1,
+    speed: 500,
+    afterChange: (current: number) => setCurrentSlide(current),
+  };
+console.log(messages,"messages");
+
+  const addMessage = () => {
+    const newMessage = {
+      id: messages.length + 1,
+      text: "",
+      x: 50,
+      y: 50,
+      slide: currentSlide,
+      name: "",
+      zIndex: 1000, // Ensure it's above the carousel
+    };
+    setMessages([...messages, newMessage]);
+  };
+
+  const saveMessage = (id: number, name: string, text: string) => {
+    const updatedMessages = messages.map((msg) =>
+      msg.id === id ? { ...msg, name, text } : msg
+    );
+    setMessages(updatedMessages);
+
+    // Save updated messages to localStorage
+    localStorage.setItem("messages", JSON.stringify(updatedMessages));
+  };
+  {images.map((image, index) => 
+     
+      {messages.filter((message) => message.slide === index)
+        .map((message) => (
+         console.log(message.text,"popopopo")))}
+  )}
   return (
-    <div className="slider-container mt-3" style={{ padding: "0px 30px",width:"85%" }}>
-       <div className="editor_option mb-3">
-       <div>
-          <button
+    <div className="slider-container mt-3" style={{ width: "85%", padding: "0px 30px" }}>
+      {/* Add Message Button */}
+      <div className="editor_option mb-3">
+        <button
           className="add_btn"
-            onClick={addCard}        
-            style={{
-              padding: "10px",
-              // backgroundColor: "#28a745",
-              // color: "white",
-              border: "none",
-              borderRadius: "50px",
-            }}
-          >
-            Add Message
-          </button>
-
-        
-        </div>
-        {/* Image Upload */}
-        <div className="search_input">
-          <input
-            type="file"
-            accept="image/*"
-            // onChange={(e) => handleMediaUpload(e.target.files!, "image")}
-            onClick={addCard}
-            multiple
-          />
-          <div className="upload_svg">
-            <svg
-              className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium mus-vubbuv"
-              focusable="false"
-              aria-hidden="true"
-              viewBox="0 0 24 24"
-              data-testid="AddPhotoAlternateIcon"
-            >
-              <path d="M19 7v2.99s-1.99.01-2 0V7h-3s.01-1.99 0-2h3V2h2v3h3v2zm-3 4V8h-3V5H5c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-8zM5 19l3-4 2 3 3-4 4 5z"></path>
-            </svg>
-          </div>
-        </div>
-        <div className="search_input">
-          <input
-            type="file"
-            accept="image/*"
-            // onChange={(e) => handleMediaUpload(e.target.files!, "image")}
-            onClick={addCard}
-            multiple
-          />
-          <div className="upload_svg">
-          <svg className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium mus-vubbuv" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="GifIcon"><path d="M11.5 9H13v6h-1.5zM9 9H6c-.6 0-1 .5-1 1v4c0 .5.4 1 1 1h3c.6 0 1-.5 1-1v-2H8.5v1.5h-2v-3H10V10c0-.5-.4-1-1-1m10 1.5V9h-4.5v6H16v-2h2v-1.5h-2v-1z"></path></svg>
-          </div>
-        </div>
-        <div>
-    
-    </div>
-        {/* GIFs and Stickers Search */}
-        {/* <div className="text_design">
-         
-           <input
-        type="text"
-        // value={searchTerm1}
-        // onChange={handleSearchChange}
-        placeholder="Search for a GIF"
-        style={{ padding: '10px', margin: '10px 0' }}
-      />
-      <button
-      //  onClick={openModal1}
-        style={{ padding: '10px' }}>
-        Search
-      </button>
-
-  
-
-        </div> */}
-
-       
-
-        {/* Add Text Section */}
-      
-
-        {/* Add to Cart Button */}
-      
-        <div style={{ textAlign: "center" }}>
-          <button
-            // onClick={handleDownloadClick}
-            className="add_btn"
-            onClick={addCard}
-              style={{
-                // padding: "10px 20px",
-                // backgroundColor: "#007bff",
-                // color: "white",
-                // border: "none",
-                borderRadius: "40px",
-              }}
-          >
-            {/* Add All Content */}
-            Download
-          </button>
-        </div>
+          onClick={addMessage}
+          style={{
+            padding: "10px",
+            border: "none",
+            borderRadius: "50px",
+            backgroundColor: "#007bff",
+            color: "#fff",
+          }}
+        >
+          Add Message
+        </button>
       </div>
+
       <div style={{ position: "relative", height: "700px" }}>
+        {/* Carousel */}
         <Slider {...settings}>
           {images.map((image, index) => (
-            <div key={index}>
+            <div key={index} style={{ position: "relative" }}>
               <img
                 src={image}
                 alt={`Slide ${index + 1}`}
@@ -140,126 +93,144 @@ const EditorCrousal = ({showCard,addCard}:any) => {
                   width: "100%",
                   borderRadius: "15px",
                   objectFit: "cover",
-                  transition: "transform 0.5s, height 0.5s, margin-top 0.5s",
-                  marginTop: index === centerIndex ? "0px" : "66px", // Adjust top margin for side images
-                  transform:
-                    index === centerIndex
-                      ? "scale(1.1)" // Center image will scale up
-                      : "scale(0.9)", // Side images will scale down
-                  height: index === centerIndex ? "600px" : "500px", // Adjust height for center and side images
+                  zIndex: 1, // Ensure carousel images are behind messages
                 }}
               />
+              {/* Display Saved Messages */}
+              {messages
+                .filter((message) => message.slide === index)
+                .map((message) => (
+                  <div
+                    key={message.id}
+                    style={{
+                      position: "absolute",
+                      top: `${message.y}px`,
+                      left: `${message.x}px`,
+                      color: "white",
+                      fontWeight: "bold",
+                      fontSize: "16px",
+                      zIndex: message.zIndex, // Ensure the message stays above carousel image
+                    }}
+                  >
+                    {message.text}
+                    <br />
+                    <span style={{ fontSize: "12px", fontStyle: "italic" }}>
+                      {message.name}
+                    </span>
+                  </div>
+                ))}
             </div>
           ))}
         </Slider>
 
-        {/* Image Count (Page 1 of 7) */}
-        <div
-          style={{
-            position: "absolute",
-            bottom: "50px", // Positioning just above the progress bar
-            left: "50%",
-            transform: "translateX(-50%)",
-            color: "#000000",
-            fontSize: "18px",
-            // fontWeight: "bold",
-          }}
-        >
-          Page {currentSlide + 1} of {images.length}
-        </div>
+        {/* Draggable Messages */}
+        {messages
+          .filter((message) => message.slide === currentSlide)
+          .map((message) => (
+            <Draggable
+  key={message.id}
+  defaultPosition={{ x: message.x, y: message.y }}
+  onStop={(e, data) => {
+    const updatedMessages = messages.map((msg) =>
+      msg.id === message.id ? { ...msg, x: data.x, y: data.y } : msg
+    );
+    setMessages(updatedMessages);
 
-        {/* Progress Bar with Navigation Icons */}
-        <div
-          style={{
-            position: "absolute",
-            bottom: "20px",
-            left: "0",
-            width: "100%",
-            height: "5px",
-            backgroundColor: "#e0e0e0",
-            borderRadius: "5px",
-            display: "flex",
-            alignItems: "center",
-            padding: "0 30px", // Space for the icons
-          }}
-        >
-          {/* Left Navigation Icon */}
-          {/* <div
-            className="slick-prev"
-            style={{
-              position: "absolute",
-              left: "0",
-              top: "50%",
-              transform: "translateY(-50%)",
-              color: "#fff",
-              fontSize: "24px",
-              backgroundColor: "rgba(0, 0, 0, 0.5)",
-              borderRadius: "50%",
-              padding: "10px",
-              cursor: "pointer",
-            }}
-          >
-            &lt;
-          </div> */}
+    // Save updated messages to localStorage
+    localStorage.setItem("messages", JSON.stringify(updatedMessages));
+  }}
+  onStart={() => {
+    // When dragging starts, ensure the message is on top of the carousel
+    const updatedMessages = messages.map((msg) =>
+      msg.id === message.id ? { ...msg, zIndex: 10000 } : msg
+    );
+    setMessages(updatedMessages);
+  }}
+>
+  <div
+    style={{
+      position: "absolute",
+      padding: "10px",
+      backgroundColor: "rgba(255, 255, 255, 0.1)", // Transparent white background
+      border: "1px solid #ddd",
+      borderRadius: "5px",
+      cursor: "move",
+      zIndex: message.zIndex, // Ensure high zIndex during drag
+      width: "250px",
+    }}
+  >
+    {/* Message Form */}
+    <div>
+      <label style={{ fontWeight: "bold", display: "block",  backgroundColor: "rgba(255, 255, 255, 0.1)", }}>
+        Name:
+      </label>
+      <input
+        type="text"
+        value={message.name}
+        // style={{}}
+        onChange={(e) =>
+          setMessages((prev) =>
+            prev.map((msg) =>
+              msg.id === message.id ? { ...msg, name: e.target.value } : msg
+            )
+          )
+        }
+        style={{
+          width: "100%",
+          marginBottom: "10px",
+          padding: "5px",
+          color: "white",
+          border: "1px solid #ccc",
+          borderRadius: "5px",
+          backgroundColor: "rgba(255, 255, 255, 0.1)"
+        }}
+      />
+    </div>
+    <div>
+      <label style={{ fontWeight: "bold", display: "block",backgroundColor: "rgba(255, 255, 255, 0.1)" }}>
+        Message:
+      </label>
+      <textarea
+        value={message.text}
+        onChange={(e) =>
+          setMessages((prev) =>
+            prev.map((msg) =>
+              msg.id === message.id ? { ...msg, text: e.target.value } : msg
+            )
+          )
+        }
+        style={{
+          width: "100%",
+          height: "50px",
+          marginBottom: "10px",
+          padding: "5px",
+          border: "1px solid #ccc",
+          color: "white",
+          borderRadius: "5px",
+          backgroundColor: "rgba(255, 255, 255, 0.1)"
+        }}
+      />
+    </div>
+    <button
+      onClick={() => saveMessage(message.id, message.name, message.text)}
+      style={{
+        padding: "5px 10px",
+        backgroundColor: "#28a745",
+        color: "white",
+        border: "none",
+        borderRadius: "5px",
+        cursor: "pointer",
+      }}
+    >
+      Save Message
+    </button>
+  </div>
+</Draggable>
 
-          {/* Progress Bar Fill */}   
-          <div
-            style={{
-              height: "5px", // Fixed height for the progress bar
-              width: "100%", // Full width of the progress bar
-              backgroundColor: "#e0e0e0", // Light gray background for the unfilled portion
-              borderRadius: "5px",
-              position: "relative",
-            }}
-          >
-            <div
-              style={{
-                height: "100%",
-                width: `${((currentSlide + 1) / images.length) * 100}%`, // Calculate the progress width
-                backgroundColor: "#007bff", // The filled color
-                borderRadius: "5px",
-                transition: "width 0.5s ease-in-out", // Smooth transition
-              }}
-            ></div>
-          </div>
-
-          {/* Right Navigation Icon */}
-          {/* <div
-            className="slick-next"
-            style={{
-              position: "absolute",
-              right: "0",
-              top: "50%",
-              transform: "translateY(-50%)",
-              color: "#fff",
-              fontSize: "24px",
-              backgroundColor: "rgba(0, 0, 0, 0.5)",
-              borderRadius: "50%",
-              padding: "10px",
-              cursor: "pointer",
-            }}
-          >
-            &gt;
-          </div> */}
-        </div>
+          ))}
       </div>
     </div>
-    // <div className="slider-container mt-3" style={{ padding: "0px 30px" }}>
-    //         <div className="" style={{ height: "700px" }}>
-    //             <Slider {...settings}>
-    //                 {images.map((image, index) => (
-    //                     <div key={index}>
-    //                         <img
-    //                             src={image}
-    //                             alt={`Slide ${index + 1}`}
-    //                             className={`carousel-image ${index === centerIndex ? 'center-image' : ''}`} // Add custom class for center image
-    //                         />
-    //                     </div>
-    //                 ))}
-    //             </Slider>
-    //         </div>
-    //     </div>
   );
 };
 
-export default EditorCrousal;
+export default EditorCarousel;
