@@ -12,6 +12,7 @@ import DemoViewCard from "./common/DemoViewCard";
 import DemoBoard from "./common/DemoBoard";
 import userIcon from "../assets/icons/ab.png"
 import Image from 'next/image';
+import Custom from "./common/custom";
 const { Paragraph, Text } = Typography;
 const DemoCard = ({params}:any) => {
   const [show, setShow] = useState<any>(false);
@@ -88,7 +89,7 @@ const DemoCard = ({params}:any) => {
                 className="flex space-x-2 mb-2 "
                 style={{ paddingLeft: "110px" }}
               >
-                {/* {show ? (
+                {show ? (
                   <button className="btnPrimary py-2 px-3" onClick={showCard}>
                     Show Card
                   </button>
@@ -96,12 +97,13 @@ const DemoCard = ({params}:any) => {
                   <button className="btnPrimary py-2 px-3" onClick={addCard}>
                     Add Card
                   </button>
-                )} */}
+                )}
                 {/* <button className="bg-lightBg rounded-md p-2"><img src={upload_img.src} alt="upload img" className="upload_img" /></button>
                 <button className="bg-lightBg rounded-md p-2"><img src={upload_gif.src} alt="upload img" className="upload_img" /></button> */}
               </div>
 
-              {show ? <EditorModal showCard={showCard}/> : <EditorCrousal />}
+              {/* {show ? <EditorModal showCard={showCard}/> : <EditorCrousal />} */}
+              {show ? <EditorModal/> : <Custom />}
               {/* <Carousel /> */}
               {/* <EditorModal/> */}
             </div>
