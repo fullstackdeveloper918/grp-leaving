@@ -161,13 +161,13 @@ const Navbar = () => {
 
             {/* Auth and Button */}
             <div className="flex items-center lg:space-x-6 sm:space-x-4">
-              {/* <a
-                    href="/account/cards"
-                    className="text-md text-blackText hidden md:block text-blackText no-underline font-medium hover:text-blueText "
-                  >
-                    Cards by occasion
-                  </a> */}
               <a
+                    href="/create"
+                    className="text-md btnPrimary text-blackText hidden md:block text-blackText no-underline font-medium hover:text-blueText "
+                  >
+                    Get Started
+                  </a>
+              {/* <a
                 href="/card/farewell"
                 className="text-md text-blackText hidden md:block text-blackText no-underline font-medium hover:text-blueText "
               >
@@ -178,7 +178,7 @@ const Navbar = () => {
                 className="text-md text-blackText hidden md:block text-blackText no-underline font-medium hover:text-blueText "
               >
                 Pricing
-              </a>
+              </a> */}
               {/* <a
                     href="/account/cards"
                     className="text-md text-blackText hidden md:block text-blackText no-underline font-medium hover:text-blueText "
@@ -193,12 +193,6 @@ const Navbar = () => {
                   </a> */}
               {accessToken3.accessToken ? (
                 <>
-                  <button
-                    className="text-md text-blackText hidden md:block text-blackText no-underline font-medium hover:text-blueText "
-                    onClick={() => setIsModalOpen(true)}
-                  >
-                    Logout
-                  </button>
                   <a
                     href="/account/cards"
                     className="text-md text-blackText hidden md:block text-blackText no-underline font-medium hover:text-blueText "
@@ -218,25 +212,48 @@ const Navbar = () => {
                       id="dropdownMenuButton1"
                       data-bs-toggle="dropdown"
                       aria-expanded="false"
+                      onClick={(e) => {
+                        const menu: any =
+                          document.getElementById("dropdownMenu");
+                        const isExpanded = menu.classList.contains("show");
+                        if (isExpanded) {
+                          menu.classList.remove("show");
+                        } else {
+                          menu.classList.add("show");
+                        }
+                      }}
                     />
                     <ul
                       className="dropdown-menu"
                       aria-labelledby="dropdownMenuButton1"
+                      id="dropdownMenu"
                     >
                       <li>
-                        <a className="dropdown-item" href="#">
-                          Action
+                        <a
+                          href="/card/farewell"
+                          className="dropdown-item text-md text-blackText hidden md:block text-blackText no-underline font-medium hover:text-blueText "
+                        >
+                          Cards
                         </a>
                       </li>
                       <li>
-                        <a className="dropdown-item" href="#">
-                          Another action
+                        <a
+                          href="/pricing"
+                          className="dropdown-item text-md text-blackText hidden md:block text-blackText no-underline font-medium hover:text-blueText "
+                        >
+                          Pricing
                         </a>
                       </li>
                       <li>
-                        <a className="dropdown-item" href="#">
+                        {/* <a className="dropdown-item" href="#">
                           Something else here
-                        </a>
+                        </a> */}
+                        <button
+                          className="dropdown-item text-md text-blackText hidden md:block text-blackText no-underline font-medium hover:text-blueText "
+                          onClick={() => setIsModalOpen(true)}
+                        >
+                          Logout
+                        </button>
                       </li>
                     </ul>
                   </div>

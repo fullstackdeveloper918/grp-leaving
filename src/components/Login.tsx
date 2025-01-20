@@ -84,6 +84,8 @@ const Login = () => {
     try {
       const res=await api.Auth.login(items)
       console.log(res,"reerrer");
+      toast.success("Login Successfully")
+
       api.setToken(JSON.stringify(res?.token))
       setAccessToken(JSON.stringify(res?.token));
       createSessionCookie(JSON.stringify(res?.token));
@@ -100,7 +102,6 @@ const Login = () => {
       //   maxAge: 30 * 24 * 60 * 60,
       //   path: "/",
       // });
-      toast.success("Login Successfully")
       router.replace("/");
     } catch (error: any) {}
   };
