@@ -22,7 +22,7 @@ import { AccessTokenProvider } from "./context/AccessTokenContext";
 // import { Montserrat } from 'next/font/google'
 // import 'slick-carousel/slick/slick.css';
 // import 'slick-carousel/slick/slick-theme.css';
-
+import "react-toastify/dist/ReactToastify.css";
 const roboto = Roboto({
   weight: ["400", "700"],
   subsets: ["latin"],

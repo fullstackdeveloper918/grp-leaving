@@ -7,9 +7,11 @@ import checkSvg from "../../assets/images/check.svg";
 import api from "@/utils/api";
 import { cookies } from "next/dist/client/components/headers";
 import { toast } from "react-toastify";
-
+import nookies, { parseCookies } from 'nookies';
+import { useAccessToken } from "@/app/context/AccessTokenContext";
 const MultiStepForm = ({ params }: any) => {
   const router = useRouter();
+  
   const [step, setStep] = useState(1);
   const [recipientName, setRecipientName] = useState("");
   const [loading, setLoading] = useState(false);
@@ -48,10 +50,33 @@ console.log(uuid,"uuid")
       }
     }
   }, []);
+
+
+  const cookies = parseCookies();
+  const { accessToken, setAccessToken } = useAccessToken();
+console.log(accessToken,"accessToken");
+
+  useEffect(() => {
+     const cookies = parseCookies();
+     console.log(cookies, "cookies");
+ 
+     const token = cookies.auth_token;
+     console.log(typeof token, "iooioio");
+ 
+     if (token) {
+       setAccessToken(token);
+     } else {
+       // alert("nothing")
+     }
+   }, []);
+ 
   // console.log(recipientName,"recipientName");
   // console.log(recipientName,"recipientName");
   const [selectedDate, setSelectedDate] = useState(""); // to store date value
   const [selectedTime, setSelectedTime] = useState(""); // to store time value
+  const handleLogin=()=>{
+    router.push("/login")
+  }
   const handleNext = () => {
     if (!recipientName) {
       setError("Recipient name is required.");
@@ -293,7 +318,7 @@ console.log(uuid,"uuid")
 
               <button
                 type="button"
-                onClick={handleNext}
+                onClick={!accessToken? handleLogin:handleNext}
                 className="w-full bg-blueBg text-white py-2 px-4 rounded-md shadow-sm hover:bg-blue-700"
               >
                 Next

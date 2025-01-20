@@ -11,7 +11,7 @@ import { setCookie } from "nookies";
 import { GooglePayWithCDN } from "./common/GooglePayWithCDN";
 import GooglePay from "./common/GooglePay"
 import GooglePayButton from "./common/GooglePayButton";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import { useAccessToken } from "@/app/context/AccessTokenContext";
 const { Row, Col, Button } = {
   Row: dynamic(() => import("antd").then((module) => module.Row), {
@@ -109,6 +109,7 @@ const Login = () => {
   return (
     <section className="auth-pages d-flex align-items-center h-100 bg-lightBg py-12 loginPage">
       <div className="container">
+        <ToastContainer/>
         <Row justify="center">
           <Col className="gutter-row" xs={23} sm={21} md={19} lg={12} xl={10}>
             <Card

@@ -7,6 +7,7 @@ import MicroSoftLogin from "../components/common/MicroSoftLogin";
 import api from "@/utils/api";
 import validation, { capFirst } from "@/utils/validation";
 import { useRouter } from "next/navigation";
+import { toast, ToastContainer } from "react-toastify";
 const { Row, Col, Button } = {
   Row: dynamic(() => import("antd").then((module) => module.Row), {
     ssr: false,
@@ -18,6 +19,7 @@ const { Row, Col, Button } = {
     ssr: false,
   }),
 };
+
 const Register = () => {
     const router= useRouter()
   const onFinish = async (values: any) => {
@@ -30,12 +32,14 @@ const Register = () => {
     try {
       let res = await api.Auth.signUp(items);
       console.log(res, "rereere");
-      // router.replace("/")
+      toast.success("Please verify your email to continue")
+      // router.replace("/login")
     } catch (error: any) {}
   };
   return (
     <section className="auth-pages d-flex align-items-center h-100 bg-lightBg py-12 loginPage">
       <div className="container">
+      <ToastContainer/>
         <Row justify="center">
           <Col className="gutter-row" xs={23} sm={21} md={19} lg={12} xl={10}>
             <Card
