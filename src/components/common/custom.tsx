@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { useDrag } from "@use-gesture/react";
 import { useSpring, animated } from "@react-spring/web";
@@ -16,20 +16,40 @@ const images = [
 ];
 
 const Custom: React.FC = () => {
-     const [searchTerm, setSearchTerm] = useState("");
-      const [isOpen, setIsOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [gifs, setGifs] = useState<string[]>([]);
-    const [gifUrl, setGifUrl] = useState<any>(null);
+  const [gifUrl, setGifUrl] = useState<any>(null);
+  const [gifUrls, setGifUrls] = useState<any>([]);
   const [activeSlideIndex, setActiveSlideIndex] = useState<any>(null);
   const [elements, setElements] = useState<any[]>([]); // Store messages and images
+  console.log(elements,"elements");
+  
   const messageInputRef = useRef<HTMLTextAreaElement>(null);
+
+
+
+  useEffect(() => {
+    const storedElements = localStorage.getItem("slideElements");
+    if (storedElements) {
+      setElements(JSON.parse(storedElements));
+    }
+  }, []);
+
+  // Store elements in localStorage whenever the state changes
+  useEffect(() => {
+    if (elements.length > 0) {
+      localStorage.setItem("slideElements", JSON.stringify(elements));
+    }
+  }, [elements]);
   const handleAddMessageClick = () => {
     setShowModal(true);
   };
   const closeModal = () => setIsOpen(false);
+  console.log(gifUrls,"gifUrls");
   const handleSaveMessage = () => {
-    if (activeSlideIndex+1 === null) {
+    if (activeSlideIndex + 1 === null) {
       alert("No active slide selected!");
       return;
     }
@@ -37,7 +57,7 @@ const Custom: React.FC = () => {
     const newMessage = {
       type: "text",
       content: messageInputRef.current?.value || "Default message",
-      slideIndex: activeSlideIndex+1,
+      slideIndex: activeSlideIndex + 1,
     };
 
     setElements([...elements, newMessage]); // Add the new message to the state
@@ -53,7 +73,7 @@ const Custom: React.FC = () => {
           const newImage = {
             type: "image",
             content: reader.result as string,
-            slideIndex: activeSlideIndex+1,
+            slideIndex: activeSlideIndex + 1,
           };
 
           setElements([...elements, newImage]); // Add uploaded image as a new element
@@ -64,11 +84,16 @@ const Custom: React.FC = () => {
   };
   const defaultTerm = "wave";
 
+  const handleAddGif = (gifUrl: string) => {
+    if (activeSlideIndex !== null) {
+      const newGif = {
+        type: "gif",
+        content: gifUrl,
+        slideIndex: activeSlideIndex + 1,
+      };
 
-  const handleAddGif = (gifUrl: any) => {
-    // Replace with a real GIF URL or integrate a GIF picker (like Giphy API)
-    // setGifUrl(gifUrl);
-    //  setGifUrls(prevGifUrls => [...prevGifUrls, gifUrl]);
+      setElements((prevElements) => [...prevElements, newGif]);
+    }
   };
   const fetchGifs = async (term: string) => {
     console.log(term, "term");
@@ -97,13 +122,14 @@ const Custom: React.FC = () => {
     }
   };
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
-      e.preventDefault();
-      if (searchTerm) fetchGifs(searchTerm);
-    };
-    const openModal = () => {
-      setIsOpen(true);
-      fetchGifs("trending"); // Fetch trending GIFs initially
-    };
+    e.preventDefault();
+    if (searchTerm) fetchGifs(searchTerm);
+  };
+  const openModal = () => {
+    setIsOpen(true);
+    fetchGifs("trending"); // Fetch trending GIFs initially
+  };
+
   return (
     <div style={styles.container}>
       <button style={styles.button} onClick={handleAddMessageClick}>
@@ -116,19 +142,23 @@ const Custom: React.FC = () => {
         onChange={handleImageUpload}
         style={{ marginBottom: "10px" }}
       />
- <button
-                 onClick={openModal}
-                 className="px-4 py-2 bg-white border border-blue-600 text-blue-600 rounded-md hover:bg-blue-600 hover:text-white transition"
-               >
-                 Add Gif
-               </button>
+      <button
+        onClick={openModal}
+        className="px-4 py-2 bg-white border border-blue-600 text-blue-600 rounded-md hover:bg-blue-600 hover:text-white transition"
+      >
+        Add Gif
+      </button>
       {showModal && (
         <div style={styles.modalOverlay} onClick={() => setShowModal(false)}>
           <div
             style={styles.modal}
             onClick={(e) => e.stopPropagation()} // Prevent modal close on inner click
           >
-            <textarea ref={messageInputRef} style={styles.textarea} rows={5}></textarea>
+            <textarea
+              ref={messageInputRef}
+              style={styles.textarea}
+              rows={5}
+            ></textarea>
             <button style={styles.button} onClick={handleSaveMessage}>
               Save
             </button>
@@ -142,81 +172,100 @@ const Custom: React.FC = () => {
         onSlideChange={({ activeIndex }) => setActiveSlideIndex(activeIndex)}
       >
         <>
-        {images.map((image, index) => (
-          <SwiperSlide key={index} style={styles.swiperSlide}>
-            <div style={styles.slideWrapper}>
-              <img src={image} alt={`slide-${index}`} style={{ width: "100%", height: "500px" }} />
-              {elements
-                .filter((el) => el.slideIndex === index) // Only render elements for the current slide
-                .map((el, i) => (
-                  <DraggableElement
-                    key={i}
-                    content={el.content}
-                    type={el.type}
-                  />
-                ))}
-            </div>
-          </SwiperSlide>
-        ))}
-
+          {images.map((image, index) => (
+            <SwiperSlide key={index} style={{
+              ...styles.swiperSlide,
+              ...(activeSlideIndex+1 === index
+                ? {
+                    transform: "scale(1.6)",
+                    backgroundColor: "#000000",
+                    zIndex: 9,
+                  }
+                : {}),
+            }}>
+              <div style={styles.slideWrapper}>
+                <img
+                  src={image}
+                  alt={`slide-${index}`}
+                  style={{ width: "100%", height: "500px" }}
+                />
+                {elements
+                  .filter((el) => el.slideIndex === index) // Only render elements for the current slide
+                  .map((el, i) => (
+                    <DraggableElement
+                      key={i}
+                      content={el.content}
+                      type={el.type}
+                    />
+                  ))}
+                {/* {renderSlideElements(index)} */}
+              </div>
+            </SwiperSlide>
+          ))}
         </>
       </Swiper>
 
-
-         <Modal
-                 isOpen={isOpen}
-                 onRequestClose={closeModal}
-                 className="p-4 bg-white rounded-lg shadow-lg max-w-xl mx-auto"
-               >
-                 <h2 className="text-lg font-bold mb-4">Select a GIF</h2>
-                 <form onSubmit={handleSearch} className="mb-4 flex gap-2">
-                   <input
-                     type="text"
-                     placeholder="Search GIFs"
-                     value={searchTerm}
-                     onChange={(e) => setSearchTerm(e.target.value)}
-                     className="flex-grow px-4 py-2 border rounded-md"
-                   />
-                   <button
-                     type="submit"
-                     className="px-4 py-2 bg-blue-600 text-black border rounded-md hover:bg-blue-700 transition"
-                   >
-                     Search
-                   </button>
-                 </form>
-                 <div className="grid grid-cols-2 gap-4 overflow-y-auto max-h-96">
-                   {gifs.map((gifUrl, index) => (
-                     <img
-                       key={index}
-                       src={gifUrl}
-                       alt="GIF"
-                       style={{ width: "80%", height: "80%" }}
-                       className="rounded-lg cursor-pointer"
-                       onClick={() => {
-                         handleAddGif(gifUrl);
-                         console.log("Selected GIF:", gifUrl); // Handle selected GIF URL
-                         closeModal();
-                       }}
-                     />
-                   ))}
-                 </div>
-                 <button
-                   onClick={closeModal}
-                   className="mt-4 px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition"
-                 >
-                   Close
-                 </button>
-               </Modal>
+      <Modal
+        isOpen={isOpen}
+        onRequestClose={closeModal}
+        className="p-4 bg-white rounded-lg shadow-lg max-w-xl mx-auto"
+      >
+        <h2 className="text-lg font-bold mb-4">Select a GIF</h2>
+        <form onSubmit={handleSearch} className="mb-4 flex gap-2">
+          <input
+            type="text"
+            placeholder="Search GIFs"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="flex-grow px-4 py-2 border rounded-md"
+          />
+          <button
+            type="submit"
+            className="px-4 py-2 bg-blue-600 text-black border rounded-md hover:bg-blue-700 transition"
+          >
+            Search
+          </button>
+        </form>
+        <div className="grid grid-cols-2 gap-4 overflow-y-auto max-h-96">
+          {gifs.map((gifUrl, index) => (
+            <img
+              key={index}
+              src={gifUrl}
+              alt="GIF"
+              style={{ width: "80%", height: "80%" }}
+              className="rounded-lg cursor-pointer"
+              onClick={() => {
+                handleAddGif(gifUrl);
+                console.log("Selected GIF:", gifUrl); // Handle selected GIF URL
+                closeModal();
+              }}
+              // onClick={() => handleAddElement(gifUrl, "gif") closeModal()}
+            />
+          ))}
+        </div>
+        <button
+          onClick={closeModal}
+          className="mt-4 px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition"
+        >
+          Close
+        </button>
+      </Modal>
     </div>
   );
 };
 
 export default Custom;
 
-const DraggableElement = ({ content, type }: { content: string; type: string }) => {
+const DraggableElement = ({
+  content,
+  type,
+}: {
+  content: string;
+  type: string;
+}) => {
   const [{ x, y }, api] = useSpring(() => ({ x: 0, y: 0 }));
 
-  const bind = useDrag((state:any) => {
+  const bind = useDrag((state: any) => {
     api.start({
       x: state.offset[0],
       y: state.offset[1],
@@ -236,11 +285,15 @@ const DraggableElement = ({ content, type }: { content: string; type: string }) 
         left: "0px",
         right: "0px",
         top: "50%",
-        transform: "translate3d(0px, 12px, 0px)"
+        transform: "translate3d(0px, 12px, 0px)",
       }}
     >
-      {type === "image" ? (
-        <img src={content} alt="uploaded" style={{ width: "100px", height: "100px" }} />
+      {type == "image"||type =="gif" ? (
+        <img
+          src={content}
+          alt="uploaded"
+          style={{ width: "100px", height: "100px" }}
+        />
       ) : (
         content
       )}
