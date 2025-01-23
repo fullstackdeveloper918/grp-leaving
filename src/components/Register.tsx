@@ -36,6 +36,9 @@ const Register = () => {
       // router.replace("/login")
     } catch (error: any) {}
   };
+
+
+  
   return (
     <section className="auth-pages d-flex align-items-center h-100 bg-lightBg py-12 loginPage">
       <div className="container">
@@ -97,9 +100,14 @@ const Register = () => {
 
                 <Form.Item
                   name="password"
-                  //   rules={[
-                  //     { required: true, message: "Please enter a password" },
-                  //   ]}
+                  rules={[
+                    { required: true, message: "Please enter a password" },
+                    { min: 8, message: "Password must be at least 8 characters" },
+                    {
+                      pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$%^&+=]).*$/,
+                      message: "Password must include at least one lowercase letter, one uppercase letter, one number, and one special character (@, #, $, etc.)",
+                    },
+                  ]}
                 >
                   {/* <label className="labelSignup">Password</label> */}
                   <Input.Password

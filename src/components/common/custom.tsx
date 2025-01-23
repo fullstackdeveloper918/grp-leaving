@@ -6,30 +6,26 @@ import "swiper/css";
 import "swiper/css/pagination";
 import Modal from "react-modal";
 import axios from "axios";
-const images = [
-  "https://groupleavingcards.com/assets/design/617318f94c962c605abdeabb.jpg",
-  "https://groupleavingcards.com/assets/design/66bd382d51e4bce9bdd31fc6_sm.avif",
-  "https://groupleavingcards.com/assets/design/66e30136ffa5cb04d55d990e_sm.avif",
-  "https://groupleavingcards.com/assets/design/6734d2bbe8c991dba26a0288_sm.webp",
-  "https://groupleavingcards.com/assets/design/66967675b0d2b479aa568c98_sm.avif",
-  "https://groupleavingcards.com/assets/design/66d88499b4fb75024aa2d8de_sm.avif",
-];
 
 const Custom: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [gifs, setGifs] = useState<string[]>([]);
-  const [gifUrl, setGifUrl] = useState<any>(null);
-  const [gifUrls, setGifUrls] = useState<any>([]);
   const [activeSlideIndex, setActiveSlideIndex] = useState<any>(null);
-  const [elements, setElements] = useState<any[]>([]); // Store messages and images
-  console.log(elements,"elements");
-  
+  const [elements, setElements] = useState<any[]>([]);
+  const [images, setImages] = useState<string[]>([
+    "https://groupleavingcards.com/assets/design/617318f94c962c605abdeabb.jpg",
+    "https://groupleavingcards.com/assets/design/66bd382d51e4bce9bdd31fc6_sm.avif",
+    "https://groupleavingcards.com/assets/design/66e30136ffa5cb04d55d990e_sm.avif",
+    "https://groupleavingcards.com/assets/design/6734d2bbe8c991dba26a0288_sm.webp",
+    "https://groupleavingcards.com/assets/design/66967675b0d2b479aa568c98_sm.avif",
+    "https://groupleavingcards.com/assets/design/66d88499b4fb75024aa2d8de_sm.avif",
+  ]);
+
   const messageInputRef = useRef<HTMLTextAreaElement>(null);
 
-
-
+  // Restore elements from localStorage on initial render
   useEffect(() => {
     const storedElements = localStorage.getItem("slideElements");
     if (storedElements) {
@@ -37,19 +33,21 @@ const Custom: React.FC = () => {
     }
   }, []);
 
-  // Store elements in localStorage whenever the state changes
+  // Update localStorage whenever elements change
   useEffect(() => {
     if (elements.length > 0) {
       localStorage.setItem("slideElements", JSON.stringify(elements));
     }
   }, [elements]);
+
   const handleAddMessageClick = () => {
     setShowModal(true);
   };
+
   const closeModal = () => setIsOpen(false);
-  console.log(gifUrls,"gifUrls");
+
   const handleSaveMessage = () => {
-    if (activeSlideIndex + 1 === null) {
+    if (activeSlideIndex === null) {
       alert("No active slide selected!");
       return;
     }
@@ -57,10 +55,12 @@ const Custom: React.FC = () => {
     const newMessage = {
       type: "text",
       content: messageInputRef.current?.value || "Default message",
-      slideIndex: activeSlideIndex + 1,
+      slideIndex: activeSlideIndex + 2,
+      x: 0,
+      y: 0,
     };
 
-    setElements([...elements, newMessage]); // Add the new message to the state
+    setElements([...elements, newMessage]);
     setShowModal(false);
   };
 
@@ -73,38 +73,25 @@ const Custom: React.FC = () => {
           const newImage = {
             type: "image",
             content: reader.result as string,
-            slideIndex: activeSlideIndex + 1,
+            slideIndex: activeSlideIndex + 2,
+            x: 0,
+            y: 0,
           };
 
-          setElements([...elements, newImage]); // Add uploaded image as a new element
+          setElements([...elements, newImage]);
         }
       };
       reader.readAsDataURL(file);
     }
   };
-  const defaultTerm = "wave";
 
-  const handleAddGif = (gifUrl: string) => {
-    if (activeSlideIndex !== null) {
-      const newGif = {
-        type: "gif",
-        content: gifUrl,
-        slideIndex: activeSlideIndex + 1,
-      };
-
-      setElements((prevElements) => [...prevElements, newGif]);
-    }
-  };
   const fetchGifs = async (term: string) => {
-    console.log(term, "term");
-
     try {
-      const searchTerm = term || defaultTerm;
       const response = await axios.get(
         "https://tenor.googleapis.com/v2/search",
         {
           params: {
-            q: searchTerm,
+            q: term || "wave",
             key: "AIzaSyBphMbpVXm8Rc9CnWX7W3LuePqIHgSWoDo",
             client_key: "my_test_app",
             limit: 100,
@@ -112,7 +99,6 @@ const Custom: React.FC = () => {
           },
         }
       );
-      console.log(response.data.results, "jgjgj");
 
       setGifs(
         response.data.results.map((result: any) => result.media_formats.gif.url)
@@ -121,13 +107,23 @@ const Custom: React.FC = () => {
       console.error("Error fetching GIFs:", error);
     }
   };
+
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (searchTerm) fetchGifs(searchTerm);
   };
+
   const openModal = () => {
     setIsOpen(true);
-    fetchGifs("trending"); // Fetch trending GIFs initially
+    fetchGifs("trending");
+  };
+
+  // Add a new page when the button is clicked
+  const handleAddPage = () => {
+    setImages([
+      ...images,
+      "https://example.com/new-page-image.jpg", // Placeholder for the new page (or add any image URL here)
+    ]);
   };
 
   return (
@@ -148,11 +144,18 @@ const Custom: React.FC = () => {
       >
         Add Gif
       </button>
+      <button
+        onClick={handleAddPage} // Add page functionality
+        className="px-4 py-2 bg-white border border-blue-600 text-blue-600 rounded-md hover:bg-blue-600 hover:text-white transition"
+      >
+        Add Page
+      </button>
+
       {showModal && (
         <div style={styles.modalOverlay} onClick={() => setShowModal(false)}>
           <div
             style={styles.modal}
-            onClick={(e) => e.stopPropagation()} // Prevent modal close on inner click
+            onClick={(e) => e.stopPropagation()}
           >
             <textarea
               ref={messageInputRef}
@@ -171,38 +174,42 @@ const Custom: React.FC = () => {
         slidesPerView={3}
         onSlideChange={({ activeIndex }) => setActiveSlideIndex(activeIndex)}
       >
-        <>
-          {images.map((image, index) => (
-            <SwiperSlide key={index} style={{
+        {images.map((image, index) => (
+          <SwiperSlide
+            key={index}
+            style={{
               ...styles.swiperSlide,
-              ...(activeSlideIndex+1 === index
+              ...(activeSlideIndex + 1 === index
                 ? {
                     transform: "scale(1.6)",
                     backgroundColor: "#000000",
                     zIndex: 9,
                   }
                 : {}),
-            }}>
-              <div style={styles.slideWrapper}>
-                <img
-                  src={image}
-                  alt={`slide-${index}`}
-                  style={{ width: "100%", height: "500px" }}
-                />
-                {elements
-                  .filter((el) => el.slideIndex === index) // Only render elements for the current slide
-                  .map((el, i) => (
-                    <DraggableElement
-                      key={i}
-                      content={el.content}
-                      type={el.type}
-                    />
-                  ))}
-                {/* {renderSlideElements(index)} */}
-              </div>
-            </SwiperSlide>
-          ))}
-        </>
+            }}
+          >
+            <div style={styles.slideWrapper}>
+              <img
+                src={image}
+                alt={`slide-${index}`}
+                style={{ width: "100%", height: "500px",background: "white" }}
+              />
+              {elements
+                .filter((el) => el.slideIndex === index + 1)
+                .map((el, i) => (
+                  <DraggableElement
+                    key={i}
+                    content={el.content}
+                    type={el.type}
+                    index={i}
+                    setElements={setElements}
+                    initialX={el.x || 0}
+                    initialY={el.y || 0}
+                  />
+                ))}
+            </div>
+          </SwiperSlide>
+        ))}
       </Swiper>
 
       <Modal
@@ -235,11 +242,12 @@ const Custom: React.FC = () => {
               style={{ width: "80%", height: "80%" }}
               className="rounded-lg cursor-pointer"
               onClick={() => {
-                handleAddGif(gifUrl);
-                console.log("Selected GIF:", gifUrl); // Handle selected GIF URL
+                setElements((prev) => [
+                  ...prev,
+                  { type: "gif", content: gifUrl, slideIndex: activeSlideIndex + 2, x: 0, y: 0 },
+                ]);
                 closeModal();
               }}
-              // onClick={() => handleAddElement(gifUrl, "gif") closeModal()}
             />
           ))}
         </div>
@@ -254,21 +262,37 @@ const Custom: React.FC = () => {
   );
 };
 
-export default Custom;
-
 const DraggableElement = ({
   content,
   type,
+  index,
+  setElements,
+  initialX,
+  initialY,
 }: {
   content: string;
   type: string;
+  index: number;
+  setElements: React.Dispatch<React.SetStateAction<any[]>>;
+  initialX: number;
+  initialY: number;
 }) => {
-  const [{ x, y }, api] = useSpring(() => ({ x: 0, y: 0 }));
+  const [{ x, y }, api] = useSpring(() => ({ x: initialX, y: initialY }));
 
   const bind = useDrag((state: any) => {
-    api.start({
-      x: state.offset[0],
-      y: state.offset[1],
+    const [newX, newY] = state.offset;
+
+    api.start({ x: newX, y: newY });
+
+    setElements((prevElements) => {
+      const updatedElements = [...prevElements];
+      updatedElements[index] = {
+        ...updatedElements[index],
+        x: newX,
+        y: newY,
+      };
+      localStorage.setItem("slideElements", JSON.stringify(updatedElements)); // Persist updated state
+      return updatedElements;
     });
   });
 
@@ -288,7 +312,7 @@ const DraggableElement = ({
         transform: "translate3d(0px, 12px, 0px)",
       }}
     >
-      {type == "image"||type =="gif" ? (
+      {type === "image" || type === "gif" ? (
         <img
           src={content}
           alt="uploaded"
@@ -352,7 +376,7 @@ const styles = {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    position: "relative", // Required for Draggable to work
+    position: "relative",
     height: "500px",
     overflow: "hidden",
   } as React.CSSProperties,
@@ -360,6 +384,8 @@ const styles = {
     position: "relative",
     width: "100%",
     height: "100%",
-    overflow: "hidden", // Allow draggable elements within bounds
+    overflow: "hidden",
   } as React.CSSProperties,
 };
+
+export default Custom;

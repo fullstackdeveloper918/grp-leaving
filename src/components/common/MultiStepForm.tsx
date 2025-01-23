@@ -146,7 +146,7 @@ console.log(accessToken,"accessToken");
   console.log(selectedDate, "selectedDate");
   console.log(selectedTime, "selectedTime");
   console.log(cardType, "cardType");
-
+// const [loading1,setLoading]=useState(false)
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
   
@@ -411,6 +411,7 @@ console.log(accessToken,"accessToken");
                   className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                 >
                   <option value="">Disable Collection</option>
+                  <option value="inr">INR</option>
                   <option value="gbp">GBP</option>
                   <option value="usd">USD</option>
                   <option value="aud">AUD</option>
