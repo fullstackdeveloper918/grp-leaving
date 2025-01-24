@@ -68,7 +68,7 @@ const page = async({ params }: any) => {
       <div className="w-full max-w-[70%] bg-white shadow-md rounded-lg p-8">
         <h1 className="text-3xl font-bold text-center mb-6">Account</h1>
         <AccountSlider type={type}/>
-        {type==="profile" && <AccountProfile data={posts} userInfo={gettoken.value}/>}
+        {type==="profile" && <AccountProfile data={userInfo} userInfo={gettoken.value}/>}
         {type==="cards" && <AccountCards data={data1}/>}
         {type==="bundles" && <AccountBunddles data={posts} userInfo={gettoken.value}/>}
         {type==="email-preferences" && <AccountEmailprefrence data={posts} userInfo={gettoken.value}/>}

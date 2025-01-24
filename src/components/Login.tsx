@@ -84,7 +84,9 @@ const Login = () => {
     try {
       const res=await api.Auth.login(items)
       console.log(res,"reerrer");
-      toast.success("Login Successfully")
+      if(res?.data){
+        toast.success("Login Successfully")
+      }
 
       api.setToken(JSON.stringify(res?.token))
       setAccessToken(JSON.stringify(res?.token));
@@ -103,7 +105,11 @@ const Login = () => {
       //   path: "/",
       // });
       router.replace("/");
-    } catch (error: any) {}
+    } catch (error: any) {
+      console.log(error?.response?.body?.message,"werwer");
+      
+      toast.error(error?.response?.body?.message)
+    }
   };
 
   const useCDN = true;

@@ -1,17 +1,18 @@
 "use client"
 import api from '@/utils/api';
 import React, { useEffect, useState } from 'react'
+import { toast, ToastContainer } from 'react-toastify';
 
 const AccountProfile = ({userInfo,data}:any) => {
 
-console.log(data?.data,"userInfoCookie");
-const [name, setName] = useState(data?.data?.full_name);
-const [email, setEmail] = useState(data?.data?.email);
-const [invoiceDetails, setInvoiceDetails] = useState(data?.data?.additional_invoice);
+console.log(data,"userInfoCookie");
+const [name, setName] = useState(data?.full_name);
+const [email, setEmail] = useState(data?.email);
+const [invoiceDetails, setInvoiceDetails] = useState(data?.additional_invoice);
   const handleUpdate = async() => {
    try {
     const requestData = {
-      uuid: data?.data?.uuid,
+      uuid: data?.uuid,
       full_name:name,
       additional_invoice:invoiceDetails
     };
@@ -28,7 +29,7 @@ const [invoiceDetails, setInvoiceDetails] = useState(data?.data?.additional_invo
     // Parse the response JSON
     let posts = await res.json();
     console.log(posts,"jklklkj");
-    
+toast.success("Profile Updated Suceesfully")
    } catch (error) {
     
    }
@@ -48,6 +49,7 @@ const [invoiceDetails, setInvoiceDetails] = useState(data?.data?.additional_invo
   return (
     <div>
           <div className="mb-8">
+            <ToastContainer/>
           <h2 className="text-xl font-semibold mb-4">Profile</h2>
           <div className="space-y-4">
             <div>
@@ -67,6 +69,8 @@ const [invoiceDetails, setInvoiceDetails] = useState(data?.data?.additional_invo
                 className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                disabled
+
               />
             </div>
 

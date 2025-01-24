@@ -72,7 +72,7 @@ const AccountBunddles = ({ userInfo, data }: any) => {
               </tr>
             </thead>
             <tbody>
-              <tr className="border-t">
+              <tr className="border px-3 mt-2">
                 {/* <td className="py-3 px-4">
                   <img
                     src="https://groupleavingcards.com/images/gift/collection_pot.png"
@@ -85,6 +85,7 @@ const AccountBunddles = ({ userInfo, data }: any) => {
                 <td className="py-3 px-4 text-blue-600 hover:underline cursor-pointer">
                 {filteredData[0]?.currency_type}
                 </td> */}
+                Data Not Found
               </tr>
               {/* Additional rows can be added here */}
             </tbody>
