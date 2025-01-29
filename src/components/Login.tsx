@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { Card, Checkbox, Divider, Flex, Form, Input } from "antd";
 import dynamic from "next/dynamic";
 import SocalLogin from "../components/common/SocialLogin";
@@ -26,6 +26,7 @@ const { Row, Col, Button } = {
 };
 const Login = () => {
   const router = useRouter();
+  const [loading,setLoading]=useState(false)
   const { accessToken, setAccessToken } = useAccessToken();
   const setCookie = (name: string, value: string, days: number) => {
     const expires = new Date();
@@ -82,6 +83,7 @@ const Login = () => {
     };
  
     try {
+      setLoading(true)
       const res=await api.Auth.login(items)
       console.log(res,"reerrer");
       if(res?.data){
@@ -107,7 +109,7 @@ const Login = () => {
       router.replace("/");
     } catch (error: any) {
       console.log(error?.response?.body?.message,"werwer");
-      
+      setLoading(false)
       toast.error(error?.response?.body?.message)
     }
   };
@@ -176,6 +178,7 @@ const Login = () => {
                   size="large"
                   htmlType="submit"
                   className="loginBtn w-100"
+                  loading={loading}
                 >
                   Log In
                 </Button>

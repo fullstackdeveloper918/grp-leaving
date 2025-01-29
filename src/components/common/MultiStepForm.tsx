@@ -173,7 +173,9 @@ console.log(accessToken,"accessToken");
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${accessToken}`
         },
+        
         body: JSON.stringify(item),
       });
   
