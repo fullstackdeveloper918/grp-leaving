@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { Card, Checkbox, Divider, Flex, Form, Input } from "antd";
 import dynamic from "next/dynamic";
 import SocalLogin from "../components/common/SocialLogin";
@@ -22,6 +22,7 @@ const { Row, Col, Button } = {
 
 const Register = () => {
     const router= useRouter()
+    const [loading, setLoading]= useState(false)
   const onFinish = async (values: any) => {
     console.log(values,"lsjdflj");
     
@@ -33,11 +34,16 @@ const Register = () => {
     };
     
     try {
+      setLoading(true)
       let res = await api.Auth.signUp(items);
       console.log(res, "rereere");
       toast.success("Please verify your email to continue")
       // router.replace("/login")
-    } catch (error: any) {}
+    } catch (error: any) {
+      
+    }finally{
+      setLoading(false)
+    }
   };
 
 
@@ -135,6 +141,7 @@ const Register = () => {
                   type="primary"
                   htmlType="submit"
                className="loginBtn w-100"
+               loading={loading}
                 >
                   Register
                 </Button>
