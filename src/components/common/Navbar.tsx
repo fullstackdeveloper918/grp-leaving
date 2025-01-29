@@ -110,9 +110,9 @@ if (getuserData) {
   console.error("getuserData is undefined or null.");
 }
 console.log(getuserData,"getuserData");
-const userInfo=JSON.parse(getuserData);
-const token1 = userInfo.token;
-console.log(token1,"sadazxxxxxxxxxxbc");
+// const userInfo=JSON.parse(getuserData);
+// const token1 = userInfo.token;
+// console.log(token1,"sadazxxxxxxxxxxbc");
 
   return (
     <>
