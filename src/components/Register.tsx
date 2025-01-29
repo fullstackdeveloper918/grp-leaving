@@ -23,10 +23,13 @@ const { Row, Col, Button } = {
 const Register = () => {
     const router= useRouter()
   const onFinish = async (values: any) => {
+    console.log(values,"lsjdflj");
+    
     let items = {
       full_name: validation.toLowCase(values?.full_name),
       email: String(values.email).toLowerCase(),
       password: values.password,
+      marketing_email_and_discounts:values.newsletter
     };
     
     try {

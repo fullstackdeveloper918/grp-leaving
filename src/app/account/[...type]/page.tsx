@@ -1,12 +1,14 @@
 
 // import { fetchFromServer } from "@/app/actions/fetchFromServer";
 import { fetchFromServer } from "@/app/actions/fetchFromServer";
+// import { useAccessToken } from "@/app/context/AccessTokenContext";
 import AccountBunddles from "@/components/AccountBunddles";
 import AccountCards from "@/components/AccountCards";
 import AccountContribution from "@/components/AccountContribution";
 import AccountEmailprefrence from "@/components/AccountEmailprefrence";
 import AccountProfile from "@/components/AccountProfile";
 import AccountSlider from "@/components/common/AccountSlider";
+import Cart from "@/components/common/Cart";
 import Table from "@/components/common/Table";
 import api from "@/utils/api";
 import { cookies } from 'next/headers';
@@ -15,6 +17,8 @@ import nookies from 'nookies';
 import { useEffect } from "react";
 
 const page = async({ params }: any) => {
+    // const accessToken3 = useAccessToken();
+    // console.log(accessToken3, "accessToken3");
   const type = params.type[0];
   console.log(type, "uuusufusd");
     const cookiesList = cookies();
@@ -32,10 +36,21 @@ const page = async({ params }: any) => {
   const api1: any = {
     url: `https://magshopify.goaideme.com/cart/cart-listing`,
     method: "GET",
-    // body: { key: 'value' }
+    // headers: {
+    //   'authorization': `Bearer ${gettoken.value}` // Send the token in the Authorization header
+    // }
   };
 
-  const data1 = await fetchFromServer(api1);
+  // const data1 = await fetchFromServer(api1);
+  const api2: any = {
+    url: `https://magshopify.goaideme.com/card/card-listing`,
+    method: "GET",
+    // headers: {
+    //   'authorization': `Bearer ${gettoken.value}` // Send the token in the Authorization header
+    // }
+  };
+
+  // const data2 = await fetchFromServer(api2);
   // const api: any = {
   //   url: `https://magshopify.goaideme.com/user/profile`,
   //   method: "GET",
@@ -51,13 +66,27 @@ const page = async({ params }: any) => {
   let data = await fetch('https://magshopify.goaideme.com/user/profile', {
     method: 'GET', // Method set to GET
     headers: {
-      'authorization': `Bearer ${gettoken.value}` // Send the token in the Authorization header
+      'Authorization': `Bearer ${gettoken.value}` // Send the token in the Authorization header
+    }
+  });
+  let data1 = await fetch('https://magshopify.goaideme.com/cart/cart-listing', {
+    method: 'GET', // Method set to GET
+    headers: {
+      'Authorization': `Bearer ${gettoken.value}` // Send the token in the Authorization header
+    }
+  });
+  let data2 = await fetch('https://magshopify.goaideme.com/card/card-listing', {
+    method: 'GET', // Method set to GET
+    headers: {
+      'Authorization': `Bearer ${gettoken.value}` // Send the token in the Authorization header
     }
   });
   console.log(gettoken,"ggg");
   
   // Parse the response JSON
   let posts = await data.json();
+  let posts1 = await data1.json();
+  let posts2 = await data2.json();
   console.log(posts,"posts");
   
  console.log(userInfo,"sdfsdfsd");
@@ -69,7 +98,8 @@ const page = async({ params }: any) => {
         <h1 className="text-3xl font-bold text-center mb-6">Account</h1>
         <AccountSlider type={type}/>
         {type==="profile" && <AccountProfile data={userInfo} userInfo={gettoken.value}/>}
-        {type==="cards" && <AccountCards data={data1}/>}
+        {type==="cart" && <Cart />}
+        {type==="cards" && <AccountCards data={posts2}/>}
         {type==="bundles" && <AccountBunddles data={posts} userInfo={gettoken.value}/>}
         {type==="email-preferences" && <AccountEmailprefrence data={posts} userInfo={gettoken.value}/>}
         {type==="contributions" && <AccountContribution />}

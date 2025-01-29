@@ -14,6 +14,12 @@ const AccountSlider = ({type}:any) => {
     <div className="flex space-x-6">
         {/* Navigate to Cards */}
         <a
+          onClick={() => handleNavigation('/account/cart')}
+          className={type==="cart"?"text-black text-blue-600 font-semibold border-b-2 border-blue-600 cursor-pointer no-underline":"text-black text-gray-500 hover:text-blue-500 cursor-pointer no-underline"}
+        >
+          Cart
+        </a>
+        <a
           onClick={() => handleNavigation('/account/cards')}
           className={type==="cards"?"text-black text-blue-600 font-semibold border-b-2 border-blue-600 cursor-pointer no-underline":"text-black text-gray-500 hover:text-blue-500 cursor-pointer no-underline"}
         >

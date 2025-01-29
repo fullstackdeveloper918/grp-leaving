@@ -1,44 +1,36 @@
 "use client"
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import dayjs from 'dayjs'
 import Link from 'next/link';
-type Card = {
-    id: number;
-    title: string;
-    imageUrl: string;
-    created: string;
-    status: 'Active' | 'Unpaid';
-    deliveryDate: string;
-    signatures: number;
-  };
+import { parseCookies } from 'nookies';
+// import { cookies } from 'next/dist/client/components/headers';
+// import { cookies } from 'next/headers';
+
+const Cart = () => {
+  const cookiesList = parseCookies();
+  const gettoken = cookiesList.auth_token;
   
-  const cards: Card[] = [
-    {
-      id: 1,
-      title: 'qwertyuio',
-      imageUrl: 'https://groupleavingcards.com/images/gift/collection_pot.png', // Replace with actual image path
-      created: '10/04/2024, 03:22 PM',
-      status: 'Active',
-      deliveryDate: 'Not Scheduled',
-      signatures: 0,
-    },
-    {
-      id: 2,
-      title: 'Board for dfgh',
-      imageUrl: 'https://groupleavingcards.com/images/gift/collection_pot.png', // Replace with actual image path
-      created: '10/04/2024, 03:21 PM',
-      status: 'Unpaid',
-      deliveryDate: 'Not Scheduled',
-      signatures: 0,
-    },
-  ];
-const AccountCards = ({data}:any) => {
-  console.log(data,"cshjksd");
+  console.log(gettoken, "gettoken");
+  const [data,setData]=useState<any>([])
+  console.log(data,"iooioio");
+  const getdata=async()=>{
+    try {
+      let res = await fetch('https://magshopify.goaideme.com/cart/cart-listing', {
+        method: 'GET', // Method set to GET
+        headers: {
+          'Authorization': `Bearer ${gettoken}` // Send the token in the Authorization header
+        }
+      });
 
-const filterData = data.listing.filter((item:any)=> item.paymentStatus==="captured")
-console.log(filterData,"filterData");
-
-
+      let posts2 = await res.json();
+      setData(posts2)
+    } catch (error) {
+      
+    }
+  }
+  useEffect(()=>{
+    getdata()
+  })
   const deliveryDate = '2024-11-28T00:00:00.000Z';
 const dateObject = new Date(deliveryDate);
 
@@ -105,7 +97,7 @@ console.log(formattedDate,"jljljlj");
           </div>
         </div>
       ))} */}
-      {filterData.map((card: any) => {
+      {data?.data?.map((card: any) => {
   // Format the delivery date to 'YYYY-MM-DD'
   const formattedDeliveryDate = card.delivery_date
   ? new Date(card.delivery_date).toLocaleDateString('en-CA') // Format if valid
@@ -113,7 +105,7 @@ console.log(formattedDate,"jljljlj");
   const formattedCreateDate = card.created_at
   ? new Date(card.created_at).toLocaleDateString('en-CA') // Format if valid
   : 'Not Scheduled'; // 'en-CA' gives 'YYYY-MM-DD'
-  console.log(card,"yuyuyu");
+  console.log(card?.images[0]?.card_images[0],"yuyuyu");
   
 const iiii= card
   return (
@@ -164,4 +156,4 @@ const iiii= card
   )
 }
 
-export default AccountCards
+export default Cart

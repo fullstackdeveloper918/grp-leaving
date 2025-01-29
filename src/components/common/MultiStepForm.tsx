@@ -189,7 +189,7 @@ console.log(accessToken,"accessToken");
       // setError("");
       // setRecipientName("");
   
-      router.push(`/card/pay/${params}`);
+      router.push(`/card/pay/${params}?cart_uuid=${data.data.cart_uuid}`);
       console.log("Final submission", { recipientName, recipientEmail });
     } catch (error) {
       setLoading(false);

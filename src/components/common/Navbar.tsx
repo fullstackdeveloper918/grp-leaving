@@ -93,16 +93,26 @@ const Navbar = () => {
     // }
   }, [cookies.auth_token]);
   const getuserData = cookies.userInfo;
-  if (getuserData) {
-    try {
-      const user_info = JSON.parse(getuserData);
-      console.log(user_info, "user_info");
-    } catch (error) {
-      console.error("Error parsing JSON:", error);
-    }
-  } else {
-    console.error("getuserData is undefined or null.");
+
+if (getuserData) {
+  try {
+    const user_info = JSON.parse(getuserData);
+    console.log(user_info, "user_info");
+
+    // Extracting the token from the user_info object
+    const token = user_info.token;
+    console.log("Token:", token);
+    
+  } catch (error) {
+    console.error("Error parsing JSON:", error);
   }
+} else {
+  console.error("getuserData is undefined or null.");
+}
+console.log(getuserData,"getuserData");
+const userInfo=JSON.parse(getuserData);
+const token1 = userInfo.token;
+console.log(token1,"sadazxxxxxxxxxxbc");
 
   return (
     <>

@@ -20,12 +20,15 @@ import AddCardElement from "./common/AddCard";
 import RazorPay from "./RazorPay";
 import EscrowPayment from "./EscrowPayment";
 import { cookies } from "next/headers";
-import { useParams } from "next/navigation";
+import { useParams, useSearchParams } from "next/navigation";
 
 const Checkout = ({data}:any) => {
   const [cardType, setCardType] = useState<any>("group");
   console.log(cardType, "cardType");
   const param=useParams()
+  const query:any=useSearchParams()
+  console.log(query.cart_uuid,"query");
+  
   console.log(param.id,"param");
   console.log(data,"datadatadata");
   
@@ -237,7 +240,7 @@ const Checkout = ({data}:any) => {
                 Pay with Debit/Credit Card
               </button>
             </a> */}
-            <RazorPay amount={TotalAmount} type={"card"} />
+            <RazorPay amount={TotalAmount} cart_id={query.cart_uuid} type={"card"} />
             {/* <EscrowPayment/> */}
             {/* <CardElement />
             <GooglePay

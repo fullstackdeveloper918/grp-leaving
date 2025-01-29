@@ -29,7 +29,9 @@ const [invoiceDetails, setInvoiceDetails] = useState(data?.additional_invoice);
     // Parse the response JSON
     let posts = await res.json();
     console.log(posts,"jklklkj");
-toast.success("Profile Updated Suceesfully")
+    if(res.status===200){
+      toast.success("Profile Updated Suceesfully")
+    }
    } catch (error) {
     
    }

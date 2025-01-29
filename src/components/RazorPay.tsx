@@ -4,7 +4,7 @@ import Script from "next/script";
 // import { cookies } from "next/dist/client/components/headers";
 // import { cookies } from "next/headers";
 import nookies from "nookies";
-import { useParams, useRouter } from "next/navigation";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
 declare global {
   interface Window {
     Razorpay: any;
@@ -14,12 +14,17 @@ interface UserInfo {
   name: string;
   email: string;
 }
-const RazorPay = ({ amount, type }: any) => {
+const RazorPay = ({ amount, type,cart_id }: any) => {
   console.log(amount, "amount");
   console.log(type, "type");
+  console.log(cart_id,"cart_id");
+  
   const router = useRouter();
   const [userInfo, setUserInfo] = useState<any>(null);
   const param = useParams();
+  const cartId:any = useSearchParams();
+  console.log(cartId,"cartId");
+  
   console.log(param.id, "param");
   useEffect(() => {
     const cookies = nookies.get();
@@ -56,6 +61,9 @@ const RazorPay = ({ amount, type }: any) => {
           // console.log("Payment ID0:", paymentId?.razorpay_payment_id);
           // console.log("Payment ID1:",JSON.stringify({ paymentId }));
           const product_id = param.id;
+          const cart_id=cartId.cart_uuid
+          console.log(cart_id,"cartaaaa_id");
+          
           // For example:
           fetch("https://magshopify.goaideme.com/razorpay/save-payment", {
             method: "POST",
@@ -63,10 +71,12 @@ const RazorPay = ({ amount, type }: any) => {
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
+              cart_uuid:cart_id,
               product_id: product_id,
               user_uuid: userInfo?.uuid,
               paymentId: paymentId,
               payment_for: type,
+              // cart_uuid:"e941026e-756e-4c1f-88f2-d4b7f062bb40"
             }),
           });
           // Handle success as per your application's need (e.g., updating UI, sending confirmation)
@@ -92,7 +102,7 @@ const RazorPay = ({ amount, type }: any) => {
       if (type === "bundle") {
         router.push(`/account/bundles`);
       } else {
-        router.push(`/card/farewell`);
+        // router.push(`/card /farewell`);
       }
     } catch (error) {
       console.log(error, "Payment failed");
