@@ -6,8 +6,9 @@ import "swiper/css";
 import "swiper/css/pagination";
 import Modal from "react-modal";
 import axios from "axios";
-
-const Custom: React.FC = () => {
+import jsPDF from "jspdf";
+import html2canvas from "html2canvas";
+const     Custom: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const [showModal, setShowModal] = useState(false);
@@ -125,7 +126,92 @@ const Custom: React.FC = () => {
       "https://example.com/new-page-image.jpg", // Placeholder for the new page (or add any image URL here)
     ]);
   };
+ const fetchImageAsBase64 = async (imageUrl: string) => {
+  try {
+    const response = await fetch(imageUrl, { mode: "cors" });
+    const blob = await response.blob();
 
+    // Convert AVIF to PNG using OffscreenCanvas
+    if (blob.type === "image/avif") {
+      const imageBitmap = await createImageBitmap(blob);
+      const canvas = new OffscreenCanvas(imageBitmap.width, imageBitmap.height);
+      const ctx = canvas.getContext("2d");
+      ctx?.drawImage(imageBitmap, 0, 0);
+      return canvas.convertToBlob({ type: "image/png" }).then((pngBlob) => {
+        return new Promise<string>((resolve) => {
+          const reader = new FileReader();
+          reader.onloadend = () => resolve(reader.result as string);
+          reader.readAsDataURL(pngBlob);
+        });
+      });
+    }
+
+    // Convert non-AVIF images to Base64
+    return new Promise<string>((resolve) => {
+      const reader = new FileReader();
+      reader.onloadend = () => resolve(reader.result as string);
+      reader.readAsDataURL(blob);
+    });
+  } catch (error) {
+    console.error("Error fetching image:", error);
+    return null;
+  }
+};
+
+// Function to generate and download the PDF
+const handleDownloadPDF = async () => {
+  const pdf = new jsPDF("p", "mm", "a4"); // A4 PDF in portrait mode
+  const slideWidth = 210; // A4 width in mm
+  const slideHeight = 297; // A4 height in mm
+
+  for (let i = 0; i < images.length; i++) {
+    const base64Image = await fetchImageAsBase64(images[i]);
+
+    if (!base64Image) continue; // Skip if image fails
+
+    if (i !== 0) pdf.addPage(); // Add a new page for each slide
+
+    // Add slide background image to PDF
+    pdf.addImage(base64Image, "JPEG", 10, 10, slideWidth - 20, slideHeight / 2);
+
+    // Overlay elements at correct positions
+    elements.forEach((el) => {
+      if (el.slideIndex === i + 1) {
+        if (el.type === "text") {
+          pdf.setFontSize(14);
+          pdf.setTextColor(0, 0, 255); // Blue text
+          pdf.text(el.content, 10 + el.x, slideHeight / 2 + 20 + el.y);
+        } else if (el.type === "image" || el.type === "gif") {
+          pdf.addImage(
+            el.content,
+            "JPEG",
+            10 + el.x,
+            slideHeight / 2 + 20 + el.y,
+            50,
+            50
+          ); // Image size 50x50
+        }
+      }
+    });
+
+    // Show element positions in PDF
+    elements.forEach((el) => {
+      if (el.slideIndex === i + 1) {
+        pdf.setFontSize(10);
+        pdf.setTextColor(255, 0, 0); // Red for positions
+        pdf.text(
+          `(${el.x}, ${el.y})`,
+          10 + el.x,
+          slideHeight / 2 + 40 + el.y
+        );
+      }
+    });
+  }
+
+  pdf.save("slides_with_positions.pdf"); // Download PDF
+};
+  
+  
   return (
     <div style={styles.container}>
       {/* <button style={styles.button} onClick={handleAddMessageClick}>
@@ -255,6 +341,15 @@ const Custom: React.FC = () => {
        +
       </button>
         </div>
+        <div style={{ textAlign: "center" }}>
+        <button
+         onClick={handleDownloadPDF}
+        className="px-4 py-2 add_btn border border-blue-600 text-blue-600 rounded-md hover:bg-blue-600 hover:text-white transition"
+        style={{color:"white", marginLeft:"20px", borderRadius: "70px",}}
+        >
+      Download
+      </button>
+        </div>
         {/* <div style={{ textAlign: "center" }}>
           <button
             // onClick={showCard}
@@ -351,7 +446,7 @@ const Custom: React.FC = () => {
           <button
             type="submit"
             className="px-4 py-2 bg-blue-600 text-black border rounded-md hover:bg-blue-700 transition"
-          >
+          >       
             Search
           </button>
         </form>
