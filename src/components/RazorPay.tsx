@@ -102,7 +102,7 @@ const RazorPay = ({ amount, type,cart_id }: any) => {
       if (type === "bundle") {
         router.push(`/account/bundles`);
       } else {
-        // router.push(`/card /farewell`);
+        router.push(`/payment/success`);
       }
     } catch (error) {
       console.log(error, "Payment failed");

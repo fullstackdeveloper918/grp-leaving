@@ -34,7 +34,7 @@ type Card = {
   ];
 const AccountCards = ({data}:any) => {
   console.log(data,"cshjksd");
-
+  // router.replace(`/share/${data?.data?.uuid}?brandKey=${brandKeys}`);
 const filterData = data.listing.filter((item:any)=> item.paymentStatus==="captured")
 console.log(filterData,"filterData");
 
@@ -151,7 +151,7 @@ const iiii= card
           </Link>
         ) : (
           <button className="mt-2 bg-yellow-500 text-black border border-gray-300 px-4 py-2 rounded-full hover:bg-yellow-600">
-            Gift now
+           View Gift
           </button>
         )}
       </div>

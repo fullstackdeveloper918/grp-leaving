@@ -505,6 +505,60 @@ body {
   z-index: -1;
 }
 
+
+
+
+.step_count1,
+.submit_svg {
+  border: 5px #ebebeb solid;
+  border-radius: 100%;
+  line-height: 0;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  display: flex;
+  color: #000;
+  width: 35px;
+  height: 35px;
+  font-weight: 600;
+  margin-bottom: 7px;
+  z-index: 4;
+  cursor: pointer;
+  margin: auto;
+  font-size: 13px;
+  margin-bottom: 8px;
+}
+.submit_svg {
+  border-color: transparent;
+  background-color: transparent;
+}
+.after_line,
+.before_line {
+  position: relative;
+}
+.submit_svg img {
+  width: 40px;
+}
+.after_line::before,
+.before_line::before {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  top: 15.5px;
+  left: auto;
+  right: calc(-70% + 5px);
+  background: #ebebeb;
+  border: 2px #f5f5f5 solid;
+  -o-transition: 0.4s;
+  -ms-transition: 0.4s;
+  -moz-transition: 0.4s;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  z-index: -1;
+}
 /* price page css started */
 .card_pricing_img {
   position: absolute;
@@ -1259,4 +1313,160 @@ button.add_btn {
 
 .nav-btn.right {
   right: 0;
+}
+
+
+.success-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+  background-color: #f3f4f6; /* Light gray background */
+}
+
+.success-card {
+  width: 100%;
+  max-width: 600px;
+  background-color: #ffffff; /* White background */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  padding: 2rem;
+}
+
+.steps-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+.step {
+  display: flex;
+  align-items: center;
+}
+
+.step-circle {
+  width: 2rem;
+  height: 2rem;
+  background-color: #3b82f6; /* Blue */
+  color: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.step-label {
+  margin-left: 0.5rem;
+  color: #3b82f6; /* Blue */
+  font-weight: 500;
+}
+
+.success-message {
+  text-align: center;
+}
+
+.success-icon {
+  width: 4rem;
+  height: 4rem;
+  color: #22c55e; /* Green */
+  margin: 0 auto;
+}
+
+.success-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-top: 1rem;
+}
+
+.success-description {
+  color: #6b7280; /* Gray */
+  margin-top: 0.5rem;
+}
+
+.shareable-link-container {
+  margin-top: 2rem;
+}
+
+.shareable-label {
+  color: #374151; /* Dark gray */
+  font-weight: 500;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.shareable-input-container {
+  display: flex;
+  align-items: center;
+  border: 1px solid #d1d5db; /* Light gray border */
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.shareable-input {
+  flex: 1;
+  padding: 0.5rem 1rem;
+  color: #374151; /* Dark gray */
+  background-color: #f9fafb; /* Light gray background */
+  border: none;
+  outline: none;
+}
+
+.copy-button {
+  padding: 0.5rem 1rem;
+  background-color: #3b82f6; /* Blue */
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.copy-button:hover {
+  background-color: #2563eb; /* Darker blue */
+}
+
+.clipboard-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.copy-success-message {
+  color: #22c55e; /* Green */
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+}
+
+.button-container {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.view-receipt-button {
+  padding: 0.5rem 1.5rem;
+  color: #3b82f6; /* Blue */
+  border: 1px solid #3b82f6;
+  border-radius: 8px;
+  background-color: transparent;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.view-receipt-button:hover {
+  background-color: #e0f2fe; /* Light blue */
+}
+
+.sign-card-button {
+  padding: 0.5rem 1.5rem;
+  color: #ffffff;
+  background-color: #3b82f6; /* Blue */
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.sign-card-button:hover {
+  background-color: #2563eb; /* Darker blue */
 }

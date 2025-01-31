@@ -5,6 +5,8 @@ import api from "@/utils/api";
 import { toast, ToastContainer } from "react-toastify";
 import { useRouter } from "next/navigation";
 import { log } from "node:console";
+import { useAccessToken } from "@/app/context/AccessTokenContext";
+import { parseCookies } from "nookies";
 const CreateGroup = ({ data }: any) => {
   console.log(data.data, "datadata");
 const [addCard,setAddCard]=useState<any>("")
@@ -60,7 +62,24 @@ const [brandKeys,setBrandKeys]=useState("")
       [name]: value,
     }));
   };
-
+  const { accessToken, setAccessToken } = useAccessToken();
+   useEffect(() => {
+       const cookies = parseCookies();
+       console.log(cookies, "cookies");
+   
+       const token = cookies.auth_token;
+       console.log(typeof token, "iooioio");
+   
+       if (token) {
+         setAccessToken(token);
+       } else {
+         // alert("nothing")
+       }
+     }, []);
+   console.log(accessToken,"accessToken");
+   const handleLogin=()=>{
+    router.push("/login")
+  }
   // Handle form submission (you can add your submission logic here)
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -206,7 +225,7 @@ const selectGiftImage = selectedImage?.imageUrls["278w-326ppi"];
             </div>
           </div>
           {/* <Link href={`/share/1`}> */}
-          {uuid?
+          {accessToken?
           <button
             //   disabled={setLoading}
             type="submit"
