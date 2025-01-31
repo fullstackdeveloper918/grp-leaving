@@ -21,6 +21,7 @@ import RazorPay from "./RazorPay";
 import EscrowPayment from "./EscrowPayment";
 import { cookies } from "next/headers";
 import { useParams, useSearchParams } from "next/navigation";
+import { toast } from "react-toastify";
 
 const Checkout = ({data}:any) => {
   const [cardType, setCardType] = useState<any>("group");
@@ -51,7 +52,7 @@ const Checkout = ({data}:any) => {
   // State to store the selected sale price
   const [salePrice, setSalePrice] = useState("22.45");
   const [exact, setExact] = useState<any>("");
-
+const [state, setState]=useState<any>("")
   // Handle selection change
   const handleChange = (e:any) => {
     const selectedCount = data?.data.find((count:any) => count.number_of_cards === Number(e.target.value));
@@ -71,9 +72,7 @@ const Checkout = ({data}:any) => {
   const onChange = (e: any) => {
     setVaoucher(e);
   };
-  const onSubmit = () => {
-    setVaoucher1(voucher);
-  };
+ 
   const stripe = useStripe();
   const cardPrices: any = {
     5: { price: 22.45, perCard: 4.49, discount: "10%" },
@@ -100,7 +99,7 @@ const Checkout = ({data}:any) => {
       : "22.45";
 
 
-      const TotalAmount =amount - voucher1
+      const TotalAmount =amount - state
       // const TotalAmount = bundleOption === "single" 
       // ? bundleSingleCard 
       // : cardType === "group" 
@@ -111,6 +110,38 @@ const Checkout = ({data}:any) => {
     // bundleOption === "bundle"
     //   ? `$${parseFloat(cardPrices[numCards].price.toFixed(2)) - voucher1} USD`
     //   : `$${AmountCondition - voucher1} USD`;
+    console.log(amount,"amount");
+    
+    const onSubmit = async() => {
+      // setVaoucher1(voucher);
+      try {
+         const requestData = {
+          code: voucher,
+          card_price:amount
+              // full_name:name,
+              // additional_invoice:invoiceDetails
+            };
+            
+            let res = await fetch('https://magshopify.goaideme.com/discount/is-voucher-valid', {
+              method: 'POST', // Method set to POST
+              headers: {
+                'Content-Type': 'application/json', // Indicates that you're sending JSON
+                // 'Authorization': `Bearer ${accessToken}` // Send the token in the Authorization header
+              },
+              body: JSON.stringify(requestData) // Stringify the data you want to send in the body
+            });
+            
+            // Parse the response JSON
+            let posts = await res.json();
+            console.log(posts,"jklklkj");
+            setState(posts?.data)
+            if(res.status===200){
+              toast.success("Voucher Added Suceesfully")
+            }
+      } catch (error:any) {
+        toast.error(error.message)
+      }
+    };
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col justify-center items-center p-5">
       <div className="w-full max-w-4xl bg-white shadow-lg rounded-lg p-6 md:flex">
@@ -260,7 +291,7 @@ const Checkout = ({data}:any) => {
             </div>
             <div className="flex justify-between items-center mb-4">
               <input
-                type="number"
+                type="text"
                 placeholder="Voucher Code"
                 className="border border-gray-300 rounded-lg p-2 w-full"
                 onChange={(e: any) => onChange(e.target.value)}

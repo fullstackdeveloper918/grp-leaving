@@ -5,7 +5,24 @@ import FaqJson from "../../constants/FaqJson/faq.json";
 import piggy_bank from "../../assets/images/piggy_bank.png";
 import appreciation from "../../assets/images/appreciation.png";
 import amazon_gift from "../../assets/images/amazon_gift.png";
-const page = () => {
+import Link from "next/link";
+import GiftCard from "@/components/common/GiftCard";
+const page = async() => {
+
+
+  
+  let data = await fetch('https://magshopify.goaideme.com/tango/fetch-data', {
+    method: 'GET', // Method set to GET
+    headers: {
+      'Cache-Control': 'no-cache',
+      // 'authorization': `Bearer ${gettoken.value}` // Send the token in the Authorization header
+       cache: 'reload'
+    }
+  });
+  // console.log(gettoken,"ggg");
+  // Parse the response JSON
+  let posts = await data.json();
+  console.log(posts,"posts");
   return (
     <>
       {/* <div className=""> */}
@@ -100,9 +117,11 @@ const page = () => {
                   Create a collection pot to start collecting cash for a gift
                   card for free.
                 </p>
+                <Link href={`/pool/new`}>
                 <button className="mt-3 px-3 bg-blue-600 text-blueText  py-2 rounded-xl border-1 border-[blueText] hover:bg-blue-700">
                   Create Free Money Pool
                 </button>
+                </Link>
               </div>
 
               <div className="bg-white p-6 rounded-[20px] hover:shadow-lg transition-all  border border-[#e5e7eb] m-0  h-full">
@@ -113,9 +132,11 @@ const page = () => {
                   Add a collection pot to any new or existing Group Card at no
                   additional cost.
                 </p>
+                <Link href={`/card/farewell`}>
                 <button className="mt-3 px-3 bg-blue-600 text-blueText  py-2 rounded-xl border-1 border-[blueText] hover:bg-blue-700">
                   Create Group Card
                 </button>
+                </Link>
               </div>
 
               <div className="bg-white p-6 rounded-[20px] hover:shadow-lg transition-all m-0 border border-[#e5e7eb]  h-full">
@@ -126,48 +147,17 @@ const page = () => {
                   Add a collection pot to any new or existing Group Board at no
                   additional cost.
                 </p>
+                <Link href={`/board`}>
                 <button className="mt-3 px-3 bg-blue-600 text-blueText  py-2 rounded-xl border-1 border-[blueText] hover:bg-blue-700">
                   Create Group Board
                 </button>
+                </Link>
               </div>
             </div>
             </div>
           </section>
 
-          <section className="text-center  section_space_50 view_card_section">
-            <div className="container-fluid">
-            <h2 className="mt-2 text-2xl  xl:text-3xl font-bold text-center text-gray-900">
-              View Gift Card Selection
-            </h2>
-            <div className="grid grid-cols-3 gap-4 mb-6 mt-4">
-              <img
-                src="https://gift.wegift.io/static/product_assets/NAKED-GB/NAKED-GB-card.png"
-                alt="Naked Wines"
-                className="w-30 mx-auto rounded"
-              />
-              <img
-                src="https://gift.wegift.io/static/product_assets/JLSEG-GB/JLSEG-GB-card.png"
-                alt="John Lewis"
-                className="w-30 mx-auto rounded"
-              />
-              <img src="https://gift.wegift.io/static/product_assets/AMZ-GB/AMZ-GB-card.png" alt="Amazon" className="w-30 mx-auto rounded" />
-              <img
-                src="https://gift.wegift.io/static/product_assets/VRGNEXP-GB/VRGNEXP-GB-card.png"
-                alt="Virgin Experience"
-                className="w-30 mx-auto rounded"
-              />
-              <img src="https://gift.wegift.io/static/product_assets/AIRBNB-US/AIRBNB-US-card.png" alt="Airbnb" className="w-30 mx-auto" />
-              <img
-                src="https://gift.wegift.io/static/product_assets/DDASH-US/DDASH-US-card.png"
-                alt="Doordash"
-                className="w-30 mx-auto rounded"
-              />
-            </div>
-            <button className="xl:mt-5 md:mt-3 px-5 text-white bg-blueText  py-2  rounded-xl border-1 border-[blueText] hover:bg-blue-700">
-              View All Gift Cards
-            </button>
-            </div>
-          </section>
+         <GiftCard data={posts}/>
         {/* </div> */}
         <div className="container-fluid faq_section">
         <h2 className=" text-2xl  xl:text-3xl font-bold text-left text-gray-900">Frequently Asked Questions</h2>

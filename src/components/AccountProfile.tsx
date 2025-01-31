@@ -1,11 +1,30 @@
 "use client"
+import { useAccessToken } from '@/app/context/AccessTokenContext';
 import api from '@/utils/api';
+import { parseCookies } from 'nookies';
 import React, { useEffect, useState } from 'react'
 import { toast, ToastContainer } from 'react-toastify';
 
 const AccountProfile = ({userInfo,data}:any) => {
 
 console.log(data,"userInfoCookie");
+
+
+    const { accessToken, setAccessToken } = useAccessToken();
+     useEffect(() => {
+         const cookies = parseCookies();
+         console.log(cookies, "cookies");
+     
+         const token = cookies.auth_token;
+         console.log(typeof token, "iooioio");
+     
+         if (token) {
+           setAccessToken(token);
+         } else {
+           // alert("nothing")
+         }
+       }, []);
+     console.log(accessToken,"accessToken");
 const [name, setName] = useState(data?.full_name);
 const [email, setEmail] = useState(data?.email);
 const [invoiceDetails, setInvoiceDetails] = useState(data?.additional_invoice);
@@ -21,7 +40,7 @@ const [invoiceDetails, setInvoiceDetails] = useState(data?.additional_invoice);
       method: 'POST', // Method set to POST
       headers: {
         'Content-Type': 'application/json', // Indicates that you're sending JSON
-        'Authorization': `Bearer ${userInfo}` // Send the token in the Authorization header
+        'Authorization': `Bearer ${accessToken}` // Send the token in the Authorization header
       },
       body: JSON.stringify(requestData) // Stringify the data you want to send in the body
     });

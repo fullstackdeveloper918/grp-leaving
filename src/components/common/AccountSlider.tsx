@@ -59,12 +59,12 @@ const AccountSlider = ({type}:any) => {
         </a>
 
         {/* Navigate to Contributions */}
-        <a
+        {/* <a
           onClick={() => handleNavigation('/account/contributions')}
           className={type==="contributions"?"text-black text-blue-600 font-semibold border-b-2 border-blue-600 cursor-pointer no-underline":"text-black text-gray-500 hover:text-blue-500 cursor-pointer no-underline"}
         >
           Contributions
-        </a>
+        </a> */}
       </div>
     </div>
   )

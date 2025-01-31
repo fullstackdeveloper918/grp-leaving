@@ -13,6 +13,8 @@ const MultiStepForm = ({ params }: any) => {
   const router = useRouter();
   
   const [step, setStep] = useState(1);
+  console.log(step,"jjjkljkl");
+  
   const [recipientName, setRecipientName] = useState("");
   const [loading, setLoading] = useState(false);
   const [senderName, setSenderName] = useState("");
@@ -228,27 +230,28 @@ console.log(accessToken,"accessToken");
         </div> */}
 
         {/* count steps  */}
-        <div className="text-center after_line">
-          <div className="step_count ">1</div>
+        <div className="text-center after_line disabled">
+          <div className={step >= 1 ? "step_count" : "step_count1"}>1</div>
           <p className="md:text-md text-sm font-medium mb-0">Pick a Design</p>
         </div>
 
         <div className="text-center  before_line">
-          <div className="step_count">2</div>
+          <div className={step >= 2 ? "step_count" : "step_count1"}>2</div>
           <p className="md:text-md text-sm font-medium mb-0">Enter Details</p>
         </div>
 
-        <div className="text-center before_line">
-          <div className="step_count">3</div>
+        <div className={step > 3 ?"text-center before_line":""}>
+          <div className={step >= 3 ? "step_count" : "step_count1"}>3</div>
           <p className="md:text-md text-sm font-medium mb-0">Pay and Share</p>
         </div>
-
+{step > 3?
         <div className="text-center">
-          <div className="submit_svg">
+          <div className="submit_svg ">
             <img src={checkSvg.src} alt="imgccheck" />
           </div>
           <p className="md:text-md text-sm font-medium mb-0">Submit</p>
         </div>
+      :""} 
       </div>
 
       <div className="bg-white shadow-lg rounded-lg p-10 w-full max-w-lg">

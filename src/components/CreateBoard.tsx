@@ -4,7 +4,27 @@ import Link from "next/link";
 import api from "@/utils/api";
 import { toast, ToastContainer } from "react-toastify";
 import { useRouter } from "next/navigation";
+import { useAccessToken } from "@/app/context/AccessTokenContext";
+import { parseCookies } from "nookies";
 const CreateBoard = ({ data }: any) => {
+
+
+
+    const { accessToken, setAccessToken } = useAccessToken();
+     useEffect(() => {
+         const cookies = parseCookies();
+         console.log(cookies, "cookies");
+     
+         const token = cookies.auth_token;
+         console.log(typeof token, "iooioio");
+     
+         if (token) {
+           setAccessToken(token);
+         } else {
+           // alert("nothing")
+         }
+       }, []);
+     console.log(accessToken,"accessToken");
   const router = useRouter();
   const [userInfo, setUserInfo] = useState<any>(null);
   const [uuid, setUuid] = useState<string | null>(null);
@@ -152,7 +172,9 @@ const CreateBoard = ({ data }: any) => {
   }
   const selectGiftImage = selectedImage?.imageUrls["278w-326ppi"];
   console.log(selectGiftImage, "selectGiftImage");
-
+  const handleLogin=()=>{
+    router.push("/login")
+  }
   return (
     <div>
       <ToastContainer />
@@ -207,13 +229,32 @@ const CreateBoard = ({ data }: any) => {
             </div>
           </div>
           {/* <Link href={`/share/1`}> */}
-          <button
+          {
+            accessToken?
+            <button
             //   disabled={setLoading}
             type="submit"
             className="w-full bg-blueBg text-white py-2 px-4  rounded-md hover:bg-blue-700 transition duration-300"
           >
             Continue
-          </button>
+          </button>:
+          <Link href={`/login`}>
+          <button
+          //   disabled={setLoading}
+          type="submit"
+          className="w-full bg-blueBg text-white py-2 px-4  rounded-md hover:bg-blue-700 transition duration-300"
+        >
+          Continue
+        </button>
+        </Link>
+          }
+          {/* <button
+            //   disabled={setLoading}
+            type="submit"
+            className="w-full bg-blueBg text-white py-2 px-4  rounded-md hover:bg-blue-700 transition duration-300"
+          >
+            Continue
+          </button> */}
           {/* </Link> */}
         </form>
       </div>

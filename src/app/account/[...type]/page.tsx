@@ -102,7 +102,7 @@ const page = async({ params }: any) => {
         {type==="cards" && <AccountCards data={posts2}/>}
         {type==="bundles" && <AccountBunddles data={posts} userInfo={gettoken.value}/>}
         {type==="email-preferences" && <AccountEmailprefrence data={posts} userInfo={gettoken.value}/>}
-        {type==="contributions" && <AccountContribution />}
+        {/* {type==="contributions" && <AccountContribution />} */}
         {type==="batches" && <Table />}
       </div>
     </div>
