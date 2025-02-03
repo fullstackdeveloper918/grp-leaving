@@ -634,6 +634,19 @@ body {
 
 /***************** responsive css *****************/
 
+/* swiper */
+.swiperSlider .swiper.swiper-initialized.swiper-horizontal.swiper-backface-hidden {
+  padding: 4rem 0px;
+}
+.swiperSlider img{
+  object-fit: cover;
+}
+.swiperSlider .swiper-backface-hidden .swiper-slide {
+  transition: transform 0.5s;
+}
+/* swiper end */
+
+
 @media (max-width: 1600px) {
   .partner_logos img {
     max-width: 200px !important;
@@ -1228,4 +1241,232 @@ button.add_btn {
 /* Apply transition to all images */
 .demo-board-msg{
   word-wrap: break-word;
+}
+
+.carousel-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 600px;
+  height: 600px;
+  overflow: hidden;
+  margin: 20px auto;
+}
+
+/* Image Container to align images horizontally */
+.image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  height: 600px;
+  width: 600px;
+  transition: transform 0.5s ease;
+}
+
+/* Common Styles for all images */
+.carousel-image {
+  width: 500px;
+  height: 600px;
+  object-fit: cover;
+  transition: transform 0.5s ease, z-index 0.3s ease;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+}
+
+/* Left Image */
+.left {
+  transform: translateX(-8rem) scale(0.8);
+}
+
+/* Right Image */
+.right {
+  transform: translateX(9rem) scale(0.8);
+}
+
+/* Center Image (Larger) */
+.center {
+  transform: scale(1.2);
+  z-index: 1;
+}
+
+/* Navigation Button Styles */
+.nav-btn {
+  position: absolute;
+  top: 50%;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 30px;
+  z-index: 2;
+  transform: translateY(-50%);
+}
+
+.nav-btn.left {
+  left: 0;
+}
+
+.nav-btn.right {
+  right: 0;
+}
+
+
+.success-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+  background-color: #f3f4f6; /* Light gray background */
+}
+
+.success-card {
+  width: 100%;
+  max-width: 600px;
+  background-color: #ffffff; /* White background */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  padding: 2rem;
+}
+
+.steps-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+.step {
+  display: flex;
+  align-items: center;
+}
+
+.step-circle {
+  width: 2rem;
+  height: 2rem;
+  background-color: #3b82f6; /* Blue */
+  color: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.step-label {
+  margin-left: 0.5rem;
+  color: #3b82f6; /* Blue */
+  font-weight: 500;
+}
+
+.success-message {
+  text-align: center;
+}
+
+.success-icon {
+  width: 4rem;
+  height: 4rem;
+  color: #22c55e; /* Green */
+  margin: 0 auto;
+}
+
+.success-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-top: 1rem;
+}
+
+.success-description {
+  color: #6b7280; /* Gray */
+  margin-top: 0.5rem;
+}
+
+.shareable-link-container {
+  margin-top: 2rem;
+}
+
+.shareable-label {
+  color: #374151; /* Dark gray */
+  font-weight: 500;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.shareable-input-container {
+  display: flex;
+  align-items: center;
+  border: 1px solid #d1d5db; /* Light gray border */
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.shareable-input {
+  flex: 1;
+  padding: 0.5rem 1rem;
+  color: #374151; /* Dark gray */
+  background-color: #f9fafb; /* Light gray background */
+  border: none;
+  outline: none;
+}
+
+.copy-button {
+  padding: 0.5rem 1rem;
+  background-color: #3b82f6; /* Blue */
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.copy-button:hover {
+  background-color: #2563eb; /* Darker blue */
+}
+
+.clipboard-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.copy-success-message {
+  color: #22c55e; /* Green */
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+}
+
+.button-container {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.view-receipt-button {
+  padding: 0.5rem 1.5rem;
+  color: #3b82f6; /* Blue */
+  border: 1px solid #3b82f6;
+  border-radius: 8px;
+  background-color: transparent;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.view-receipt-button:hover {
+  background-color: #e0f2fe; /* Light blue */
+}
+
+.sign-card-button {
+  padding: 0.5rem 1.5rem;
+  color: #ffffff;
+  background-color: #3b82f6; /* Blue */
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.sign-card-button:hover {
+  background-color: #2563eb; /* Darker blue */
 }

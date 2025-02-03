@@ -13,6 +13,7 @@ import DemoBoard from "./common/DemoBoard";
 import userIcon from "../assets/icons/ab.png"
 import Image from 'next/image';
 import Custom from "./common/custom";
+import Customcraousal from "./common/Customcraousal";
 const { Paragraph, Text } = Typography;
 const DemoCard = ({params}:any) => {
   const [show, setShow] = useState<any>(false);
@@ -103,6 +104,7 @@ const DemoCard = ({params}:any) => {
               </div>
 
               {/* {show ? <EditorModal showCard={showCard}/> : <EditorCrousal />} */}
+              {/* {show ? <EditorModal/> : <Customcraousal />} */}
               {show ? <EditorModal/> : <Custom />}
               {/* <Carousel /> */}
               {/* <EditorModal/> */}

@@ -386,7 +386,8 @@ const handleDownloadPDF = async () => {
         </div>
       )}
 
-      <Swiper
+     <div className="swiperSlider">
+     <Swiper
         spaceBetween={30}
         slidesPerView={3}
         onSlideChange={({ activeIndex }) => setActiveSlideIndex(activeIndex)}
@@ -398,9 +399,11 @@ const handleDownloadPDF = async () => {
               ...styles.swiperSlide,
               ...(activeSlideIndex + 1 === index
                 ? {
-                    transform: "scale(1.6)",
+                    transform: "scale(1.2288)",
                     backgroundColor: "#000000",
                     zIndex: 9,
+                    // width: "fit-content",  
+                    height: "400px"
                   }
                 : {}),
             }}
@@ -409,7 +412,7 @@ const handleDownloadPDF = async () => {
               <img
                 src={image}
                 alt={`slide-${index}`}
-                style={{ width: "100%", height: "500px",background: "white" }}
+                style={{ width: "fit-content", height: "400px",background: "white" }}
               />
               {elements
                 .filter((el) => el.slideIndex === index + 1)
@@ -427,7 +430,7 @@ const handleDownloadPDF = async () => {
             </div>
           </SwiperSlide>
         ))}
-      </Swiper>
+      </Swiper></div> 
 
       <Modal
         isOpen={isOpen}
