@@ -94,25 +94,46 @@ const Navbar = () => {
   }, [cookies.auth_token]);
   const getuserData = cookies.userInfo;
 
-if (getuserData) {
-  try {
-    const user_info = JSON.parse(getuserData);
-    console.log(user_info, "user_info");
+  if (getuserData) {
+    try {
+      const user_info = JSON.parse(getuserData);
+      console.log(user_info, "user_info");
 
-    // Extracting the token from the user_info object
-    const token = user_info.token;
-    console.log("Token:", token);
-    
-  } catch (error) {
-    console.error("Error parsing JSON:", error);
+      // Extracting the token from the user_info object
+      const token = user_info.token;
+      console.log("Token:", token);
+    } catch (error) {
+      console.error("Error parsing JSON:", error);
+    }
+  } else {
+    console.error("getuserData is undefined or null.");
   }
-} else {
-  console.error("getuserData is undefined or null.");
-}
-console.log(getuserData,"getuserData");
-// const userInfo=JSON.parse(getuserData);
-// const token1 = userInfo.token;
-// console.log(token1,"sadazxxxxxxxxxxbc");
+  // console.log(getuserData, "getuserData");
+  // const userInfo=JSON.parse(getuserData);
+  // const token1 = userInfo.token;
+  // console.log(token1,"sadazxxxxxxxxxxbc");
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const menu = document.getElementById("dropdownMenu");
+      const button = document.getElementById("dropdownMenuButton1");
+
+      if (
+        menu &&
+        button &&
+        !menu.contains(event.target as Node) &&
+        !button.contains(event.target as Node)
+      ) {
+        menu.classList.remove("show");
+      }
+    };
+
+    document.addEventListener("click", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
 
   return (
     <>
@@ -171,12 +192,12 @@ console.log(getuserData,"getuserData");
 
             {/* Auth and Button */}
             <div className="flex items-center lg:space-x-6 sm:space-x-4">
-              <a
-                    href="/create"
-                    className="text-md btnPrimary text-blackText hidden md:block text-blackText no-underline font-medium hover:text-blueText "
-                  >
-                    Get Started
-                  </a>
+              <Link
+                href="/create"
+                className="text-md btnPrimary text-blackText hidden md:block text-blackText no-underline font-medium hover:text-blueText "
+              >
+                Get Started
+              </Link>
               {/* <a
                 href="/card/farewell"
                 className="text-md text-blackText hidden md:block text-blackText no-underline font-medium hover:text-blueText "
@@ -203,15 +224,15 @@ console.log(getuserData,"getuserData");
                   </a> */}
               {accessToken3.accessToken ? (
                 <>
-                  <a
+                  <Link
                     href="/account/cards"
                     className="text-md text-blackText hidden md:block text-blackText no-underline font-medium hover:text-blueText "
                   >
                     My Account
-                  </a>
+                  </Link>
                   <div className="dropdown">
                     <img
-                      src="https://img.freepik.com/premium-psd/greeting-card-…h-flowers-it-pink-background_74869-4261.jpg?w=826"
+                      src="https://img.freepik.com/premium-psd/greeting-card-with-flowers-it-pink-background_74869-4261.jpg?w=826"
                       alt="Profile"
                       style={{
                         width: "40px",
@@ -220,17 +241,10 @@ console.log(getuserData,"getuserData");
                         cursor: "pointer",
                       }}
                       id="dropdownMenuButton1"
-                      data-bs-toggle="dropdown"
-                      aria-expanded="false"
-                      onClick={(e) => {
-                        const menu: any =
-                          document.getElementById("dropdownMenu");
-                        const isExpanded = menu.classList.contains("show");
-                        if (isExpanded) {
-                          menu.classList.remove("show");
-                        } else {
-                          menu.classList.add("show");
-                        }
+                      onClick={(e: React.MouseEvent<HTMLImageElement>) => {
+                        e.stopPropagation(); // Prevent triggering document click
+                        const menu = document.getElementById("dropdownMenu");
+                        menu?.classList.toggle("show");
                       }}
                     />
                     <ul
@@ -239,27 +253,36 @@ console.log(getuserData,"getuserData");
                       id="dropdownMenu"
                     >
                       <li>
-                        <a
+                        <Link
                           href="/card/farewell"
-                          className="dropdown-item text-md text-blackText hidden md:block text-blackText no-underline font-medium hover:text-blueText "
+                          className="dropdown-item"
+                          onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
+                            e.stopPropagation();
+                            document
+                              .getElementById("dropdownMenu")
+                              ?.classList.remove("show");
+                          }}
                         >
                           Cards
-                        </a>
+                        </Link>
                       </li>
                       <li>
-                        <a
+                      <Link
                           href="/pricing"
-                          className="dropdown-item text-md text-blackText hidden md:block text-blackText no-underline font-medium hover:text-blueText "
+                          className="dropdown-item"
+                          onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
+                            e.stopPropagation();
+                            document
+                              .getElementById("dropdownMenu")
+                              ?.classList.remove("show");
+                          }}
                         >
                           Pricing
-                        </a>
+                        </Link>
                       </li>
                       <li>
-                        {/* <a className="dropdown-item" href="#">
-                          Something else here
-                        </a> */}
                         <button
-                          className="dropdown-item text-md text-blackText hidden md:block text-blackText no-underline font-medium hover:text-blueText "
+                          className="dropdown-item"
                           onClick={() => setIsModalOpen(true)}
                         >
                           Logout
@@ -270,12 +293,12 @@ console.log(getuserData,"getuserData");
                 </>
               ) : (
                 <>
-                  <a
+                  <Link
                     href="/login"
                     className="text-md text-blackText hidden md:block text-blackText no-underline font-medium hover:text-blueText "
                   >
                     Login
-                  </a>
+                  </Link>
 
                   <Link href={`/register`}>
                     <button className="text-white px-3 py-2  ml-2 rounded-md bg-blueBg d-hide-btn">
@@ -319,54 +342,54 @@ console.log(getuserData,"getuserData");
                 isMenuOpen ? "translate-x-0" : "-translate-x-full"
               }`}
             >
-              <a
+              <Link
                 href="/card/farewell"
                 className="block lg:px-4 md:px-2 py-3 hover:text-blueText no-underline text-black m-0 text-md  border-b border-[#8b8b8b29]"
               >
                 Farewell
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/card/birthday"
                 className="block lg:px-4 md:px-2 py-3 hover:text-blueText no-underline text-black m-0 text-md  border-b border-[#8b8b8b29]"
               >
                 Birthday Cards
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/card/baby"
                 className="block lg:px-4 md:px-2 py-3 hover:text-blueText no-underline text-black m-0 text-md  border-b border-[#8b8b8b29]"
               >
                 New Baby
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/card/retirement"
                 className="block lg:px-4 md:px-2 py-3 hover:text-blueText no-underline text-black m-0 text-md  border-b border-[#8b8b8b29]"
               >
                 Retirement
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/card/sympathy"
                 className="block lg:px-4 md:px-2 py-3 hover:text-blueText no-underline text-black m-0 text-md  border-b border-[#8b8b8b29]"
               >
                 Sympathy
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/card/wedding"
                 className="block lg:px-4 md:px-2 py-3 hover:text-blueText no-underline text-black m-0 text-md  border-b border-[#8b8b8b29]"
               >
                 Wedding
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/card/welcome"
                 className="block lg:px-4 md:px-2 py-3 hover:text-blueText no-underline text-black m-0 text-md  border-b border-[#8b8b8b29]"
               >
                 Welcome
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/card/thank-you"
                 className="block lg:px-4 md:px-2 py-3 hover:text-blueText no-underline text-black m-0 text-md "
               >
                 Thank You
-              </a>
+              </Link>
             </nav>
           ) : (
             ""

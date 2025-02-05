@@ -58,7 +58,7 @@ const AccountEmailprefrence = ({ userInfo, data }: any) => {
           {/* Card Reminders */}
           <div className="form-check form-switch items-center justify-between">
             <input
-              type="radio"
+              type="checkbox"
               id="card-reminders"
               checked={cardReminders}
               onChange={() => setCardReminders(!cardReminders)}

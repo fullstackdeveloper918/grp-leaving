@@ -1,5 +1,4 @@
 "use client";
-import { useStripe } from '@stripe/react-stripe-js';
 import { Grid } from 'antd';
 import { useParams } from 'next/navigation';
 import React, { useState } from 'react'
@@ -9,10 +8,10 @@ const BoardCheckout = ({data}:any) => {
 
 
     const [cardType, setCardType] = useState<any>("group");
-    console.log(cardType, "cardType");
+    // console.log(cardType, "cardType");
     const param=useParams()
-    console.log(param.id,"param");
-    console.log(data,"datadatadata");
+    // console.log(param.id,"param");
+    // console.log(data,"datadatadata");
     
     // const cookiesList = cookies();
     // const userInfoCookie = cookiesList.get('userInfo'); 
@@ -245,6 +244,7 @@ const BoardCheckout = ({data}:any) => {
               type="number"
               placeholder="Voucher Code"
               className="border border-gray-300 rounded-lg p-2 w-full"
+              min="0"
               onChange={(e: any) => onChange(e.target.value)}
               value={voucher}
             />

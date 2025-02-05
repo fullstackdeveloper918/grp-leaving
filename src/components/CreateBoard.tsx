@@ -80,11 +80,14 @@ const CreateBoard = ({ data }: any) => {
     }));
   };
   const [selectedImage, setSelectedImage] = useState<any | null>(null);
+const [addSelectedImage, setAddSelectedImage] = useState<any | null> (null);
   const handleBackClick = () => {
     setSelectedImage(null); // Reset the selected image to show the image grid again
   };
   const AddGiftCard = () => {
     setAddCard(selectedImage.brandKey); // Reset the selected image to show the image grid again
+    console.log("slectedImagedsssssssss",selectedImage)
+    setAddSelectedImage(selectGiftImage)
     setIsModalOpen(false);
   };
   const handleImageClick = (imageData: any) => {
@@ -225,7 +228,8 @@ const CreateBoard = ({ data }: any) => {
               <span className="text-2xl mr-2">+</span>Select gift card
             </button>
             <div className="">
-              <img src={selectGiftImage} alt="" className="" />
+              {/* <img src={selectGiftImage} alt="" className="" /> */}
+              <img src={addSelectedImage} alt="" className="" />
             </div>
           </div>
           {/* <Link href={`/share/1`}> */}

@@ -137,6 +137,7 @@ const [brandKeys,setBrandKeys]=useState("")
   // }
   // const check=data.data.brands.map((res:any)=>console.log(res.imageUrls.80w-326ppi,"iooo"))
   const [selectedImage, setSelectedImage] = useState<any | null>(null);
+  const [addSelectedImage, setAddSelectedImage] = useState<any | null> (null);
   const handleImageClick = (imageData: any) => {
     setSelectedImage(imageData);
     console.log(imageData,"imageData");
@@ -153,6 +154,7 @@ const [brandKeys,setBrandKeys]=useState("")
   };
   const AddGiftCard = () => {
     setAddCard(selectedImage.brandKey); // Reset the selected image to show the image grid again
+    setAddSelectedImage(selectGiftImage)
     setIsModalOpen(false);
   };
   console.log(selectedImage,"selectedImage");
@@ -221,7 +223,7 @@ const selectGiftImage = selectedImage?.imageUrls["278w-326ppi"];
 
             <div className="">
 
-              <img src={selectGiftImage} alt="" className="" />
+              <img src={addSelectedImage} alt="" className="" />
             </div>
           </div>
           {/* <Link href={`/share/1`}> */}

@@ -53,6 +53,7 @@ const Checkout = ({data}:any) => {
   const [salePrice, setSalePrice] = useState("22.45");
   const [exact, setExact] = useState<any>("");
 const [state, setState]=useState<any>("")
+  // Handle selection change
   const handleChange = (e:any) => {
     const selectedCount = data?.data.find((count:any) => count.number_of_cards === Number(e.target.value));
     setNumCards(Number(e.target.value)); // Update number of cards state

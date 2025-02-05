@@ -36,11 +36,13 @@ const Register = () => {
     try {
       setLoading(true)
       let res = await api.Auth.signUp(items);
-      console.log(res, "rereere");
       toast.success("Please verify your email to continue")
+      
       // router.replace("/login")
     } catch (error: any) {
-      
+      if(error?.message === "Conflict"){
+        toast.error("Email already exists");
+      }
     }finally{
       setLoading(false)
     }
