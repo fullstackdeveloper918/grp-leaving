@@ -10,6 +10,7 @@ import banner_flower from "../assets/images/banner_flower.png";
 import Slider from "react-slick";
 import React, { useEffect, useState } from "react";
 import cardData from "../constants/CardJson/card.json";
+import Link from "next/link";
 const categoriesName = [
   "Farewell",
   "Birthday",
@@ -83,14 +84,14 @@ const Hero = (props: any) => {
                   in your office.
                 </p>
                 <div className="bannerButton">
-                  <a href="/create" className=" btnPrimary">
+                  <Link href="/create" className=" btnPrimary">
                     {" "}
                     Start a group Card
-                  </a>
-                  <a href="/demo/fwzDVjvbQ_X" className="btnSecondary ml-3">
+                  </Link>
+                  <Link href="/demo/fwzDVjvbQ_X" className="btnSecondary ml-3">
                     {" "}
                     Try Our Demo Card
-                  </a>
+                  </Link>
                 </div>
               </div>
               <img src={banner_card.src} className="card_img_right" />
@@ -117,10 +118,10 @@ const Hero = (props: any) => {
                   your whole office.
                 </p>
                 <div className="bannerButton text-left">
-                  <a href="/create" className=" btnPrimary">
+                  <Link href="/create" className=" btnPrimary">
                     {" "}
                     Start a group Card
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>

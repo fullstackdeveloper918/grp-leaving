@@ -13,6 +13,7 @@ import GooglePay from "./common/GooglePay"
 import GooglePayButton from "./common/GooglePayButton";
 import { toast, ToastContainer } from "react-toastify";
 import { useAccessToken } from "@/app/context/AccessTokenContext";
+import Link from "next/link";
 const { Row, Col, Button } = {
   Row: dynamic(() => import("antd").then((module) => module.Row), {
     ssr: false,
@@ -27,6 +28,7 @@ const { Row, Col, Button } = {
 const Login = () => {
   const router = useRouter();
   const [loading,setLoading]=useState(false)
+  // const [correctPass, setCorrectPass] = useState(false);
   const { accessToken, setAccessToken } = useAccessToken();
   const setCookie = (name: string, value: string, days: number) => {
     const expires = new Date();
@@ -88,6 +90,7 @@ const Login = () => {
       console.log(res,"reerrer");
       if(res?.data){
         toast.success("Login Successfully")
+        router.replace("/");
       }
 
       api.setToken(JSON.stringify(res?.token))
@@ -110,7 +113,13 @@ const Login = () => {
     } catch (error: any) {
       console.log(error?.response?.body?.message,"werwer");
       setLoading(false)
-      toast.error(error?.response?.body?.message)
+      if(error?.response?.body?.message === "Unauthorized"){
+        toast.error("Unauthorized")
+        // setCorrectPass(true);
+      }else {
+        toast.error(error?.response?.body?.message);
+      }
+      
     }
   };
 
@@ -170,6 +179,9 @@ const Login = () => {
                     placeholder="Password"
                     prefix={<i className="fa-solid fa-lock"></i>}
                   />
+                  {/* {
+                    correctPass && <p className="text-red-400">Please enter correct password</p>
+                  } */}
                 </Form.Item>
                 <small className="text-muted">
                   Must be at least 8 characters
@@ -217,10 +229,10 @@ const Login = () => {
             </div> */}
               <div className="auth-footer text-center mt-2">
                 <h6>
-                  <a href="/reset-password">Forgot Password</a>
+                  <Link href="/reset-password">Forgot Password</Link>
                 </h6>
                 <p>
-                  Need an account? <a href="/register" className="text-blueBg font-bold alreadyText">Register</a>
+                  Need an account? <Link href="/register" className="text-blueBg font-bold alreadyText">Register</Link>
                 </p>
               </div>
             </Card>

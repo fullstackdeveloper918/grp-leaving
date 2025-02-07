@@ -8,7 +8,11 @@ import { toast } from "react-toastify";
 import { capFirst } from "@/utils/validation";
 import nookies from "nookies";
 import SendGiftModal from "./common/SendGiftModal";
-const GroupCollection = ({ params, searchParams, data }: any) => {
+import Cookies from "js-cookie";
+
+
+const GroupCollection = ({ params, searchParams, data , setClose,isClose }: any) => {
+
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   console.log(data, "jdkhdur");
   const [cookieValue, setCookieValue] = useState<string | null>(null);
@@ -18,6 +22,10 @@ const GroupCollection = ({ params, searchParams, data }: any) => {
   const [organiser, setOrganiser] = useState("");
 console.log(organiser,"organiser");
 const [isModalOpen, setIsModalOpen] = useState(false);
+
+// const [editCollection, setEditCollection] = useState(data);
+
+const gettoken = Cookies.get("auth_token");
   useEffect(() => {
     // Get cookies on the client side
     const cookies = nookies.get(); // retrieves cookies from document.cookie
@@ -27,6 +35,7 @@ const [isModalOpen, setIsModalOpen] = useState(false);
     setCookieValue(userData?.uuid || null);
     setOrganiser(userData?.full_name||"N/A")
   }, []);
+
   const lockeCollection = async () => {
     let item = {
       user_uuid: cookieValue,
@@ -43,6 +52,7 @@ const [isModalOpen, setIsModalOpen] = useState(false);
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            'Authorization': `Bearer ${gettoken}`
           },
           body: JSON.stringify(item),
         }
@@ -72,6 +82,7 @@ const [isModalOpen, setIsModalOpen] = useState(false);
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          'Authorization': `Bearer ${gettoken}`
         },
         body: JSON.stringify(item),
       });
@@ -88,6 +99,10 @@ const [isModalOpen, setIsModalOpen] = useState(false);
     //   alert("An error occurred. Please try again.");
     }
   };
+
+
+  // console.log(editCollection,"editCollection11");
+
   return (
     <div className="min-h-screen bg-gray-100 p-6">
       <div className="bg-white shadow-lg rounded-lg p-6 mb-6 text-center">
@@ -154,11 +169,13 @@ const [isModalOpen, setIsModalOpen] = useState(false);
       </div>
       <SidebarModal
         isOpen={isSidebarOpen}
-     
+        // setEditCollection= {setEditCollection}
+        setClose={setClose}
+        isClose={isClose}
         onClose={() => setIsSidebarOpen(false)}
-        data={data.data}
+        data={data?.data}
       />
-       <SendGiftModal isOpen={isModalOpen}    setIsModalOpen={setIsModalOpen} onClose={() => setIsModalOpen(false)}  onSubmit={handleSend}/>
+       <SendGiftModal isOpen={isModalOpen} setIsModalOpen={setIsModalOpen} onClose={() => setIsModalOpen(false)}  onSubmit={handleSend}/>
     </div>
   );
 };

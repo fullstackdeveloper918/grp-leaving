@@ -1,9 +1,15 @@
 "use client";
 import React, { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
+// import { cookies } from 'next/headers';
+import Cookies from "js-cookie";
+import { useRouter } from "next/navigation";
 
 const AccountEmailprefrence = ({ userInfo, data }: any) => {
+  const router = useRouter();
   console.log(data, "datadatadata");
+  const gettoken = Cookies.get("auth_token");
+  // const gettoken:any = cookiesList.get('auth_token'); 
 
   const [cardReminders, setCardReminders] = useState<boolean>(
     data?.data?.card_remainders
@@ -35,7 +41,7 @@ const AccountEmailprefrence = ({ userInfo, data }: any) => {
           method: "POST", // Method set to POST
           headers: {
             "Content-Type": "application/json", // Indicates that you're sending JSON
-            Authorization: `Bearer ${userInfo}`, // Send the token in the Authorization header
+            Authorization: `Bearer ${gettoken}`, // Send the token in the Authorization header
           },
           body: JSON.stringify(requestData), // Stringify the data you want to send in the body
         }
@@ -43,13 +49,23 @@ const AccountEmailprefrence = ({ userInfo, data }: any) => {
 
       // Parse the response JSON
       let posts = await res.json();
-      console.log(posts, "sds");
-      toast.success("Preferences Updated Successfully");
-    } catch (error) {}
+      // console.log(posts.message, "sds");
+      if(posts?.status === 200){
+        // console.log(posts.status, "sds");
+        toast.success(posts?.message);
+        // toast.success("Preferences Updated Successfully");
+      }else if(posts?.statusCode === 401 && posts?.message === "Token is expire"){
+        Cookies.remove("auth_token");
+        Cookies.remove("COOKIES_USER_ACCESS_TOKEN");
+        router.replace("/login");
+      }
+    } catch (error) {
+         
+    }
   };
   return (
     <>
-      {/* <ToastContainer/> */}
+      <ToastContainer/>
       <div className="max-w-md mx-auto bg-white p-6 rounded-lg shadow-lg">
         <h2 className="text-2xl font-bold text-center mb-4">
           Email Preferences

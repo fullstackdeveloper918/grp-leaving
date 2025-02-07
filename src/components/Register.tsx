@@ -8,6 +8,7 @@ import api from "@/utils/api";
 import validation, { capFirst } from "@/utils/validation";
 import { useRouter } from "next/navigation";
 import { toast, ToastContainer } from "react-toastify";
+import Link from "next/link";
 const { Row, Col, Button } = {
   Row: dynamic(() => import("antd").then((module) => module.Row), {
     ssr: false,
@@ -161,12 +162,12 @@ const Register = () => {
 
               <div className="auth-footer text-center mt-2">
                 <p>
-                  Already have an account? <a href="/login" className="alreadyText">Login</a>
+                  Already have an account? <Link href="/login" className="alreadyText">Login</Link>
                 </p>
                 <p className="text-muted">
                   By registering you accept our{" "}
-                  <a href="/terms" className="alreadyText">Terms of Use</a> and{" "}
-                  <a href="/privacy" className="alreadyText">Privacy Policy</a>.
+                  <Link href="/terms" className="alreadyText">Terms of Use</Link> and{" "}
+                  <Link href="/privacy" className="alreadyText">Privacy Policy</Link>.
                 </p>
               </div>
             </Card>

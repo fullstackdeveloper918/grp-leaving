@@ -11,6 +11,8 @@ import { destroyCookie, parseCookies } from "nookies";
 import GoodLuckCad from "../../assets/images/new_logo.png";
 import register from "../../assets/images/register.png";
 import { useAccessToken } from "@/app/context/AccessTokenContext";
+
+
 const Navbar = () => {
   const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -142,9 +144,9 @@ const Navbar = () => {
           Our back-to-school sale is here!{" "}
           <span className="font-bold">Save 15%</span> on Coins for all your fall
           invitations with code BACKTOFALL. Ends 9/3. 
-          <a href="#" className="underline text-white font-medium">
+          <Link href="#" className="underline text-white font-medium">
             Shop Now.
-          </a>
+          </Link>
         </p>
       </div>
       <header className="w-full">

@@ -28,7 +28,7 @@ let data1 = await data.json();
 // const data = await response1.json();
 //   console.log(data, "check145454523");
   const normalizedType = type.replace('-', ' ');
-  const matchedObject = data1.data.find((item: any) => {
+  const matchedObject = data1?.data.find((item: any) => {
     const normalizedTags = item.collection_title.replace('-', ' ');
     return normalizedTags === normalizedType;
   });
@@ -46,7 +46,7 @@ let data1 = await data.json();
   };
 
   const response = await fetchFromServer(api2);
-  console.log(response, "response");
+  console.log(response, "responseapi2CardCollection");
 
  
   const array = [

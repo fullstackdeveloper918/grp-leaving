@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Script from "next/script";
+import Cookies from "js-cookie";
 
 declare global {
   interface Window {
@@ -10,6 +11,8 @@ declare global {
 
 const EscrowPayment = ({closeModal,brandKey,groupId}:any) => {
   console.log(groupId,"groupId");
+
+  const gettoken = Cookies.get("auth_token"); 
   
   const AMOUNT = 0; // Amount in INR
   const [isProcessing, setIsProcessing] = useState(false);
@@ -69,6 +72,7 @@ const EscrowPayment = ({closeModal,brandKey,groupId}:any) => {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',  
+                'Authorization': `Bearer ${gettoken}`
               },
               body: JSON.stringify({
                 payment_for: "group",

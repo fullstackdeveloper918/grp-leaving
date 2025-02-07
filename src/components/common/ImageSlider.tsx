@@ -8,6 +8,7 @@ import { Navigation, Pagination, Scrollbar } from "swiper/modules";
 import Card from "./Card";
 import Image from "next/image";
 import Images from "@/constants/images";
+import Link from "next/link";
 const array = [
   {
     id: 1,
@@ -61,7 +62,7 @@ const ImageSlider = () => {
           <SwiperSlide key={index}>
             {/* <Card item={item} index={index} /> */}
             <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-              <a href={`/card/new/1?category=${item?.type}`}>
+              <Link href={`/card/new/1?category=${item?.type}`}>
                 <Image
                   className="rounded-t-lg w-100 h-100 object-cover"
                   src={item.image}
@@ -69,7 +70,7 @@ const ImageSlider = () => {
                   height={250}
                   alt="card-img"
                 />
-              </a>
+              </Link>
             </div>
           </SwiperSlide>
         ))}

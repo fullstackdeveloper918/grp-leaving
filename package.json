@@ -43,6 +43,7 @@
     "react-dropzone": "^14.2.9",
     "react-easy-crop": "^5.0.8",
     "react-hook-form": "^7.53.0",
+    "react-icons": "^5.4.0",
     "react-image-crop": "^11.0.6",
     "react-image-file-resizer": "^0.4.8",
     "react-konva": "^18.2.10",

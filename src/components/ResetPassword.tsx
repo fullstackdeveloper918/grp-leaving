@@ -1,9 +1,12 @@
 "use client";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 
 const ResetPassword = () => {
   const [email, setEmail] = useState<any>("");
+  const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -23,15 +26,16 @@ const ResetPassword = () => {
         }
       );
       const data = await response.json();
-      console.log(data, "response");
+      // console.log(data, "responseResetPassword");
 // toast.success(data.message)
-      // if (response.ok) {
-      //   alert("Password reset email sent!");
-      // } else {
-      //   alert("Failed to send reset email. Please try again.");
-      // }
-    } catch (error) {
-      console.error("Error:", error);
+      if (data?.status === 200 && data?.message) {
+        toast.success(data?.message);
+        setTimeout(() => {
+          router.push("/login");
+        }, 2000);
+      } 
+    } catch (error:any) {
+      toast.error("Error:", error?.message);
     }
   };
   return (
@@ -70,9 +74,9 @@ const ResetPassword = () => {
           </button>
         </form>
         <div className="text-center mt-4">
-          <a href="/login" className="text-blue-600 hover:underline">
+          <Link href="/login" className="text-blue-600 hover:underline">
             Return to Login
-          </a>
+          </Link>
         </div>
       </div>
     </div>

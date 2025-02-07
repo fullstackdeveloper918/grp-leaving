@@ -3,40 +3,41 @@ import React, { useEffect, useState } from "react";
 import EscrowPayment from "./EscrowPayment";
 import axios from "axios";
 
-const GiftCardCollectionPot = ({brandKey,groupId}:any) => {
+const GiftCardCollectionPot = ({ brandKey, groupId }: any) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isAddCardOpen, setIsAddCardOpen] = useState(false);
   const [selectedAmount, setSelectedAmount] = useState(20); // Default selected amount
   const [isCustomAmount, setIsCustomAmount] = useState<any>(false); // Tracks if "Other" is selected
   const [customAmount, setCustomAmount] = useState<any>(20); // Custom amount input
   const [name, setName] = useState("");
   const [giftCard, setGiftCard] = useState<any>("");
   const [makeAnonymous, setMakeAnonymous] = useState(false);
-  console.log(brandKey,"brandKey");
-  
+  console.log(brandKey, "brandKey");
+
   const fetchGiftCard = async () => {
     const response = await fetch(
       `https://magshopify.goaideme.com/tango/single-tango-card/${brandKey}`, // Sending brandKey as query parameter
       {
-        method: 'GET', // No body for GET requests
+        method: "GET", // No body for GET requests
         headers: {
-          'Content-Type': 'application/json', // Only for JSON responses
+          "Content-Type": "application/json", // Only for JSON responses
         },
       }
     );
-  
-              const data = await response.json();
+
+    const data = await response.json();
     console.log(data, "lsjdflj");
-  
-    setGiftCard(data)
+
+    setGiftCard(data);
     // return data;
   };
-  
+
   useEffect(() => {
     // const brandKey = 'yourBrandKeyValue';  // Replace with your actual brandKey value
     fetchGiftCard();
   }, []);
-  console.log(giftCard,"giftCard");
-  
+  console.log(giftCard, "giftCard");
+
   const serviceFee = 1.3;
   const totalAmount = isCustomAmount
     ? parseFloat(customAmount) + serviceFee
@@ -56,15 +57,18 @@ const GiftCardCollectionPot = ({brandKey,groupId}:any) => {
       setCustomAmount(parseFloat(value));
     }
   };
-// Check if giftCard and giftCard.data are defined before accessing imageUrls
-const selectGiftImage = giftCard.data?.imageUrls["278w-326ppi"]
-// const selectGiftImage = giftCard?.data?.imageUrls ? giftCard.data.imageUrls["278w-326ppi"] : null;
+  // Check if giftCard and giftCard.data are defined before accessing imageUrls
+  const selectGiftImage = giftCard.data?.imageUrls["278w-326ppi"];
+  // const selectGiftImage = giftCard?.data?.imageUrls ? giftCard.data.imageUrls["278w-326ppi"] : null;
 
-  console.log(selectGiftImage,"selectGiftImage");
-  
+  console.log(selectGiftImage, "selectGiftImage");
+
   return (
     <div className="bg-white shadow-md rounded-lg p-6">
-      <h2 className="text-lg font-semibold mb-4 text-center">
+      {
+        
+        <>
+        <h2 className="text-lg font-semibold mb-4 text-center">
         Gift Card Collection Pot
       </h2>
       <div className="flex justify-center mb-4">
@@ -79,23 +83,27 @@ const selectGiftImage = giftCard.data?.imageUrls["278w-326ppi"]
 </div> */}
       {/* <EscrowPayment /> */}
       <div className="text-center mb-4 justify-center">
-      <p className="text-2xl font-bold">£{"44"}</p>
+        <p className="text-2xl font-bold">£{"44"}</p>
         <button
           onClick={openModal}
           className="bg-blue-600 text-black  border-2 border-blue-700 px-4 py-2  rounded-md hover:bg-blue-700 transition"
         >
           Contribute to Gift Card
         </button>
+        <div className="text-center mb-2 justify-center">
+          <button className="text-black-600 hover:underline">Delete</button>
+        </div>
       </div>
-      <div className="text-center mb-2 justify-center">
-        <button className="text-black-600 hover:underline">Delete</button>
-      </div>
+        
+        </>
+      }
+
       {/* <div className="mt-6 text-center justify-center">
         <button className="bg-blue-600 text-black border-2 border-blue-700 px-4 py-2 rounded-md hover:bg-blue-700 transition">
           Add Gift Card
         </button>
       </div> */}
-        {/* </Link> */}
+      {/* </Link> */}
 
       {isModalOpen && (
         <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 z-50">
@@ -207,7 +215,11 @@ const selectGiftImage = giftCard.data?.imageUrls["278w-326ppi"]
               >
                 Continue to Payment
               </button> */}
-              <EscrowPayment closeModal={closeModal} brandKey={brandKey} groupId={groupId}/> 
+              <EscrowPayment
+                closeModal={closeModal}
+                brandKey={brandKey}
+                groupId={groupId}
+              />
             </div>
 
             <p className="text-sm text-gray-500 mt-4 text-center">

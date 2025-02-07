@@ -4,27 +4,32 @@ import api from '@/utils/api';
 import { parseCookies } from 'nookies';
 import React, { useEffect, useState } from 'react'
 import { toast, ToastContainer } from 'react-toastify';
+import Cookies from "js-cookie";
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 const AccountProfile = ({userInfo,data}:any) => {
+  const router = useRouter();
+  const gettoken = Cookies.get("auth_token"); 
 
 console.log(data,"userInfoCookie");
 
 
-    const { accessToken, setAccessToken } = useAccessToken();
-     useEffect(() => {
-         const cookies = parseCookies();
-         console.log(cookies, "cookies");
+    // const { accessToken, setAccessToken } = useAccessToken();
+    //  useEffect(() => {
+    //      const cookies = parseCookies();
+    //      console.log(cookies, "cookies");
      
-         const token = cookies.auth_token;
-         console.log(typeof token, "iooioio");
+    //      const token = cookies.auth_token;
+    //      console.log(typeof token, "iooioio");
      
-         if (token) {
-           setAccessToken(token);
-         } else {
-           // alert("nothing")
-         }
-       }, []);
-     console.log(accessToken,"accessToken");
+    //      if (token) {
+    //        setAccessToken(token);
+    //      } else {
+    //        // alert("nothing")
+    //      }
+    //    }, []);
+    //  console.log(accessToken,"accessToken");
 const [name, setName] = useState(data?.full_name);
 const [email, setEmail] = useState(data?.email);
 const [invoiceDetails, setInvoiceDetails] = useState(data?.additional_invoice);
@@ -40,7 +45,7 @@ const [invoiceDetails, setInvoiceDetails] = useState(data?.additional_invoice);
       method: 'POST', // Method set to POST
       headers: {
         'Content-Type': 'application/json', // Indicates that you're sending JSON
-        'Authorization': `Bearer ${accessToken}` // Send the token in the Authorization header
+        'Authorization': `Bearer ${gettoken}` // Send the token in the Authorization header
       },
       body: JSON.stringify(requestData) // Stringify the data you want to send in the body
     });
@@ -48,8 +53,13 @@ const [invoiceDetails, setInvoiceDetails] = useState(data?.additional_invoice);
     // Parse the response JSON
     let posts = await res.json();
     console.log(posts,"jklklkj");
-    if(res.status===200){
+    if(res.status===201){
       toast.success("Profile Updated Suceesfully")
+      Cookies.set("userInfo", JSON.stringify(posts));
+    }else if(posts?.statusCode === 401){
+      Cookies.remove("auth_token");
+      Cookies.remove("COOKIES_USER_ACCESS_TOKEN");
+      router.push("/login");
     }
    } catch (error) {
     
@@ -58,14 +68,18 @@ const [invoiceDetails, setInvoiceDetails] = useState(data?.additional_invoice);
 
   // https://magshopify.goaideme.com/user/update-profile
 
-  const getData=async()=>{
-    try {
-      const res= await api.User.listing()
-      console.log(res,"jkjkjk");
-    } catch (error) {
-      
-    }
-    }
+  // useEffect(() => {
+  //   const getData = async () => {
+  //     try {
+  //       const res = await api.User.listing();
+  //       console.log(res, "jkjkjk");
+  //     } catch (error) {
+  //       console.error("Error fetching data:", error);
+  //     }
+  //   };
+
+  //   getData(); // Call function inside useEffect
+  // }, [name]);
    
   return (
     <div>
@@ -98,9 +112,9 @@ const [invoiceDetails, setInvoiceDetails] = useState(data?.additional_invoice);
             <div>
               <label className="block text-sm font-medium text-gray-700">Additional invoice details</label>
               <textarea
-                className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                className="mt-1 px-2 py-2 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                 rows={3}
-                value={invoiceDetails||"N/A"}
+                value={invoiceDetails||""}
                 onChange={(e) => setInvoiceDetails(e.target.value)}
               />
             </div>
@@ -114,7 +128,7 @@ const [invoiceDetails, setInvoiceDetails] = useState(data?.additional_invoice);
           >
             Update
           </button>
-          <a href="/reset-password" className="text-blue-500 hover:underline">Reset Password</a>
+          <Link href="/reset-password" className="text-blue-500 hover:underline">Reset Password</Link>
         </div>
 
         <div className="mt-8">

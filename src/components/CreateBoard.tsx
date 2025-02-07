@@ -6,32 +6,33 @@ import { toast, ToastContainer } from "react-toastify";
 import { useRouter } from "next/navigation";
 import { useAccessToken } from "@/app/context/AccessTokenContext";
 import { parseCookies } from "nookies";
+import Cookies from "js-cookie";
 const CreateBoard = ({ data }: any) => {
+  const { accessToken, setAccessToken } = useAccessToken();
+  useEffect(() => {
+    const cookies = parseCookies();
+    console.log(cookies, "cookies");
 
+    const token = cookies.auth_token;
+    console.log(typeof token, "iooioio");
 
-
-    const { accessToken, setAccessToken } = useAccessToken();
-     useEffect(() => {
-         const cookies = parseCookies();
-         console.log(cookies, "cookies");
-     
-         const token = cookies.auth_token;
-         console.log(typeof token, "iooioio");
-     
-         if (token) {
-           setAccessToken(token);
-         } else {
-           // alert("nothing")
-         }
-       }, []);
-     console.log(accessToken,"accessToken");
+    if (token) {
+      setAccessToken(token);
+    } else {
+      // alert("nothing")
+    }
+  }, []);
+  console.log(accessToken, "accessToken");
   const router = useRouter();
   const [userInfo, setUserInfo] = useState<any>(null);
   const [uuid, setUuid] = useState<string | null>(null);
   console.log(uuid, "uuid");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedImage(null);
+  };
   useEffect(() => {
     const cookies = document.cookie.split("; ");
     const userInfoCookie = cookies.find((cookie) =>
@@ -80,15 +81,18 @@ const CreateBoard = ({ data }: any) => {
     }));
   };
   const [selectedImage, setSelectedImage] = useState<any | null>(null);
-const [addSelectedImage, setAddSelectedImage] = useState<any | null> (null);
+  const [addSelectedImage, setAddSelectedImage] = useState<any | null>(null);
   const handleBackClick = () => {
     setSelectedImage(null); // Reset the selected image to show the image grid again
   };
+
+  const gettoken = Cookies.get("auth_token");
   const AddGiftCard = () => {
     setAddCard(selectedImage.brandKey); // Reset the selected image to show the image grid again
-    console.log("slectedImagedsssssssss",selectedImage)
-    setAddSelectedImage(selectGiftImage)
+    console.log("slectedImagedsssssssss", selectedImage);
+    setAddSelectedImage(selectGiftImage);
     setIsModalOpen(false);
+    setSelectedImage(null);
   };
   const handleImageClick = (imageData: any) => {
     setSelectedImage(imageData);
@@ -124,7 +128,8 @@ const [addSelectedImage, setAddSelectedImage] = useState<any | null> (null);
           // replace '/api/cart' with the correct endpoint
           method: "POST",
           headers: {
-            "Content-Type": "application/json",
+            "Content-Type": "application/json", // Indicates that you're sending JSON
+            Authorization: `Bearer ${gettoken}`,
           },
           body: JSON.stringify(item),
         }
@@ -136,9 +141,13 @@ const [addSelectedImage, setAddSelectedImage] = useState<any | null> (null);
       }
 
       const data = await response.json(); // Assumin    g the response returns JSON
-      toast.success("Added Successfully");
+      if (data.status === 200) {
+        toast.success("Added Successfully");
+        router.replace(`/card/boardpay/${data?.data?.uuid}`);
+      }
+
       console.log(data, "    ");
-      router.replace(`/card/boardpay/${data?.data?.uuid}`);
+
       // router.replace(`/card/boardpay/1`)
     } catch (error) {
       setLoading(false);
@@ -175,9 +184,9 @@ const [addSelectedImage, setAddSelectedImage] = useState<any | null> (null);
   }
   const selectGiftImage = selectedImage?.imageUrls["278w-326ppi"];
   console.log(selectGiftImage, "selectGiftImage");
-  const handleLogin=()=>{
-    router.push("/login")
-  }
+  const handleLogin = () => {
+    router.push("/login");
+  };
   return (
     <div>
       <ToastContainer />
@@ -212,46 +221,62 @@ const [addSelectedImage, setAddSelectedImage] = useState<any | null> (null);
             />
           </label>
           <div className="mb-6">
-            <h2 className="text-lg font-semibold mb-2">
-              Collect cash for a gift card
-            </h2>
-            <p className="text-gray-600 mb-4">
-              Make this card extra special. Start a gift card collection pot
-              that anyone can contribute to.
-            </p>
-            <button
-              type="button"
-              className="flex items-center justify-center border border-dashed border-blue-500 bg-blue-50 rounded-md px-4 text-blue-600 font-medium transition duration-300 hover:bg-blue-100"
-              // onClick={() => setFormData({ ...formData, selectedGift: 'gift card' })} // Update the selected gift here
-              onClick={openModal}
-            >
-              <span className="text-2xl mr-2">+</span>Select gift card
-            </button>
-            <div className="">
-              {/* <img src={selectGiftImage} alt="" className="" /> */}
-              <img src={addSelectedImage} alt="" className="" />
-            </div>
+            {addSelectedImage === null ? (
+              <div className="">
+                <h2 className="text-lg font-semibold mb-2">
+                  Collect cash for a gift card
+                </h2>
+                <p className="text-gray-600 mb-2">
+                  Make this card extra special. Start a gift card collection pot
+                  that anyone can contribute to.
+                </p>
+                <button
+                  type="button"
+                  className="flex items-center justify-center border border-dashed border-blue-500 bg-blue-50 rounded-md px-4 text-blue-600 font-medium transition duration-300 hover:bg-blue-100"
+                  // onClick={() => setFormData({ ...formData, selectedGift: 'gift card' })} // Update the selected gift here
+                  onClick={openModal}
+                >
+                  <span className="text-2xl mr-2">+</span>Select gift card
+                </button>
+              </div>
+            ) : (
+              <div className="flex flex-col gap-1">
+                {/* <img src={selectGiftImage} alt="" className="" /> */}
+                <h2 className="text-center font-bold">Gift Card</h2>
+                <img src={addSelectedImage} alt="" className="" />
+                <p className="text-center">
+                  Everyone will be able to contribute after you finish creating
+                  the card.
+                </p>
+                <button
+                  className="text-red-600 hover:text-red-800 font-medium"
+                  onClick={() => setAddSelectedImage(null)}
+                >
+                  Remove Gift Card
+                </button>
+              </div>
+            )}
           </div>
           {/* <Link href={`/share/1`}> */}
-          {
-            accessToken?
+          {accessToken ? (
             <button
-            //   disabled={setLoading}
-            type="submit"
-            className="w-full bg-blueBg text-white py-2 px-4  rounded-md hover:bg-blue-700 transition duration-300"
-          >
-            Continue
-          </button>:
-          <Link href={`/login`}>
-          <button
-          //   disabled={setLoading}
-          type="submit"
-          className="w-full bg-blueBg text-white py-2 px-4  rounded-md hover:bg-blue-700 transition duration-300"
-        >
-          Continue
-        </button>
-        </Link>
-          }
+              //   disabled={setLoading}
+              type="submit"
+              className="w-full bg-blueBg text-white py-2 px-4  rounded-md hover:bg-blue-700 transition duration-300"
+            >
+              Continue
+            </button>
+          ) : (
+            <Link href={`/login`}>
+              <button
+                //   disabled={setLoading}
+                type="submit"
+                className="w-full bg-blueBg text-white py-2 px-4  rounded-md hover:bg-blue-700 transition duration-300"
+              >
+                Continue
+              </button>
+            </Link>
+          )}
           {/* <button
             //   disabled={setLoading}
             type="submit"
@@ -268,7 +293,7 @@ const [addSelectedImage, setAddSelectedImage] = useState<any | null> (null);
           <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 z-50">
             <div className="bg-white p-6 rounded-md shadow-lg max-w-lg w-full relative">
               {/* Top-left Cancel Button */}
-              <h2 className="text-lg font-semibold mb-4 text-center">
+              <h2 className="text-lg font-semibold mb-2 text-center">
                 Select a Gift Card
               </h2>
 
@@ -280,7 +305,7 @@ const [addSelectedImage, setAddSelectedImage] = useState<any | null> (null);
               </button>
 
               {/* How Collection Pots Work */}
-              <div className="bg-blue-100 p-4 rounded-md mb-4">
+              <div className="bg-blue-100 p-4 rounded-md mb-2">
                 <h3 className="text-sm font-semibold">
                   How do collection pots work?
                 </h3>
@@ -305,19 +330,19 @@ const [addSelectedImage, setAddSelectedImage] = useState<any | null> (null);
                   <div className="">
                     <img src={selectGiftImage} alt="" className="" />
                   </div>
-                  <div className="w-20 h-12 bg-black text-white flex items-center justify-center rounded mb-4">
+                  {/* <div className="w-20 h-12 bg-black text-white flex items-center justify-center rounded mb-2">
                     {selectedImage.brandName}
-                  </div>
-                  <h2 className="text-xl font-bold mb-2">
+                  </div> */}
+                  <h2 className="text-xl font-bold">
                     {selectedImage.brandName}
                   </h2>
                   <p className="text-sm text-gray-500">
                     Currency: <span className="font-bold">INR</span>
                   </p>
-                  <p className="text-sm text-gray-500">
+                  {/* <p className="text-sm text-gray-500">
                     Country: <span className="font-bold">IND</span>
-                  </p>
-                  <p className="text-sm text-gray-500">
+                  </p> */}
+                  <p className="text-sm leading-6 text-gray-500">
                     Min Value: <span className="font-bold">{minFaceValue}</span>
                   </p>
                   <p className="text-sm text-gray-500">
@@ -333,14 +358,14 @@ const [addSelectedImage, setAddSelectedImage] = useState<any | null> (null);
                     (We automatically create multiple gift cards if you go over
                     the max)
                   </p>
-                  <a
+                  <Link
                     href="#"
-                    className="text-sm text-blue-600 hover:underline mt-4"
+                    className="text-sm text-blue-600 hover:underline mt-2"
                   >
                     Terms and conditions
-                  </a>
+                  </Link>
                   <button
-                    className="bg-blue-600 text-black px-4 py-2 rounded mt-6 hover:bg-blue-700"
+                    className="bg-blue-600 text-black px-4 py-2 rounded mt-2 hover:bg-blue-700"
                     onClick={AddGiftCard}
                   >
                     Add Gift Card
@@ -386,7 +411,7 @@ const [addSelectedImage, setAddSelectedImage] = useState<any | null> (null);
               )}
 
               {/* Modal Footer */}
-              <p className="text-sm text-gray-500 mt-4 text-center">
+              <p className="text-sm text-gray-500 mt-2 text-center">
                 You’ll be taken to our payment provider Stripe to complete the
                 payment.
               </p>

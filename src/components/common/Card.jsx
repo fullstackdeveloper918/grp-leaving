@@ -2,45 +2,45 @@ import React from "react";
 import Image from "next/image";
 import Images from "@/constants/images";
 import { Api } from "@/interfaces/interfaces";
-
+import Link from "next/link";
 
 const array = [
   {
     id: 1,
     image: Images.card_1,
-    type: "farewell"
+    type: "farewell",
   },
   {
     id: 2,
     image: Images.card_2,
-    type: "birthday"
+    type: "birthday",
   },
   {
     id: 3,
     image: Images.card_3,
-    type: "wedding"
+    type: "wedding",
   },
   {
     id: 4,
     image: Images.card_4,
-    type: "baby"
+    type: "baby",
   },
   {
     id: 5,
     image: Images.card_5,
-    type: "sympathy"
+    type: "sympathy",
   },
   {
     id: 6,
     image: Images.card_2,
-    type: "sympathy"
+    type: "sympathy",
   },
   {
     id: 7,
     image: Images.card_3,
-    type: "sympathy"
+    type: "sympathy",
   },
-]
+];
 
 // const array = [
 //   'https://img.freepik.com/premium-psd/greeting-card-with-flowers-it-pink-background_74869-4261.jpg?w=826',
@@ -53,29 +53,31 @@ const array = [
 // ]
 
 const Card = ({ item, index }) => {
-  console.log(item,"asdasd");
-  
-  const matchingCard = array.find(card => card.type === item.type);
-console.log(matchingCard,"matchingCard");
+  console.log(item, "asdasd");
 
-  const imageToDisplay = matchingCard ? matchingCard.image : array[index]?.image;
+  const matchingCard = array.find((card) => card.type === item.type);
+  console.log(matchingCard, "matchingCard");
+
+  const imageToDisplay = matchingCard
+    ? matchingCard.image
+    : array[index]?.image;
 
   return (
     <>
       {/* <div className="max-w-sm 2xl:w-64 2xl:h-80 md:w-40 md:w-48 sm:w-48 md:h-40 sm:w-44  sm:h-44 sm:w-40  sm:h-40 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 overflow-hidden"> */}
-       {/* <p className="">{item?.collection_uri}</p> */}
-       <div className="min-h-[300px] min_height">
-        <a href={`/card/new/${item?.uuid}?category=${item?.title}`}>
+      {/* <p className="">{item?.collection_uri}</p> */}
+      <div className="min-h-[300px] min_height">
+        <Link href={`/card/new/${item?.uuid}?category=${item?.title}`}>
           <Image
-            className="rounded-t-lg w-full h-full object-cover rounded-md "
+            className="rounded-t-lg w-full min-h-[300px] object-cover rounded-md"
             src={`https://magshopify.goaideme.com/${item?.images[0]?.card_images[0]}`}
-          width={100}
-          height={100}
+            layout="responsive"
+            width={500} // Set appropriate width
+            height={300} // Set appropriate height
             alt="card-img"
           />
-        </a>
+        </Link>
       </div>
-
     </>
   );
 };

@@ -6,15 +6,15 @@ import React, { useEffect, useState } from "react";
 import checkSvg from "../../assets/images/check.svg";
 import api from "@/utils/api";
 import { cookies } from "next/dist/client/components/headers";
-import { toast } from "react-toastify";
-import nookies, { parseCookies } from 'nookies';
+import { toast, ToastContainer } from "react-toastify";
+import nookies, { parseCookies } from "nookies";
 import { useAccessToken } from "@/app/context/AccessTokenContext";
 const MultiStepForm = ({ params }: any) => {
   const router = useRouter();
-  
+
   const [step, setStep] = useState(1);
-  console.log(step,"jjjkljkl");
-  
+  console.log(step, "jjjkljkl");
+
   const [recipientName, setRecipientName] = useState("");
   const [loading, setLoading] = useState(false);
   const [senderName, setSenderName] = useState("");
@@ -31,54 +31,55 @@ const MultiStepForm = ({ params }: any) => {
   console.log(params, "params");
   const [userInfo, setUserInfo] = useState<any>(null);
   const [uuid, setUuid] = useState<string | null>(null);
-console.log(uuid,"uuid")
+  console.log(uuid, "uuid");
   useEffect(() => {
-    const cookies = document.cookie.split('; ');
-    const userInfoCookie = cookies.find(cookie => cookie.startsWith('userInfo='));
+    const cookies = document.cookie.split("; ");
+    const userInfoCookie = cookies.find((cookie) =>
+      cookie.startsWith("userInfo=")
+    );
 
     if (userInfoCookie) {
-      const cookieValue = userInfoCookie.split('=')[1];
+      const cookieValue = userInfoCookie.split("=")[1];
       try {
         const parsedUserInfo = JSON.parse(decodeURIComponent(cookieValue));
         setUserInfo(parsedUserInfo);
-        
+
         // Extracting the UUID from the parsed userInfo object
         if (parsedUserInfo && parsedUserInfo.uuid) {
           setUuid(parsedUserInfo.uuid);
-          console.log('UUID:', parsedUserInfo.uuid);
+          console.log("UUID:", parsedUserInfo.uuid);
         }
       } catch (error) {
-        console.error('Error parsing userInfo cookie', error);
+        console.error("Error parsing userInfo cookie", error);
       }
     }
   }, []);
 
-
   const cookies = parseCookies();
   const { accessToken, setAccessToken } = useAccessToken();
-console.log(accessToken,"accessToken");
+  console.log(accessToken, "accessToken");
 
   useEffect(() => {
-     const cookies = parseCookies();
-     console.log(cookies, "cookies");
- 
-     const token = cookies.auth_token;
-     console.log(typeof token, "iooioio");
- 
-     if (token) {
-       setAccessToken(token);
-     } else {
-       // alert("nothing")
-     }
-   }, []);
- 
+    const cookies = parseCookies();
+    console.log(cookies, "cookies");
+
+    const token = cookies.auth_token;
+    console.log(typeof token, "iooioio");
+
+    if (token) {
+      setAccessToken(token);
+    } else {
+      // alert("nothing")
+    }
+  }, []);
+
   // console.log(recipientName,"recipientName");
   // console.log(recipientName,"recipientName");
   const [selectedDate, setSelectedDate] = useState(""); // to store date value
   const [selectedTime, setSelectedTime] = useState(""); // to store time value
-  const handleLogin=()=>{
-    router.push("/login")
-  }
+  const handleLogin = () => {
+    router.push("/login");
+  };
   const handleNext = () => {
     if (!recipientName) {
       setError("Recipient name is required.");
@@ -148,10 +149,10 @@ console.log(accessToken,"accessToken");
   console.log(selectedDate, "selectedDate");
   console.log(selectedTime, "selectedTime");
   console.log(cardType, "cardType");
-// const [loading1,setLoading]=useState(false)
+  // const [loading1,setLoading]=useState(false)
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-  
+
     try {
       let item = {
         user_uuid: uuid,
@@ -166,44 +167,59 @@ console.log(accessToken,"accessToken");
         allow_private: false,
         add_confetti: false,
       };
-  
+
       setLoading(true);
       console.log(item, "item");
-  
+
       // Make the fetch POST request
-      const response = await fetch('https://magshopify.goaideme.com/cart/add-cart', { // replace '/api/cart' with the correct endpoint
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${accessToken}`
-        },
-        
-        body: JSON.stringify(item),
-      });
-  
+      const response = await fetch(
+        "https://magshopify.goaideme.com/cart/add-cart",
+        {
+          // replace '/api/cart' with the correct endpoint
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${accessToken}`,
+          },
+
+          body: JSON.stringify(item),
+        }
+      );
+
       // Check if the request was successful
-      if (!response.ok) {
-        throw new Error('Failed to add item to cart');
-      }
-  
+      console.log("objectres", response);
+      // if (!response.ok) {
+      //   throw new Error('Failed to add item to cart');
+      // }
+
       const data = await response.json(); // Assuming the response returns JSON
-      toast.success("Added Successfully");
-  
+      if (response.status === 200) {
+        toast.success("Cart Added Successfully");
+      }
+      console.log("datamultistepform", data);
       // Optionally reset form values or error states
       // setError("");
       // setRecipientName("");
-  
+
+      if (response.status === 401 && response.statusText === "Unauthorized") {
+        toast.error("token is expire");
+        // router.replace('/login')
+        // cookies.remove("auth_token")
+      }
+
       router.push(`/card/pay/${params}?cart_uuid=${data.data.cart_uuid}`);
       console.log("Final submission", { recipientName, recipientEmail });
-    } catch (error) {
+    } catch (err: any) {
       setLoading(false);
-      console.error("Error during submission", error);
-      toast.error("Something went wrong");
+      // console.error("Error during submissionss", error);
+      console.log("fsdfsdf", err);
+      // toast.error(err.message);
     }
   };
   return (
     <>
       <div className="flex space-x-8 mb-8 absolute top-10">
+        <ToastContainer />
         {/* <div
           className={`flex items-center space-x-2 ${
             step >= 3 ? "text-blue-600" : "text-gray-500"
@@ -240,18 +256,20 @@ console.log(accessToken,"accessToken");
           <p className="md:text-md text-sm font-medium mb-0">Enter Details</p>
         </div>
 
-        <div className={step > 3 ?"text-center before_line":""}>
+        <div className={step > 3 ? "text-center before_line" : ""}>
           <div className={step >= 3 ? "step_count" : "step_count1"}>3</div>
           <p className="md:text-md text-sm font-medium mb-0">Pay and Share</p>
         </div>
-{step > 3?
-        <div className="text-center">
-          <div className="submit_svg ">
-            <img src={checkSvg.src} alt="imgccheck" />
+        {step > 3 ? (
+          <div className="text-center">
+            <div className="submit_svg ">
+              <img src={checkSvg.src} alt="imgccheck" />
+            </div>
+            <p className="md:text-md text-sm font-medium mb-0">Submit</p>
           </div>
-          <p className="md:text-md text-sm font-medium mb-0">Submit</p>
-        </div>
-      :""} 
+        ) : (
+          ""
+        )}
       </div>
 
       <div className="bg-white shadow-lg rounded-lg p-10 w-full max-w-lg">
@@ -265,7 +283,7 @@ console.log(accessToken,"accessToken");
             : "Who is the card from?"}
         </h2>
         <form
-        // loading={loading}
+          // loading={loading}
           onSubmit={handleSubmit}
           aria-disabled={false}
           className="space-y-6"
@@ -324,7 +342,7 @@ console.log(accessToken,"accessToken");
 
               <button
                 type="button"
-                onClick={!accessToken? handleLogin:handleNext}
+                onClick={!accessToken ? handleLogin : handleNext}
                 className="w-full bg-blueBg text-white py-2 px-4 rounded-md shadow-sm hover:bg-blue-700"
               >
                 Next

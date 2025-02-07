@@ -1,14 +1,20 @@
 "use client"
 import React, { useEffect, useState } from "react";
 import nookies from 'nookies';
+import Cookies from "js-cookie";
+import { IoIosCloseCircleOutline } from "react-icons/io";
 interface SidebarModalProps {
   isOpen: boolean;
   onClose: () => void;
   data:any,
-  
+  setClose:any,
+  isClose:any
+  // setEditCollection:any
 }
 
-const SidebarModal: React.FC<SidebarModalProps> = ({ isOpen, onClose,data }) => {
+const SidebarModal: React.FC<SidebarModalProps> = ({ isOpen, onClose,data,setClose,isClose }) => {
+console.log("databysidebarmodel",data?.collection_title)
+console.log("databysidebarmodel",data)
   const [deliveryOption, setDeliveryOption] = useState("later");
   const [collectionTitle, setCollectionTitle] = useState(data?.collection_title);
   const [senderName, setSenderName] = useState(data?.sender_name);
@@ -16,14 +22,19 @@ const SidebarModal: React.FC<SidebarModalProps> = ({ isOpen, onClose,data }) => 
   const [deliveryDate, setDeliveryDate] = useState(data?.start_date);
   const [deliveryTime, setDeliveryTime] = useState(data?.end_date);
   const [cookieValue, setCookieValue] = useState<string | null>(null);
-console.log(cookieValue,"cookieValue");
+// console.log(cookieValue,"cookieValue");
+
+const gettoken = Cookies.get("auth_token");
 
   useEffect(() => {
     // Get cookies on the client side
     const cookies = nookies.get(); // retrieves cookies from document.cookie
     const userData = cookies.userInfo ? JSON.parse(cookies.userInfo) : null;
+
     setCookieValue(userData?.uuid  || null);
   }, []);
+
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -46,21 +57,30 @@ console.log(cookieValue,"cookieValue");
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          'Authorization': `Bearer ${gettoken}`
         },
         body: JSON.stringify(formData),
       });
 
-      // if (response.ok) {
-      //   alert("Data saved successfully");
-      //   onClose(); // Close the modal after successful submission
-      // } else {
-      //   alert("Failed to save data");
-      // }
+      if (response.ok) {
+        alert("Data saved successfully");
+        setClose(!isClose);
+        // console.log("respoSidemodel",formData)
+        //    setEditCollection((prev: any) => ({
+        //   ...prev,
+        //   data: formData, // Updating the nested `data` properly
+        // }));
+        onClose(); // Close the modal after successful submission
+      } else {
+        alert("Failed to save data");
+      }
     } catch (error) {
       console.error("Error submitting form:", error);
       alert("An error occurred while saving the data.");
     }
   };
+
+  console.log("collectionTitle",collectionTitle)
 
   return (
     <div
@@ -81,7 +101,7 @@ console.log(cookieValue,"cookieValue");
             className="text-gray-500 hover:text-gray-700"
             onClick={onClose}
           >
-            &times;
+            <IoIosCloseCircleOutline size={30} />
           </button>
         </div>
         <form onSubmit={handleSubmit}>
@@ -90,7 +110,7 @@ console.log(cookieValue,"cookieValue");
               <span className="text-gray-700">What is the title of your collection?</span>
               <input
                 type="text"
-                value={collectionTitle}
+                value={collectionTitle || data?.collection_title}
                 onChange={(e) => setCollectionTitle(e.target.value)}
                 placeholder="Collection Title"
                 className="mt-1 block w-full p-2 border border-gray-300 rounded"

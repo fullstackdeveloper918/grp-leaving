@@ -1,25 +1,53 @@
-// "use client"
+"use client";
 import GroupCollection from "@/components/GroupCollection";
-import React from "react";
+import React, { useEffect, useState } from "react";
+// import { toast } from "react-hot-toast";
 
-const page = async({params, searchParams}:any) => {
-console.log(params.id,"khskhk");
+interface PageProps {
+  params: { id: string };
+  searchParams: Record<string, any>;
+}
 
-let data = await fetch(`https://magshopify.goaideme.com/razorpay/single-link-listing/${params.id}`, {
-  method: 'GET', // Method set to GET
-  headers: {
-    'Cache-Control': 'no-cache',
-     cache: 'reload'
-  }
-});
-// console.log(gettoken,"ggg");
-// Parse the response JSON
-let response = await data.json();
-console.log(response,"response");
+const Page: React.FC<PageProps> = ({ params, searchParams }) => {
+  console.log(params.id, "Fetching Data...");
 
-  return (
-   <GroupCollection params={params} searchParams={searchParams} data={response}/>
-  );
+  const [data, setData] = useState<any>(null);
+  const [isClose, setClose] = useState<boolean>(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        console.log(params.id, "Fetching Data...");
+        const response = await fetch(
+          `https://magshopify.goaideme.com/razorpay/single-link-listing/${params.id}`,
+          {
+            method: "GET",
+            headers: {
+              "Cache-Control": "no-cache",
+            },
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch data");
+        }
+
+        const jsonData = await response.json();
+        console.log(jsonData, "Response Data");
+        setData(jsonData);
+      } catch (err: any) {
+        // toast.error("Error fetching data: " + err.message);
+      } finally {
+        // setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [isClose]);
+
+  // if (loading) return <p>Loading...</p>;
+
+  return <GroupCollection params={params} searchParams={searchParams} data={data} setClose={setClose} isClose={isClose} />;
 };
 
-export default page;
+export default Page;

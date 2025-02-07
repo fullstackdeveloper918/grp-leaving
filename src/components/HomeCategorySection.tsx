@@ -477,7 +477,7 @@ const HomeCategorySection = async({params,searchParams}:any) => {
                 key={card.id}
                 className="max-w-sm lg:w-64 lg:h-80 md:w-[150px] md:h-[150px] w-[100px] h-[100px] bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 overflow-hidden"
               >
-                <a href={`/card/new/${card?.uuid}?category=${card?.title}`}>
+                <Link href={`/card/new/${card?.uuid}?category=${card?.title}`}>
                   <Image
                     className="rounded-t-lg w-full h-full object-cover"
                     src={`https://magshopify.goaideme.com/${card?.images[0]?.card_images[0]}`}
@@ -485,7 +485,7 @@ const HomeCategorySection = async({params,searchParams}:any) => {
                     width={100}
                     height={100}
                   />
-                </a>
+                </Link>
               </div>
             ))
           ) : (
@@ -495,15 +495,15 @@ const HomeCategorySection = async({params,searchParams}:any) => {
                 // className="max-w-sm 2xl:w-64 2xl:h-80 xl:w-56 xl:h-56 md:w-[150px] md:h-[150px] w-[100px] h-[100px] bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 overflow-hidden"
             className="card_width_img"
             >
-                <a href={`/card/new/${card?.uuid}?category=${card?.title}`}>
+                <Link href={`/card/new/${card?.uuid}?category=${card?.title}`}>
                   <Image
                     className="rounded-t-lg w-full h-full object-cover"
                     src={`https://magshopify.goaideme.com/${card?.images[0]?.card_images[0]}`}
                     alt="card-img"
-                    width={100}
-                    height={100}
+                    width={500}
+                    height={300}
                   />
-                </a>
+                </Link>
               </div>
             ))
           )}

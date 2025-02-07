@@ -1,12 +1,15 @@
 "use client";
 import { Grid } from 'antd';
-import { useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import React, { useState } from 'react'
 import RazorPay from './RazorPay';
+import Cookies from 'js-cookie';
+import { toast, ToastContainer } from 'react-toastify';
 
 const BoardCheckout = ({data}:any) => {
 
-
+    const gettoken = Cookies.get("auth_token");   
+    const router = useRouter();
     const [cardType, setCardType] = useState<any>("group");
     // console.log(cardType, "cardType");
     const param=useParams()
@@ -43,8 +46,8 @@ const BoardCheckout = ({data}:any) => {
       }
     };
     const [paywith, setPaywith] = useState<any>("STRIPE");
-    const [voucher, setVaoucher] = useState<any>("");
-    const [voucher1, setVaoucher1] = useState<any>("");
+      const [voucher, setVaoucher] = useState<any>("");
+      const [voucherDiscount, setVaoucherDiscount] = useState<any>(""); 
     console.log(numCards,"numCards");
     console.log(salePrice,"salePrice");
     console.log(bundleOption,"bundleOption");
@@ -52,9 +55,8 @@ const BoardCheckout = ({data}:any) => {
     const onChange = (e: any) => {
       setVaoucher(e);
     };
-    const onSubmit = () => {
-      setVaoucher1(voucher);
-    };
+
+
     // const stripe = useStripe();
     const cardPrices: any = {
       5: { price: 22.45, perCard: 4.49, discount: "10%" },
@@ -81,7 +83,7 @@ const BoardCheckout = ({data}:any) => {
         : "22.45";
   
   
-        const TotalAmount =amount - voucher1
+        const TotalAmount =amount - voucherDiscount
         // const TotalAmount = bundleOption === "single" 
         // ? bundleSingleCard 
         // : cardType === "group" 
@@ -92,8 +94,50 @@ const BoardCheckout = ({data}:any) => {
       // bundleOption === "bundle"
       //   ? `$${parseFloat(cardPrices[numCards].price.toFixed(2)) - voucher1} USD`
       //   : `$${AmountCondition - voucher1} USD`;
+
+
+      const handleApplyDiscount = async() => {
+      
+            // console.log("object")
+            // setVaoucher1(voucher);
+            try {
+               const requestData = {
+                code: voucher,
+                card_price:amount
+                    // full_name:name,
+                    // additional_invoice:invoiceDetails
+                  };
+                  
+                  let res = await fetch('https://magshopify.goaideme.com/discount/is-voucher-valid', {
+                    method: 'POST', // Method set to POST
+                    headers: {
+                      'Content-Type': 'application/json', // Indicates that you're sending JSON
+                       'Authorization': `Bearer ${gettoken}` // Send the token in the Authorization header
+                    },
+                    body: JSON.stringify(requestData) // Stringify the data you want to send in the body
+                  });
+                  
+                  // Parse the response JSON
+                  let posts = await res.json();
+                  console.log(posts,"jklklkj");
+                  const numberValue = parseFloat(posts?.data.replace(/[^0-9.]/g, "")); 
+                  setVaoucherDiscount(numberValue)
+                  // console.log("voucher discount", voucherDiscount);
+                  if(res.status===200){
+                    toast.success("Voucher Added Suceesfully")
+                  }
+                  else if(posts?.statusCode === 401){
+                    Cookies.remove("auth_token");
+                    router.push("/login");
+                  }
+            } catch (error:any) {
+              toast.error("Voucher is not found")
+            }
+          }; 
+
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col justify-center items-center p-5">
+      <ToastContainer/> 
     <div className="w-full max-w-4xl bg-white shadow-lg rounded-lg p-6 md:flex">
       {/* Left Section */}
       <div className="flex-1">
@@ -241,15 +285,14 @@ const BoardCheckout = ({data}:any) => {
           </div>
           <div className="flex justify-between items-center mb-4">
             <input
-              type="number"
+              type="text"
               placeholder="Voucher Code"
               className="border border-gray-300 rounded-lg p-2 w-full"
-              min="0"
               onChange={(e: any) => onChange(e.target.value)}
               value={voucher}
             />
             <button
-              onClick={onSubmit}
+              onClick={handleApplyDiscount}
               className="ml-2 bg-blue-500 text-black  border-2 border-blue-700 py-2 px-4 rounded-md hover:bg-blue-600 transition"
             >
               Apply
@@ -265,7 +308,7 @@ const BoardCheckout = ({data}:any) => {
                       voucher1
                     } USD`
                   : `$${AmountCondition - voucher1} USD`} */}
-                  {`$${exact - voucher1} USD`}
+                  {`$${exact - voucherDiscount} USD`}
               </span>
             </div>
             <div className="flex justify-between mt-2">

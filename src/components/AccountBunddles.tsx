@@ -1,13 +1,15 @@
 "use client";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
-import { toast } from "react-toastify";
+import { toast,ToastContainer } from "react-toastify";
 import Table from "./common/Table";
+import Cookies from "js-cookie";
 
 const AccountBunddles = ({ userInfo, data }: any) => {
   const router = useRouter();
   // let posts=null
   const [state, setState] = useState<any>("");
+  const gettoken = Cookies.get("auth_token");
   const submit = async () => {
     try {
       const requestData = {
@@ -20,7 +22,7 @@ const AccountBunddles = ({ userInfo, data }: any) => {
           method: "POST", // Method set to POST
           headers: {
             "Content-Type": "application/json", // Indicates that you're sending JSON
-            Authorization: `Bearer ${userInfo}`, // Send the token in the Authorization header
+            Authorization: `Bearer ${gettoken}`, // Send the token in the Authorization header
           },
           body: JSON.stringify(requestData), // Stringify the data you want to send in the body
         }
@@ -29,8 +31,8 @@ const AccountBunddles = ({ userInfo, data }: any) => {
       // Parse the response JSON
       let posts = await res.json();
       setState(posts);
-      console.log(posts, "sds");
-      toast.success("Preferences Updated Successfully");
+      // console.log(posts, "AccountBundle");
+      // toast.success("Preferences Updated Successfully");
     } catch (error) {}
   };
   useEffect(() => {
@@ -47,6 +49,7 @@ const AccountBunddles = ({ userInfo, data }: any) => {
   return (
     <div className=" flex flex-col justify-center items-center bg-gray-100">
       {/* Page Title */}
+      <ToastContainer/> 
       <h1 className="text-2xl font-bold text-center mb-4">My Bundles</h1>
       <div className="bg-white shadow rounded-lg p-6">
         {/* <h2 className="text-xl font-semibold mb-4">Signed Cards</h2> */}

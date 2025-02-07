@@ -5,19 +5,19 @@ import { useAccessToken } from "@/app/context/AccessTokenContext";
 import { parseCookies } from "nookies";
 import { useRouter } from "next/navigation";
 import { Router } from "next/router";
+import { toast, ToastContainer } from "react-toastify";
+import Cookies from "js-cookie";
 
 const PlanBunddlePage = ({ data2 }: any) => {
   const router = useRouter(); 
   const [voucher, setVaoucher] = useState<any>("");
-  const [voucher1, setVaoucher1] = useState<any>("");
+   const [voucherDiscount, setVaoucherDiscount] = useState<any>(""); 
   const onChange = (e: any) => {
     setVaoucher(e);
   };
-  const onSubmit = () => {
-    setVaoucher1(voucher);
-  };
+     const gettoken = Cookies.get("auth_token");   
 
-  const TotalAmount = data2.data[0].sale_price - voucher1;
+     const TotalAmount = (data2.data[0].sale_price - voucherDiscount).toFixed(2);
   console.log(TotalAmount, "TotalAmount");
 
   const { accessToken, setAccessToken } = useAccessToken();
@@ -34,8 +34,48 @@ const PlanBunddlePage = ({ data2 }: any) => {
   }, []);
   console.log(accessToken, "accessToken");
 
+
+   const handleApplyDiscount = async() => {
+  
+        console.log("object")
+        // setVaoucher1(voucher);
+        try {
+           const requestData = {
+            code: voucher,
+            card_price:data2?.data[0]?.sale_price
+                // full_name:name,
+                // additional_invoice:invoiceDetails
+              };
+              
+              let res = await fetch('https://magshopify.goaideme.com/discount/is-voucher-valid', {
+                method: 'POST', // Method set to POST
+                headers: {
+                  'Content-Type': 'application/json', // Indicates that you're sending JSON
+                   'Authorization': `Bearer ${gettoken}` // Send the token in the Authorization header
+                },
+                body: JSON.stringify(requestData) // Stringify the data you want to send in the body
+              });
+              
+              // Parse the response JSON
+              let posts = await res.json();
+              console.log(posts,"jklklkj");
+              const numberValue = parseFloat(posts?.data.replace(/[^0-9.]/g, "")); 
+              setVaoucherDiscount(numberValue)
+              // console.log("voucher discount", voucherDiscount);
+              if(res.status===200){
+                toast.success("Voucher Added Suceesfully")
+              }else if(posts?.statusCode === 401){
+                Cookies.remove("auth_token");
+                router.push("/login");
+              }
+        } catch (error:any) {
+          toast.error("Voucher is not found");
+        }
+      }; 
+
   return (
     <div className="min-h-screen bg-gray-50 flex justify-center items-center bg-lightBg">
+      <ToastContainer />
       <div className="bg-white p-6 rounded-[20px] hover:shadow-lg transition-all  border border-[#e5e7eb] flex flex-col justify-between h-full">
         <h1 className="text-center text-2xl font-bold mb-4">
           {data2.data[0].number_of_cards} Cards Bundle
@@ -73,7 +113,7 @@ const PlanBunddlePage = ({ data2 }: any) => {
               value={voucher}
             />
             <button
-              onClick={onSubmit}
+              onClick={handleApplyDiscount}
               className="ml-2 text-blue-600 font-semibold"
             >
               Apply
@@ -83,7 +123,7 @@ const PlanBunddlePage = ({ data2 }: any) => {
           <div className="border-t border-gray-300 pt-4">
             <div className="flex justify-between text-sm mb-2">
               <span>Bundle Price</span>
-              <span>{data2.data[0].sale_price} INR</span>
+              <span>{TotalAmount} INR</span>
             </div>
             <div className="flex justify-between text-sm mb-2">
               <span>Tax</span>
@@ -91,7 +131,7 @@ const PlanBunddlePage = ({ data2 }: any) => {
             </div>
             <div className="flex justify-between text-base font-bold">
               <span>Total</span>
-              <span>{data2.data[0].sale_price} INR</span>
+              <span>{TotalAmount} INR</span>
             </div>
           </div>
         </div>

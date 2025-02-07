@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import { capFirst } from "@/utils/validation";
 import Images from "@/constants/images";
+import Link from "next/link";
 // import Images from "@/constants/images";
 // import {Col, Row  } from 'antd'
 // const array = [
@@ -29,7 +30,7 @@ const Category = ({ item, index }) => {
   return (
     <>
       <div class="flex flex-col items-center">
-        <a href={`/card/${item?.type}`} className="hoverZoom   rounded-full min-h-[150px] min-w-[150px] h-[150px] w-[150px] overflow-hidden no-underline imgSlider">
+        <Link href={`/card/${item?.type}`} className="hoverZoom   rounded-full min-h-[150px] min-w-[150px] h-[150px] w-[150px] overflow-hidden no-underline imgSlider">
           <Image
             class="  rounded-full   duration-300 min-h-[80px] min-w-[80px] h-[80px] w-[80px]  rounded-full  w-[120px] ease-in-out "
             src={array[index]?.img}
@@ -41,7 +42,7 @@ const Category = ({ item, index }) => {
             alt="category-image"
           />
           {/* <span className="no-underline mt-3 md:text-md sm:text-sm text-blackText d-block font-medium">{capFirst(item?.type)} Cards</span> */}
-        </a>
+        </Link>
         {/* <Row gutter={[16, 16]}>
             {array.map((category, i) => (
               <Col xs={12} sm={8} md={6} lg={4} key={i}>

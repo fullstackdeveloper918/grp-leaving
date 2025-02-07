@@ -7,6 +7,8 @@ import { useRouter } from "next/navigation";
 import { log } from "node:console";
 import { useAccessToken } from "@/app/context/AccessTokenContext";
 import { parseCookies } from "nookies";
+import Cookies from "js-cookie";
+
 const CreateGroup = ({ data }: any) => {
   console.log(data.data, "datadata");
 const [addCard,setAddCard]=useState<any>("")
@@ -18,7 +20,10 @@ console.log(addCard,"addcard");
   console.log(uuid, "uuid");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedImage(null);
+  };
   useEffect(() => {
     const cookies = document.cookie.split("; ");
     const userInfoCookie = cookies.find((cookie) =>
@@ -44,6 +49,7 @@ console.log(addCard,"addcard");
   const [collectionTitle, setCollectionTitle] = useState("");
   const [loading, setLoading] = useState<any>(false);
 const [brandKeys,setBrandKeys]=useState("")
+const gettoken = Cookies.get("auth_token"); 
   // State to store other form data
   const [formData, setFormData] = useState({
     selectedGift: "",
@@ -105,6 +111,7 @@ const [brandKeys,setBrandKeys]=useState("")
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            'Authorization': `Bearer ${gettoken}`
           },
           body: JSON.stringify(item),
         }
@@ -146,9 +153,9 @@ const [brandKeys,setBrandKeys]=useState("")
   };
 
   // Close modal
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-  };
+  // const handleCloseModal = () => {
+  //   setIsModalOpen(false);
+  // };
   const handleBackClick = () => {
     setSelectedImage(null); // Reset the selected image to show the image grid again
   };
@@ -156,6 +163,7 @@ const [brandKeys,setBrandKeys]=useState("")
     setAddCard(selectedImage.brandKey); // Reset the selected image to show the image grid again
     setAddSelectedImage(selectGiftImage)
     setIsModalOpen(false);
+    setSelectedImage(null);
   };
   console.log(selectedImage,"selectedImage");
   // const faceValues = selectedImage?.items.map((item:any) => item.faceValue);
@@ -185,6 +193,7 @@ const selectGiftImage = selectedImage?.imageUrls["278w-326ppi"];
   return (
     <div>
       <ToastContainer />
+      
       <div className="flex flex-col items-center justify-center min-h-screen bg-white">
         <h1 className="text-4xl font-bold mb-8">
           Create a Group Gift Collection
@@ -207,6 +216,8 @@ const selectGiftImage = selectedImage?.imageUrls["278w-326ppi"];
             />
           </label>
           <div className="mb-6">
+      {addSelectedImage === null ? (
+        <div className="flex flex-col gap-1">
             <h2 className="text-lg font-semibold mb-2">Select a gift</h2>
             <p className="text-gray-600 mb-4">
               Pick the gift that you want to collect cash for. Anyone will be
@@ -225,6 +236,24 @@ const selectGiftImage = selectedImage?.imageUrls["278w-326ppi"];
 
               <img src={addSelectedImage} alt="" className="" />
             </div>
+            </div>
+           ) : (
+        <div className="flex flex-col gap-1">
+          {/* <img src={selectGiftImage} alt="" className="" /> */}
+          <h2 className="text-center font-bold">Gift Card</h2>
+          <img src={addSelectedImage} alt="" className="" />
+          <p className="text-center">
+            Everyone will be able to contribute after you finish creating
+            the card.
+          </p>
+          <button
+            className="text-red-600 hover:text-red-800 font-medium"
+            onClick={() => setAddSelectedImage(null)}
+          >
+            Remove Gift Card
+          </button>
+          </div>
+          )}
           </div>
           {/* <Link href={`/share/1`}> */}
           {accessToken?
@@ -250,6 +279,7 @@ const selectGiftImage = selectedImage?.imageUrls["278w-326ppi"];
           {/* </Link> */}
         </form>
       </div>
+      
       {isModalOpen && (
   <>
     <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 z-50">
@@ -267,7 +297,7 @@ const selectGiftImage = selectedImage?.imageUrls["278w-326ppi"];
         </button>
 
         {/* How Collection Pots Work */}
-        <div className="bg-blue-100 p-4 rounded-md mb-4">
+        <div className="bg-blue-100 p-4 rounded-md mb-2">
           <h3 className="text-sm font-semibold">
             How do collection pots work?
           </h3>
@@ -289,10 +319,10 @@ const selectGiftImage = selectedImage?.imageUrls["278w-326ppi"];
             <div className="">
               <img src={selectGiftImage} alt="" className="" />
             </div>
-            <div className="w-20 h-12 bg-black text-white flex items-center justify-center rounded mb-4">
+            {/* <div className="w-20 h-12 bg-black text-white flex items-center justify-center rounded mb-4">
               {selectedImage.brandName}
-            </div>
-            <h2 className="text-xl font-bold mb-2">{selectedImage.brandName}</h2>
+            </div> */}
+            <h2 className="text-xl font-bold ">{selectedImage.brandName}</h2>
             <p className="text-sm text-gray-500">Currency: <span className="font-bold">INR</span></p>
             <p className="text-sm text-gray-500">Country: <span className="font-bold">IND</span></p>
             <p className="text-sm text-gray-500">Min Value: <span className="font-bold">{minFaceValue}</span></p>
@@ -303,13 +333,13 @@ const selectGiftImage = selectedImage?.imageUrls["278w-326ppi"];
             <p className="text-xs text-gray-400 mt-1 text-center">
               (We automatically create multiple gift cards if you go over the max)
             </p>
-            <a
+            <Link
               href="#"
-              className="text-sm text-blue-600 hover:underline mt-4"
+              className="text-sm text-blue-600 hover:underline mt-2"
             >
               Terms and conditions
-            </a>
-            <button className="bg-blue-600 text-black px-4 py-2 rounded mt-6 hover:bg-blue-700" onClick={AddGiftCard}>
+            </Link>
+            <button className="bg-blue-600 text-black px-4 py-2 rounded mt-2 hover:bg-blue-700" onClick={AddGiftCard}>
               Add Gift Card
             </button>
           </div>

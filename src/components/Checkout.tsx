@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import GooglePay from "./common/GooglePay";
 import { CardElement, useStripe } from "@stripe/react-stripe-js";
+import Cookies from "js-cookie";
 import {
   Button,
   Checkbox,
@@ -20,10 +21,13 @@ import AddCardElement from "./common/AddCard";
 import RazorPay from "./RazorPay";
 import EscrowPayment from "./EscrowPayment";
 import { cookies } from "next/headers";
-import { useParams, useSearchParams } from "next/navigation";
-import { toast } from "react-toastify";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
+import { toast, ToastContainer } from "react-toastify";
 
 const Checkout = ({data}:any) => {
+
+  const router = useRouter();
+
   const [cardType, setCardType] = useState<any>("group");
   console.log(cardType, "cardType");
   const param=useParams()
@@ -32,6 +36,8 @@ const Checkout = ({data}:any) => {
   
   console.log(param.id,"param");
   console.log(data,"datadatadata");
+
+  const gettoken = Cookies.get("auth_token");  
   
   // const cookiesList = cookies();
   // const userInfoCookie = cookiesList.get('userInfo'); 
@@ -52,7 +58,7 @@ const Checkout = ({data}:any) => {
   // State to store the selected sale price
   const [salePrice, setSalePrice] = useState("22.45");
   const [exact, setExact] = useState<any>("");
-const [state, setState]=useState<any>("")
+// const [state, setState]=useState<any>("")
   // Handle selection change
   const handleChange = (e:any) => {
     const selectedCount = data?.data.find((count:any) => count.number_of_cards === Number(e.target.value));
@@ -64,7 +70,7 @@ const [state, setState]=useState<any>("")
   };
   const [paywith, setPaywith] = useState<any>("STRIPE");
   const [voucher, setVaoucher] = useState<any>("");
-  const [voucher1, setVaoucher1] = useState<any>("");
+  const [voucherDiscount, setVaoucherDiscount] = useState<any>("");
   console.log(numCards,"numCards");
   console.log(salePrice,"salePrice");
   console.log(bundleOption,"bundleOption");
@@ -99,7 +105,7 @@ const [state, setState]=useState<any>("")
       : "22.45";
 
 
-      const TotalAmount =amount - state
+      const TotalAmount = amount - voucherDiscount
       // const TotalAmount = bundleOption === "single" 
       // ? bundleSingleCard 
       // : cardType === "group" 
@@ -112,7 +118,9 @@ const [state, setState]=useState<any>("")
     //   : `$${AmountCondition - voucher1} USD`;
     console.log(amount,"amount");
     
-    const onSubmit = async() => {
+    const handleApplyDiscount = async() => {
+
+      console.log("object")
       // setVaoucher1(voucher);
       try {
          const requestData = {
@@ -126,7 +134,7 @@ const [state, setState]=useState<any>("")
               method: 'POST', // Method set to POST
               headers: {
                 'Content-Type': 'application/json', // Indicates that you're sending JSON
-                // 'Authorization': `Bearer ${accessToken}` // Send the token in the Authorization header
+                 'Authorization': `Bearer ${gettoken}` // Send the token in the Authorization header
               },
               body: JSON.stringify(requestData) // Stringify the data you want to send in the body
             });
@@ -134,16 +142,24 @@ const [state, setState]=useState<any>("")
             // Parse the response JSON
             let posts = await res.json();
             console.log(posts,"jklklkj");
-            setState(posts?.data)
+            const numberValue = parseFloat(posts?.data.replace(/[^0-9.]/g, "")); 
+            setVaoucherDiscount(numberValue)
+            // console.log("voucher discount", voucherDiscount);
             if(res.status===200){
               toast.success("Voucher Added Suceesfully")
+            }else if(posts?.statusCode === 401){
+              Cookies.remove("auth_token");
+              router.push("/login");
             }
       } catch (error:any) {
-        toast.error(error.message)
+        toast.error("Voucher is not found");
       }
     };
+
+    console.log("voucher discount", voucherDiscount);
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col justify-center items-center p-5">
+      <ToastContainer /> 
       <div className="w-full max-w-4xl bg-white shadow-lg rounded-lg p-6 md:flex">
         {/* Left Section */}
         <div className="flex-1">
@@ -298,7 +314,7 @@ const [state, setState]=useState<any>("")
                 value={voucher}
               />
               <button
-                onClick={onSubmit}
+                onClick={handleApplyDiscount}
                 className="ml-2 bg-blue-500 text-black  border-2 border-blue-700 py-2 px-4 rounded-md hover:bg-blue-600 transition"
               >
                 Apply
@@ -314,7 +330,7 @@ const [state, setState]=useState<any>("")
                         voucher1
                       } USD`
                     : `$${AmountCondition - voucher1} USD`} */}
-                    {`$${exact - voucher1} USD`}
+                    {`$${exact - voucherDiscount} USD`}
                 </span>
               </div>
               <div className="flex justify-between mt-2">

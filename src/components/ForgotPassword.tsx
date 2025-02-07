@@ -1,5 +1,6 @@
 "use client"
 import React, { useState } from 'react'
+import { toast, ToastContainer } from 'react-toastify';
 
 const ForgotPassword = ({searchParams}:any) => {
     const [password, setPassword] = useState<any>("");
@@ -21,19 +22,21 @@ const ForgotPassword = ({searchParams}:any) => {
               body: JSON.stringify(item ),
             }
           );
-          console.log(response, "response");
+          console.log(response, "responsereset");
     
-          // if (response.ok) {
-          //   alert("Password reset email sent!");
-          // } else {
-          //   alert("Failed to send reset email. Please try again.");
-          // }
+          if (response.ok) {
+            // alert("Password reset email sent!");
+            toast.success("Password Changed successfull !")
+          } else {
+            alert("Failed to send reset email. Please try again.");
+          }
         } catch (error) {
           console.error("Error:", error);
         }
       };
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
+      <ToastContainer />
       <div className="w-full max-w-md bg-white  rounded-lg shadow-md">
         <h1 className="text-2xl font-bold text-center mb-4">Reset Password</h1>
         <p className="text-center text-gray-600 mb-6">
