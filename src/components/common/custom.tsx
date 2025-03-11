@@ -9,7 +9,7 @@ import "swiper/css/pagination";
 import Modal from "react-modal";
 import axios from "axios";
 import jsPDF from "jspdf";
-import html2canvas from "html2canvas";
+// import html2canvas from "html2canvas";
 import Quill from 'quill';
 import Draggable from 'react-draggable';
 

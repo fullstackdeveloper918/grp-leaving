@@ -14,7 +14,7 @@ import userIcon from "../assets/icons/ab.png";
 import Image from "next/image";
 import Custom from "./common/custom";
 import Customcraousal from "./common/Customcraousal";
-import { zIndex } from "html2canvas/dist/types/css/property-descriptors/z-index";
+// import { zIndex } from "html2canvas/dist/types/css/property-descriptors/z-index";
 const { Paragraph, Text } = Typography;
 const DemoCard = ({ params }: any) => {
   const [show, setShow] = useState<any>(false);
