@@ -1,24 +1,42 @@
-import React, { useState, useEffect } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
+import React, { useState, useEffect,useCallback } from "react";
+// import { Swiper, SwiperSlide } from "swiper/react";
 import { useDrag } from "@use-gesture/react";
 import { useSpring, animated } from "@react-spring/web";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-import "swiper/css";
-import "swiper/css/pagination";
+// import "swiper/css";
+// import "swiper/css/pagination";
+import SlideImg_0 from "../../assets/images/slide0.png"
+import SlideImg_1 from "../../assets/images/slide1.png"
+import SlideImg_2 from "../../assets/images/slide2.png"
+import SlideImg_3 from "../../assets/images/slide3.png"
+import SlideImg_4 from "../../assets/images/slide4.png"
+import SlideImg_5 from "../../assets/images/slide5.png"
 import Modal from "react-modal";
 import axios from "axios";
 import jsPDF from "jspdf";
-import html2canvas from "html2canvas";
+// import html2canvas from "html2canvas";
 import Quill from 'quill';
-import Draggable from 'react-draggable';
+import Draggable from "react-draggable";
+// import Draggable from 'react-draggable';
+// import { Progress } from "../ui/progress";
+interface Slide {
+  id: string;
+  title: string;
+  subtitle: string;
+  text: string;
+  link: string;
+  card_img:any
+}
+
 
 const Custom: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [gifs, setGifs] = useState<string[]>([]);
-  const [activeSlideIndex, setActiveSlideIndex] = useState<any>(null);
+  const [activeSlideIndex, setActiveSlideIndex] = useState<any>(0);
+
   const [elements, setElements] = useState<any[]>([]);
   const [editorContent, setEditorContent] = useState("");
   const [images, setImages] = useState<string[]>([
@@ -29,10 +47,61 @@ const Custom: React.FC = () => {
     "https://groupleavingcards.com/assets/design/66967675b0d2b479aa568c98_sm.avif",
     "https://groupleavingcards.com/assets/design/66d88499b4fb75024aa2d8de_sm.avif",
   ]);
+console.log(elements,"elements");
+const [slides, setSlides] = useState<Slide[]>([
+  {
+    id: "slide-1",
+    title: "Development",
+    subtitle: "SCSS Only Slider",
+    text: "Learn to create a SCSS-only responsive slider.",
+    link: "https://blog.significa.pt/css-only-slider-71727effff0b",
+    card_img:SlideImg_0
+    // card_img: "https://groupleavingcards.com/assets/design/617318f94c962c605abdeabb.jpg"
+  },
+  {
+    id: "slide-2",
+    title: "Web Design",
+    subtitle: "Creative Animations",
+    text: "Explore modern web design techniques.",
+    link: "https://medium.com/web-design",
+    card_img:SlideImg_1
+    // card_img:"https://groupleavingcards.com/assets/design/66bd382d51e4bce9bdd31fc6_sm.avif"
+  },
+  {
+    id: "slide-3",
+    title: "JavaScript",
+    subtitle: "Advanced ES6 Features",
+    text: "Master JavaScript ES6+ features in depth.",
+    link: "https://javascript.info/",
+    card_img:SlideImg_2
+    // card_img:"https://groupleavingcards.com/assets/design/66e30136ffa5cb04d55d990e_sm.avif"
+  },
+  {
+    id: "slide-4",
+    title: "React",
+    subtitle: "State Management",
+    text: "A guide to managing state effectively in React.",
+    link: "https://reactjs.org/docs/hooks-intro.html",
+    card_img:SlideImg_3
+    // card_img: "https://groupleavingcards.com/assets/design/66967675b0d2b479aa568c98_sm.avif",
+  },
+  {
+    id: "slide-5",
+    title: "Next.js",
+    subtitle: "Optimizing Performance",
+    text: "Learn Next.js best practices for fast web apps.",
+    link: "https://nextjs.org/docs/advanced-features",
+    card_img:SlideImg_4
+    // card_img:"https://groupleavingcards.com/assets/design/66d88499b4fb75024aa2d8de_sm.avif",
+  },
+]);
+console.log(slides,"wertyuio");
 
- 
+
   useEffect(() => {
-    const storedElements = localStorage.getItem("slideElements");
+    const storedElements:any = localStorage.getItem("slideElements");
+    console.log(JSON.parse(storedElements),"sdafasd");
+    
     if (storedElements) {
       setElements(JSON.parse(storedElements));
     }
@@ -59,10 +128,12 @@ const Custom: React.FC = () => {
     const newMessage = {
       type: "text",
       content: editorContent || "Default message",
-      slideIndex: activeSlideIndex + 2,
+      slideIndex: activeSlideIndex + 1,
       x: 0,
       y: 0,
     };
+console.log(activeSlideIndex,"activeSlideIndex");
+console.log(newMessage,"newMessage");
 
     setElements([...elements, newMessage]);
     setShowModal(false);
@@ -78,7 +149,7 @@ const Custom: React.FC = () => {
           const newImage = {
             type: "image",
             content: reader.result as string,
-            slideIndex: activeSlideIndex + 2,
+            slideIndex: activeSlideIndex + 1,
             x: 0,
             y: 0,
           };
@@ -124,10 +195,18 @@ const Custom: React.FC = () => {
   };
 
   const handleAddPage = () => {
-    setImages([
-      ...images,
-      "https://example.com/new-page-image.jpg",
-    ]);
+    // Create a new slide object (you can customize this as needed)
+    const newSlide = {
+      id: `slide-${slides.length + 1}`,  // Make sure the id is unique
+      title: "New Slide",  // Customize the title
+      subtitle: "New Subtitle",  // Customize the subtitle
+      text: "This is a new slide",  // Customize the text
+      link: "https://example.com",  // Customize the link
+      card_img: "https://example.com/new-page-image.jpg",  // Customize the image URL
+    };
+  
+    // Update the slides array by adding the new slide
+    setSlides([...slides, newSlide]);
   };
 
   const fetchImageAsBase64 = async (imageUrl: string) => {
@@ -208,7 +287,62 @@ const Custom: React.FC = () => {
 
     pdf.save("slides_with_positions.pdf");
   };
+  // const slides: Slide[] = [
+  //   {
+  //     id: "slide-1",
+  //     title: "Development",
+  //     subtitle: "SCSS Only Slider",
+  //     text: "Learn to create a SCSS-only responsive slider.",
+  //     link: "https://blog.significa.pt/css-only-slider-71727effff0b",
+  //     card_img:"https://groupleavingcards.com/assets/design/617318f94c962c605abdeabb.jpg"
+  //   },
+  //   {
+  //     id: "slide-2",
+  //     title: "Web Design",
+  //     subtitle: "Creative Animations",
+  //     text: "Explore modern web design techniques.",
+  //     link: "https://medium.com/web-design",
+  //     card_img:"https://groupleavingcards.com/assets/design/66bd382d51e4bce9bdd31fc6_sm.avif"
+  //   },
+  //   {
+  //     id: "slide-3",
+  //     title: "JavaScript",
+  //     subtitle: "Advanced ES6 Features",
+  //     text: "Master JavaScript ES6+ features in depth.",
+  //     link: "https://javascript.info/",
+  //     card_img:"https://groupleavingcards.com/assets/design/66e30136ffa5cb04d55d990e_sm.avif"
+  //   },
+  //   {
+  //     id: "slide-4",
+  //     title: "React",
+  //     subtitle: "State Management",
+  //     text: "A guide to managing state effectively in React.",
+  //     link: "https://reactjs.org/docs/hooks-intro.html",
+  //     card_img: "https://groupleavingcards.com/assets/design/66967675b0d2b479aa568c98_sm.avif",
+  //   },
+  //   {
+  //     id: "slide-5",
+  //     title: "Next.js",
+  //     subtitle: "Optimizing Performance",
+  //     text: "Learn Next.js best practices for fast web apps.",
+  //     link: "https://nextjs.org/docs/advanced-features",
+  //     card_img:"https://groupleavingcards.com/assets/design/66d88499b4fb75024aa2d8de_sm.avif",
+  //   },
+  // ];
 
+  const [activeSlide, setActiveSlide] = useState<number>(0); // Default to slide-3
+  const totalSlides = slides.length;
+
+  console.log(totalSlides, "totalSlides");
+  const progress = ((activeSlide + 1) / totalSlides) * 100;
+
+  const handleSlideChange = useCallback((index: number) => {
+    console.log(index,"index")
+    setActiveSlide(index);
+    setActiveSlideIndex(index);
+  }, []);
+
+  console.log(activeSlide,activeSlideIndex, "progress");
   return (
     <div style={styles.container}>
       <div className="editor_option" style={{marginBottom:"15px"}} >
@@ -258,7 +392,7 @@ const Custom: React.FC = () => {
             +
           </button>
         </div>
-        <div style={{ textAlign: "center" }}>
+        {/* <div style={{ textAlign: "center" }}>
           <button
             onClick={handleDownloadPDF}
             className="px-4 py-2 add_btn border border-blue-600 text-blue-600 rounded-md hover:bg-blue-600 hover:text-white transition"
@@ -266,11 +400,15 @@ const Custom: React.FC = () => {
           >
             Download
           </button>
-        </div>
+        </div> */}
       </div>
 
+
+<section className="main-slider-section">
+  
       {showModal && (
-        <Draggable axis="both" handle=".drag-handle">
+        <Draggable 
+        axis="both" handle=".drag-handle">
           <div
             style={{
               position: 'fixed',
@@ -292,16 +430,32 @@ const Custom: React.FC = () => {
             onClick={(e) => e.stopPropagation()}
           >
             <div className="drag-handle" style={{ cursor: 'move', marginBottom: '10px', textAlign: 'center', fontWeight: 'bold' }}>
-              Drag Me
+             Add Message
             </div>
             <ReactQuill
               theme="snow"
               value={editorContent}
               onChange={setEditorContent}
               style={{ height: '200px', marginBottom: '20px', paddingBottom:'30px' }}
+              modules={{
+                toolbar: [
+                  [{ 'header': '1'}, {'header': '2'}, { 'font': [] }],
+                  [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                  [{ 'script': 'sub'}, { 'script': 'super' }],
+                  [{ 'indent': '-1'}, { 'indent': '+1' }],
+                  [{ 'align': [] }],
+                  ['bold', 'italic', 'underline', 'strike'],
+                  [{ 'color': [] }, { 'background': [] }],
+                  [{ 'font': [] }],
+                  [{ 'size': [] }],
+                  ['link', 'image', 'video'],
+                  ['blockquote', 'code-block'],
+                  ['clean']
+                ],
+              }}
             />
 
-            <div className="flex gap-4 items-center justify-center">
+            <div className="flex gap-4 mt-5 items-center justify-center">
               <button
                 onClick={() => setShowModal(false)}
                 style={{ padding: '10px 20px', backgroundColor: '#f0f0f0', borderRadius: '4px' }}
@@ -318,37 +472,50 @@ const Custom: React.FC = () => {
           </div>
         </Draggable>
       )}
+        <section className="section slider">
+          {/* Radio Buttons */}
+          {slides.map((slide, index) => (
+            <input
+            key={slide.id}
+            type="radio"
+            name="slider"
+            id={slide.id}
+            className="slider__radio"
+            checked={activeSlideIndex === index}
+            onChange={() => handleSlideChange(index)}
+            />
+          ))}
+
+          {/* Slides */}
+          <div className="slider__holder">
+            {slides.map((slide, index) =>{
 
 
-      <div className="swiperSlider">
-        <Swiper
-          spaceBetween={30}
-          slidesPerView={3}
-          onSlideChange={({ activeIndex }) => setActiveSlideIndex(activeIndex)}
-        >
-          {images.map((image, index) => (
-            <SwiperSlide
-              key={index}
-              style={{
-                ...styles.swiperSlide,
-                ...(activeSlideIndex + 1 === index
-                  ? {
-                      transform: "scale(1.2288)",
-                      backgroundColor: "#000000",
-                      zIndex: 9,
-                      height: "400px"
-                    }
-                  : {}),
-              }}
-            >
-              <div style={styles.slideWrapper}>
-                <img
-                  src={image}
+                console.log(activeSlideIndex , slide.id,"id gete")
+          return(
+              <>
+                <label
+                  key={slide.id}
+                  htmlFor={slide.id}
+                //   id="slider-item"
+              
+                  className={`slider__item slider__item--${index + 1} card`}
+                >
+                  {activeSlideIndex + 1 !== slide.id && <div className="hover-bg"></div>}
+                  <div className="slider__item-content">
+                  <img
+                  src={slide.card_img.src}
                   alt={`slide-${index}`}
-                  style={{ width: "fit-content", height: "400px", background: "white" }}
+                  style={{ width: "450px", height: "550px", background: "white" }}
                 />
-                {elements
-                  .filter((el) => el.slideIndex === index + 1)
+                  </div>
+                </label>
+
+               
+              </>
+            )})}
+             {elements
+                  .filter((el) => el.slideIndex === activeSlideIndex + 1)
                   .map((el, i) => (
                     <DraggableElement
                       key={i}
@@ -360,11 +527,16 @@ const Custom: React.FC = () => {
                       initialY={el.y || 0}
                     />
                   ))}
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </div>
+          </div>
+        </section>
+        {/* Progress Bar */}
+        <div className="space-y-2 progress-bar">
+          {/* <Progress value={progress} className="h-2" /> */}
+          <div className="page-no">
+            Page {activeSlideIndex + 1} of {totalSlides}
+          </div>
+        </div>
+      </section>
 
       <Modal
         isOpen={isOpen}
@@ -382,8 +554,7 @@ const Custom: React.FC = () => {
           />
           <button
             type="submit"
-            className="px-4 py-2 bg-blue-600 text-black border rounded-md hover:bg-blue-700 transition"
-          >       
+            className="px-4 py-2 bg-blue-600 text-black border rounded-md hover:bg-blue-700 transition" >       
             Search
           </button>
         </form>
@@ -398,7 +569,7 @@ const Custom: React.FC = () => {
               onClick={() => {
                 setElements((prev) => [
                   ...prev,
-                  { type: "gif", content: gifUrl, slideIndex: activeSlideIndex + 2, x: 0, y: 0 },
+                  { type: "gif", content: gifUrl, slideIndex: activeSlideIndex + 1, x: 0, y: 0 },
                 ]);
                 closeModal();
               }}
@@ -451,39 +622,50 @@ const DraggableElement = ({
   });
 
   return (
-    <animated.div
-      {...bind()}
+<animated.div
+  style={{
+    x,
+    y,
+    position: "absolute",
+    cursor: "move",
+    zIndex: 10,
+    color: "rgb(17, 17, 17)",
+    left: "0px",
+    right: "0px",
+    top: "50%",
+    width:"25%",
+    transform: "translate3d(0px, 12px, 0px)",
+    display:"flex",
+    alignItems:"center",
+    justifyContent:"center"
+  }}
+  {...bind()}
+>
+  {type === "image" || type === "gif" ? (
+    <img
+      src={content}
+      alt="uploaded"
       style={{
-        x,
-        y,
-        position: "absolute",
-        cursor: "move",
-        zIndex: 10,
-        color: "rgb(17, 17, 17)",
-        left: "0px",
-        right: "0px",
-        top: "50%",
-        transform: "translate3d(0px, 12px, 0px)",
+        width: "100px",
+        height: "100px",
+        objectFit: "cover", // Ensure the image fits within the given space
+        pointerEvents: "none", // This allows the drag event to go through the image
       }}
-    >
-      {type === "image" || type === "gif" ? (
-        <img
-          src={content}
-          alt="uploaded"
-          style={{ width: "100px", height: "100px" }}
-        />
-      ) : (
-        <div dangerouslySetInnerHTML={{ __html: content }} />
-      )}
-    </animated.div>
+    />
+  ) : (
+    <div dangerouslySetInnerHTML={{ __html: content }} />
+  )}
+</animated.div>
+
   );
 };
 
 const styles = {
   container: {
-    padding: "20px",
+    overflow:"hidden",
+    // padding: "20px",
     fontFamily: "Helvetica, Arial, sans-serif",
-    backgroundColor: "#eee",
+    // backgroundColor: "#eee",
     minHeight: "100vh",
     gap: "10px"
   } as React.CSSProperties,
