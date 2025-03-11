@@ -9,7 +9,7 @@ import "swiper/css/pagination";
 import Modal from "react-modal";
 import axios from "axios";
 import jsPDF from "jspdf";
-// import html2canvas from "html2canvas";
+import html2canvas from "html2canvas";
 import Quill from 'quill';
 import Draggable from 'react-draggable';
 
@@ -30,35 +30,7 @@ const Custom: React.FC = () => {
     "https://groupleavingcards.com/assets/design/66d88499b4fb75024aa2d8de_sm.avif",
   ]);
 
-  const Font = Quill.import('formats/font');
-Font.whitelist = ['arial', 'times-new-roman', 'courier-new', 'georgia', 'verdana'];
-Quill.register(Font, true);
-
-
-  const modules = {
-    toolbar: [
-      [{ 'font': Font.whitelist }],
-      [{ 'header': [1, 2,3,4,5, false] }],
-      ['bold', 'italic', 'underline', 'strike'],
-      [{ 'color': [] }, { 'background': [] }],
-      [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-      [{ 'align': [] }],
-      ['link', 'image'],
-      ['clean']
-    ],
-  };
-
-    const formats = [
-      'font',
-      'header',
-      'bold', 'italic', 'underline', 'strike',
-      'color', 'background',
-      'list', 'bullet',
-      'align',
-      'link', 'image',
-      'clean'
-    ];
-
+ 
   useEffect(() => {
     const storedElements = localStorage.getItem("slideElements");
     if (storedElements) {
