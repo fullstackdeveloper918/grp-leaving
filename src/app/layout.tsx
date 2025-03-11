@@ -40,20 +40,20 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-
   const [accessToken, setAccessToken] = useState<string | null>(null);
   console.log(accessToken, "dfghere");
 
   useEffect(() => {
     const cookies = parseCookies();
-    console.log(cookies,"coofghjklkies");
-    
+    console.log(cookies, "coofghjklkies");
+
     const token = cookies.auth_token;
-    console.log(typeof(token),"qwertyu");
-    
+    console.log(typeof token, "qwertyu");
+    console.log(token, "qwertyu");
+
     if (token) {
       setAccessToken(token);
-    }else{
+    } else {
       // alert("nothing")
     }
   }, []);
@@ -66,6 +66,11 @@ export default function RootLayout({
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
           crossOrigin="anonymous"
         />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Arial:wght@400;700&family=Georgia:wght@400;700&family=Verdana:wght@400;700&family=Courier+New:wght@400;700&display=swap"
+          rel="stylesheet"
+        />
+
         <link
           rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
@@ -93,21 +98,21 @@ export default function RootLayout({
       <body className={quicksand.className}>
         {/* <AntdRegistry> */}
         <AccessTokenProvider>
-        <AntdRegistry>
-          <MsalProvider instance={msalInstance}>
-            <Navbar />
-            <NextTopLoader
-              color="#00C4CC"
-              initialPosition={0.08}
-              crawlSpeed={20}
-              height={3}
-              crawl={true}
-              showSpinner={false}
-              easing="ease"
-              speed={100}
-              shadow="0 0 10px #2299DD,0 0 5px #2299DD"
-            />
-            {/* <NextTopLoader
+          <AntdRegistry>
+            <MsalProvider instance={msalInstance}>
+              <Navbar />
+              <NextTopLoader
+                color="#00C4CC"
+                initialPosition={0.08}
+                crawlSpeed={20}
+                height={3}
+                crawl={true}
+                showSpinner={false}
+                easing="ease"
+                speed={100}
+                shadow="0 0 10px #2299DD,0 0 5px #2299DD"
+              />
+              {/* <NextTopLoader
             color="#2299DD"
             initialPosition={0.08}
             crawlSpeed={200}
@@ -118,10 +123,10 @@ export default function RootLayout({
             speed={200}
             shadow="0 0 10px #2299DD,0 0 5px #2299DD"
           /> */}
-            {children}
-            <Footer />
-          </MsalProvider>
-        </AntdRegistry>
+              {children}
+              <Footer />
+            </MsalProvider>
+          </AntdRegistry>
         </AccessTokenProvider>
       </body>
     </html>
